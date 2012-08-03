@@ -2,14 +2,14 @@
 @Abstract AUtils
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.07.2012
-@LastMod 01.08.2012
+@LastMod 03.08.2012
 }
 unit AUtils;
 
 interface
 
 uses
-  ABase, AStrings, AUtilsProcVars;
+  ABase, ARuntime, ARuntimeBase, AStrings, AUtilsBase, AUtilsProcRec, AUtilsProcVars;
 
 // --- AString ---
 
@@ -20,6 +20,8 @@ function AString_ToUpperP(const S: APascalString): APascalString; stdcall;
 function AString_ToUpperWS(const S: AWideString): AWideString; stdcall;
 
 // --- AUtils ---
+
+function AUtils_Boot(): AError; stdcall;
 
 function AUtils_FileExists(const FileName: AString_Type): ABoolean; stdcall;
 
@@ -42,6 +44,44 @@ function IntToStrWS(Value: AInt): AWideString; stdcall;
 function TrimWS(const S: AWideString): AWideString; stdcall;
 
 implementation
+
+// --- Private ---
+
+function _SetProcs(const Procs: AUtilsProcs_Type): AError;
+begin
+  AUtilsProcVars.AUtils_NormalizeFloat := Procs.NormalizeFloat;
+  AUtilsProcVars.AUtils_NormalizeStr := Procs.NormalizeStr;
+  AUtilsProcVars.AUtils_FileExists := Procs.FileExistsP;
+  AUtilsProcVars.AUtils_Sleep := Procs.Sleep;
+  AUtilsProcVars.AUtils_Time_Now := Procs.Time_Now;
+  AUtilsProcVars.AUtils_IntToStr := Procs.IntToStrWS;
+  AUtilsProcVars.AUtils_StrToFloat := Procs.StrToFloat;
+  AUtilsProcVars.AUtils_StrToInt := Procs.StrToIntP;
+  AUtilsProcVars.AUtils_ExtractFilePath := Procs.ExtractFilePath;
+  AUtilsProcVars.AUtils_Power := Procs.Power;
+  AUtilsProcVars.AUtils_ReplaceComma := Procs.ReplaceComma;
+  AUtilsProcVars.AUtils_StrToFloat1 := Procs.StrToFloatDefWS;
+  AUtilsProcVars.AUtils_StrToIntDefWS := Procs.StrToIntDefWS;
+  AUtilsProcVars.AUtils_TryStrToFloat := Procs.TryStrToFloat;
+  AUtilsProcVars.AUtils_TryStrToFloat32 := Procs.TryStrToFloat32;
+  AUtilsProcVars.AUtils_TryStrToFloat64 := Procs.TryStrToFloat64;
+  AUtilsProcVars.AUtils_TryStrToDate := Procs.TryStrToDate;
+  AUtilsProcVars.AUtils_TryStrToInt := Procs.TryStrToInt;
+  //AUtilsProcVars.AUtils_FloatToStr := Procs.FloatToStr;
+  AUtilsProcVars.AUtils_TrimWS := Procs.TrimWS;
+  AUtilsProcVars.AUtils_UpperString := Procs.UpperString;
+  AUtilsProcVars.AUtils_ExtractFileExt := Procs.ExtractFileExt;
+  AUtilsProcVars.AUtils_FormatFloat := Procs.FormatFloatWS;
+  AUtilsProcVars.AUtils_FormatInt := Procs.FormatIntWS;
+  AUtilsProcVars.AUtils_StrToDate := Procs.StrToDate;
+  AUtilsProcVars.AUtils_FormatStr := Procs.FormatStrWS;
+  {
+  AUtilsProcVars.AUtils_Strings_Add := Procs.Strings_Add;
+  AUtilsProcVars.AUtils_Strings_Clear := Procs.Strings_Clear;
+  }
+
+  Result := 0;
+end;
 
 // --- AString ---
 
@@ -97,6 +137,18 @@ begin
 end;
 
 // --- AUtils ---
+
+function AUtils_Boot(): AError;
+var
+  Module: AModule_Type;
+begin
+  if (ARuntime_GetModuleByName(AUtils_Name, Module) < 0) then
+  begin
+    Result := -4;
+    Exit;
+  end;
+  Utils_SetProcsP(Module.Procs);
+end;
 
 function AUtils_FileExists(const FileName: AString_Type): ABoolean;
 begin

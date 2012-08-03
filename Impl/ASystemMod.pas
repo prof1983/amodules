@@ -21,16 +21,17 @@ unit ASystemMod;
 interface
 
 uses
-  ABase, ALibraries, ARuntime, ARuntimeBase, ASystem, ASystemBase, ASystemProcRec;
+  ABase, ALibraries, ARuntime, ARuntimeBase, ASystem, ASystemBase{$IFDEF ADepr}, ASystemProcRec{$ENDIF};
 
 // --- Module ---
 
-function System_AddModule(const Module: AModule03_Type): AInteger; stdcall;
+{$IFDEF ADepr}function System_AddModule(const Module: AModule03_Type): AInteger; stdcall;{$ENDIF}
 
 function System_Boot(): AInteger; stdcall;
 
 function System_GetProc(ProcName: AStr): Pointer; stdcall;
 
+{$IFDEF ADepr}
 const
   SystemProcs: ASystemProcs_Type = (
     // --- Info functions ---
@@ -204,6 +205,7 @@ const
     Reserved126: 0;
     Reserved127: 0;
     );
+{$ENDIF ADepr}
 
 implementation
 
@@ -219,15 +221,17 @@ const
     Init: ASystem_Init;
     Fin: ASystem_Fin;
     GetProc: System_GetProc;
-    Procs: Addr(SystemProcs);
+    Procs: {$IFDEF ADepr}Addr(SystemProcs){$ELSE}nil{$ENDIF};
     );
 
 { Module }
 
+{$IFDEF ADepr}
 function System_AddModule(const Module: AModule03_Type): AInteger;
 begin
   Result := ARuntime_AddModule(AModule_Type(Module));
 end;
+{$ENDIF}
 
 function System_Boot(): AInteger; stdcall;
 begin
@@ -239,6 +243,4 @@ begin
   Result := nil;
 end;
 
-initialization
-  //System_SetProcs(SystemProcs);
 end.

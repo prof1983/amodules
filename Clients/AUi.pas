@@ -2,7 +2,7 @@
 @Abstract User Interface client
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 30.07.2012
+@LastMod 03.08.2012
 }
 unit AUi;
 
@@ -15,7 +15,13 @@ uses
   ARuntime, ARuntimeBase,
   AUiBase, AUiProcRec;
 
-function UI_Boot(): AError; deprecated; // Use AUi_Boot()
+// --- AUi ---
+
+function AUi_Boot(): AError;
+
+// ---
+
+function Ui_Boot(): AError; deprecated; // Use AUi_Boot()
 
 function Ui_SetProcs(const UiProcs1: AUiProcs_Type): ABoolean;
 function Ui_SetProcsP(UiProcs: PUiProcs): ABoolean;

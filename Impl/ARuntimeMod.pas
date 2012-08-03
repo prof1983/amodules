@@ -11,22 +11,16 @@ interface
 uses
   ABase, ARuntime, ARuntimeBase, ARuntimeProcRec;
 
-// --- Set event functions ---
-function Runtime_SetOnAfterRun(Value: AProc): AError; stdcall;
-function Runtime_SetOnBeforeRun(Value: AProc): AError; stdcall;
-function Runtime_SetOnRun(Value: AProc): AError; stdcall;
-function Runtime_SetOnShutdown(Value: AProc): AError; stdcall;
+// --- ARuntimeMod ---
 
-// --- Module ---
+{** Preinitialize Runtime }
+function ARuntimeMod_Boot(): AError; stdcall;
 
-// Preinitialize Runtime
-function Runtime_Boot(): AInteger; stdcall;
+{** Finalize Runtime (Shutdown, Work end, Unloading of modules) }
+function ARuntimeMod_Fin(): AError; stdcall;
 
-// Finalize Runtime (Shutdown, Work end, Unloading of modules)
-function Runtime_Fin(): AError; stdcall;
-
-// Initialize Runtime
-function Runtime_Init(): AError; stdcall;
+{** Initialize Runtime }
+function ARuntimeMod_Init(): AError; stdcall;
 
 const // 64x4
   RuntimeProcs: ARuntimeProcs_Type = (
@@ -100,51 +94,21 @@ const // 64x4
 
 implementation
 
-{uses
-  ARuntime0;}
+// --- ARuntimeMod ---
 
-// --- Runtime ---
-
-function Runtime_Boot(): AInteger;
-begin
-  //Runtime_SetProcs(RuntimeProcs);
-  Result := 0;
-end;
-
-function Runtime_Fin(): AError;
+function ARuntimeMod_Boot(): AError;
 begin
   Result := 0;
 end;
 
-function Runtime_Init(): AError;
+function ARuntimeMod_Fin(): AError;
+begin
+  Result := ARuntime_Fin();
+end;
+
+function ARuntimeMod_Init(): AError;
 begin
   Result := 0;
 end;
 
-function Runtime_SetOnAfterRun(Value: AProc): AError;
-begin
-  ARuntime.SetOnAfterRun(Value);
-  Result := 0;
-end;
-
-function Runtime_SetOnBeforeRun(Value: AProc): AError;
-begin
-  ARuntime.SetOnBeforeRun(Value);
-  Result := 0;
-end;
-
-function Runtime_SetOnRun(Value: AProc): AError;
-begin
-  ARuntime.SetOnRun(Value);
-  Result := 0;
-end;
-
-function Runtime_SetOnShutdown(Value: AProc): AError;
-begin
-  ARuntime.SetOnShutdown(Value);
-  Result := 0;
-end;
-
-initialization
-  //Runtime_SetProcs(RuntimeProcs);
 end.

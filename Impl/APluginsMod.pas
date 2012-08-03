@@ -10,7 +10,7 @@ interface
 
 uses
   ABase, APlugins, APluginsBase, APluginsProcRec,
-  ARuntime, ARuntime04, ARuntimeBase, ARuntimeProcRec,
+  ARuntime, ARuntimeMod, ARuntimeBase, ARuntimeProcRec,
   ASystem, ASystemBase;
 
 function Plugins_Boot(): AInteger; stdcall;

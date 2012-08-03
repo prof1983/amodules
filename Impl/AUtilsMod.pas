@@ -4,13 +4,15 @@
 @Created 30.09.2009
 @LastMod 03.08.2012
 }
-unit AUtilsmod;
+unit AUtilsMod;
+
+{$IFDEF A04}{$DEFINE ADepr}{$ENDIF}
 
 interface
 
 uses
   ABase, ABaseUtils, ARuntime, ARuntimeBase,
-  AUtils, AUtilsBase, AUtilsProcRec;
+  AUtils, AUtilsBase{$IFDEF ADepr}, AUtilsProcRec{$ENDIF};
 
 { Module }
 
@@ -24,6 +26,7 @@ function Utils_Init(): AError; stdcall;
 
 function Utils_Register(): AInteger; stdcall;
 
+{$IFDEF ADepr}
 const
   UtilsProcs: AUtilsProcs_Type = (
     FloatToStrAWS: AUtils.FloatToStrAWS;                        // 00
@@ -97,6 +100,7 @@ const
     Reserved62: 0;
     Reserved63: 0;
     );
+{$ENDIF ADepr}
 
 implementation
 
@@ -112,7 +116,7 @@ const
     Init: Utils_Init;
     Fin: Utils_Fin;
     GetProc: Utils_GetProc;
-    Procs: Addr(UtilsProcs);
+    Procs: {$IFDEF ADepr}Addr(UtilsProcs){$ELSE}nil{$ENDIF};
     );
 
 var
