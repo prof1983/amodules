@@ -2,7 +2,7 @@
 @Abstract AUtils proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.09.2009
-@LastMod 01.08.2012
+@LastMod 06.08.2012
 }
 unit AUtilsProcRec;
 
@@ -43,14 +43,14 @@ type
     StrToFloatDefWS: AUtils_StrToFloatDefWS_Proc;               // 15 - StrToFloat1
 
     StrToIntDefWS: AUtils_StrToIntDefWS_Proc;                   // 16 - StrToInt1
-    TryStrToFloat: AUtils_TryStrToFloatWS_Proc;                 // 17
+    TryStrToFloatWS: AUtils_TryStrToFloatWS_Proc;               // 17
     TryStrToFloat32WS: AUtils_TryStrToFloat32WS_Proc;           // 18
     TryStrToFloat64WS: AUtils_TryStrToFloat64WS_Proc;           // 19
     TryStrToDateWS: AUtils_TryStrToDateWS_Proc;                 // 20
     TryStrToIntWS: AUtils_TryStrToIntWS_Proc;                   // 21
     FloatToStr: AUtils_FloatToStr_Proc;                         // 22
     TrimWS: AUtils_TrimWS_Proc;                                 // 23
-    String_ToUpperWS: AUtils_UpperStringWS_Proc;                // 24 - UpperString
+    UpperStringWS: AUtils_UpperStringWS_Proc;                   // 24 - String_ToUpperWS
     ExtractFileExtWS: AUtils_ExtractFileExtWS_Proc;             // 25
     FormatFloatWS: AUtils_FormatFloatWS_Proc;                   // 26
     FormatIntWS: AUtils_FormatIntWS_Proc;                       // 27
@@ -61,7 +61,7 @@ type
 
     {$IFDEF A03UP}
       Init: AUtils_Init_Proc;                                   // 32
-      Done: AUtils_Fin_Proc;                                    // 33
+      Fin: AUtils_Fin_Proc;                                     // 33
       FormatStrStrWS: AUtils_FormatStrStrWS_Proc;               // 34
       ExpandFileNameWS: AUtils_ExpandFileNameWS_Proc;           // 35
       ChangeFileExtWS: AUtils_ChangeFileExtWS_Proc;             // 36

@@ -2,7 +2,7 @@
 @Abstract AUtils proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.09.2009
-@LastMod 01.08.2012
+@LastMod 06.08.2012
 }
 unit AUtilsProcTypes;
 
@@ -71,7 +71,6 @@ type
   {$IFDEF ADepr}AUtils_TrimWS_Proc = function(const S: AWideString): AWideString; stdcall;{$ENDIF}
   AUtils_TryStrToDate_Proc = function(const S: AString_Type; var Value: TDateTime): AError; stdcall;
   {$IFDEF ADepr}AUtils_TryStrToDateWS_Proc = function(const S: AWideString; var Value: TDateTime): ABoolean; stdcall;{$ENDIF}
-  AUtils_TryStrToFloat_Proc = function(const S: AString_Type; var Value: AFloat): AError; stdcall;
   AUtils_TryStrToFloat32_Proc = function(const S: AString_Type; var Value: AFloat32): AError; stdcall;
   AUtils_TryStrToFloat64_Proc = function(const S: AString_Type; var Value: AFloat64): AError; stdcall;
   {$IFDEF ADepr}AUtils_TryStrToFloat32WS_Proc = function(const S: AWideString; var Value: AFloat32): ABoolean; stdcall;{$ENDIF}

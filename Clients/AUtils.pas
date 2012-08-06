@@ -2,7 +2,7 @@
 @Abstract AUtils
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.07.2012
-@LastMod 03.08.2012
+@LastMod 06.08.2012
 }
 unit AUtils;
 
@@ -50,37 +50,49 @@ implementation
 function _SetProcs(const Procs: AUtilsProcs_Type): AError;
 begin
   AUtilsProcVars.AUtils_NormalizeFloat := Procs.NormalizeFloat;
-  AUtilsProcVars.AUtils_NormalizeStr := Procs.NormalizeStr;
-  AUtilsProcVars.AUtils_FileExists := Procs.FileExistsP;
+  AUtilsProcVars.AUtils_NormalizeStrWS := Procs.NormalizeStrWS;
+  AUtilsProcVars.AUtils_FileExistsWS := Procs.FileExistsWS;
   AUtilsProcVars.AUtils_Sleep := Procs.Sleep;
   AUtilsProcVars.AUtils_Time_Now := Procs.Time_Now;
-  AUtilsProcVars.AUtils_IntToStr := Procs.IntToStrWS;
-  AUtilsProcVars.AUtils_StrToFloat := Procs.StrToFloat;
-  AUtilsProcVars.AUtils_StrToInt := Procs.StrToIntP;
-  AUtilsProcVars.AUtils_ExtractFilePath := Procs.ExtractFilePath;
+  AUtilsProcVars.AUtils_IntToStrWS := Procs.IntToStrWS;
+  AUtilsProcVars.AUtils_StrToFloatWS := Procs.StrToFloatWS;
+  AUtilsProcVars.AUtils_StrToIntWS := Procs.StrToIntWS;
+  AUtilsProcVars.AUtils_ExtractFilePathWS := Procs.ExtractFilePathWS;
   AUtilsProcVars.AUtils_Power := Procs.Power;
-  AUtilsProcVars.AUtils_ReplaceComma := Procs.ReplaceComma;
-  AUtilsProcVars.AUtils_StrToFloat1 := Procs.StrToFloatDefWS;
+  AUtilsProcVars.AUtils_ReplaceCommaWS := Procs.ReplaceCommaWS;
+  AUtilsProcVars.AUtils_StrToFloatDefWS := Procs.StrToFloatDefWS;
   AUtilsProcVars.AUtils_StrToIntDefWS := Procs.StrToIntDefWS;
-  AUtilsProcVars.AUtils_TryStrToFloat := Procs.TryStrToFloat;
-  AUtilsProcVars.AUtils_TryStrToFloat32 := Procs.TryStrToFloat32;
-  AUtilsProcVars.AUtils_TryStrToFloat64 := Procs.TryStrToFloat64;
-  AUtilsProcVars.AUtils_TryStrToDate := Procs.TryStrToDate;
-  AUtilsProcVars.AUtils_TryStrToInt := Procs.TryStrToInt;
-  //AUtilsProcVars.AUtils_FloatToStr := Procs.FloatToStr;
+  AUtilsProcVars.AUtils_TryStrToFloatWS := Procs.TryStrToFloatWS;
+  AUtilsProcVars.AUtils_TryStrToFloat32WS := Procs.TryStrToFloat32WS;
+  AUtilsProcVars.AUtils_TryStrToFloat64WS := Procs.TryStrToFloat64WS;
+  AUtilsProcVars.AUtils_TryStrToDateWS := Procs.TryStrToDateWS;
+  AUtilsProcVars.AUtils_TryStrToIntWS := Procs.TryStrToIntWS;
+  AUtilsProcVars.AUtils_FloatToStr := Procs.FloatToStr;
   AUtilsProcVars.AUtils_TrimWS := Procs.TrimWS;
-  AUtilsProcVars.AUtils_UpperString := Procs.UpperString;
-  AUtilsProcVars.AUtils_ExtractFileExt := Procs.ExtractFileExt;
-  AUtilsProcVars.AUtils_FormatFloat := Procs.FormatFloatWS;
-  AUtilsProcVars.AUtils_FormatInt := Procs.FormatIntWS;
-  AUtilsProcVars.AUtils_StrToDate := Procs.StrToDate;
-  AUtilsProcVars.AUtils_FormatStr := Procs.FormatStrWS;
-  {
-  AUtilsProcVars.AUtils_Strings_Add := Procs.Strings_Add;
-  AUtilsProcVars.AUtils_Strings_Clear := Procs.Strings_Clear;
-  }
-
+  AUtilsProcVars.AUtils_UpperStringWS := Procs.UpperStringWS;
+  AUtilsProcVars.AUtils_ExtractFileExtWS := Procs.ExtractFileExtWS;
+  AUtilsProcVars.AUtils_FormatFloatWS := Procs.FormatFloatWS;
+  AUtilsProcVars.AUtils_FormatIntWS := Procs.FormatIntWS;
+  AUtilsProcVars.AUtils_StrToDateWS := Procs.StrToDateWS;
+  AUtilsProcVars.AUtils_FormatStrWS := Procs.FormatStrWS;
+  AUtilsProcVars.AUtils_Init := Procs.Init;
+  AUtilsProcVars.AUtils_Fin := Procs.Fin;
+  AUtilsProcVars.AUtils_FormatStrStrWS := Procs.FormatStrStrWS;
+  AUtilsProcVars.AUtils_ExpandFileNameWS := Procs.ExpandFileNameWS;
+  AUtilsProcVars.AUtils_ChangeFileExtWS := Procs.ChangeFileExtWS;
+  AUtilsProcVars.AUtils_DeleteFileWS := Procs.DeleteFileWS;
+  AUtilsProcVars.AUtils_DateToStrWS := Procs.DateToStrWS;
   Result := 0;
+end;
+
+function _SetProcsP(Procs: PUtilsProcs): AError;
+begin
+  if not(Assigned(Procs)) then
+  begin
+    Result := -1;
+    Exit;
+  end;
+  Result := _SetProcs(Procs^);
 end;
 
 // --- AString ---
@@ -147,7 +159,7 @@ begin
     Result := -4;
     Exit;
   end;
-  Utils_SetProcsP(Module.Procs);
+  Result := _SetProcsP(PUtilsProcs(Module.Procs));
 end;
 
 function AUtils_FileExists(const FileName: AString_Type): ABoolean;
