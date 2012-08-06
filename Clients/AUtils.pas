@@ -23,6 +23,8 @@ function AString_ToUpperWS(const S: AWideString): AWideString; stdcall;
 
 function AUtils_Boot(): AError; stdcall;
 
+function AUtils_ExtractFileExtWS(const FileName: AWideString): AWideString; stdcall;
+
 function AUtils_FileExists(const FileName: AString_Type): ABoolean; stdcall;
 
 function AUtils_FileExistsWS(const FileName: AWideString): ABoolean; stdcall;
@@ -36,6 +38,8 @@ function AUtils_Trim(var S: AString_Type): AError; stdcall;
 function AUtils_TrimWS(const S: AWideString): AWideString; stdcall;
 
 // ----
+
+function ExtractFileExtWS(const FileName: AWideString): AWideString; stdcall;
 
 function FileExistsWS(const FileName: AWideString): ABoolean; stdcall;
 
@@ -162,6 +166,47 @@ begin
   Result := _SetProcsP(PUtilsProcs(Module.Procs));
 end;
 
+function AUtils_ExtractFileExtWS(const FileName: AWideString): AWideString;
+var
+  FN: AString_Type;
+  Res: AString_Type;
+begin
+  if not(Assigned(AUtilsProcVars.AUtils_ExtractFileExt)) and not(Assigned(AUtilsProcVars.AUtils_ExtractFileExtWS)) then
+  begin
+    Result := '';
+    Exit;
+  end;
+  if Assigned(AUtilsProcVars.AUtils_ExtractFileExt) then
+  begin
+    if (AString_AssignWS(FN, FileName) < 0) then
+    begin
+      Result := '';
+      Exit;
+    end;
+    if (AString_Clear(Res) < 0) then
+    begin
+      Result := '';
+      Exit;
+    end;
+    if (AUtils_ExtractFileExt(FN, Res) < 0) then
+    begin
+      Result := '';
+      Exit;
+    end;
+    Result := AString_ToWideString(Res);
+    Exit;
+  end;
+  if Assigned(AUtilsProcVars.AUtils_ExtractFileExtWS) then
+  begin
+    try
+      Result := AUtilsProcVars.AUtils_ExtractFileExtWS(FileName);
+    except
+      Result := '';
+    end;
+    Exit;
+  end;
+end;
+
 function AUtils_FileExists(const FileName: AString_Type): ABoolean;
 begin
   if not(Assigned(AUtilsProcVars.AUtils_FileExists)) then
@@ -234,6 +279,11 @@ begin
 end;
 
 // --- Public ---
+
+function ExtractFileExtWS(const FileName: AWideString): AWideString;
+begin
+  Result := AUtils_ExtractFileExtWS(FileName);
+end;
 
 function FileExistsWS(const FileName: AWideString): ABoolean;
 begin

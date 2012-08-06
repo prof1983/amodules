@@ -13,11 +13,11 @@ interface
 uses
   ABase, AEvents, AEventsBase, {$IFDEF ADepr}AEventsProcRec,{$ENDIF} ARuntime, ARuntimeBase, AStrings;
 
-function Events_Boot(): AError; stdcall;
+function AEventsMod_Boot(): AError; stdcall;
 
-function Events_Fin(): AError; stdcall;
+function AEventsMod_Fin(): AError; stdcall;
 
-function Events_Init(): AError; stdcall;
+function AEventsMod_Init(): AError; stdcall;
 
 {$IFDEF ADepr}
 const
@@ -37,8 +37,8 @@ const
     Event_GetNameA: AEvents.Event_GetNameA;                     // 11
     Event_GetNameP: AEvents.Event_GetNameP;                     // 12
     Event_GetNameW: AEvents.Event_GetNameW;                     // 13
-    Init: Events_Init;                                          // 14
-    Fin: Events_Fin;                                            // 15
+    Init: AEventsMod_Init;                                      // 14
+    Fin: AEventsMod_Fin;                                        // 15
 
     Event_NewWS: AEvents.Event_NewWS;                           // 16
     Reserved17: 0;
@@ -74,7 +74,7 @@ const
     Init: AEventsMod_Init;
     Fin: AEventsMod_Fin;
     GetProc: nil;
-    Procs: {$IFDEF ADepr}EventsProcs{$ELSE}nil{$ENDIF};
+    Procs: {$IFDEF ADepr}Addr(EventsProcs){$ELSE}nil{$ENDIF};
     );
 
 // --- AEventsMod ---

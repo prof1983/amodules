@@ -13,11 +13,11 @@ interface
 uses
   ABase, AStrings{$IFDEF ADepr}, AStringsProcRec{$ENDIF};
 
-function AStringsModule_Boot(): AError; stdcall;
+function AStringsMod_Boot(): AError; stdcall;
 
-function AStringsModule_Fin(): AError; stdcall;
+function AStringsMod_Fin(): AError; stdcall;
 
-function AStringsModule_Init(): AError; stdcall;
+function AStringsMod_Init(): AError; stdcall;
 
 {$IFDEF ADepr}
 const
@@ -31,7 +31,7 @@ const
     String_ToWideString: AString_ToWideString;                  // 06
     String_AssignP: AString_AssignP;                            // 07
     String_ToPascalString: AString_ToPascalString;              // 08
-    Init: AStringsModule_Init;                                  // 09
+    Init: AStringsMod_Init;                                     // 09
     Reserved10: 0;
     Reserved11: 0;
     Reserved12: 0;
@@ -59,17 +59,19 @@ const
 
 implementation
 
-function AStringsModule_Boot(): AError;
+// --- AStringsMod ---
+
+function AStringsMod_Boot(): AError;
 begin
   Result := 0;
 end;
 
-function AStringsModule_Fin(): AError;
+function AStringsMod_Fin(): AError;
 begin
   Result := 0;
 end;
 
-function AStringsModule_Init(): AError;
+function AStringsMod_Init(): AError;
 begin
   Result := 0;
 end;

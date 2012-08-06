@@ -2,7 +2,7 @@
 @Abstract ASettings proc vars
 @Author Prof1983 <prof1983@ya.ru>
 @Created 03.08.2012
-@LastMod 03.08.2012
+@LastMod 06.08.2012
 }
 unit ASettingsProcVars;
 
@@ -13,8 +13,8 @@ interface
 uses
   ASettingsProcTypes;
 
-var
   {$IFDEF ADepr}
+var
   ASettings_Close: ASettings_Close02_Proc;
   ASettings_DeleteKey: ASettings_DeleteKey02_Proc;
   ASettings_DeleteSection: ASettings_DeleteSection02_Proc;
