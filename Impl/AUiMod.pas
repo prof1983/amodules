@@ -2,7 +2,7 @@
 @Abstract User Interface
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 03.08.2012
+@LastMod 06.08.2012
 }
 unit AUiMod;
 
@@ -10,24 +10,25 @@ unit AUiMod;
   {$mode delphi}{$h+}
 {$ENDIF}
 
+{$IFDEF A04}{$DEFINE ADepr}{$ENDIF}
+
 interface
 
 uses
   ABase, ARuntime, ARuntimeBase,
-  AUi, AUiBase, AUiProcRec;
+  AUi, AUiBase{$IFDEF ADepr}, AUiProcRec{$ENDIF};
 
-// --- Procs ---
+// --- AUi ---
 
-{ Protected }
+function AUiMod_Boot(): AError; stdcall;
 
-function Ui_Boot(): AError; stdcall;
+function AUiMod_Fin(): AError; stdcall;
 
-function Ui_Fin(): AError; stdcall;
+function AUiMod_GetProc(ProcName: AStr): Pointer; stdcall;
 
-function Ui_GetProc(ProcName: AStr): Pointer; stdcall;
+function AUiMod_Init(): AError; stdcall;
 
-function Ui_Init(): AError; stdcall;
-
+{$IFDEF ADepr}
 const
   UIProcs: AUIProcs_Type = (
     IsShowApp: UI_GetIsShowApp;                                     // 00
@@ -189,8 +190,8 @@ const
     Dialog_About_New: UI_Dialog_About_New;                          // 131
     Dialog_AddButton: UI_Dialog_AddButton02;                        // 132
     OnDone_Connect: AUI.OnDone_Connect;                             // 133
-    Init: UI_Init;                                                  // 134
-    Fin: UI_Fin;                                                    // 135
+    Init: AUiMod_Init;                                              // 134
+    Fin: AUiMod_Fin;                                                // 135
     InitMenus: AUI.InitMenus;                                       // 136
     ProcessMessages: AUI.ProcessMessages;                           // 137
     ShowHelp: AUI.ShowHelp;                                         // 138
@@ -319,6 +320,7 @@ const
     Reserved254: 0;
     Reserved255: 0;
     );
+{$ENDIF ADepr}
 
 implementation
 
@@ -331,30 +333,30 @@ const
     Uid: AUi_Uid;
     Name: AUi_Name;
     Description: nil;
-    Init: Ui_Init;
-    Fin: Ui_Fin;
-    GetProc: Ui_GetProc;
-    Procs: Addr(UiProcs);
+    Init: AUiMod_Init;
+    Fin: AUiMod_Fin;
+    GetProc: AUiMod_GetProc;
+    Procs: {$IFDEF ADepr}Addr(UiProcs){$ELSE}nil{$ENDIF};
     );
 
-{ Module }
+// --- AUi ---
 
-function Ui_Boot(): AError;
+function AUiMod_Boot(): AError;
 begin
   Result := AModule_Register(Module);
 end;
 
-function Ui_Fin(): AError;
+function AUiMod_Fin(): AError;
 begin
   Result := AUI.Done();
 end;
 
-function Ui_GetProc(ProcName: AStr): Pointer;
+function AUiMod_GetProc(ProcName: AStr): Pointer;
 begin
   Result := nil;
 end;
 
-function Ui_Init(): AError;
+function AUiMod_Init(): AError;
 begin
   {if (ARuntime.Modules_InitByUid(ASystem_Uid) < 0) then
   begin

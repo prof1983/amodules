@@ -2,25 +2,28 @@
 @Abstract APlugins
 @Author Prof1983 <prof1983@ya.ru>
 @Created 10.04.2009
-@LastMod 03.08.2012
+@LastMod 06.08.2012
 }
 unit APluginsMod;
+
+{$IFDEF A04}{$DEFINE ADepr}{$ENDIF}
 
 interface
 
 uses
-  ABase, APlugins, APluginsBase, APluginsProcRec,
+  ABase, APlugins, APluginsBase, {$IFDEF ADepr}APluginsProcRec,{$ENDIF}
   ARuntime, ARuntimeMod, ARuntimeBase, ARuntimeProcRec,
   ASystem, ASystemBase;
 
-function Plugins_Boot(): AInteger; stdcall;
+function APluginsMod_Boot(): AError; stdcall;
 
-function Plugins_Fin(): AError; stdcall;
+function APluginsMod_Fin(): AError; stdcall;
 
-function Plugins_GetProc(ProcName: AStr): Pointer; stdcall;
+function APluginsMod_GetProc(ProcName: AStr): Pointer; stdcall;
 
-function Plugins_Init(): AError; stdcall;
+function APluginsMod_Init(): AError; stdcall;
 
+{$IFDEF ADepr}
 const
   PluginsProcs: APluginsProcs_Type = (
     AddPlugin: APlugins.AddPlugin;                              // 00
@@ -28,8 +31,8 @@ const
     Count: APlugins.GetCount;                                   // 02
     Delete: APlugins.Delete;                                    // 03
     Find: APlugins.Find02;                                      // 04
-    Init: Plugins_Init;                                         // 05
-    Fin: Plugins_Fin;                                           // 06
+    Init: APluginsMod_Init;                                     // 05
+    Fin: APluginsMod_Fin;                                       // 06
     Reserved07: 0;
     Reserved08: 0;
     Reserved09: 0;
@@ -57,6 +60,7 @@ const
     Reserved30: 0;
     Reserved31: 0;
     );
+{$ENDIF ADepr}
 
 implementation
 
@@ -69,10 +73,10 @@ const
     Uid: APlugins_Uid;
     Name: APlugins_Name;
     Description: nil;
-    Init: Plugins_Init;
-    Fin: Plugins_Fin;
-    GetProc: Plugins_GetProc;
-    Procs: Addr(PluginsProcs);
+    Init: APluginsMod_Init;
+    Fin: APluginsMod_Fin;
+    GetProc: APluginsMod_GetProc;
+    Procs: {$IFDEF ADepr}Addr(PluginsProcs){$ELSE}nil{$ENDIF};
     );
 
 type
@@ -96,9 +100,9 @@ begin
   end;
 end;
 
-{ Module }
+// --- APluginsMod ---
 
-function Plugins_Boot(): AInteger;
+function APluginsMod_Boot(): AError;
 begin
   if (ARuntime_FindModuleByName(APlugins_Name) > 0) then
   begin
@@ -116,22 +120,20 @@ begin
   Result := AModule_Register(PluginsModule);
 end;
 
-function Plugins_Fin(): AError;
+function APluginsMod_Fin(): AError;
 begin
   Result := APlugins_Fin();
 end;
 
-function Plugins_GetProc(ProcName: AStr): Pointer;
+function APluginsMod_GetProc(ProcName: AStr): Pointer;
 begin
   Result := nil;
 end;
 
-function Plugins_Init(): AError;
+function APluginsMod_Init(): AError;
 begin
   ARuntime.Modules_InitByUid(ASystem_Uid);
   Result := APlugins_Init();
 end;
 
-initialization
-  //Plugins_SetProcs(PluginsProcs);
 end.

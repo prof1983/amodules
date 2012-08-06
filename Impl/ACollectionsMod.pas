@@ -2,7 +2,7 @@
 @Abstract ACollections
 @Author Prof1983 <prof1983@ya.ru>
 @Created 31.05.2011
-@LastMod 03.08.2012
+@LastMod 06.08.2012
 
 Prototype:
 CS: System.Collection.ICollection
@@ -19,20 +19,23 @@ CS: Stack
 }
 unit ACollectionsMod;
 
+{$IFDEF A04}{$DEFINE ADepr}{$ENDIF}
+
 interface
 
 uses
-  ABase, ACollections, ACollectionsBase, ACollectionsProcRec, ACollectionsProcTypes,
+  ABase, ACollections, ACollectionsBase, {$IFDEF ADepr}ACollectionsProcRec,{$ENDIF} 
   ARuntime, ARuntimeBase;
 
-function Collections_Boot(): AInteger; stdcall;
+function ACollectionsMod_Boot(): AError; stdcall;
 
-function Collections_Fin(): AError; stdcall;
+function ACollectionsMod_Fin(): AError; stdcall;
 
-function Collection_GetProc(ProcName: AStr): Pointer; stdcall;
+function ACollectionMod_GetProc(ProcName: AStr): Pointer; stdcall;
 
-function Collections_Init(): AError; stdcall;
+function ACollectionsMod_Init(): AError; stdcall;
 
+{$IFDEF ADepr}
 const
   CollectionsProcs: ACollectionsProcs_Type = (
     StringList_Add: ACollections.StringList_Add;                // 00
@@ -44,8 +47,8 @@ const
     StringList_InsertP: ACollections.StringList_InsertP;        // 06
     StringList_New: ACollections.StringList_New;                // 07
     StringList_RemoveAt: ACollections.StringList_RemoveAt;      // 08
-    Init: Collections_Init;                                     // 09
-    Fin: Collections_Fin;                                       // 10
+    Init: ACollectionsMod_Init;                                 // 09
+    Fin: ACollectionsMod_Fin;                                   // 10
     StringList_AddA: ACollections.StringList_AddA;              // 11
     Reserved12: 0;
     Reserved13: 0;
@@ -68,11 +71,9 @@ const
     Reserved30: 0;
     Reserved31: 0;
     );
+{$ENDIF ADepr}
 
 implementation
-
-{uses
-  ACollections0;}
 
 const
   ACollections_Version = $00040000;
@@ -83,30 +84,30 @@ const
     Uid: ACollections_Uid;              // Module unique identificator $YYMMDDxx YY - Year, MM - Month, DD - Day
     Name: ACollections_Name;            // Module unuque name
     Description: nil;                   // Module information and description
-    Init: Collections_Init;             // Initialize proc
-    Fin: Collections_Fin;               // Finalize proc
-    GetProc: Collection_GetProc;        // Get proc address
-    Procs: Addr(CollectionsProcs);
+    Init: ACollectionsMod_Init;         // Initialize proc
+    Fin: ACollectionsMod_Fin;           // Finalize proc
+    GetProc: ACollectionMod_GetProc;    // Get proc address
+    Procs: {$IFDEF ADepr}Addr(CollectionsProcs){$ELSE}nil{$ENDIF};
     );
 
-{ Module_Collections }
+// --- ACollectionsMod ---
 
-function Collections_Boot(): AInteger;
+function ACollectionsMod_Boot(): AError;
 begin
   Result := AModule_Register(CollectionsModule);
 end;
 
-function Collections_Fin(): AError;
+function ACollectionsMod_Fin(): AError;
 begin
   Result := 0;
 end;
 
-function Collection_GetProc(ProcName: AStr): Pointer;
+function ACollectionMod_GetProc(ProcName: AStr): Pointer;
 begin
   Result := nil;
 end;
 
-function Collections_Init(): AError;
+function ACollectionsMod_Init(): AError;
 begin
   if (ARuntime_FindModuleByUid(ACollections_Uid) > 0) then
   begin
@@ -124,7 +125,5 @@ begin
   Result := 0;
 end;
 
-initialization
-  //Collections_SetProcs(CollectionsProcs);
 end.
  

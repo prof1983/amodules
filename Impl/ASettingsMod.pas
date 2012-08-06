@@ -2,61 +2,66 @@
 @Abstract Модуль для работы с настройками
 @Author Prof1983 <prof1983@ya.ru>
 @Created 06.03.2008
-@LastMod 03.08.2012
+@LastMod 06.08.2012
 }
 unit ASettingsMod;
+
+{$IFDEF A04}{$DEFINE ADepr}{$ENDIF}
 
 interface
 
 uses
-  ABase, ACollectionsBase, ARuntime, ARuntimeBase, ASettings, ASettingsBase, ASettingsProcTypes;
+  ABase, ACollectionsBase, ARuntime, ARuntimeBase,
+  ASettings, ASettingsBase{$IFDEF ADepr}, ASettingsProcRec{$ENDIF};
 
-function Settings_Boot(): AInteger; stdcall;
+function ASettingsMod_Boot(): AError; stdcall;
 
-function Settings_Fin(): AError; stdcall;
+function ASettingsMod_Fin(): AError; stdcall;
 
-function Settings_GetProc(ProcName: AStr): Pointer; stdcall;
+function ASettingsMod_GetProc(ProcName: AStr): Pointer; stdcall;
 
-function Settings_Init(): AError; stdcall;
+function ASettingsMod_Init(): AError; stdcall;
 
+{$IFDEF ADepr}
 const
   SettingsProcs: ASettingsProcs_Type = (
-    Config_Close: ASettings.Config_Close02;
-    DeleteKeyW: Settings_DeleteKey02;
-    DeleteSectionW: Settings_DeleteSection02;
-    IniConfig_NewWS: ASettings.IniConfig_NewWS;
-    ReadBoolW: Settings_ReadBool02;
-    ReadIntegerW: Settings_ReadInteger02;
-    ReadFloatW: Settings_ReadFloat02;
-    ReadSectionW: Settings_ReadSection02;
-    ReadStringW: ASettings.Config_ReadStringDefP;
-    ReadDateTimeW: ASettings.Config_ReadDateTimeDefP;
-    RegConfig_NewWS: ASettings.RegConfig_NewWS;
-    RegConfig_New2WS: ASettings.RegConfig_New2WS;
-    WriteBoolW: Settings_WriteBool02;
-    WriteIntegerWS: Settings_WriteInteger02;
-    WriteFloatW: Settings_WriteFloat02;
-    WriteStringW: Settings_WriteString02;
-    WriteDateTimeW: Settings_WriteDateTime02;
+    Config_Close: ASettings.Config_Close02;                             // 00
+    DeleteKeyW: Settings_DeleteKey02;                                   // 01
+    DeleteSectionW: Settings_DeleteSection02;                           // 02
+    IniConfig_NewWS: ASettings.IniConfig_NewWS;                         // 03
+    ReadBoolW: Settings_ReadBool02;                                     // 04
+    ReadIntegerW: Settings_ReadInteger02;                               // 05
+    ReadFloatW: Settings_ReadFloat02;                                   // 06
+    ReadSectionW: Settings_ReadSection02;                               // 07
+    ReadStringW: ASettings.Config_ReadStringDefP;                       // 08
+    ReadDateTimeW: ASettings.Config_ReadDateTimeDefP;                   // 09
+    RegConfig_NewWS: ASettings.RegConfig_NewWS;                         // 10
+    RegConfig_New2WS: ASettings.RegConfig_New2WS;                       // 11
+    WriteBoolW: Settings_WriteBool02;                                   // 12
+    WriteIntegerWS: Settings_WriteInteger02;                            // 13
+    WriteFloatW: Settings_WriteFloat02;                                 // 14
+    WriteStringW: Settings_WriteString02;                               // 15
 
-    DeleteKey: ASettings.Config_DeleteKey;
-    DeleteSection: ASettings.Config_DeleteSection;
-    IniConfig_New: ASettings.IniConfig_New;
-    ReadBoolDef: ASettings.Config_ReadBoolDef;
-    ReadIntegerDef: ASettings.Config_ReadIntegerDef;
-    ReadFloatDef: ASettings.Config_ReadFloatDef;
-    ReadSection: ASettings.Config_ReadSection;
-    ReadStringDef: ASettings.Config_ReadStringDef;
-    ReadDateTimeDef: ASettings.Config_ReadDateTimeDef;
-    RegConfig_New: ASettings.RegConfig_New;
-    RegConfig_New2: ASettings.RegConfig_New2;
-    Config_WriteBool: ASettings.Config_WriteBool;
-    Config_WriteInteger: ASettings.Config_WriteInteger;
-    Config_WriteFloat: ASettings.Config_WriteFloat;
-    Config_WriteString: ASettings.Config_WriteString;
-    Config_WriteDateTime: ASettings.Config_WriteDateTime;
+    WriteDateTimeW: Settings_WriteDateTime02;                           // 16
+    DeleteKey: ASettings.Config_DeleteKey;                              // 17
+    DeleteSection: ASettings.Config_DeleteSection;                      // 18
+    IniConfig_New: ASettings.IniConfig_New;                             // 19
+    ReadBoolDef: ASettings.Config_ReadBoolDef;                          // 20
+    ReadIntegerDef: ASettings.Config_ReadIntegerDef;                    // 21
+    ReadFloatDef: ASettings.Config_ReadFloatDef;                        // 22
+    ReadSection: ASettings.Config_ReadSection;                          // 23
+    ReadStringDef: ASettings.Config_ReadStringDef;                      // 24
+    ReadDateTimeDef: ASettings.Config_ReadDateTimeDef;                  // 25
+    RegConfig_New: ASettings.RegConfig_New;                             // 26
+    RegConfig_New2: ASettings.RegConfig_New2;                           // 27
+    Config_WriteBool: ASettings.Config_WriteBool;                       // 28
+    Config_WriteInteger: ASettings.Config_WriteInteger;                 // 29
+    Config_WriteFloat: ASettings.Config_WriteFloat;                     // 30
+    Config_WriteString: ASettings.Config_WriteString;                   // 31
+
+    Config_WriteDateTime: ASettings.Config_WriteDateTime;               // 32
     Init: ASettings.Init;                                               // 33
-    Done: ASettings.Done;                                               // 34
+    Fin: ASettings.Done;                                                // 34
     Config_ReadBoolDefWS: ASettings.Config_ReadBoolDefWS;               // 35
     Config_ReadIntegerDefWS: ASettings.Config_ReadIntegerDefWS;         // 36
     Config_ReadFloatDefWS: ASettings.Config_ReadFloatDefWS;             // 37
@@ -87,11 +92,9 @@ const
     Reserved62: 0;
     Reserved63: 0;
     );
+{$ENDIF ADepr}
 
 implementation
-
-{uses
-  ASettings0;}
 
 const
   ASettings_Version = $00040000;
@@ -102,10 +105,10 @@ const
     Uid: ASettings_Uid;
     Name: ASettings_Name;
     Description: nil;
-    Init: Settings_Init;
-    Fin: Settings_Fin;
-    GetProc: Settings_GetProc;
-    Procs: Addr(SettingsProcs);
+    Init: ASettingsMod_Init;
+    Fin: ASettingsMod_Fin;
+    GetProc: ASettingsMod_GetProc;
+    Procs: {$IFDEF ADepr}Addr(SettingsProcs){$ELSE}nil{$ENDIF};
     );
 
 var
@@ -113,22 +116,22 @@ var
 
 // --- Settings ---
 
-function Settings_Boot(): AInteger;
+function ASettingsMod_Boot(): AError;
 begin
   Result := AModule_Register(Module);
 end;
 
-function Settings_Fin(): AError;
+function ASettingsMod_Fin(): AError;
 begin
   Result := 0;
 end;
 
-function Settings_GetProc(ProcName: AStr): Pointer;
+function ASettingsMod_GetProc(ProcName: AStr): Pointer;
 begin
   Result := nil;
 end;
 
-function Settings_Init(): AError;
+function ASettingsMod_Init(): AError;
 begin
   if FInitialized then
   begin
@@ -140,6 +143,4 @@ begin
   Result := 0;
 end;
 
-initialization
-  //Settings_SetProcs(SettingsProcs);
 end.

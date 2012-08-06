@@ -2,21 +2,24 @@
 @Abstract AEvents
 @Author Prof1983 <prof1983@ya.ru>
 @Created 27.05.2011
-@LastMod 03.08.2012
+@LastMod 06.08.2012
 }
 unit AEventsMod;
+
+{$IFDEF A04}{$DEFINE ADepr}{$ENDIF}
 
 interface
 
 uses
-  ABase, AEvents, AEventsBase, AEventsProcRec, ARuntime, ARuntimeBase, AStrings;
+  ABase, AEvents, AEventsBase, {$IFDEF ADepr}AEventsProcRec,{$ENDIF} ARuntime, ARuntimeBase, AStrings;
 
-function Events_Boot(): AInteger; stdcall;
+function Events_Boot(): AError; stdcall;
 
 function Events_Fin(): AError; stdcall;
 
 function Events_Init(): AError; stdcall;
 
+{$IFDEF ADepr}
 const
   EventsProcs: AEventsProcs_Type = (
     Event_Clear: AEvents.Event_Clear;                           // 00
@@ -55,6 +58,7 @@ const
     Reserved30: 0;
     Reserved31: 0;
     );
+{$ENDIF ADepr}
 
 implementation
 
@@ -67,15 +71,15 @@ const
     Uid: AEvents_Uid;
     Name: AEvents_Name;
     Description: nil;
-    Init: Events_Init;
-    Fin: Events_Fin;
+    Init: AEventsMod_Init;
+    Fin: AEventsMod_Fin;
     GetProc: nil;
-    Procs: nil;
+    Procs: {$IFDEF ADepr}EventsProcs{$ELSE}nil{$ENDIF};
     );
 
-// --- AEvents ---
+// --- AEventsMod ---
 
-function Events_Boot(): AInteger;
+function AEventsMod_Boot(): AError;
 begin
   if (ARuntime.Modules_FindByUid(AEvents_Uid) >= 0) then
   begin
@@ -92,16 +96,14 @@ begin
   Result := AModule_Register(EventsModule);
 end;
 
-function Events_Fin(): AError;
+function AEventsMod_Fin(): AError;
 begin
   Result := 0;
 end;
 
-function Events_Init(): AError;
+function AEventsMod_Init(): AError;
 begin
   Result := 0;
 end;
 
-initialization
-  //Set_EventsProcs(EventsProcs);
 end.

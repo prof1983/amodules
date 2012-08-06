@@ -2,7 +2,7 @@
 @Abstract AUtils04
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.09.2009
-@LastMod 03.08.2012
+@LastMod 06.08.2012
 }
 unit AUtilsMod;
 
@@ -14,17 +14,17 @@ uses
   ABase, ABaseUtils, ARuntime, ARuntimeBase,
   AUtils, AUtilsBase{$IFDEF ADepr}, AUtilsProcRec{$ENDIF};
 
-{ Module }
+// --- AUtilsMod ---
 
-function Utils_Boot(): AInteger; stdcall;
+function AUtilsMod_Boot(): AError; stdcall;
 
-function Utils_Fin(): AError; stdcall;
+function AUtilsMod_Fin(): AError; stdcall;
 
-function Utils_GetProc(ProcName: AStr): Pointer; stdcall;
+function AUtilsMod_GetProc(ProcName: AStr): Pointer; stdcall;
 
-function Utils_Init(): AError; stdcall;
+function AUtilsMod_Init(): AError; stdcall;
 
-function Utils_Register(): AInteger; stdcall;
+function AUtilsMod_Register(): AError; stdcall;
 
 {$IFDEF ADepr}
 const
@@ -47,7 +47,7 @@ const
     ReplaceCommaWS: AUtils.ReplaceCommaWS;                      // 14
     StrToFloatDefWS: AUtils.StrToFloatDefWS;                    // 15
     StrToIntDefWS: AUtils.StrToIntDefWS;                        // 16
-    TryStrToFloat: AUtils.TryStrToFloatWS;                      // 17
+    TryStrToFloatWS: AUtils.TryStrToFloatWS;                    // 17
     TryStrToFloat32WS: AUtils.TryStrToFloat32WS;                // 18
     TryStrToFloat64WS: AUtils.TryStrToFloat64WS;                // 19
     TryStrToDateWS: AUtils.TryStrToDateWS;                      // 20
@@ -55,7 +55,7 @@ const
 
     FloatToStr: AUtils.FloatToStrWS;                            // 22
     TrimWS: AUtils.TrimWS;                                      // 23
-    String_ToUpperWS: AUtils.String_ToUpperWS;                  // 24 - UpperString
+    UpperStringWS: AUtils.String_ToUpperWS;                     // 24 - String_ToUpperWS
     ExtractFileExtWS: AUtils.ExtractFileExtWS;                  // 25
 
     FormatFloatWS: AUtils.FormatFloatWS;                        // 26
@@ -66,8 +66,8 @@ const
     NormalizeStrSpaceWS: AUtils.NormalizeStrSpaceWS;            // 30
     Reserved31: 0; //Strings_Clear: Strings_Clear;
 
-    Init: Utils_Init;                                           // 32
-    Done: Utils_Fin;                                            // 33
+    Init: AUtilsMod_Init;                                       // 32
+    Fin: AUtilsMod_Fin;                                         // 33
     FormatStrStrWS: AUtils.FormatStrStrWS;                      // 34
     ExpandFileNameWS: AUtils.ExpandFileNameWS;                  // 35
     ChangeFileExtWS: AUtils.ChangeFileExtWS;                    // 36
@@ -113,44 +113,35 @@ const
     Uid: AUtils_Uid;
     Name: AUtils_Name;
     Description: nil;
-    Init: Utils_Init;
-    Fin: Utils_Fin;
-    GetProc: Utils_GetProc;
+    Init: AUtilsMod_Init;
+    Fin: AUtilsMod_Fin;
+    GetProc: AUtilsMod_GetProc;
     Procs: {$IFDEF ADepr}Addr(UtilsProcs){$ELSE}nil{$ENDIF};
     );
 
-var
-  FInitialized: Boolean;
+// --- AUtilsMod ---
 
-{ Modules }
-
-function Utils_Boot(): AInteger;
+function AUtilsMod_Boot(): AError;
 begin
-  Result := Utils_Register();
+  Result := AUtilsMod_Register();
 end;
 
-function Utils_Fin(): AError;
+function AUtilsMod_Fin(): AError;
 begin
   Result := AUtils_Fin();
 end;
 
-function Utils_GetProc(ProcName: AStr): Pointer;
+function AUtilsMod_GetProc(ProcName: AStr): Pointer;
 begin
   Result := nil;
 end;
 
-function Utils_Init(): AError;
+function AUtilsMod_Init(): AError;
 begin
-  if FInitialized then
-  begin
-    Result := 0;
-    Exit;
-  end;
-
   Result := AUtils_Init();
 end;
 
-function Utils_Register(): AInteger;
+function AUtilsMod_Register(): AError;
 begin
   Result := AModule_Register(Module);
 end;

@@ -2,14 +2,16 @@
 @Abstract AUiWorkbench
 @Author Prof1983 <prof1983@ya.ru>
 @Created 26.08.2009
-@LastMod 01.08.2012
+@LastMod 06.08.2012
 }
 unit AUiWorkbenchMod;
+
+{$IFDEF A04}{$DEFINE ADepr}{$ENDIF}
 
 interface
 
 uses
-  ABase, ARuntime, ARuntimeBase, AUi, AUiBase, AUiWorkbench, AUiWorkbenchBase, AUiWorkbenchProcRec;
+  ABase, ARuntime, ARuntimeBase, AUi, AUiBase, AUiWorkbench, AUiWorkbenchBase{$IFDEF ADepr}, AUiWorkbenchProcRec{$ENDIF};
 
 function AUiWorkbenchModule_Boot(): AError; stdcall;
 
@@ -19,6 +21,7 @@ function AUiWorkbenchModule_GetProc(ProcName: AStr): Pointer; stdcall;
 
 function AUiWorkbenchModule_Init(): AError; stdcall;
 
+{$IFDEF ADepr}
 const
   UiWorkbenchProcs: AUiWorkbenchProcs_Type = (
     AddPageWS: AUiWorkbench_AddPageWS;                          // 00
@@ -38,6 +41,7 @@ const
     Reserved14: 0;
     Reserved15: 0;
     );
+{$ENDIF}
 
 implementation
 
@@ -53,7 +57,7 @@ const
     Init: AUiWorkbenchModule_Init;
     Fin: AUiWorkbenchModule_Fin;
     GetProc: AUiWorkbenchModule_GetProc;
-    Procs: Addr(UiWorkbenchProcs);
+    Procs: {$IFDEF ADepr}Addr(UiWorkbenchProcs){$ELSE}nil{$ENDIF};
     );
 
 var
@@ -103,6 +107,4 @@ begin
   Result := AUiWorkbench_Init();
 end;
 
-initialization
-  //UIWorkbench_SetProcs(UIWorkbenchProcs);
 end.

@@ -2,23 +2,27 @@
 @Abstract AModuleManager module v0.3
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.08.2009
-@LastMod 03.08.2012
+@LastMod 06.08.2012
 }
 unit AModuleManagerMod;
+
+{$IFDEF A04}{$DEFINE ADepr}{$ENDIF}
 
 interface
 
 uses
-  ABase, AModuleManager, AModuleManagerProcs, ARuntime, ARuntimeBase,
+  ABase, AModuleManager, {$IFDEF ADepr}AModuleManagerProcs,{$ENDIF} ARuntime, ARuntimeBase,
   ASettings, ASystem, AUi, AUiWorkbench;
 
 { Module }
 
-function ModuleManager_Boot(): AInteger; stdcall;
+function ModuleManager_Boot(): AError; stdcall;
 
-function ModuleManager_Init03(): AInteger; stdcall;
-function ModuleManager_Done03(): AInteger; stdcall;
+function ModuleManager_Fin(): AError; stdcall;
 
+function ModuleManager_Init(): AError; stdcall;
+
+{$IFDEF ADepr}
 const
   ModuleManagerProcs: AModuleManagerProcs_Type = (
     Reserved00: 0;
@@ -38,29 +42,31 @@ const
     Reserved14: 0;
     Reserved15: 0;
     );
+{$ENDIF}
+
+implementation
 
 const
-  AModuleManager_Version03 = $00030500;
+  AModuleManager_Version = $00040000;
 
 const
   Module: AModule_Type = (
-    Version: AModuleManager_Version03;
+    Version: AModuleManager_Version;
     Uid: AModuleManager_Uid;
     Name: AModuleManager_Name;
     Description: nil;
-    Init: ModuleManager_Init03;
-    Done: ModuleManager_Done03;
-    Reserved06: 0;
-    Procs: Addr(ModuleManagerProcs);
+    Init: AModuleManagerMod_Init;
+    Done: AModuleManagerMod_Done;
+    GetProc: nil;
+    Procs: {$IFDEF ADepr}Addr(ModuleManagerProcs){$ELSE}nil{$ENDIF};
     );
-
-implementation
 
 var
   FInitialized: Boolean;
 
 // --- Private ---
 
+TODO: Use ASettings.pas
 function ASettings_Boot(): AError;
 var
   Module: AModule_Type;
@@ -78,6 +84,7 @@ begin
   Result := 0;
 end;
 
+TODO: Use ASystem.pas
 function ASystem_Boot(): AError;
 var
   Module: AModule_Type;
@@ -95,9 +102,9 @@ begin
   Result := 0;
 end;
 
-{ ModuleManager }
+// --- AModuleManagerMod ---
 
-function ModuleManager_Boot: AInteger; stdcall;
+function AModuleManagerMod_Boot(): AError;
 begin
   if (ARuntime.Modules_FindByUid(AModuleManager_Uid) >= 0) then
   begin
@@ -114,15 +121,15 @@ begin
   Result := ARuntime.Module_Register(Module);
 end;
 
-function ModuleManager_Done03(): AInteger; stdcall;
+function AModuleManagerMod_Fin(): AError;
 begin
-  ModuleManager_Done();
+  AModuleManager_Fin();
   ARuntime.Modules_DeleteByUid(AModuleManager_Uid);
   FInitialized := False;
   Result := 0;
 end;
 
-function ModuleManager_Init03(): AInteger; stdcall;
+function AModuleManagerMod_Init(): AError;
 begin
   if FInitialized then
   begin

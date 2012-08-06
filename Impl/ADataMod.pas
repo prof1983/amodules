@@ -2,30 +2,33 @@
 @Abstract ћодуль работы с базами и структурами данных
 @Author Prof1983 <prof1983@ya.ru>
 @Created 13.10.2008
-@LastMod 03.08.2012
+@LastMod 06.08.2012
 }
 unit ADataMod;
+
+{$IFDEF A04}{$DEFINE ADepr}{$ENDIF}
 
 interface
 
 uses
-  ABase, AData, ADataBase, ADataProcRec, ARuntime, ARuntimeBase;
+  ABase, AData, ADataBase, {$IFDEF ADepr}ADataProcRec,{$ENDIF} ARuntime, ARuntimeBase;
 
-function Data_Boot(): AInteger; stdcall;
+function ADataMod_Boot(): AError; stdcall;
 
-function Data_Fin(): AError; stdcall;
+function ADataMod_Fin(): AError; stdcall;
 
-function Data_GetProc(ProcName: AStr): Pointer; stdcall;
+function ADataMod_GetProc(ProcName: AStr): Pointer; stdcall;
 
-function Data_Init(): AError; stdcall;
+function ADataMod_Init(): AError; stdcall;
 
+{$IFDEF ADepr}
 const
   DataProcs: ADataProcs_Type = (
-    Database_Close: AData.Database_Close;                       // 00
-    Database_Connect: AData.Database_Connect;                   // 01
-    Database_CreateDatabase: AData.Database_CreateDatabase;     // 02
-    Database_Disconnect: AData.Database_Disconnect;             // 03
-    Database_ExecuteSql: AData.Database_ExecuteSql;             // 04
+    Database_Close: AData.Database_Close;                               // 00
+    Database_Connect: AData.Database_Connect;                           // 01
+    Database_CreateDatabase: AData.Database_CreateDatabase;             // 02
+    Database_Disconnect: AData.Database_Disconnect;                     // 03
+    Database_ExecuteSql: AData.Database_ExecuteSql;                     // 04
     Database_ChechDatabaseStructure: AData.Database_CheckDatabaseStructure; // 05
     Database_CheckTableStructure: AData.Database_CheckTableStructure;   // 06
     Database_GetConnected: AData.Database_GetConnected;                 // 07
@@ -37,8 +40,8 @@ const
     DatabaseStructure_New: AData.Data_NewDatabaseStructure;             // 13
     Drivers_RegisterDriver: AData.Data_RegisterDriver;                  // 14
     Database_ChangeDataSet: AData.Database_ChangeDataSet;               // 15
-    Init: Data_Init;                                                    // 16
-    Fin: Data_Fin;                                                      // 17
+    Init: ADataMod_Init;                                                // 16
+    Fin: ADataMod_Fin;                                                  // 17
     Reserved18: 0;
     Reserved19: 0;
     Reserved20: 0;
@@ -54,11 +57,9 @@ const
     Reserved30: 0;
     Reserved31: 0;
     );
+{$ENDIF ADepr}
 
 implementation
-
-{uses
-  AData0;}
 
 const
   AData_Version = $00040000;
@@ -69,24 +70,24 @@ const
     Uid: AData_Uid;
     Name: AData_Name;
     Description: nil;
-    Init: Data_Init;
-    Fin: Data_Fin;
-    GetProc: Data_GetProc;
-    Procs: Addr(DataProcs);
+    Init: ADataMod_Init;
+    Fin: ADataMod_Fin;
+    GetProc: ADataMod_GetProc;
+    Procs: {$IFDEF ADepr}Addr(DataProcs){$ELSE}nil{$ENDIF};
     );
 
 var
   FDrivers: array of ADataDriver;
   FInitialized: ABoolean;
 
-{ Module }
+// --- ADataMod ---
 
-function Data_Boot(): AInteger;
+function ADataMod_Boot(): AError;
 begin
   Result := ARuntime.Module_Register(Module);
 end;
 
-function Data_Fin(): AError;
+function ADataMod_Fin(): AError;
 {var
   I: Integer;}
 begin
@@ -98,12 +99,12 @@ begin
   Result := 0;
 end;
 
-function Data_GetProc(ProcName: AStr): Pointer;
+function ADataMod_GetProc(ProcName: AStr): Pointer;
 begin
   Result := nil;
 end;
 
-function Data_Init(): AError;
+function ADataMod_Init(): AError;
 begin
   if FInitialized then
   begin
@@ -115,6 +116,4 @@ begin
   Result := 0;
 end;
 
-initialization
-  //Data_SetProcs(DataProcs);
 end.

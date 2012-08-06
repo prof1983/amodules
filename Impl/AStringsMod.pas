@@ -2,14 +2,16 @@
 @Abstract AStringsModule
 @Author Prof1983 <prof1983@ya.ru>
 @Created 03.06.2011
-@LastMod 03.08.2012
+@LastMod 06.08.2012
 }
 unit AStringsMod;
+
+{$IFDEF A04}{$DEFINE ADepr}{$ENDIF}
 
 interface
 
 uses
-  ABase, AStrings, AStringsProcRec;
+  ABase, AStrings{$IFDEF ADepr}, AStringsProcRec{$ENDIF};
 
 function AStringsModule_Boot(): AError; stdcall;
 
@@ -17,6 +19,7 @@ function AStringsModule_Fin(): AError; stdcall;
 
 function AStringsModule_Init(): AError; stdcall;
 
+{$IFDEF ADepr}
 const
   StringsProcs: AStringsProcs_Type = (
     String_Assign: AString_Assign;                              // 00
@@ -52,6 +55,7 @@ const
     Reserved30: 0;
     Reserved31: 0;
     );
+{$ENDIF ADepr}
 
 implementation
 

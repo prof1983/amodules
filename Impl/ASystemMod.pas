@@ -2,7 +2,7 @@
 @Abstract ASystem
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.08.2007
-@LastMod 03.08.2012
+@LastMod 06.08.2012
 }
 unit ASystemMod;
 
@@ -18,6 +18,8 @@ unit ASystemMod;
   {$ENDIF A02}
 {$ENDIF USE_EVENTS}
 
+{$IFDEF A04}{$DEFINE ADepr}{$ENDIF}
+
 interface
 
 uses
@@ -27,9 +29,13 @@ uses
 
 {$IFDEF ADepr}function System_AddModule(const Module: AModule03_Type): AInteger; stdcall;{$ENDIF}
 
-function System_Boot(): AInteger; stdcall;
+function ASystemMod_Boot(): AError; stdcall;
 
-function System_GetProc(ProcName: AStr): Pointer; stdcall;
+function ASystemMod_Fin(): AError; stdcall;
+
+function ASystemMod_GetProc(ProcName: AStr): Pointer; stdcall;
+
+function ASystemMod_Init(): AError; stdcall
 
 {$IFDEF ADepr}
 const
@@ -218,9 +224,9 @@ const
     Uid: ASystem_Uid;
     Name: ASystem_Name;
     Description: nil;
-    Init: ASystem_Init;
-    Fin: ASystem_Fin;
-    GetProc: System_GetProc;
+    Init: ASystemMod_Init;
+    Fin: ASystemMod_Fin;
+    GetProc: ASystemMod_GetProc;
     Procs: {$IFDEF ADepr}Addr(SystemProcs){$ELSE}nil{$ENDIF};
     );
 
@@ -233,14 +239,26 @@ begin
 end;
 {$ENDIF}
 
-function System_Boot(): AInteger; stdcall;
+// --- ASystemMod ---
+
+function ASystemMod_Boot(): AError;
 begin
   Result := AModule_Register(SystemModule);
 end;
 
-function System_GetProc(ProcName: AStr): Pointer;
+function ASystemMod_Fin(): AError;
+begin
+  Result := ASystem_Fin();
+end;
+
+function ASystemMod_GetProc(ProcName: AStr): Pointer;
 begin
   Result := nil;
+end;
+
+function ASystemMod_Init(): AError;
+begin
+  Result := ASystem_Init();
 end;
 
 end.

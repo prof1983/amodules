@@ -2,29 +2,34 @@
 @Abstract AUiSplash
 @Author Prof1983 <prof1983@ya.ru>
 @Created 08.12.2009
-@LastMod 03.08.2012
+@LastMod 06.08.2012
 }
 unit AUiSplashMod;
+
+{$IFDEF A04}{$DEFINE ADepr}{$ENDIF}
 
 interface
 
 uses
   ABase, ARuntime, ARuntimeBase, ASettings, ASystem, AUi, AUiBase, AUiSplash, AUtils;
 
+TODO: Move to AUiSplashBase.pas
 const
   AUISplash_Name = 'AUiSplash';
-  AUISplash_Name02 = 'AUISplash';
+  //AUISplash_Name02 = 'AUISplash';
   AUISplash_Uid = $09120801;
 
 function AUiSplash_Boot(): AError; stdcall;
 
-function UISplash_Init03(): AInteger; stdcall;
-function UISplash_Done03(): AInteger; stdcall;
+function AUiSplash_Fin(): AError; stdcall;
+
+function AUiSplash_Init(): AError; stdcall;
 
 implementation
 
+{$IFDEF ADepr}
 type
-  AUISplashProcsRec = packed record {8x4}
+  AUiSplashProcsRec = packed record {8x4}
     Reserved00: AInteger;
     Reserved01: AInteger;
     Reserved02: AInteger;
@@ -44,7 +49,7 @@ type
   end;
 
 const
-  UISplashProcs: AUISplashProcsRec = (
+  UiSplashProcs: AUiSplashProcsRec = (
     Reserved00: 0;
     Reserved01: 0;
     Reserved02: 0;
@@ -62,38 +67,37 @@ const
     Reserved14: 0;
     Reserved15: 0;
     );
+{$ENDIF ADepr}
 
 const
-  AUISplash_Version = $00030500;
+  AUiSplash_Version = $00030500;
 
 const
-  UISplashModule: AModule03_Type = (
-    Version: AUISplash_Version;
-    Uid: AUISplash_Uid;
-    Name: AUISplash_Name;
+  UiSplashModule: AModule_Type = (
+    Version: AUiSplash_Version;
+    Uid: AUiSplash_Uid;
+    Name: AUiSplash_Name;
     Description: nil;
-    Init: UISplash_Init03;
-    Done: UISplash_Done03;
-    Reserved06: 0;
-    Procs: Addr(UISplashProcs);
+    Init: AUiSplashMod_Init;
+    Fin: AUiSplashMod_Fin;
+    GetProc: nil;
+    Procs: {$IFDEF ADepr}Addr(UiSplashProcs){$ELSE}nil{$ENDIF};
     );
 
-// --- AUiSplash ---
+// --- AUiSplashMod ---
 
-function AUiSplash_Boot(): AError;
+function AUiSplashMod_Boot(): AError;
 begin
   Result := ARuntime.Module_Register(UISplashModule);
 end;
 
-{ Module }
-
-function UISplash_Done03(): AInteger; stdcall;
+function AUiSplashMod_Fin(): AError;
 begin
   Result := AUiSplash_Fin();
-  ARuntime.Modules_DeleteByUid(AUISplash_Uid);
+  ARuntime.Modules_DeleteByUid(AUiSplash_Uid);
 end;
 
-function UISplash_Init03(): AInteger; stdcall;
+function AUiSplashMod_Init(): AError;
 var
   Module: AModule_Type;
 begin
