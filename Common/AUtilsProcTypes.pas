@@ -2,7 +2,7 @@
 @Abstract AUtils proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.09.2009
-@LastMod 06.08.2012
+@LastMod 08.08.2012
 }
 unit AUtilsProcTypes;
 
@@ -64,6 +64,7 @@ type
   {$IFDEF ADepr}AUtils_StrToFloatDefWS_Proc = function(const S: AWideString; DefValue: AFloat = 0): AFloat; stdcall;{$ENDIF}
   {$IFDEF ADepr}AUtils_StrToFloatWS_Proc = function(const Value: AWideString): AFloat; stdcall;{$ENDIF}
   AUtils_StrToInt_Proc = function(const Value: AString_Type): AInt; stdcall;
+  AUtils_StrToIntDef_Proc = function(const S: AString_Type; DefValue: AInt): AInt; stdcall;
   {$IFDEF ADepr}AUtils_StrToIntDefWS_Proc{A_Utils_StrToInt1_Proc} = function(const S: AWideString; DefValue: AInteger {= 0}): AInteger; stdcall;{$ENDIF}
   {$IFDEF ADepr}AUtils_StrToIntWS_Proc = function(const Value: AWideString): AInteger; stdcall;{$ENDIF}
   AUtils_Time_Now_Proc = function(): TDateTime; stdcall;

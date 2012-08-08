@@ -2,9 +2,11 @@
 @Abstract AUtils
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.07.2012
-@LastMod 06.08.2012
+@LastMod 08.08.2012
 }
 unit AUtils;
+
+{$IFDEF A04}{$DEFINE ADepr}{$ENDIF}
 
 interface
 
@@ -25,13 +27,24 @@ function AUtils_Boot(): AError; stdcall;
 
 function AUtils_ExtractFileExtWS(const FileName: AWideString): AWideString; stdcall;
 
+function AUtils_ExtractFilePathP(const FileName: APascalString): APascalString; stdcall;
+
 function AUtils_FileExists(const FileName: AString_Type): ABoolean; stdcall;
 
 function AUtils_FileExistsWS(const FileName: AWideString): ABoolean; stdcall;
 
 function AUtils_IntToStr(Value: AInt; out Res: AString_Type): AError; stdcall;
 
+function AUtils_IntToStrP(Value: AInt): APascalString; stdcall;
+
 function AUtils_IntToStrWS(Value: AInt): AWideString; stdcall;
+
+function AUtils_ReplaceCommaWS(const S: AWideString; DecimalSeparator: AChar = #0;
+    ClearSpace: ABoolean = True): AWideString; stdcall;
+
+function AUtils_StrToFloatDefWS(const S: AWideString; DefValue: AFloat): AFloat; stdcall;
+
+function AUtils_StrToIntDefWS(const S: AWideString; DefValue: AInt): AInt; stdcall;
 
 function AUtils_Trim(var S: AString_Type): AError; stdcall;
 
@@ -45,7 +58,22 @@ function FileExistsWS(const FileName: AWideString): ABoolean; stdcall;
 
 function IntToStrWS(Value: AInt): AWideString; stdcall;
 
+function ReplaceCommaWS(const S: AWideString; DecimalSeparator: AChar = #0;
+    ClearSpace: ABoolean = True): AWideString; stdcall;
+
+function StrToFloatDefWS(const S: AWideString; DefValue: AFloat): AFloat; stdcall;
+
+function StrToFloatWS(const S: AWideString): AFloat; stdcall;
+
+function StrToIntDefWS(const S: AWideString; DefValue: AInt): AInt; stdcall;
+
+function StrToIntWS(const S: AWideString): AInt; stdcall;
+
 function TrimWS(const S: AWideString): AWideString; stdcall;
+
+// --- String ---
+
+function String_ToUpperWS(const S: AWideString): AWideString; stdcall; deprecated; // Use AString_ToUpperWS()
 
 implementation
 
@@ -196,6 +224,7 @@ begin
     Result := AString_ToWideString(Res);
     Exit;
   end;
+  {$IFDEF ADepr}
   if Assigned(AUtilsProcVars.AUtils_ExtractFileExtWS) then
   begin
     try
@@ -205,6 +234,47 @@ begin
     end;
     Exit;
   end;
+  Result := '';
+  {$ENDIF}
+end;
+
+function AUtils_ExtractFilePathP(const FileName: APascalString): APascalString;
+var
+  FN: AString_Type;
+  Res: AString_Type;
+begin
+  if Assigned(AUtilsProcVars.AUtils_ExtractFilePath) then
+  begin
+    if (AString_AssignP(FN, FileName) < 0) then
+    begin
+      Result := '';
+      Exit;
+    end;
+    if (AString_Clear(Res) < 0) then
+    begin
+      Result := '';
+      Exit;
+    end;
+    if (AUtilsProcVars.AUtils_ExtractFilePath(FN, Res) >= 0) then
+    begin
+      Result := '';
+      Exit;
+    end;
+    Result := AString_ToPascalString(Res);
+    Exit;
+  end;
+  {$IFDEF ADepr}
+  if Assigned(AUtilsProcVars.AUtils_ExtractFilePathWS) then
+  begin
+    try
+      Result := AUtilsProcVars.AUtils_ExtractFilePathWS(FileName);
+    except
+      Result := '';
+    end;
+    Exit;
+  end;
+  Result := '';
+  {$ENDIF}
 end;
 
 function AUtils_FileExists(const FileName: AString_Type): ABoolean;
@@ -239,6 +309,18 @@ begin
   Result := AUtilsProcVars.AUtils_IntToStr(Value, Res);
 end;
 
+function AUtils_IntToStrP(Value: AInt): APascalString;
+var
+  S: AString_Type;
+begin
+  if (AUtils_IntToStr(Value, S) < 0) then
+  begin
+    Result := '';
+    Exit;
+  end;
+  Result := AString_ToPascalString(S);
+end;
+
 function AUtils_IntToStrWS(Value: AInt): AWideString;
 var
   S: AString_Type;
@@ -249,6 +331,89 @@ begin
     Exit;
   end;
   Result := AString_ToWideString(S);
+end;
+
+function AUtils_ReplaceCommaWS(const S: AWideString; DecimalSeparator: AChar;
+    ClearSpace: ABoolean): AWideString;
+var
+  S1: AString_Type;
+  Res: AString_Type;
+begin
+  if Assigned(AUtilsProcVars.AUtils_ReplaceComma) then
+  begin
+    if (AString_AssignWS(S1, S) < 0) then
+    begin
+      Result := S;
+      Exit;
+    end;
+    if (AString_Clear(Res) < 0) then
+    begin
+      Result := S;
+      Exit;
+    end;
+    if (AUtilsProcVars.AUtils_ReplaceComma(S1, DecimalSeparator, ClearSpace, Res) >= 0) then
+    begin
+      Result := AString_ToWideString(Res);
+      Exit;
+    end;
+  end;
+  {$IFDEF ADepr}
+  if Assigned(AUtilsProcVars.AUtils_ReplaceCommaWS) then
+  begin
+    try
+      Result := AUtilsProcVars.AUtils_ReplaceCommaWS(S, DecimalSeparator, ClearSpace);
+    except
+      Result := S;
+    end;
+  end;
+  {$ENDIF}
+  Result := S;
+end;
+
+function AUtils_StrToFloatDefWS(const S: AWideString; DefValue: AFloat): AFloat;
+var
+  S1: AString_Type;
+begin
+  if Assigned(AUtilsProcVars.AUtils_StrToFloatDef) then
+  begin
+    if (AString_AssignWS(S1, S) < 0) then
+    begin
+      Result := DefValue;
+      Exit;
+    end;
+    Result := AUtilsProcVars.AUtils_StrToFloatDef(S1, DefValue);
+    Exit;
+  end;
+  if Assigned(AUtilsProcVars.AUtils_StrToFloatDefWS) then
+  begin
+    Result := AUtilsProcVars.AUtils_StrToFloatDefWS(S, DefValue);
+    Exit;
+  end;
+  Result := DefValue;
+end;
+
+function AUtils_StrToIntDefWS(const S: AWideString; DefValue: AInt): AInt;
+var
+  S1: AString_Type;
+begin
+  if Assigned(AUtilsProcVars.AUtils_StrToIntDef) then
+  begin
+    if (AString_AssignWS(S1, S) < 0) then
+    begin
+      Result := DefValue;
+      Exit;
+    end;
+    Result := AUtilsProcVars.AUtils_StrToIntDef(S1, DefValue);
+    Exit;
+  end;
+  {$IFDEF ADepr}
+  if Assigned(AUtilsProcVars.AUtils_StrToIntDefWS) then
+  begin
+    Result := AUtilsProcVars.AUtils_StrToIntDefWS(S, DefValue);
+    Exit;
+  end;
+  {$ENDIF}
+  Result := DefValue;
 end;
 
 function AUtils_Trim(var S: AString_Type): AError;
@@ -295,9 +460,42 @@ begin
   Result := AUtils_IntToStrWS(Value);
 end;
 
+function ReplaceCommaWS(const S: AWideString; DecimalSeparator: AChar;
+    ClearSpace: ABoolean): AWideString;
+begin
+  Result := AUtils_ReplaceCommaWS(S, DecimalSeparator, ClearSpace);
+end;
+
+function StrToFloatDefWS(const S: AWideString; DefValue: AFloat): AFloat;
+begin
+  Result := AUtils_StrToFloatDefWS(S, DefValue);
+end;
+
+function StrToFloatWS(const S: AWideString): AFloat;
+begin
+  Result := AUtils_StrToFloatDefWS(S, 0);
+end;
+
+function StrToIntDefWS(const S: AWideString; DefValue: AInt): AInt;
+begin
+  Result := AUtils_StrToIntDefWS(S, DefValue);
+end;
+
+function StrToIntWS(const S: AWideString): AInt;
+begin
+  Result := AUtils_StrToIntDefWS(S, 0);
+end;
+
 function TrimWS(const S: AWideString): AWideString;
 begin
   Result := AUtils_TrimWS(S);
+end;
+
+// --- String ---
+
+function String_ToUpperWS(const S: AWideString): AWideString;
+begin
+  Result := AString_ToUpperWS(S);
 end;
 
 end.

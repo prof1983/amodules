@@ -2,7 +2,7 @@
 @Abstract AUtils
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.07.2012
-@LastMod 06.08.2012
+@LastMod 08.08.2012
 }
 unit AUtilsProcVars;
 
@@ -51,6 +51,7 @@ var
   {$IFDEF ADepr}AUtils_StrToFloatDefWS: AUtils_StrToFloatDefWS_Proc;{$ENDIF} // AUtils_StrToFloat1
   AUtils_StrToInt: AUtils_StrToInt_Proc;
   {$IFDEF ADepr}AUtils_StrToIntWS: AUtils_StrToIntWS_Proc;{$ENDIF}
+  AUtils_StrToIntDef: AUtils_StrToIntDef_Proc;
   {$IFDEF ADepr}AUtils_StrToIntDefWS: AUtils_StrToIntDefWS_Proc;{$ENDIF} // AUtils_StrToInt1
   AUtils_Time_Now: AUtils_Time_Now_Proc;
   AUtils_Trim: AUtils_Trim_Proc;
