@@ -2,7 +2,7 @@
 @Abstract ASettings
 @Author Prof1983 <prof1983@ya.ru>
 @Created 01.08.2012
-@LastMod 03.08.2012
+@LastMod 10.08.2012
 }
 unit ASettings;
 
@@ -79,6 +79,7 @@ begin
   ASettingsProcVars.ASettings_WriteString := Module.GetProc('ASettings_WriteString');
   ASettingsProcVars.ASettings_WriteDateTime := Module.GetProc('ASettings_WriteDateTime');
   }
+  Result := 0;
 end;
 
 end.
