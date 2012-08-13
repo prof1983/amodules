@@ -2,7 +2,7 @@
 @Abstract ASettings
 @Author Prof1983 <prof1983@ya.ru>
 @Created 01.08.2012
-@LastMod 10.08.2012
+@LastMod 13.08.2012
 }
 unit ASettings;
 
@@ -14,6 +14,10 @@ uses
   ABase, ARuntime, ARuntimeBase, ASettingsBase, ASettingsProcRec, ASettingsProcVars;
 
 function ASettings_Boot(): AError; stdcall;
+
+// --- Public ---
+
+function Config_ReadBoolDefP(Config: AConfig; const Section, Name: APascalString; DefValue: ABoolean): ABoolean; stdcall;
 
 implementation
 
@@ -80,6 +84,18 @@ begin
   ASettingsProcVars.ASettings_WriteDateTime := Module.GetProc('ASettings_WriteDateTime');
   }
   Result := 0;
+end;
+
+// --- Public ---
+
+function Config_ReadBoolDefP(Config: AConfig; const Section, Name: APascalString; DefValue: ABoolean): ABoolean;
+begin
+  if not(Assigned(ASettingsProcVars.ASettings_ReadBoolWS)) then
+  begin
+    Result := DefValue;
+    Exit;
+  end;
+  Result := ASettingsProcVars.ASettings_ReadBoolWS(Config, Section, Name, DefValue);
 end;
 
 end.

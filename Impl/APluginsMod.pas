@@ -2,7 +2,7 @@
 @Abstract APlugins
 @Author Prof1983 <prof1983@ya.ru>
 @Created 10.04.2009
-@LastMod 06.08.2012
+@LastMod 13.08.2012
 }
 unit APluginsMod;
 
@@ -11,7 +11,8 @@ unit APluginsMod;
 interface
 
 uses
-  ABase, APlugins, APluginsBase, {$IFDEF ADepr}APluginsProcRec,{$ENDIF}
+  ABase, ALibraries,
+  APlugins, APluginsBase, {$IFDEF ADepr}APluginsProcRec,{$ENDIF}
   ARuntime, ARuntimeMod, ARuntimeBase, ARuntimeProcRec,
   ASystem, ASystemBase;
 
@@ -88,7 +89,7 @@ function DoCheckPlugin(Lib: ALibrary): ABoolean; stdcall;
 var
   PluginBootProc: APluginBootProc;
 begin
-  if not(ASystem.Library_GetSymbolP(Lib, 'Plugin_Boot', @PluginBootProc)) then
+  if not(ALibrary_GetSymbolP(Lib, 'Plugin_Boot', @PluginBootProc)) then
   begin
     Result := False;
     Exit;

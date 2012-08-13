@@ -2,7 +2,7 @@
 @Abstract ASystem
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.07.2012
-@LastMod 08.08.2012
+@LastMod 13.08.2012
 }
 unit ASystem;
 
@@ -12,6 +12,8 @@ uses
   ABase, ABaseTypes, AStrings, ASystemProcVars;
 
 // --- ASystem ---
+
+function ASystem_GetConfig(): AConfig; stdcall;
 
 function ASystem_GetExePathP(): APascalString; stdcall;
 
@@ -25,7 +27,11 @@ function ASystem_ShowMessageP(const Msg: APascalString): ADialogBoxCommands; std
 
 // ----
 
+function GetConfig(): AConfig; stdcall;
+
 function GetExePathWS(): AWideString; stdcall;
+
+function OnBeforeRun_Disconnect(Callback: ACallbackProc): AInteger; stdcall;
 
 function ParamStrWS(Index: AInt): AWideString; stdcall;
 
@@ -36,6 +42,16 @@ function ShowMessageWS(const Msg: AWideString): ADialogBoxCommands; stdcall;
 implementation
 
 // --- ASystem ---
+
+function ASystem_GetConfig(): AConfig;
+begin
+  if not(Assigned(ASystemProcVars.ASystem_GetConfig)) then
+  begin
+    Result := 0;
+    Exit;
+  end;
+  Result := ASystemProcVars.ASystem_GetConfig();
+end;
 
 function ASystem_GetExePathP(): APascalString;
 var
@@ -130,9 +146,24 @@ end;
 
 // --- Public ---
 
+function GetConfig(): AConfig;
+begin
+  Result := ASystem_GetConfig();
+end;
+
 function GetExePathWS(): AWideString;
 begin
   Result := ASystem_GetExePathWS();
+end;
+
+function OnBeforeRun_Disconnect(Callback: ACallbackProc): AInteger;
+begin
+  if not(Assigned(ASystemProcVars.ASystem_OnBeforeRunDisconnect)) then
+  begin
+    Result := 0;
+    Exit;
+  end;
+  Result := ASystemProcVars.ASystem_OnBeforeRunDisconnect(Callback);
 end;
 
 function ParamStrWS(Index: AInt): AWideString;

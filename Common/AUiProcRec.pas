@@ -2,7 +2,7 @@
 @Abstract User interface proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 30.07.2012
+@LastMod 13.08.2012
 }
 unit AUiProcRec;
 
@@ -114,7 +114,7 @@ type
     Reserved71: AInteger;
     {$ENDIF}
 
-    MainTrayIcon: AUi_MainTrayIcon;                                 // 72
+    MainTrayIcon: AUi_MainTrayIcon_Proc;                            // 72
 
     MainWindow: AUi_MainWindow;                                     // 73
     MainWindow_AddMenuItem02: AUi_MainWindow_AddMenuItem02WS_Proc;  // 74

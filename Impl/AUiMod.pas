@@ -2,7 +2,7 @@
 @Abstract User Interface
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 06.08.2012
+@LastMod 13.08.2012
 }
 unit AUiMod;
 
@@ -16,7 +16,7 @@ interface
 
 uses
   ABase, ARuntime, ARuntimeBase,
-  AUi, AUiBase{$IFDEF ADepr}, AUiProcRec{$ENDIF};
+  AUi, AUiBase, {$IFDEF ADepr}AUiProcRec,{$ENDIF} AUiWindowSettings;
 
 // --- AUi ---
 
@@ -114,7 +114,7 @@ const
     MainToolBar: AUI.MainToolBar;                                   // 70
     Reserved71: 0; //MainToolBar_Set: AUI_MainToolBar_Set;          // 71
 
-    MainTrayIcon: AUi_MainTrayIcon;                                 // 72
+    MainTrayIcon: AUi_GetMainTrayIcon;                              // 72
 
     MainWindow: AUI.MainWindow;                                     // 73
     MainWindow_AddMenuItem02: AUI.MainWindow_AddMenuItem02;         // 74

@@ -2,7 +2,7 @@
 @Abstract User interface proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 30.07.2012
+@LastMod 13.08.2012
 }
 unit AUiProcTypes;
 
@@ -204,7 +204,7 @@ type
   {$IFDEF A01}AUi_MainToolBar_Set = procedure(ToolBar: AControl); stdcall;{$ENDIF}
   {$IFDEF A02}AUi_MainToolBar_Set = procedure(ToolBar: AControl); stdcall;{$ENDIF}
 type
-  AUi_MainTrayIcon = function: ATrayIcon; stdcall;
+  AUi_MainTrayIcon_Proc = function(): ATrayIcon; stdcall;
 type
   AUi_MainWindow = function: AWindow; stdcall;
   AUi_MainWindow_AddMenuItem02WS_Proc = function(const ParentItemName, Name, Text: AWideString;

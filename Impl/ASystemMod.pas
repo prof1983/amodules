@@ -2,7 +2,7 @@
 @Abstract ASystem
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.08.2007
-@LastMod 06.08.2012
+@LastMod 13.08.2012
 }
 unit ASystemMod;
 
@@ -23,7 +23,8 @@ unit ASystemMod;
 interface
 
 uses
-  ABase, ALibraries, ARuntime, ARuntimeBase, ASystem, ASystemBase{$IFDEF ADepr}, ASystemProcRec{$ENDIF};
+  ABase, ALibraries, ARuntime, ARuntimeBase,
+  ASystem, ASystemBase, ASystemMain{$IFDEF ADepr}, ASystemProcRec{$ENDIF};
 
 // --- Module ---
 
