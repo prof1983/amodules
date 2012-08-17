@@ -2,7 +2,7 @@
 @Abstract ASettings
 @Author Prof1983 <prof1983@ya.ru>
 @Created 01.08.2012
-@LastMod 13.08.2012
+@LastMod 16.08.2012
 }
 unit ASettings;
 
@@ -11,7 +11,9 @@ unit ASettings;
 interface
 
 uses
-  ABase, ARuntime, ARuntimeBase, ASettingsBase, ASettingsProcRec, ASettingsProcVars;
+  ABase, ARuntime, ARuntimeBase, ASettingsBase,
+  {$IFDEF ADepr}ASettingsProcRec,{$ENDIF}
+  ASettingsProcVars, AStrings;
 
 function ASettings_Boot(): AError; stdcall;
 
@@ -24,9 +26,9 @@ implementation
 {$IFDEF ADepr}
 function ASettings_SetProcs(const Settings: ASettingsProcs_Type): AError;
 begin
-  ASettingsProcVars.ASettings_Close := Settings.Config_Close;
-  ASettingsProcVars.ASettings_DeleteKey := Settings.DeleteKeyW;
-  ASettingsProcVars.ASettings_DeleteSection := Settings.DeleteSectionW;
+  ASettingsProcVars.ASettings_Close02 := Settings.Config_Close;
+  ASettingsProcVars.ASettings_DeleteKey02 := Settings.DeleteKeyW;
+  ASettingsProcVars.ASettings_DeleteSection02 := Settings.DeleteSectionW;
   ASettingsProcVars.ASettings_IniConfig_NewWS := Settings.IniConfig_NewWS;
   ASettingsProcVars.ASettings_ReadBoolWS := Settings.ReadBoolW;
   ASettingsProcVars.ASettings_ReadIntegerWS := Settings.ReadIntegerW;
@@ -89,13 +91,34 @@ end;
 // --- Public ---
 
 function Config_ReadBoolDefP(Config: AConfig; const Section, Name: APascalString; DefValue: ABoolean): ABoolean;
+var
+  SSection: AString_Type;
+  SName: AString_Type;
 begin
+  if Assigned(ASettingsProcVars.ASettings_ReadBoolDef) then
+  begin
+    if (AString_AssignP(SSection, Section) < 0) then
+    begin
+      Result := DefValue;
+      Exit;
+    end;
+    if (AString_AssignP(SName, Name) < 0) then
+    begin
+      Result := DefValue;
+      Exit;
+    end;
+    Result := ASettingsProcVars.ASettings_ReadBoolDef(Config, SSection, SName, DefValue);
+    Exit;
+  end;
+
+  {$IFDEF ADepr}
   if not(Assigned(ASettingsProcVars.ASettings_ReadBoolWS)) then
   begin
     Result := DefValue;
     Exit;
   end;
   Result := ASettingsProcVars.ASettings_ReadBoolWS(Config, Section, Name, DefValue);
+  {$ENDIF}
 end;
 
 end.
