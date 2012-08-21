@@ -2,7 +2,7 @@
 @Abstract User interface proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 13.08.2012
+@LastMod 21.08.2012
 }
 unit AUiProcRec;
 
@@ -22,11 +22,11 @@ uses
 type
   PUiProcs = ^AUiProcs_Type;
   AUiProcs_Type = packed record { A02: 144x4 = 576 bytes; A03: 256x4 = 1024 bytes }
-    IsShowApp: AUi_IsShowApp_Proc;                                  // 00
+    IsShowApp: AUi_GetIsShowApp_Proc;                               // 00
     InitMainTrayIcon: AUi_InitMainTrayIcon_Proc;                    // 01
     InitMenus02: AUi_InitMenus02_Proc;                              // 02
     ProcessMessages02: AUi_ProcessMessages02_Proc;                  // 03
-    IsShowApp_Set: AUi_IsShowApp_Set_Proc;                          // 04
+    IsShowApp_Set: AUi_SetIsShowApp_Proc;                           // 04
     ShowHelp02: AUi_ShowHelp02_Proc;                                // 05
     Shutdown02: AUi_Shutdown02_Proc;                                // 06
 

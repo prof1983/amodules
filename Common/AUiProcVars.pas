@@ -2,64 +2,53 @@
 @Abstract User Interface procs var
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 27.07.2012
+@LastMod 21.08.2012
 }
-unit AUi1;
+unit AUiProcVars;
 
 interface
 
 uses
   ABase, ABaseTypes,
-  AUiBase, AUiProcs;
+  AUiBase, AUiProcTypes;
 
 // --- Procs var ---
 
 var
-  UI_InitMainTrayIcon: A_UI_InitMainTrayIcon_Proc;
-  UI_InitMenus: A_UI_InitMenus02_Proc;
-  UI_IsShowApp: A_UI_IsShowApp_Proc;
-  UI_IsShowApp_Set: A_UI_IsShowApp_Set_Proc;
-  //UI_OnMainFormCreate_Set: A_UI_OnMainFormCreate_Set_Proc;
-  UI_ProcessMessages: A_UI_ProcessMessages02_Proc;
-  UI_ShowHelp: A_UI_ShowHelp02_Proc;
-  UI_Shutdown: A_UI_Shutdown02_Proc;
+  AUi_GetIsShowApp: AUi_GetIsShowApp_Proc;
+  AUi_InitMainTrayIcon: AUi_InitMainTrayIcon_Proc;
+  AUi_InitMenus02: AUi_InitMenus02_Proc;
+  AUi_ProcessMessages02: AUi_ProcessMessages02_Proc;
+  AUi_SetIsShowApp: AUi_SetIsShowApp_Proc;
+  AUi_ShowHelp02: AUi_ShowHelp02_Proc;
+  AUi_Shutdown02: AUi_Shutdown02_Proc;
 var
-  UI_Box_New: AUI_Box_New;
-  UI_Button_New: AUI_Button_New;
+  AUi_Box_New: AUI_Box_New;
+  AUi_Button_New: AUI_Button_New;
 var
-  UI_Control_Free: AUI_Control_Free;
-  UI_Control_FreeAndNil: AUI_Control_FreeAndNil;
-  UI_Control_GetEnabled: AUI_Control_GetEnabled;
-  UI_Control_GetHeight: AUI_Control_GetHeight;
-  UI_Control_GetHint: AUI_Control_GetHintW;
-  UI_Control_GetName: AUI_Control_GetNameW;
-  UI_Control_GetText: AUI_Control_GetTextW;
-  UI_Control_GetVisible: AUI_Control_GetVisible;
-  UI_Control_GetWidth: AUI_Control_GetWidth;
-  UI_Control_SetAlign: AUI_Control_SetAlign;
-  UI_Control_SetClientSize: AUI_Control_SetClientSize;
-  UI_Control_SetColor: AUI_Control_SetColor;
-  UI_Control_SetEnabled: AUI_Control_SetEnabled;
-  UI_Control_SetFocus: AUI_Control_SetFocus;
-
-  {$IFDEF A02}
-  UI_Label_SetFont: AUI_Control_SetFontW1;
-  {$ELSE}
-  UI_Reserved0: Integer;
-  {$ENDIF}
-
-  UI_Control_SetHint: AUI_Control_SetHintW;
-  UI_Control_SetName: AUI_Control_SetNameW;
-  //UI_Control_SetOnChange: AUI_Control_SetOnChange;
-  //UI_Control_SetOnClick: AUI_Control_SetOnClick;
-  UI_Control_SetPosition: AUI_Control_SetPosition;
-  UI_Control_SetSize: AUI_Control_SetSize;
-  UI_Control_SetText: AUI_Control_SetTextWS_Proc;
-  UI_Control_SetVisible: AUI_Control_SetVisible;
-  UI_Control_SetWidth: AUI_Control_SetWidth;
-//var
-  //UI_DataSource_New: AUI_DataSource_New;
-  //UI_DataSource_SetOnDataChange: AUI_DataSource_SetOnDataChange;
+  AUi_Control_Free: AUi_Control_Free_Proc;
+  AUi_Control_FreeAndNil: AUi_Control_FreeAndNil_Proc;
+  AUi_Control_GetEnabled: AUi_Control_GetEnabled_Proc;
+  AUi_Control_GetHeight: AUi_Control_GetHeight_Proc;
+  AUi_Control_GetHint: AUi_Control_GetHintW_Proc;
+  AUi_Control_GetName: AUi_Control_GetNameW_Proc;
+  AUi_Control_GetText: AUi_Control_GetTextW_Proc;
+  AUi_Control_GetVisible: AUi_Control_GetVisible_Proc;
+  AUi_Control_GetWidth: AUi_Control_GetWidth_Proc;
+  AUi_Control_SetAlign: AUi_Control_SetAlign_Proc;
+  AUi_Control_SetClientSize: AUi_Control_SetClientSize_Proc;
+  AUi_Control_SetColor: AUi_Control_SetColor_Proc;
+  AUi_Control_SetEnabled: AUi_Control_SetEnabled_Proc;
+  AUi_Control_SetFocus: AUi_Control_SetFocus_Proc;
+  AUi_Control_SetHint: AUi_Control_SetHintW_Proc;
+  AUi_Control_SetName: AUi_Control_SetNameW_Proc;
+  AUi_Control_SetPosition: AUi_Control_SetPosition_Proc;
+  AUi_Control_SetSize: AUi_Control_SetSize_Proc;
+  {$ifdef ADepr}
+  AUi_Control_SetText: AUi_Control_SetTextWS_Proc;
+  {$endif}
+  AUi_Control_SetVisible: AUi_Control_SetVisible_Proc;
+  AUi_Control_SetWidth: AUi_Control_SetWidth_Proc;
 var
   UI_Dialog_About: AUI_Dialog_About;
   UI_Dialog_Calendar: AUI_Dialog_Calendar;
