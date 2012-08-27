@@ -2,7 +2,7 @@
 @Abstract APlugins procs
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.08.2011
-@LastMod 30.07.2012
+@LastMod 27.08.2012
 }
 unit APluginsProcRec;
 
@@ -16,7 +16,7 @@ type
   APluginsProcs_Type = packed record {8x4} {32x4}
     AddPlugin: APlugins_AddPluginW_Proc;                        // 00
     Clear: APlugins_Clear_Proc;                                 // 01
-    Count: APlugins_Count_Proc;                                 // 02
+    Count: APlugins_GetCount_Proc;                              // 02
     Delete: APlugins_Delete_Proc;                               // 03
     Find: APlugins_FindW_Proc;                                  // 04
 

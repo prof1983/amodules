@@ -2,7 +2,7 @@
 @Abstract ASystemProcs
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.08.2009
-@LastMod 01.08.2012
+@LastMod 27.08.2012
 }
 unit ASystemProcTypes;
 
@@ -64,6 +64,9 @@ type
     const ProductName: AWideString; ProductVersion: AVersion;
     const CompanyName, Copyright, Url, Description, DataPath: AWideString); stdcall;
   {$ENDIF}
+  ASystem_Prepare4A_Proc = function(Title, ProgramName: AStr; ProgramVersion: AVersion;
+      ProductName: AStr; ProductVersion: AVersion;
+      CompanyName, Copyright, Url, Description, Comments, DataPath, ConfigPath: AStr): AError; stdcall;
   ASystem_ProcessMessages_Proc = function(): AError; stdcall;
   ASystem_ProcessMessages02_Proc = procedure(); stdcall;
   {$IFDEF ADepr}ASystem_RegisterModule02_Proc = function(const Module: AModule02_Type): AInteger; stdcall;{$ENDIF}

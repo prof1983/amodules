@@ -2,7 +2,7 @@
 @Abstract APlugins
 @Author Prof1983 <prof1983@ya.ru>
 @Created 10.04.2009
-@LastMod 13.08.2012
+@LastMod 27.08.2012
 }
 unit APluginsMod;
 
@@ -12,7 +12,7 @@ interface
 
 uses
   ABase, ALibraries,
-  APlugins, APluginsBase, {$IFDEF ADepr}APluginsProcRec,{$ENDIF}
+  APlugins, APluginsBase, APluginsMain, {$IFDEF ADepr}APluginsProcRec,{$ENDIF}
   ARuntime, ARuntimeMod, ARuntimeBase, ARuntimeProcRec,
   ASystem, ASystemBase;
 
