@@ -2,7 +2,7 @@
 @Abstract AUtils
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.07.2012
-@LastMod 08.08.2012
+@LastMod 27.08.2012
 }
 unit AUtils;
 
@@ -55,6 +55,8 @@ function AUtils_TrimWS(const S: AWideString): AWideString; stdcall;
 function ExtractFileExtWS(const FileName: AWideString): AWideString; stdcall;
 
 function FileExistsWS(const FileName: AWideString): ABoolean; stdcall;
+
+function GetNowDateTime(): TDateTime; stdcall;
 
 function IntToStrWS(Value: AInt): AWideString; stdcall;
 
@@ -453,6 +455,16 @@ end;
 function FileExistsWS(const FileName: AWideString): ABoolean;
 begin
   Result := AUtils_FileExistsWS(FileName);
+end;
+
+function GetNowDateTime(): TDateTime;
+begin
+  if not(Assigned(AUtilsProcVars.AUtils_Time_Now)) then
+  begin
+    Result := 0;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_Time_Now();
 end;
 
 function IntToStrWS(Value: AInt): AWideString;

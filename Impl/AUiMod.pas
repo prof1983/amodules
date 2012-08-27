@@ -2,7 +2,7 @@
 @Abstract User Interface
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 13.08.2012
+@LastMod 27.08.2012
 }
 unit AUiMod;
 
@@ -16,7 +16,8 @@ interface
 
 uses
   ABase, ARuntime, ARuntimeBase,
-  AUi, AUiBase, {$IFDEF ADepr}AUiProcRec,{$ENDIF} AUiWindowSettings;
+  AUi, AUiBase, AUiControls, AUiDialogs, {$IFDEF ADepr}AUiProcRec,{$ENDIF}
+  AUiWindows, AUiWindowSettings;
 
 // --- AUi ---
 
@@ -168,9 +169,9 @@ const
     Window_SaveConfig: AUi_Window_SaveConfig;                       // 111
     Window_SaveConfig2: UI_Window_SaveConfig2;                      // 112
     Window_SetBorderStyle02: AUI.Window_SetBorderStyle02;           // 113
-    Window_SetFormStyle: AUi_Window_SetFormStyle;                   // 114
-    Window_SetPosition: AUi_Window_SetPosition;                     // 115
-    Window_ShowModal: AUi_Window_ShowModal;                         // 116
+    Window_SetFormStyle: Ui_Window_SetFormStyle;                    // 114
+    Window_SetPosition: Ui_Window_SetPosition;                      // 115
+    Window_ShowModal: Ui_Window_ShowModal;                          // 116
 
     ReportWin_New: AUI.ReportWin_New;                               // 117
     WaitWin_NewWS: AUI.WaitWin_NewWS;                               // 118
@@ -185,7 +186,7 @@ const
     Report_New: AUI.Report_New;                                     // 126
     Report_SetText: UI_Report_SetText;                              // 127
     InitMainMenu: UI_InitMainMenu;                                  // 128
-    Control_SetFont1: AUi_Control_SetFont1P_Old;                    // 129
+    Control_SetFont1: AUiControl_SetFont1P_Old;                     // 129
     Control_SetFont2: UI_Control_SetFont2;                          // 130
     Dialog_About_New: UI_Dialog_About_New;                          // 131
     Dialog_AddButton: UI_Dialog_AddButton02;                        // 132

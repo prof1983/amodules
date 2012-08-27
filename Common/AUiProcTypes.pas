@@ -2,12 +2,14 @@
 @Abstract User interface proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 21.08.2012
+@LastMod 27.08.2012
 }
 unit AUiProcTypes;
 
 {A01}
 {A02}
+
+{$IFDEF A04}{$DEFINE ADepr}{$ENDIF}
 
 interface
 
@@ -42,65 +44,65 @@ type
 
 type
   { BoxType: 0 - Simple; 1 - HBox; 2 - VBox }
-  AUi_Box_New = function(Parent: AControl; BoxType: AInteger): AControl; stdcall;
+  AUiBox_New_Proc = function(Parent: AControl; BoxType: AInteger): AControl; stdcall;
 type
-  AUi_Button_New = function(Parent: AControl): AButton; stdcall;
+  AUiButton_New_Proc = function(Parent: AControl): AButton; stdcall;
 type
   AUi_Calendar_GetDate = function(Calendar: AControl): TDateTime; stdcall;
   AUi_Calendar_New = function(Parent: AControl): AControl; stdcall;
   AUi_Calendar_SetMonth = procedure(Calendar: AControl; Value: AInteger); stdcall;
 
 type
-  AUi_Control_Free_Proc = procedure(Control: AControl); stdcall;
-  AUi_Control_FreeAndNil_Proc = procedure(var Control: AControl); stdcall;
-  AUi_Control_GetEnabled_Proc = function(Control: AControl): ABoolean; stdcall;
-  AUi_Control_GetHeight_Proc = function(Control: AControl): AInteger; stdcall;
-  AUi_Control_GetHint_Proc = function(Control: AControl; out Value: AString_Type): AInteger; stdcall;
+  AUiControl_Free_Proc = procedure(Control: AControl); stdcall;
+  AUiControl_FreeAndNil_Proc = procedure(var Control: AControl); stdcall;
+  AUiControl_GetEnabled_Proc = function(Control: AControl): ABoolean; stdcall;
+  AUiControl_GetHeight_Proc = function(Control: AControl): AInteger; stdcall;
+  AUiControl_GetHint_Proc = function(Control: AControl; out Value: AString_Type): AInteger; stdcall;
   {$ifdef ADepr}
-  AUi_Control_GetHintW = function(Control: AControl): AWideString; stdcall;
+  AUiControl_GetHintWS_Proc = function(Control: AControl): AWideString; stdcall;
   {$endif}
-  AUi_Control_GetName_Proc = function(Control: AControl; out Value: AString_Type): AInteger; stdcall;
+  AUiControl_GetName_Proc = function(Control: AControl; out Value: AString_Type): AInteger; stdcall;
   {$ifdef ADepr}
-  AUi_Control_GetNameW = function(Control: AControl): AWideString; stdcall;
+  AUiControl_GetNameWS_Proc = function(Control: AControl): AWideString; stdcall;
   {$endif}
-  AUi_Control_GetText_Proc = function(Control: AControl; out Value: AString_Type): AInteger; stdcall;
+  AUiControl_GetText_Proc = function(Control: AControl; out Value: AString_Type): AInteger; stdcall;
   {$ifdef ADepr}
-  AUi_Control_GetTextW = function(Control: AControl): AWideString; stdcall;
+  AUiControl_GetTextWS_Proc = function(Control: AControl): AWideString; stdcall;
   {$endif}
-  AUi_Control_GetVisible_Proc = function(Control: AControl): ABoolean; stdcall;
-  AUi_Control_GetWidth_Proc = function(Control: AControl): AInteger; stdcall;
-  AUi_Control_SetAlign_Proc = procedure(Control: AControl; Align: TUIAlign); stdcall;
-  AUi_Control_SetClientSize_Proc = procedure(Control: AControl; ClientWidth, ClientHeight: AInteger); stdcall;
-  AUi_Control_SetColor_Proc = procedure(Control: AControl; Color: AColor); stdcall;
-  AUi_Control_SetEnabled_Proc = procedure(Control: AControl; Value: ABoolean); stdcall;
-  AUi_Control_SetFocus_Proc = function(Control: AControl): ABoolean; stdcall;
-  AUi_Control_SetFont1_Proc = procedure(Control: AControl; const FontName: AString_Type; FontSize: AInteger); stdcall;
-  AUi_Control_SetFont2_Proc = procedure(Control: AControl; const FontName: AString_Type; FontSize: AInteger; Color: AColor); stdcall;
+  AUiControl_GetVisible_Proc = function(Control: AControl): ABoolean; stdcall;
+  AUiControl_GetWidth_Proc = function(Control: AControl): AInteger; stdcall;
+  AUiControl_SetAlign_Proc = procedure(Control: AControl; Align: TUIAlign); stdcall;
+  AUiControl_SetClientSize_Proc = procedure(Control: AControl; ClientWidth, ClientHeight: AInteger); stdcall;
+  AUiControl_SetColor_Proc = procedure(Control: AControl; Color: AColor); stdcall;
+  AUiControl_SetEnabled_Proc = procedure(Control: AControl; Value: ABoolean); stdcall;
+  AUiControl_SetFocus_Proc = function(Control: AControl): ABoolean; stdcall;
+  AUiControl_SetFont1_Proc = procedure(Control: AControl; const FontName: AString_Type; FontSize: AInteger); stdcall;
+  AUiControl_SetFont2_Proc = procedure(Control: AControl; const FontName: AString_Type; FontSize: AInteger; Color: AColor); stdcall;
   {$ifdef ADepr}
-  AUi_Control_SetFontW1 = procedure(Control: AControl; const FontName: AWideString; FontSize: AInteger); stdcall;
-  AUi_Control_SetFontW2 = procedure(Control: AControl; const FontName: AWideString; FontSize: AInteger; Color: AColor); stdcall;
+  AUiControl_SetFontW1_Proc = procedure(Control: AControl; const FontName: AWideString; FontSize: AInteger); stdcall;
+  AUiControl_SetFontW2_Proc = procedure(Control: AControl; const FontName: AWideString; FontSize: AInteger; Color: AColor); stdcall;
   {$endif}
-  AUi_Control_SetHint_Proc = procedure(Control: AControl; const Value: AString_Type); stdcall;
+  AUiControl_SetHint_Proc = procedure(Control: AControl; const Value: AString_Type); stdcall;
   {$ifdef ADepr}
-  AUi_Control_SetHintW = procedure(Control: AControl; const Value: AWideString); stdcall;
+  AUiControl_SetHintWS_Proc = procedure(Control: AControl; const Value: AWideString); stdcall;
   {$endif}
-  AUi_Control_SetName_Proc = procedure(Control: AControl; const Value: AString_Type); stdcall;
+  AUiControl_SetName_Proc = procedure(Control: AControl; const Value: AString_Type); stdcall;
   {$ifdef ADepr}
-  AUi_Control_SetNameW = procedure(Control: AControl; const Value: AWideString); stdcall;
+  AUiControl_SetNameWS_Proc = procedure(Control: AControl; const Value: AWideString); stdcall;
   {$endif}
-  AUi_Control_SetOnChange_Proc = function(Control: AControl; OnChange: ACallbackProc03): AError; stdcall;
-  AUi_Control_SetOnChange02 = procedure(Control: AControl; OnChange: ACallbackProc02); stdcall;
-  AUi_Control_SetOnClick_Proc = procedure(Control: AControl; Value: ACallbackProc03); stdcall;
-  AUi_Control_SetOnClick02 = procedure(Control: AControl; Value: ACallbackProc02); stdcall;
+  AUiControl_SetOnChange_Proc = function(Control: AControl; OnChange: ACallbackProc03): AError; stdcall;
+  AUiControl_SetOnChange02_Proc = procedure(Control: AControl; OnChange: ACallbackProc02); stdcall;
+  AUiControl_SetOnClick_Proc = procedure(Control: AControl; Value: ACallbackProc03); stdcall;
+  AUiControl_SetOnClick02_Proc = procedure(Control: AControl; Value: ACallbackProc02); stdcall;
   //AUi_Control_SetOnClick03 = procedure(Control: AControl; Value: ACallbackProc03); stdcall;
-  AUi_Control_SetPosition_Proc = procedure(Control: AControl; Left, Top: AInteger); stdcall;
-  AUi_Control_SetSize_Proc = procedure(Control: AControl; Width, Height: AInteger); stdcall;
-  AUi_Control_SetText_Proc = procedure(Control: AControl; const Value: AString_Type); stdcall;
+  AUiControl_SetPosition_Proc = procedure(Control: AControl; Left, Top: AInteger); stdcall;
+  AUiControl_SetSize_Proc = procedure(Control: AControl; Width, Height: AInteger); stdcall;
+  AUiControl_SetText_Proc = procedure(Control: AControl; const Value: AString_Type); stdcall;
   {$ifdef ADepr}
-  AUi_Control_SetTextWS_Proc = procedure(Control: AControl; const Value: AWideString); stdcall;
+  AUiControl_SetTextWS_Proc = procedure(Control: AControl; const Value: AWideString); stdcall;
   {$endif}
-  AUi_Control_SetVisible_Proc = procedure(Control: AControl; Value: ABoolean); stdcall;
-  AUi_Control_SetWidth_Proc = function(Control: AControl; Value: AInteger): AInteger; stdcall;
+  AUiControl_SetVisible_Proc = procedure(Control: AControl; Value: ABoolean); stdcall;
+  AUiControl_SetWidth_Proc = function(Control: AControl; Value: AInteger): AInteger; stdcall;
 
 type
   AUi_DataSource_New_Proc = function(): PADataSource; stdcall;

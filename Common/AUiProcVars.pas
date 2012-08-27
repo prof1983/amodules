@@ -2,7 +2,7 @@
 @Abstract User Interface procs var
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 21.08.2012
+@LastMod 27.08.2012
 }
 unit AUiProcVars;
 
@@ -23,50 +23,50 @@ var
   AUi_ShowHelp02: AUi_ShowHelp02_Proc;
   AUi_Shutdown02: AUi_Shutdown02_Proc;
 var
-  AUi_Box_New: AUI_Box_New;
-  AUi_Button_New: AUI_Button_New;
+  AUi_Box_New: AUiBox_New_Proc;
+  AUi_Button_New: AUiButton_New_Proc;
 var
-  AUi_Control_Free: AUi_Control_Free_Proc;
-  AUi_Control_FreeAndNil: AUi_Control_FreeAndNil_Proc;
-  AUi_Control_GetEnabled: AUi_Control_GetEnabled_Proc;
-  AUi_Control_GetHeight: AUi_Control_GetHeight_Proc;
-  AUi_Control_GetHint: AUi_Control_GetHintW_Proc;
-  AUi_Control_GetName: AUi_Control_GetNameW_Proc;
-  AUi_Control_GetText: AUi_Control_GetTextW_Proc;
-  AUi_Control_GetVisible: AUi_Control_GetVisible_Proc;
-  AUi_Control_GetWidth: AUi_Control_GetWidth_Proc;
-  AUi_Control_SetAlign: AUi_Control_SetAlign_Proc;
-  AUi_Control_SetClientSize: AUi_Control_SetClientSize_Proc;
-  AUi_Control_SetColor: AUi_Control_SetColor_Proc;
-  AUi_Control_SetEnabled: AUi_Control_SetEnabled_Proc;
-  AUi_Control_SetFocus: AUi_Control_SetFocus_Proc;
-  AUi_Control_SetHint: AUi_Control_SetHintW_Proc;
-  AUi_Control_SetName: AUi_Control_SetNameW_Proc;
-  AUi_Control_SetPosition: AUi_Control_SetPosition_Proc;
-  AUi_Control_SetSize: AUi_Control_SetSize_Proc;
+  AUi_Control_Free: AUiControl_Free_Proc;
+  AUi_Control_FreeAndNil: AUiControl_FreeAndNil_Proc;
+  AUi_Control_GetEnabled: AUiControl_GetEnabled_Proc;
+  AUi_Control_GetHeight: AUiControl_GetHeight_Proc;
+  AUi_Control_GetHint: AUiControl_GetHintWS_Proc;
+  AUi_Control_GetName: AUiControl_GetNameWS_Proc;
+  AUi_Control_GetText: AUiControl_GetTextWS_Proc;
+  AUi_Control_GetVisible: AUiControl_GetVisible_Proc;
+  AUi_Control_GetWidth: AUiControl_GetWidth_Proc;
+  AUi_Control_SetAlign: AUiControl_SetAlign_Proc;
+  AUi_Control_SetClientSize: AUiControl_SetClientSize_Proc;
+  AUi_Control_SetColor: AUiControl_SetColor_Proc;
+  AUi_Control_SetEnabled: AUiControl_SetEnabled_Proc;
+  AUi_Control_SetFocus: AUiControl_SetFocus_Proc;
+  AUi_Control_SetHint: AUiControl_SetHintWS_Proc;
+  AUi_Control_SetName: AUiControl_SetNameWS_Proc;
+  AUi_Control_SetPosition: AUiControl_SetPosition_Proc;
+  AUi_Control_SetSize: AUiControl_SetSize_Proc;
   {$ifdef ADepr}
-  AUi_Control_SetText: AUi_Control_SetTextWS_Proc;
+  AUi_Control_SetText: AUiControl_SetTextWS_Proc;
   {$endif}
-  AUi_Control_SetVisible: AUi_Control_SetVisible_Proc;
-  AUi_Control_SetWidth: AUi_Control_SetWidth_Proc;
+  AUi_Control_SetVisible: AUiControl_SetVisible_Proc;
+  AUi_Control_SetWidth: AUiControl_SetWidth_Proc;
 var
-  UI_Dialog_About: AUI_Dialog_About;
-  UI_Dialog_Calendar: AUI_Dialog_Calendar;
-  UI_Dialog_Color: AUI_Dialog_Color;
-  UI_Dialog_DateFilter: AUI_Dialog_DateFilter;
-  UI_Dialog_Error: AUI_Dialog_Error;
-  UI_Dialog_Font: AUI_Dialog_Font;
-  UI_Dialog_GetWindow: AUI_Dialog_GetWindow;
-  UI_Dialog_InputBox: AUI_Dialog_InputBox;
-  UI_Dialog_InputBox2: AUI_Dialog_InputBox2;
-  UI_Dialog_InputBoxA: AUI_Dialog_InputBoxA;
-  UI_Dialog_Login: AUI_Dialog_Login;
-  UI_Dialog_Message: AUI_Dialog_Message;
-  UI_Dialog_New: AUI_Dialog_New;
-  UI_Dialog_OpenFile: AUI_Dialog_OpenFile;
-  UI_Dialog_OpenFileA: AUI_Dialog_OpenFileA;
-  UI_Dialog_SaveFile: AUI_Dialog_SaveFile;
-  UI_Dialog_SaveFileA: AUI_Dialog_SaveFileA;
+  UI_Dialog_About: AUi_Dialog_About_Proc;
+  UI_Dialog_Calendar: AUi_Dialog_Calendar_Proc;
+  UI_Dialog_Color: AUi_Dialog_Color_Proc;
+  UI_Dialog_DateFilter: AUi_Dialog_DateFilter_Proc;
+  UI_Dialog_Error: AUi_Dialog_Error_Proc;
+  UI_Dialog_Font: AUi_Dialog_Font_Proc;
+  UI_Dialog_GetWindow: AUi_Dialog_GetWindow_Proc;
+  UI_Dialog_InputBox: AUi_Dialog_InputBox_Proc;
+  UI_Dialog_InputBox2: AUi_Dialog_InputBox2_Proc;
+  UI_Dialog_InputBoxA: AUi_Dialog_InputBoxA_Proc;
+  UI_Dialog_Login: AUi_Dialog_Login_Proc;
+  UI_Dialog_Message: AUi_Dialog_Message_Proc;
+  UI_Dialog_New: AUi_Dialog_New_Proc;
+  UI_Dialog_OpenFile: AUi_Dialog_OpenFile_Proc;
+  UI_Dialog_OpenFileA: AUi_Dialog_OpenFileA_Proc;
+  UI_Dialog_SaveFile: AUi_Dialog_SaveFile_Proc;
+  UI_Dialog_SaveFileA: AUi_Dialog_SaveFileA_Proc;
 var
   UI_Edit_CheckDate: AUI_Edit_CheckDate;
   UI_Edit_CheckFloat: AUI_Edit_CheckFloat;

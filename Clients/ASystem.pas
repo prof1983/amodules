@@ -2,7 +2,7 @@
 @Abstract ASystem
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.07.2012
-@LastMod 13.08.2012
+@LastMod 27.08.2012
 }
 unit ASystem;
 
@@ -34,6 +34,8 @@ function GetExePathWS(): AWideString; stdcall;
 function OnBeforeRun_Disconnect(Callback: ACallbackProc): AInteger; stdcall;
 
 function ParamStrWS(Index: AInt): AWideString; stdcall;
+
+function ProcessMessages(): AError; stdcall;
 
 function ShowMessageExWS(const Text, Caption: AWideString; Flags: AMessageBoxFlags): ADialogBoxCommands; stdcall;
 
@@ -169,6 +171,16 @@ end;
 function ParamStrWS(Index: AInt): AWideString;
 begin
   Result := ASystem_ParamStrWS(Index);
+end;
+
+function ProcessMessages(): AError;
+begin
+  if not(Assigned(ASystemProcVars.ASystem_ProcessMessages)) then
+  begin
+    Result := -2;
+    Exit;
+  end;
+  Result := ASystemProcVars.ASystem_ProcessMessages();
 end;
 
 function ShowMessageExWS(const Text, Caption: AWideString; Flags: AMessageBoxFlags): ADialogBoxCommands;

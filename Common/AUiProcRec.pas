@@ -2,7 +2,7 @@
 @Abstract User interface proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 21.08.2012
+@LastMod 27.08.2012
 }
 unit AUiProcRec;
 
@@ -30,32 +30,32 @@ type
     ShowHelp02: AUi_ShowHelp02_Proc;                                // 05
     Shutdown02: AUi_Shutdown02_Proc;                                // 06
 
-    Box_New: AUi_Box_New;                                           // 07
-    Button_New: AUi_Button_New;                                     // 08
+    Box_New: AUiBox_New_Proc;                                       // 07
+    Button_New: AUiButton_New_Proc;                                 // 08
 
-    Control_Free: AUi_Control_Free_Proc;                            // 09
-    Control_FreeAndNil: AUi_Control_FreeAndNil_Proc;                // 10
-    Control_GetEnabled: AUi_Control_GetEnabled_Proc;                // 11
-    Control_GetHeight: AUi_Control_GetHeight_Proc;                  // 12
-    Control_GetHintW: AUI_Control_GetHintW;                         // 13
-    Control_GetNameW: AUI_Control_GetNameW;                         // 14
-    Control_GetTextW: AUI_Control_GetTextW;                         // 15
-    Control_GetVisible: AUi_Control_GetVisible_Proc;                // 16
-    Control_GetWidth: AUi_Control_GetWidth_Proc;                    // 17
-    Control_SetAlign: AUi_Control_SetAlign_Proc;                    // 18
-    Control_SetClientSize: AUi_Control_SetClientSize_Proc;          // 19
-    Control_SetColor: AUi_Control_SetColor_Proc;                    // 20
-    Control_SetEnabled: AUi_Control_SetEnabled_Proc;                // 21
-    Control_SetFocus: AUi_Control_SetFocus_Proc;                    // 22
-    Control_SetHintW: AUi_Control_SetHintW;                         // 23
-    Control_SetNameW: AUi_Control_SetNameW;                         // 24
-    Control_SetOnChange02: AUi_Control_SetOnChange02;               // 25
-    Control_SetOnClick02: AUi_Control_SetOnClick02;                 // 26
-    Control_SetPosition: AUi_Control_SetPosition_Proc;              // 27
-    Control_SetSize: AUi_Control_SetSize_Proc;                      // 28
-    Control_SetTextWS: AUi_Control_SetTextWS_Proc;                  // 29
-    Control_SetVisible: AUi_Control_SetVisible_Proc;                // 30
-    Control_SetWidth: AUi_Control_SetWidth_Proc;                    // 31
+    Control_Free: AUiControl_Free_Proc;                             // 09
+    Control_FreeAndNil: AUiControl_FreeAndNil_Proc;                 // 10
+    Control_GetEnabled: AUiControl_GetEnabled_Proc;                 // 11
+    Control_GetHeight: AUiControl_GetHeight_Proc;                   // 12
+    Control_GetHintW: AUiControl_GetHintWS_Proc;                    // 13
+    Control_GetNameW: AUiControl_GetNameWS_Proc;                    // 14
+    Control_GetTextW: AUiControl_GetTextWS_Proc;                    // 15
+    Control_GetVisible: AUiControl_GetVisible_Proc;                 // 16
+    Control_GetWidth: AUiControl_GetWidth_Proc;                     // 17
+    Control_SetAlign: AUiControl_SetAlign_Proc;                     // 18
+    Control_SetClientSize: AUiControl_SetClientSize_Proc;           // 19
+    Control_SetColor: AUiControl_SetColor_Proc;                     // 20
+    Control_SetEnabled: AUiControl_SetEnabled_Proc;                 // 21
+    Control_SetFocus: AUiControl_SetFocus_Proc;                     // 22
+    Control_SetHintW: AUiControl_SetHintWS_Proc;                    // 23
+    Control_SetNameW: AUiControl_SetNameWS_Proc;                    // 24
+    Control_SetOnChange02: AUiControl_SetOnChange02_Proc;           // 25
+    Control_SetOnClick02: AUiControl_SetOnClick02_Proc;             // 26
+    Control_SetPosition: AUiControl_SetPosition_Proc;               // 27
+    Control_SetSize: AUiControl_SetSize_Proc;                       // 28
+    Control_SetTextWS: AUiControl_SetTextWS_Proc;                   // 29
+    Control_SetVisible: AUiControl_SetVisible_Proc;                 // 30
+    Control_SetWidth: AUiControl_SetWidth_Proc;                     // 31
 
     DataSource_New: AUi_DataSource_New_Proc;                        // 32
     DataSource_SetOnDataChange02: AUi_DataSource_SetOnDataChange02_Proc; // 33
@@ -203,8 +203,8 @@ type
       Reserved142: AInteger;
     {$ELSE}
       InitMainMenu: AUi_InitMainMenu_Proc;                          // 128
-      Control_SetFont1: AUi_Control_SetFontW1;                      // 129
-      Control_SetFont2: AUi_Control_SetFontW2;                      // 130
+      Control_SetFont1: AUiControl_SetFontW1_Proc;                  // 129
+      Control_SetFont2: AUiControl_SetFontW2_Proc;                  // 130
       Dialog_About_New: AUi_Dialog_About_New_Proc;                  // 131
       Dialog_AddButton: AUi_Dialog_AddButton02;                     // 132
       OnDone_Connect: AUi_OnDone_Connect_Proc;                      // 133
@@ -221,7 +221,7 @@ type
     {$ENDIF A01}
 
     {$IFDEF A03UP}
-    Control_SetOnChange: AUi_Control_SetOnChange_Proc;              // 144
+    Control_SetOnChange: AUiControl_SetOnChange_Proc;               // 144
     Grid_DeleteRow2: AUi_Grid_DeleteRow2_Proc;                      // 145
     ShowHelp2WS: AUi_ShowHelp2WS_Proc;                              // 146
     Window_SetBorderStyle: AUI_Window_SetBorderStyle03;             // 147
