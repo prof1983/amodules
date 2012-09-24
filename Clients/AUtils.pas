@@ -2,7 +2,7 @@
 @Abstract AUtils
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.07.2012
-@LastMod 27.08.2012
+@LastMod 24.09.2012
 }
 unit AUtils;
 
@@ -62,6 +62,9 @@ function IntToStrWS(Value: AInt): AWideString; stdcall;
 
 function ReplaceCommaWS(const S: AWideString; DecimalSeparator: AChar = #0;
     ClearSpace: ABoolean = True): AWideString; stdcall;
+
+{** ќжидает указанное кол-во миллисекунд }
+function Sleep(Milliseconds: AUInt): AError; stdcall;
 
 function StrToFloatDefWS(const S: AWideString; DefValue: AFloat): AFloat; stdcall;
 
@@ -476,6 +479,21 @@ function ReplaceCommaWS(const S: AWideString; DecimalSeparator: AChar;
     ClearSpace: ABoolean): AWideString;
 begin
   Result := AUtils_ReplaceCommaWS(S, DecimalSeparator, ClearSpace);
+end;
+
+function Sleep(Milliseconds: AUInt): AError;
+begin
+  if not(Assigned(AUtils_Sleep)) then
+  begin
+    Result := -2;
+    Exit;
+  end;
+  try
+    AUtils_Sleep(Milliseconds);
+    Result := 0;
+  except
+    Result := -1;
+  end
 end;
 
 function StrToFloatDefWS(const S: AWideString; DefValue: AFloat): AFloat;
