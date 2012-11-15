@@ -87,6 +87,16 @@ begin
   Result := AString_ToWideString(SRes);
 end;
 
+function OnBeforeRun_Connect(Callback: ACallbackProc): AInteger;
+begin
+  if not(Assigned(ASystemProcVars.ASystem_OnBeforeRunConnect)) then
+  begin
+    Result := 0;
+    Exit;
+  end;
+  Result := ASystemProcVars.ASystem_OnBeforeRunConnect(Callback);
+end;
+
 function OnBeforeRun_Disconnect(Callback: ACallbackProc): AInteger;
 begin
   if not(Assigned(ASystemProcVars.ASystem_OnBeforeRunDisconnect)) then

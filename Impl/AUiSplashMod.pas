@@ -2,7 +2,7 @@
 @Abstract AUiSplash
 @Author Prof1983 <prof1983@ya.ru>
 @Created 08.12.2009
-@LastMod 06.08.2012
+@LastMod 15.11.2012
 }
 unit AUiSplashMod;
 
@@ -19,11 +19,11 @@ const
   //AUISplash_Name02 = 'AUISplash';
   AUISplash_Uid = $09120801;
 
-function AUiSplash_Boot(): AError; stdcall;
+function AUiSplashMod_Boot(): AError; stdcall;
 
-function AUiSplash_Fin(): AError; stdcall;
+function AUiSplashMod_Fin(): AError; stdcall;
 
-function AUiSplash_Init(): AError; stdcall;
+function AUiSplashMod_Init(): AError; stdcall;
 
 implementation
 
