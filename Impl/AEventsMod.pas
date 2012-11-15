@@ -2,7 +2,7 @@
 @Abstract AEvents
 @Author Prof1983 <prof1983@ya.ru>
 @Created 27.05.2011
-@LastMod 06.08.2012
+@LastMod 15.11.2012
 }
 unit AEventsMod;
 
@@ -11,7 +11,7 @@ unit AEventsMod;
 interface
 
 uses
-  ABase, AEvents, AEventsBase, {$IFDEF ADepr}AEventsProcRec,{$ENDIF} ARuntime, ARuntimeBase, AStrings;
+  ABase, AEvents, AEventsBase, {$IFDEF ADepr}AEventsProcRec,{$ENDIF} ARuntimeMain, ARuntimeBase, AStrings;
 
 function AEventsMod_Boot(): AError; stdcall;
 
@@ -81,19 +81,19 @@ const
 
 function AEventsMod_Boot(): AError;
 begin
-  if (ARuntime.Modules_FindByUid(AEvents_Uid) >= 0) then
+  if (ARuntime_FindModuleByUid(AEvents_Uid) >= 0) then
   begin
     Result := -2;
     Exit;
   end;
 
-  if (ARuntime.Modules_FindByName(AEvents_Name) >= 0) then
+  if (ARuntime_FindModuleByName(AEvents_Name) >= 0) then
   begin
     Result := -3;
     Exit;
   end;
 
-  Result := AModule_Register(EventsModule);
+  Result := ARuntime_RegisterModule(EventsModule);
 end;
 
 function AEventsMod_Fin(): AError;

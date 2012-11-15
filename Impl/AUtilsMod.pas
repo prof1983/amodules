@@ -2,7 +2,7 @@
 @Abstract AUtils04
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.09.2009
-@LastMod 06.08.2012
+@LastMod 15.11.2012
 }
 unit AUtilsMod;
 
@@ -12,7 +12,7 @@ interface
 
 uses
   ABase, ABaseUtils, ARuntime, ARuntimeBase,
-  AUtils, AUtilsBase{$IFDEF ADepr}, AUtilsProcRec{$ENDIF};
+  AUtils, AUtilsBase, AUtilsMain{$IFDEF ADepr}, AUtilsProcRec{$ENDIF};
 
 // --- AUtilsMod ---
 

@@ -2,7 +2,7 @@
 @Abstract APlugins
 @Author Prof1983 <prof1983@ya.ru>
 @Created 10.04.2009
-@LastMod 27.08.2012
+@LastMod 15.11.2012
 }
 unit APluginsMod;
 
@@ -13,7 +13,7 @@ interface
 uses
   ABase, ALibraries,
   APlugins, APluginsBase, APluginsMain, {$IFDEF ADepr}APluginsProcRec,{$ENDIF}
-  ARuntime, ARuntimeMod, ARuntimeBase, ARuntimeProcRec,
+  ARuntimeMod, ARuntimeBase, ARuntimeMain, ARuntimeProcRec,
   ASystem, ASystemBase;
 
 function APluginsMod_Boot(): AError; stdcall;
@@ -111,14 +111,14 @@ begin
     Exit;
   end;
 
-  if (ARuntime.Modules_FindByUid(APlugins_Uid) > 0) then
+  if (ARuntime_FindModuleByUid(APlugins_Uid) > 0) then
   begin
     Result := -3;
     Exit;
   end;
 
   APlugins_SetOnCheckPlugin(DoCheckPlugin);
-  Result := AModule_Register(PluginsModule);
+  Result := ARuntime_RegisterModule(PluginsModule);
 end;
 
 function APluginsMod_Fin(): AError;
@@ -133,7 +133,7 @@ end;
 
 function APluginsMod_Init(): AError;
 begin
-  ARuntime.Modules_InitByUid(ASystem_Uid);
+  ARuntime_InitModuleByUid(ASystem_Uid);
   Result := APlugins_Init();
 end;
 

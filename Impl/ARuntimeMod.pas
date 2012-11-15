@@ -2,14 +2,14 @@
 @Abstract ARuntime
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.08.2007
-@LastMod 03.08.2012
+@LastMod 15.11.2012
 }
 unit ARuntimeMod;
 
 interface
 
 uses
-  ABase, ARuntime, ARuntimeBase, ARuntimeProcRec;
+  ABase, ARuntimeBase, ARuntimeMain, ARuntimeProcRec;
 
 // --- ARuntimeMod ---
 
@@ -43,7 +43,7 @@ const // 64x4
 
     GetIsShutdown: ARuntime_GetIsShutdown;                      // 16
     Shutdown: ARuntime_Shutdown;                                // 17
-    RegisterModule: AModule_Register;                           // 18
+    RegisterModule: ARuntime_RegisterModule;                    // 18
     GetModuleProcsByUid: ARuntime_GetModuleProcsByUid;          // 19
     Run: ARuntime_Run;                                          // 20
     SetOnShutdown: ARuntime_SetOnShutdown;                      // 21

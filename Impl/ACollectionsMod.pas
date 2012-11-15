@@ -2,7 +2,7 @@
 @Abstract ACollections
 @Author Prof1983 <prof1983@ya.ru>
 @Created 31.05.2011
-@LastMod 06.08.2012
+@LastMod 15.11.2012
 
 Prototype:
 CS: System.Collection.ICollection
@@ -25,7 +25,7 @@ interface
 
 uses
   ABase, ACollections, ACollectionsBase, {$IFDEF ADepr}ACollectionsProcRec,{$ENDIF} 
-  ARuntime, ARuntimeBase;
+  ARuntimeMain, ARuntimeBase;
 
 function ACollectionsMod_Boot(): AError; stdcall;
 
@@ -94,7 +94,7 @@ const
 
 function ACollectionsMod_Boot(): AError;
 begin
-  Result := AModule_Register(CollectionsModule);
+  Result := ARuntime_RegisterModule(CollectionsModule);
 end;
 
 function ACollectionsMod_Fin(): AError;

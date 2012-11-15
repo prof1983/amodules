@@ -2,7 +2,7 @@
 @Abstract ASystem
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.08.2007
-@LastMod 13.08.2012
+@LastMod 15.11.2012
 }
 unit ASystemMod;
 
@@ -23,7 +23,7 @@ unit ASystemMod;
 interface
 
 uses
-  ABase, ALibraries, ARuntime, ARuntimeBase,
+  ABase, ALibraries, ARuntime, ARuntimeBase, ARuntimeMain,
   ASystem, ASystemBase, ASystemMain{$IFDEF ADepr}, ASystemProcRec{$ENDIF};
 
 // --- Module ---
@@ -93,18 +93,18 @@ const
     OnBeforeRun_Disconnect02: nil;
     {$ENDIF USE_EVENTS_A02}
 
-    Modules_Count: ARuntime.Runtime_Modules_Count;                      // 31
-    Modules_FindByNameWS: ARuntime.Runtime_Modules_FindByNameWS;        // 32
+    Modules_Count: ARuntime_GetModulesCount;                            // 31
+    Modules_FindByNameWS: ARuntime_FindModuleByNameWS;                  // 32
     Reserved33: 0; //Modules_GetByName02: ARuntime.Runtime_Modules_GetByName02; // 33
-    Modules_GetNameByIndexWS: ARuntime.Runtime_Modules_GetNameByIndex02;// 34
+    Modules_GetNameByIndexWS: ARuntime_GetModuleNameByIndexWS;          // 34
     Reserved35: 0; //Module_Register02: ARuntime.Runtime_Module_Register02; // 35
 
     ParamStrWS: ASystem.ParamStrWS;                                     // 36
     ShellExecuteWS: ASystem.Runtime_ShellExecute;                       // 37
     Info_GetDataDirectoryPathWS: ASystem.Runtime_GetDataPath;           // 38
-    Modules_InitByNameWS: ARuntime.Runtime_Modules_InitByNameWS;        // 39
+    Modules_InitByNameWS: ARuntime_InitModuleByNameWS;                  // 39
 
-    Modules_DeleteByNameWS: ARuntime.Runtime_Modules_DeleteByNameWS;    // 40
+    Modules_DeleteByNameWS: ARuntime_DeleteModuleByNameWS;              // 40
     SetDataDirectoryPathWS: ASystem.SetDataDirectoryPathWS;             // 41
 
     // --- Set event functions ---
@@ -115,16 +115,16 @@ const
 
     Modules_AddModule: System_AddModule;                                // 46
     Reserved47: 0; //Modules_Count: ARuntime03.Runtime_Modules_Count;   // 47
-    Modules_FindByName: ARuntime.Runtime_Modules_FindByName;            // 48
-    Modules_FindByUid: ARuntime.Runtime_Modules_FindByUid;              // 49
-    Modules_DeleteByName: ARuntime.Runtime_Modules_DeleteByName;        // 50
-    Modules_DeleteByUid: ARuntime.Runtime_Modules_DeleteByUid;          // 51
-    Modules_GetByName: ARuntime.Runtime_Modules_GetByName;              // 52
-    Modules_GetByUid: ARuntime.Runtime_Modules_GetByUid;                // 53
-    Modules_GetNameByIndex: ARuntime.Runtime_Modules_GetNameByIndex;    // 54
-    Modules_GetUidByIndex: ARuntime.Runtime_Modules_GetUidByIndex;      // 55
-    Modules_InitByName: ARuntime.Runtime_Modules_InitByName;            // 56
-    Modules_InitByUid: ARuntime.Runtime_Modules_InitByUid;              // 57
+    Modules_FindByName: ARuntime_FindModuleByName;                      // 48
+    Modules_FindByUid: ARuntime_FindModuleByUid;                        // 49
+    Modules_DeleteByName: ARuntime_DeleteModuleByName;                  // 50
+    Modules_DeleteByUid: ARuntime_DeleteModuleByUid;                    // 51
+    Modules_GetByName: ARuntime_GetModuleByName;                        // 52
+    Modules_GetByUid: ARuntime_GetModuleByUid;                          // 53
+    Modules_GetNameByIndex: ARuntime_GetModuleNameByIndex;              // 54
+    Modules_GetUidByIndex: ARuntime_GetModuleUidByIndex;                // 55
+    Modules_InitByName: ARuntime_InitModuleByName;                      // 56
+    Modules_InitByUid: ARuntime_InitModuleByUid;                        // 57
 
     IsShutdown: ARuntime.IsShutdown;                                    // 58
     Shutdown: ARuntime.Shutdown;                                        // 59
