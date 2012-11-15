@@ -2,7 +2,7 @@
 @Abstract ћодуль работы с базами и структурами данных
 @Author Prof1983 <prof1983@ya.ru>
 @Created 13.10.2008
-@LastMod 06.08.2012
+@LastMod 15.11.2012
 }
 unit ADataMod;
 
@@ -11,7 +11,7 @@ unit ADataMod;
 interface
 
 uses
-  ABase, AData, ADataBase, {$IFDEF ADepr}ADataProcRec,{$ENDIF} ARuntime, ARuntimeBase;
+  ABase, AData, ADataBase, {$IFDEF ADepr}ADataProcRec,{$ENDIF} ARuntimeBase, ARuntimeMain;
 
 function ADataMod_Boot(): AError; stdcall;
 
@@ -84,7 +84,7 @@ var
 
 function ADataMod_Boot(): AError;
 begin
-  Result := ARuntime.Module_Register(Module);
+  Result := ARuntime_RegisterModule(Module);
 end;
 
 function ADataMod_Fin(): AError;

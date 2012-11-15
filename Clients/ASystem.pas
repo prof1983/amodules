@@ -2,7 +2,7 @@
 @Abstract ASystem
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.07.2012
-@LastMod 27.08.2012
+@LastMod 15.11.2012
 }
 unit ASystem;
 
@@ -18,6 +18,8 @@ function GetConfig(): AConfig; stdcall;
 function GetExePathP(): APascalString; stdcall;
 
 function GetExePathWS(): AWideString; stdcall;
+
+function GetResourceStringWS(const Section, Name, Default: AWideString): AWideString; stdcall;
 
 function OnBeforeRun_Disconnect(Callback: ACallbackProc): AInteger; stdcall;
 
@@ -61,6 +63,28 @@ end;
 function GetExePathWS(): AWideString;
 begin
   Result := ASystem_GetExePathWS();
+end;
+
+function GetResourceStringWS(const Section, Name, Default: AWideString): AWideString;
+var
+  SSection: AString_Type;
+  SName: AString_Type;
+  SDefault: AString_Type;
+  SRes: AString_Type;
+begin
+  if not(Assigned(ASystemProcVars.ASystem_GetResourceString)) then
+  begin
+    Result := '';
+    Exit;
+  end;
+
+  AString_AssignWS(SSection, Section);
+  AString_AssignWS(SName, Name);
+  AString_AssignWS(SDefault, Default);
+
+  ASystemProcVars.ASystem_GetResourceString(SSection, SName, SDefault, SRes);
+
+  Result := AString_ToWideString(SRes);
 end;
 
 function OnBeforeRun_Disconnect(Callback: ACallbackProc): AInteger;
