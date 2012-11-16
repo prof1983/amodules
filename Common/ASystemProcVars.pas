@@ -13,7 +13,9 @@ uses
 
 var
   ASystem_GetConfig: ASystem_GetConfig_Proc;
+  ASystem_GetDataDirectoryPath: ASystem_GetDataDirectoryPath_Proc;
   ASystem_GetExePath: ASystem_GetExePath_Proc;
+  ASystem_GetProgramName: ASystem_GetProgramName_Proc;
   ASystem_GetResourceString: ASystem_GetResourceString_Proc;
   ASystem_GetTitle: ASystem_GetTitle_Proc;
   ASystem_OnBeforeRunConnect: ASystem_OnBeforeRunConnect_Proc;

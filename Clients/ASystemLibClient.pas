@@ -18,7 +18,10 @@ implementation
 function ASystem_LoadFromLib(Lib: ALibrary): AError;
 begin
   ASystem_GetConfig := ALibrary_GetProcAddressP(Lib, 'ASystem_GetConfig');
+  ASystem_GetDataDirectoryPath := ALibrary_GetProcAddressP(Lib, 'ASystem_GetDataDirectoryPath');
   ASystem_GetExePath := ALibrary_GetProcAddressP(Lib, 'ASystem_GetExePath');
+  ASystem_GetProgramName := ALibrary_GetProcAddressP(Lib, 'ASystem_GetProgramName');
+  ASystem_GetResourceString := ALibrary_GetProcAddressP(Lib, 'ASystem_GetResourceString');
   ASystem_GetTitle := ALibrary_GetProcAddressP(Lib, 'ASystem_GetTitle');
   ASystem_OnBeforeRunConnect := ALibrary_GetProcAddressP(Lib, 'ASystem_OnBeforeRun_Connect');
   ASystem_OnBeforeRunDisconnect := ALibrary_GetProcAddressP(Lib, 'ASystem_OnBeforeRun_Disconnect');

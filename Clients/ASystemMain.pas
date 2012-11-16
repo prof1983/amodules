@@ -15,11 +15,17 @@ uses
 
 function ASystem_GetConfig(): AConfig; stdcall;
 
+function ASystem_GetDataDirectoryPathP(): APascalString; stdcall;
+
 function ASystem_GetExePathP(): APascalString; stdcall;
 
 function ASystem_GetExePathWS(): AWideString; stdcall;
 
+function ASystem_GetProgramNameP(): APascalString; stdcall;
+
 function ASystem_GetTitleP(): APascalString; stdcall;
+
+function ASystem_ParamStrP(Index: AInt): APascalString; stdcall;
 
 function ASystem_ParamStrWS(Index: AInt): AWideString; stdcall;
 
@@ -39,6 +45,23 @@ begin
     Exit;
   end;
   Result := ASystemProcVars.ASystem_GetConfig();
+end;
+
+function ASystem_GetDataDirectoryPathP(): APascalString;
+var
+  S: AString_Type;
+begin
+  if not(Assigned(ASystemProcVars.ASystem_GetDataDirectoryPath)) then
+  begin
+    Result := '';
+    Exit;
+  end;
+  if (ASystemProcVars.ASystem_GetDataDirectoryPath(S) < 0) then
+  begin
+    Result := '';
+    Exit;
+  end;
+  Result := AString_ToPascalString(S);
 end;
 
 function ASystem_GetExePathP(): APascalString;
@@ -84,6 +107,23 @@ begin
   Result := AString_ToWideString(S);
 end;
 
+function ASystem_GetProgramNameP(): APascalString;
+var
+  S: AString_Type;
+begin
+  if not(Assigned(ASystemProcVars.ASystem_GetProgramName)) then
+  begin
+    Result := '';
+    Exit;
+  end;
+  if (ASystemProcVars.ASystem_GetProgramName(S) < 0) then
+  begin
+    Result := '';
+    Exit;
+  end;
+  Result := AString_ToPascalString(S);
+end;
+
 function ASystem_GetTitleP(): APascalString;
 var
   S: AString_Type;
@@ -99,6 +139,23 @@ begin
     Exit;
   end;
   Result := AString_ToPascalString(S);
+end;
+
+function ASystem_ParamStrP(Index: AInt): APascalString;
+var
+  Res: AString_Type;
+begin
+  if not(Assigned(ASystemProcVars.ASystem_ParamStr)) then
+  begin
+    Result := '';
+    Exit;
+  end;
+  if (ASystemProcVars.ASystem_ParamStr(Index, Res) < 0) then
+  begin
+    Result := '';
+    Exit;
+  end;
+  Result := AString_ToPascalString(Res);
 end;
 
 function ASystem_ParamStrWS(Index: AInt): AWideString;

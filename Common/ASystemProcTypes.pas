@@ -24,6 +24,7 @@ type
   ASystem_FindModuleByUid_Proc = function(Uid: AModuleUid): AInteger; stdcall;
   {$IFDEF ADepr}ASystem_FindModuleByNameWS_Proc = function(const Name: AWideString): AInteger; stdcall;{$ENDIF}
   ASystem_GetConfig_Proc = function(): AConfig; stdcall;
+  ASystem_GetDataDirectoryPath_Proc = function(out S: AString_Type): AError; stdcall;
   ASystem_GetExeName_Proc = function(out S: AString_Type): AError; stdcall;
   ASystem_GetExePath_Proc = function(out S: AString_Type): AError; stdcall;
   ASystem_GetIsShutdown_Proc = function(): ABoolean; stdcall;
@@ -35,6 +36,7 @@ type
   ASystem_GetModuleProcsByUid_Proc = function(Uid: AModuleUid): Pointer; stdcall;
   ASystem_GetModulesCount_Proc = function(): AInteger; stdcall;
   ASystem_GetModuleUidByIndex_Proc = function(Index: AInteger): AModuleUid; stdcall;
+  ASystem_GetProgramName_Proc = function(out S: AString_Type): AError; stdcall;
   ASystem_GetResourceString_Proc = function(const Section, Name, Default: AString_Type; out Value: AString_Type): AInteger; stdcall;
   {$IFDEF ADepr}ASystem_GetResourceStringWS_Proc = function(const Section, Name, Default: AWideString): AWideString; stdcall;{$ENDIF}
   ASystem_GetTitle_Proc = function(out S: AString_Type): AError; stdcall;
