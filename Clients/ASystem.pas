@@ -2,7 +2,7 @@
 @Abstract ASystem
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.07.2012
-@LastMod 15.11.2012
+@LastMod 16.11.2012
 }
 unit ASystem;
 
@@ -20,6 +20,8 @@ function GetExePathP(): APascalString; stdcall;
 function GetExePathWS(): AWideString; stdcall;
 
 function GetResourceStringWS(const Section, Name, Default: AWideString): AWideString; stdcall;
+
+function OnBeforeRun_Connect(Callback: ACallbackProc): AInteger; stdcall;
 
 function OnBeforeRun_Disconnect(Callback: ACallbackProc): AInteger; stdcall;
 

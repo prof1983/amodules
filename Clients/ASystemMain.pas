@@ -2,7 +2,7 @@
 @Abstract ASystem client
 @Author Prof1983 <prof1983@ya.ru>
 @Created 27.08.2012
-@LastMod 27.08.2012
+@LastMod 16.11.2012
 }
 unit ASystemMain;
 
@@ -18,6 +18,8 @@ function ASystem_GetConfig(): AConfig; stdcall;
 function ASystem_GetExePathP(): APascalString; stdcall;
 
 function ASystem_GetExePathWS(): AWideString; stdcall;
+
+function ASystem_GetTitleP(): APascalString; stdcall;
 
 function ASystem_ParamStrWS(Index: AInt): AWideString; stdcall;
 
@@ -80,6 +82,23 @@ begin
     Exit;
   end;
   Result := AString_ToWideString(S);
+end;
+
+function ASystem_GetTitleP(): APascalString;
+var
+  S: AString_Type;
+begin
+  if not(Assigned(ASystemProcVars.ASystem_GetTitle)) then
+  begin
+    Result := '';
+    Exit;
+  end;
+  if (ASystemProcVars.ASystem_GetTitle(S) < 0) then
+  begin
+    Result := '';
+    Exit;
+  end;
+  Result := AString_ToPascalString(S);
 end;
 
 function ASystem_ParamStrWS(Index: AInt): AWideString;
