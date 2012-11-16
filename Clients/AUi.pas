@@ -2,7 +2,7 @@
 @Abstract User Interface client
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 03.08.2012
+@LastMod 16.11.2012
 }
 unit AUi;
 
@@ -13,7 +13,7 @@ interface
 uses
   ABase, ABaseTypes,
   ARuntime, ARuntimeBase,
-  AUiBase, AUiProcRec;
+  AUiBase, {AUiProcRec,} AUiProcVars;
 
 // --- AUi ---
 
@@ -23,8 +23,10 @@ function AUi_Boot(): AError;
 
 function Ui_Boot(): AError; deprecated; // Use AUi_Boot()
 
+{
 function Ui_SetProcs(const UiProcs1: AUiProcs_Type): ABoolean;
 function Ui_SetProcsP(UiProcs: PUiProcs): ABoolean;
+}
 
 // ----
 
@@ -228,68 +230,68 @@ function Window_ShowModal(Window: AWindow): ABoolean; stdcall;
 
 implementation
 
-var
-  UiProcs: AUiProcs_Type;
+{var
+  UiProcs: AUiProcs_Type;}
 
 // --- Box ---
 
 function Box_New(Parent: AControl; BoxType: AInteger): AControl; stdcall;
 begin
-  Result := UiProcs.Box_New(Parent, BoxType);
+  Result := AUiProcVars.AUi_Box_New(Parent, BoxType);
 end;
 
 // --- Control ---
 
 function Control_Free(Control: AControl): AError; stdcall;
 begin
-  UiProcs.Control_Free(Control);
+  AUiProcVars.AUi_Control_Free(Control);
   Result := 0;
 end;
 
 function Control_SetAlign(Control: AControl; Align: TUIAlign): AError; stdcall;
 begin
-  UiProcs.Control_SetAlign(Control, Align);
+  AUiProcVars.AUi_Control_SetAlign(Control, Align);
   Result := 0;
 end;
 
 function Control_SetClientSize(Control: AControl; ClientWidth, ClientHeight: AInteger): AError; stdcall;
 begin
-  UiProcs.Control_SetClientSize(Control, ClientWidth, ClientHeight);
+  AUiProcVars.AUi_Control_SetClientSize(Control, ClientWidth, ClientHeight);
   Result := 0;
 end;
 
 function Control_SetColor(Control: AControl; Color: AColor): AError; stdcall;
 begin
-  UiProcs.Control_SetColor(Control, Color);
+  AUiProcVars.AUi_Control_SetColor(Control, Color);
   Result := 0;
 end;
 
 function Control_SetFont1A(Control: AControl; {const} FontName: PAnsiChar; FontSize: AInteger): AError; stdcall;
 begin
-  UiProcs.Control_SetFont1(Control, AnsiString(FontName), FontSize);
+  AUiProcVars.AUi_Control_SetFont1(Control, AnsiString(FontName), FontSize);
   Result := 0;
 end;
 
 function Control_SetOnChange(Control: AControl; OnChange: ACallbackProc): AError; stdcall;
 begin
-  Result := UiProcs.Control_SetOnChange(Control, OnChange);
+  Result := AUiProcVars.AUi_Control_SetOnChange(Control, OnChange);
 end;
 
 function Control_SetPosition(Control: AControl; Left, Top: AInteger): AError; stdcall;
 begin
-  UiProcs.Control_SetPosition(Control, Left, Top);
+  AUiProcVars.AUi_Control_SetPosition(Control, Left, Top);
   Result := 0;
 end;
 
 function Control_SetSize(Control: AControl; Width, Height: Integer): AError; stdcall;
 begin
-  UiProcs.Control_SetSize(Control, Width, Height);
+  AUiProcVars.AUi_Control_SetSize(Control, Width, Height);
   Result := 0;
 end;
 
 function Control_SetTextWS(Control: AControl; const Value: AWideString): AError; stdcall;
 begin
-  UiProcs.Control_SetTextWS(Control, Value);
+  AUiProcVars.AUi_Control_SetTextWS(Control, Value);
   Result := 0;
 end;
 
@@ -546,6 +548,8 @@ begin
   Result := AUi_Boot();
 end;
 
+{
+Use AUiProcSet.pas
 function Ui_SetProcs(const UiProcs1: AUiProcs_Type): Boolean;
 begin
   UiProcs := UiProcs1;
@@ -561,5 +565,6 @@ begin
   end;
   Result := Ui_SetProcs(UiProcs^);
 end;
+}
 
 end.

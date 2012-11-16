@@ -26,6 +26,9 @@ var
   AUi_Box_New: AUiBox_New_Proc;
   AUi_Button_New: AUiButton_New_Proc;
 var
+  AUiControl_GetText: AUiControl_GetText_Proc;
+  AUiControl_SetPosition: AUiControl_SetPosition_New_Proc;
+var
   AUi_Control_Free: AUiControl_Free_Proc;
   AUi_Control_FreeAndNil: AUiControl_FreeAndNil_Proc;
   AUi_Control_GetEnabled: AUiControl_GetEnabled_Proc;
@@ -40,12 +43,17 @@ var
   AUi_Control_SetColor: AUiControl_SetColor_Proc;
   AUi_Control_SetEnabled: AUiControl_SetEnabled_Proc;
   AUi_Control_SetFocus: AUiControl_SetFocus_Proc;
+  {$ifdef ADepr}
+  AUi_Control_SetFont1: AUiControl_SetFontW1_Proc;
+  AUi_Control_SetFont2: AUiControl_SetFontW2_Proc;
+  {$endif}
   AUi_Control_SetHint: AUiControl_SetHintWS_Proc;
   AUi_Control_SetName: AUiControl_SetNameWS_Proc;
-  AUi_Control_SetPosition: AUiControl_SetPosition_Proc;
+  AUi_Control_SetOnChange: AUiControl_SetOnChange_Proc;
+  AUi_Control_SetPosition: AUiControl_SetPosition_Old_Proc;
   AUi_Control_SetSize: AUiControl_SetSize_Proc;
   {$ifdef ADepr}
-  AUi_Control_SetText: AUiControl_SetTextWS_Proc;
+  AUi_Control_SetTextWS: AUiControl_SetTextWS_Proc;
   {$endif}
   AUi_Control_SetVisible: AUiControl_SetVisible_Proc;
   AUi_Control_SetWidth: AUiControl_SetWidth_Proc;

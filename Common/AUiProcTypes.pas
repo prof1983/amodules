@@ -95,9 +95,12 @@ type
   AUiControl_SetOnClick_Proc = procedure(Control: AControl; Value: ACallbackProc03); stdcall;
   AUiControl_SetOnClick02_Proc = procedure(Control: AControl; Value: ACallbackProc02); stdcall;
   //AUi_Control_SetOnClick03 = procedure(Control: AControl; Value: ACallbackProc03); stdcall;
-  AUiControl_SetPosition_Proc = procedure(Control: AControl; Left, Top: AInteger); stdcall;
-  AUiControl_SetSize_Proc = procedure(Control: AControl; Width, Height: AInteger); stdcall;
-  AUiControl_SetText_Proc = procedure(Control: AControl; const Value: AString_Type); stdcall;
+  AUiControl_SetPosition_New_Proc = function(Control: AControl; Left, Top: AInt): AError; stdcall;
+  AUiControl_SetPosition_Old_Proc = procedure(Control: AControl; Left, Top: AInt); stdcall;
+  AUiControl_SetSize_New_Proc = function(Control: AControl; Width, Height: AInt): AError; stdcall;
+  AUiControl_SetSize_Old_Proc = procedure(Control: AControl; Width, Height: AInteger); stdcall;
+  AUiControl_SetText_New_Proc = function(Control: AControl; const Value: AString_Type): AError; stdcall;
+  AUiControl_SetText_Old_Proc = procedure(Control: AControl; const Value: AString_Type); stdcall;
   {$ifdef ADepr}
   AUiControl_SetTextWS_Proc = procedure(Control: AControl; const Value: AWideString); stdcall;
   {$endif}

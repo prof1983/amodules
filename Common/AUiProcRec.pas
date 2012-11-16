@@ -51,7 +51,7 @@ type
     Control_SetNameW: AUiControl_SetNameWS_Proc;                    // 24
     Control_SetOnChange02: AUiControl_SetOnChange02_Proc;           // 25
     Control_SetOnClick02: AUiControl_SetOnClick02_Proc;             // 26
-    Control_SetPosition: AUiControl_SetPosition_Proc;               // 27
+    Control_SetPosition_Old: AUiControl_SetPosition_Old_Proc;       // 27
     Control_SetSize: AUiControl_SetSize_Proc;                       // 28
     Control_SetTextWS: AUiControl_SetTextWS_Proc;                   // 29
     Control_SetVisible: AUiControl_SetVisible_Proc;                 // 30

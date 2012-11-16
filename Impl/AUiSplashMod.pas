@@ -2,7 +2,7 @@
 @Abstract AUiSplash
 @Author Prof1983 <prof1983@ya.ru>
 @Created 08.12.2009
-@LastMod 15.11.2012
+@LastMod 16.11.2012
 }
 unit AUiSplashMod;
 
@@ -11,13 +11,8 @@ unit AUiSplashMod;
 interface
 
 uses
-  ABase, ARuntime, ARuntimeBase, ASettings, ASystem, AUi, AUiBase, AUiSplash, AUtils;
-
-TODO: Move to AUiSplashBase.pas
-const
-  AUISplash_Name = 'AUiSplash';
-  //AUISplash_Name02 = 'AUISplash';
-  AUISplash_Uid = $09120801;
+  ABase, ARuntime, ARuntimeBase, ASettings, ASettingsBase, ASystem,
+  AUi, AUiBase, AUiSplash, AUiSplashBase, AUtils;
 
 function AUiSplashMod_Boot(): AError; stdcall;
 
