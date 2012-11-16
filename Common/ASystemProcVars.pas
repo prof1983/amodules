@@ -18,8 +18,10 @@ var
   ASystem_GetProgramName: ASystem_GetProgramName_Proc;
   ASystem_GetResourceString: ASystem_GetResourceString_Proc;
   ASystem_GetTitle: ASystem_GetTitle_Proc;
-  ASystem_OnBeforeRunConnect: ASystem_OnBeforeRunConnect_Proc;
-  ASystem_OnBeforeRunDisconnect: ASystem_OnBeforeRunDisconnect_Proc;
+  ASystem_OnAfterRun_Connect: ASystem_OnAfterRun_Connect_Proc;
+  ASystem_OnAfterRun_Disconnect: ASystem_OnAfterRun_Disconnect_Proc;
+  ASystem_OnBeforeRun_Connect: ASystem_OnBeforeRun_Connect_Proc;
+  ASystem_OnBeforeRun_Disconnect: ASystem_OnBeforeRun_Disconnect_Proc;
   ASystem_ParamStr: ASystem_ParamStr_Proc;
   ASystem_Prepare: ASystem_Prepare_Proc;
   ASystem_Prepare2: ASystem_Prepare2_Proc;

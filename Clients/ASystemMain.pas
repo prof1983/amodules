@@ -29,6 +29,8 @@ function ASystem_ParamStrP(Index: AInt): APascalString; stdcall;
 
 function ASystem_ParamStrWS(Index: AInt): AWideString; stdcall;
 
+function ASystem_ProcessMessages(): AError; stdcall;
+
 function ASystem_ShowMessageExWS(const Text, Caption: AWideString; Flags: AMessageBoxFlags): ADialogBoxCommands; stdcall;
 
 function ASystem_ShowMessageP(const Msg: APascalString): ADialogBoxCommands; stdcall;
@@ -173,6 +175,16 @@ begin
     Exit;
   end;
   Result := AString_ToWideString(Res);
+end;
+
+function ASystem_ProcessMessages(): AError;
+begin
+  if not(Assigned(ASystemProcVars.ASystem_ParamStr)) then
+  begin
+    Result := -1;
+    Exit;
+  end;
+  Result := ASystemProcVars.ASystem_ProcessMessages();
 end;
 
 function ASystem_ShowMessageExWS(const Text, Caption: AWideString; Flags: AMessageBoxFlags): ADialogBoxCommands;

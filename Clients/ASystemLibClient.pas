@@ -23,8 +23,10 @@ begin
   ASystem_GetProgramName := ALibrary_GetProcAddressP(Lib, 'ASystem_GetProgramName');
   ASystem_GetResourceString := ALibrary_GetProcAddressP(Lib, 'ASystem_GetResourceString');
   ASystem_GetTitle := ALibrary_GetProcAddressP(Lib, 'ASystem_GetTitle');
-  ASystem_OnBeforeRunConnect := ALibrary_GetProcAddressP(Lib, 'ASystem_OnBeforeRun_Connect');
-  ASystem_OnBeforeRunDisconnect := ALibrary_GetProcAddressP(Lib, 'ASystem_OnBeforeRun_Disconnect');
+  ASystem_OnAfterRun_Connect := ALibrary_GetProcAddressP(Lib, 'ASystem_OnAfterRun_Connect');
+  ASystem_OnAfterRun_Disconnect := ALibrary_GetProcAddressP(Lib, 'ASystem_OnAfterRun_Disconnect');
+  ASystem_OnBeforeRun_Connect := ALibrary_GetProcAddressP(Lib, 'ASystem_OnBeforeRun_Connect');
+  ASystem_OnBeforeRun_Disconnect := ALibrary_GetProcAddressP(Lib, 'ASystem_OnBeforeRun_Disconnect');
   ASystem_ParamStr := ALibrary_GetProcAddressP(Lib, 'ASystem_ParamStr');
   ASystem_Prepare := ALibrary_GetProcAddressP(Lib, 'ASystem_Prepare');
   ASystem_Prepare2 := ALibrary_GetProcAddressP(Lib, 'ASystem_Prepare2');

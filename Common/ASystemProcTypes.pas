@@ -45,13 +45,13 @@ type
   ASystem_InitModuleByUid_Proc = function(Uid: AModuleUid): AInteger; stdcall;
   ASystem_OnAfterRun_Proc = function(): AEvent; stdcall;
   ASystem_OnBeforeRun_Proc = function(): AEvent; stdcall;
-  ASystem_OnAfterRunConnect_Proc = function(Callback: ACallbackProc03; Weight: AInteger = High(AInteger)): Integer; stdcall;
+  ASystem_OnAfterRun_Connect_Proc = function(Callback: ACallbackProc03; Weight: AInt = High(AInt)): AInt; stdcall;
   ASystem_OnAfterRunConnect02_Proc = function(Callback: ACallbackProc02; Weight: AInteger = High(AInteger)): Integer; stdcall;
-  ASystem_OnAfterRunDisconnect_Proc = function(Callback: ACallbackProc03): AInteger; stdcall;
+  ASystem_OnAfterRun_Disconnect_Proc = function(Callback: ACallbackProc03): AInt; stdcall;
   ASystem_OnAfterRunDisconnect02_Proc = function(Callback: ACallbackProc02): AInteger; stdcall;
-  ASystem_OnBeforeRunConnect_Proc = function(Callback: ACallbackProc03; Weight: AInteger = High(AInteger)): AInteger; stdcall;
+  ASystem_OnBeforeRun_Connect_Proc = function(Callback: ACallbackProc03; Weight: AInt = High(AInt)): AInt; stdcall;
   ASystem_OnBeforeRunConnect02_Proc = function(Callback: ACallbackProc02; Weight: AInteger = High(AInteger)): AInteger; stdcall;
-  ASystem_OnBeforeRunDisconnect_Proc = function(Callback: ACallbackProc03): AInteger; stdcall;
+  ASystem_OnBeforeRun_Disconnect_Proc = function(Callback: ACallbackProc03): AInt; stdcall;
   ASystem_OnBeforeRunDisconnect02_Proc = function(Callback: ACallbackProc02): AInteger; stdcall;
   ASystem_ParamStr_Proc = function(Index: AInteger; out Value: AString_Type): AInteger; stdcall;
   {$IFDEF ADepr}ASystem_ParamStrWS_Proc = function(Index: AInteger): AWideString; stdcall;{$ENDIF}

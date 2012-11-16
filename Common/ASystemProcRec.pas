@@ -2,7 +2,7 @@
 @Abstract ASystemProcs
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.08.2009
-@LastMod 01.08.2012
+@LastMod 16.11.2012
 }
 unit ASystemProcRec;
 
@@ -164,10 +164,10 @@ type
       // --- Events and tools ---
       Reserved84: AInteger;                                             // 84
       Reserved85: AInteger;                                             // 85
-      OnAfterRun_Connect: ASystem_OnAfterRunConnect_Proc;               // 86
-      OnAfterRun_Disconnect: ASystem_OnAfterRunDisconnect_Proc;         // 87
-      OnBeforeRun_Connect: ASystem_OnBeforeRunConnect_Proc;             // 88
-      OnBeforeRun_Disconnect: ASystem_OnBeforeRunDisconnect_Proc;       // 89
+      OnAfterRun_Connect: ASystem_OnAfterRun_Connect_Proc;              // 86
+      OnAfterRun_Disconnect: ASystem_OnAfterRun_Disconnect_Proc;        // 87
+      OnBeforeRun_Connect: ASystem_OnBeforeRun_Connect_Proc;            // 88
+      OnBeforeRun_Disconnect: ASystem_OnBeforeRun_Disconnect_Proc;      // 89
 
       // --- (Old) ---
       ParamStr: ASystem_ParamStr_Proc;                                  // 90

@@ -91,22 +91,12 @@ end;
 
 function OnBeforeRun_Connect(Callback: ACallbackProc): AInteger;
 begin
-  if not(Assigned(ASystemProcVars.ASystem_OnBeforeRunConnect)) then
-  begin
-    Result := 0;
-    Exit;
-  end;
-  Result := ASystemProcVars.ASystem_OnBeforeRunConnect(Callback);
+  Result := ASystem_OnBeforeRun_Connect(Callback);
 end;
 
 function OnBeforeRun_Disconnect(Callback: ACallbackProc): AInteger;
 begin
-  if not(Assigned(ASystemProcVars.ASystem_OnBeforeRunDisconnect)) then
-  begin
-    Result := 0;
-    Exit;
-  end;
-  Result := ASystemProcVars.ASystem_OnBeforeRunDisconnect(Callback);
+  Result := ASystem_OnBeforeRun_Disconnect(Callback);
 end;
 
 function ParamStrWS(Index: AInt): AWideString;
