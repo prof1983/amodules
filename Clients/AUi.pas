@@ -2,7 +2,7 @@
 @Abstract User Interface client
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 16.11.2012
+@LastMod 19.11.2012
 }
 unit AUi;
 
@@ -12,21 +12,8 @@ interface
 
 uses
   ABase, ABaseTypes,
-  ARuntime, ARuntimeBase,
-  AUiBase, {AUiProcRec,} AUiProcVars;
-
-// --- AUi ---
-
-function AUi_Boot(): AError;
-
-// ---
-
-function Ui_Boot(): AError; deprecated; // Use AUi_Boot()
-
-{
-function Ui_SetProcs(const UiProcs1: AUiProcs_Type): ABoolean;
-function Ui_SetProcsP(UiProcs: PUiProcs): ABoolean;
-}
+  AStrings,
+  AUiBase, AUiImages, AUiListBox, AUiPageControl, AUiProcVars, AUiTreeView;
 
 // ----
 
@@ -267,9 +254,22 @@ begin
 end;
 
 function Control_SetFont1A(Control: AControl; {const} FontName: PAnsiChar; FontSize: AInteger): AError; stdcall;
+var
+  S: AString_Type;
 begin
-  AUiProcVars.AUi_Control_SetFont1(Control, AnsiString(FontName), FontSize);
-  Result := 0;
+  if Assigned(AUiControl_SetFont1A) then
+  begin
+    Result := AUiProcVars.AUiControl_SetFont1A(Control, FontName, FontSize);
+    Exit;
+  end;
+  if Assigned(AUi_Control_SetFont1) then
+  begin
+    AString_AssignA(S, FontName);
+    AUiProcVars.AUi_Control_SetFont1(Control, S, FontSize);
+    Result := 0;
+    Exit;
+  end;
+  Result := -1;
 end;
 
 function Control_SetOnChange(Control: AControl; OnChange: ACallbackProc): AError; stdcall;
@@ -297,7 +297,7 @@ end;
 
 function Control_SetVisible(Control: AControl; Value: ABoolean): AError; stdcall;
 begin
-  UiProcs.Control_SetVisible(Control, Value);
+  AUiProcVars.AUi_Control_SetVisible(Control, Value);
   Result := 0;
 end;
 
@@ -305,63 +305,60 @@ end;
 
 function Dialog_GetWindow(Dialog: ADialog): AWindow; stdcall;
 begin
-  Result := UiProcs.Dialog_GetWindow(Dialog);
+  Result := AUiProcVars.Ui_Dialog_GetWindow(Dialog);
 end;
 
 function Dialog_New(Buttons: AUIWindowButtons): ADialog; stdcall;
 begin
-  Result := UiProcs.Dialog_New(Buttons);
+  Result := AUiProcVars.Ui_Dialog_New(Buttons);
 end;
 
 // --- Grid ---
 
 function Grid_Clear(Grid: AControl): AError; stdcall;
 begin
-  Result := UiProcs.Grid_Clear(Grid);
+  Result := AUiProcVars.AUiGrid_Clear(Grid);
 end;
 
 function Grid_DeleteRow2(Grid: AControl; Row: AInteger): AError; stdcall;
 begin
-  Result := UiProcs.Grid_DeleteRow2(Grid, Row);
+  Result := AUiProcVars.AUiGrid_DeleteRow2(Grid, Row);
 end;
 
 function Grid_FindInt(Grid: AControl; Col, Value: AInteger): AInteger; stdcall;
 begin
-  Result := UiProcs.Grid_FindInt(Grid, Col, Value);
+  Result := AUiProcVars.AUiGrid_FindInt(Grid, Col, Value);
 end;
 
 // --- Image ---
 
 function Image_LoadFromFileWS(Image: AControl; const FileName: AWideString): AError; stdcall;
 begin
-  if UiProcs.Image_LoadFromFile(Image, FileName) then
-    Result := 0
-  else
-    Result := -1;
+  Result := AUiImage_LoadFromFileP(Image, FileName);
 end;
 
 function Image_New(Parent: AControl): AControl; stdcall;
 begin
-  Result := UiProcs.Image_New(Parent);
+  Result := AUiImage_New(Parent);
 end;
 
 // --- Label ---
 
 function Label_New(Parent: AControl): AControl; stdcall;
 begin
-  Result := UiProcs.Label_New(Parent);
+  Result := AUiProcVars.UI_Label_New(Parent);
 end;
 
 // --- ListBox ---
 
 function ListBox_AddP(ListBox: AControl; const Text: APascalString): AInteger; stdcall;
 begin
-  Result := UiProcs.ListBox_Add(ListBox, Text);
+  Result := AUiListBox_AddP(ListBox, Text);
 end;
 
 function ListBox_New(Parent: AControl): AControl; stdcall;
 begin
-  Result := UiProcs.ListBox_New(Parent);
+  Result := AUiListBox_New(Parent);
 end;
 
 // --- MainWindow ---
@@ -369,12 +366,12 @@ end;
 function MainWindow_AddMenuItem(const ParentItemName, Name, Text: APascalString;
     OnClick: ACallbackProc; ImageID, Weight: Integer): AMenuItem; stdcall;
 begin
-  Result := UiProcs.MainWindow_AddMenuItem(ParentItemName, Name, Text, OnClick, ImageId, Weight);
+  Result := AUiProcVars.MainWindow_AddMenuItem(ParentItemName, Name, Text, OnClick, ImageId, Weight);
 end;
 
 function MainWindow_GetMainContainer(): AControl; stdcall;
 begin
-  Result := UiProcs.MainWindow_GetMainContainer();
+  Result := AUiProcVars.MainWindow_GetMainContainer();
 end;
 
 // --- Menu ---
@@ -382,67 +379,67 @@ end;
 function Menu_AddItem2WS(Parent: AMenuItem; const Name, Text: AWideString;
     OnClick: ACallbackProc; ImageId, Weight: Integer): AMenuItem; stdcall;
 begin
-  Result := UiProcs.Menu_AddItem2WS(Parent, Name, Text, OnClick, ImageId, Weight);
+  Result := AUiProcVars.Menu_AddItem2WS(Parent, Name, Text, OnClick, ImageId, Weight);
 end;
 
 // --- PageControl ---
 
 function PageControl_AddPageWS(PageControl: AControl; const Name, Text: AWideString): AControl; stdcall;
 begin
-  Result := UiProcs.PageControl_AddPageWS(PageControl, Name, Text);
+  Result := AUiPageControl_AddPageP(PageControl, Name, Text);
 end;
 
 function PageControl_New(Parent: AControl): AControl; stdcall;
 begin
-  Result := UiProcs.PageControl_New(Parent);
+  Result := AUiPageControl_New(Parent);
 end;
 
 // --- ProgressBar ---
 
 function ProgressBar_New(Parent: AControl; Max: AInteger): AControl; stdcall;
 begin
-  Result := UiProcs.ProgressBar_New(Parent, Max);
+  Result := AUiProcVars.UI_ProgressBar_New(Parent, Max);
 end;
 
 function ProgressBar_StepIt(ProgressBar: AControl): AInteger; stdcall;
 begin
-  Result := UiProcs.ProgressBar_StepIt(ProgressBar);
+  Result := AUiProcVars.UI_ProgressBar_StepIt(ProgressBar);
 end;
 
 // --- Splitter ---
 
 function Splitter_New(Parent: AControl; SplitterType: AUISplitterType): AControl; stdcall;
 begin
-  Result := UiProcs.Splitter_New(Parent, SplitterType);
+  Result := AUiProcVars.UI_Splitter_New(Parent, SplitterType);
 end;
 
 // --- TextView ---
 
 function TextView_AddLineWS(TextView: AControl; const Text: AWideString): AInteger; stdcall;
 begin
-  Result := UiProcs.TextView_AddLine(TextView, Text);
+  Result := AUiProcVars.UI_TextView_AddLine(TextView, Text);
 end;
 
 function TextView_New(Parent: AControl; ViewType: AInteger): AControl; stdcall;
 begin
-  Result := UiProcs.TextView_New(Parent, ViewType);
+  Result := AUiProcVars.UI_TextView_New(Parent, ViewType);
 end;
 
 function TextView_SetReadOnly(TextView: AControl; ReadOnly: ABoolean): AError; stdcall;
 begin
-  UiProcs.TextView_SetReadOnly(TextView, ReadOnly);
+  AUiProcVars.UI_TextView_SetReadOnly(TextView, ReadOnly);
   Result := 0;
 end;
 
 function TextView_SetScrollBars(TextView: AControl; ScrollBars: AInteger): AError; stdcall;
 begin
-  UiProcs.TextView_SetScrollBars(TextView, ScrollBars);
+  AUiProcVars.UI_TextView_SetScrollBars(TextView, ScrollBars);
   Result := 0;
 end;
 
 function TextView_SetWordWrap(TextView: AControl; Value: ABoolean): AError; stdcall;
 begin
-  UiProcs.TextView_SetWordWrap(TextView, Value);
+  AUiProcVars.UI_TextView_SetWordWrap(TextView, Value);
   Result := 0;
 end;
 
@@ -450,121 +447,101 @@ end;
 
 function TreeView_AddItemWS(TreeView: AControl; Parent: ATreeNode; Text: AWideString): ATreeNode; stdcall;
 begin
-  Result := UiProcs.TreeView_AddItemWS(TreeView, Parent, Text);
+  Result := AUiTreeView_AddItemP(TreeView, Parent, Text);
 end;
 
 function TreeView_New(Parent: AControl): AControl; stdcall;
 begin
-  Result := UiProcs.TreeView_New(Parent);
+  Result := AUiTreeView_New(Parent);
 end;
 
 // --- Window ---
 
 procedure Window_Free(Window: AWindow); stdcall;
 begin
-  UiProcs.Window_Free(Window);
+  AUiProcVars.UI_Window_Free(Window);
 end;
 
 function Window_New(): AControl; stdcall;
 begin
-  Result := UiProcs.Window_New();
+  Result := AUiProcVars.UI_Window_New();
 end;
 
 function Window_SetBorderStyle(Window: AWindow; BorderStyle: AInteger): AError; stdcall;
 begin
-  Result := UiProcs.Window_SetBorderStyle(Window, BorderStyle);
+  Result := AUiProcVars.UI_Window_SetBorderStyle(Window, BorderStyle);
 end;
 
 function Window_SetFormStyle(Window: AWindow; FormStyle: AInteger): AError; stdcall;
 begin
-  UiProcs.Window_SetFormStyle(Window, FormStyle);
+  AUiProcVars.UI_Window_SetFormStyle(Window, FormStyle);
   Result := 0;
 end;
 
 function Window_SetPosition(Window: AWindow; Position: AInteger): AError; stdcall;
 begin
-  UiProcs.Window_SetPosition(Window, Position);
+  AUiProcVars.UI_Window_SetPosition(Window, Position);
   Result := 0;
 end;
 
 function Window_ShowModal(Window: AWindow): ABoolean; stdcall;
 begin
-  Result := UiProcs.Window_ShowModal(Window);
+  Result := AUiProcVars.UI_Window_ShowModal(Window);
 end;
 
 { Public }
 
 function Init(): AError; stdcall;
 begin
-  Result := UiProcs.Init();
+  if not(Assigned(AUiProcVars.AUi_Init)) then
+  begin
+    Result := -1;
+    Exit;
+  end;
+  Result := AUiProcVars.AUi_Init();
 end;
 
 function OnDone_Connect(Proc: ACallbackProc): AInteger; stdcall;
 begin
-  Result := UiProcs.OnDone_Connect(Proc);
+  if not(Assigned(AUiProcVars.AUi_OnDone_Connect)) then
+  begin
+    Result := 0;
+    Exit;
+  end;
+  Result := AUiProcVars.AUi_OnDone_Connect(Proc);
 end;
 
 function OnDone_Disconnect(Proc: ACallbackProc): AInteger; stdcall;
 begin
-  Result := UiProcs.OnDone_Disconnect03(Proc);
+  if not(Assigned(AUiProcVars.AUi_OnDone_Disconnect)) then
+  begin
+    Result := 0;
+    Exit;
+  end;
+  Result := AUiProcVars.AUi_OnDone_Disconnect(Proc);
 end;
 
 function ShowHelp(): AError; stdcall;
 begin
-  Result := UiProcs.ShowHelp();
+  if not(Assigned(AUiProcVars.AUi_ShowHelp)) then
+  begin
+    Result := -1;
+    Exit;
+  end;
+  Result := AUiProcVars.AUi_ShowHelp();
 end;
 
 function ShowHelp2WS(const FileName: AWideString): AError; stdcall;
-begin
-  Result := UiProcs.ShowHelp2WS(FileName);
-end;
-
-{ Module }
-
-function AUi_Boot(): AError;
 var
-  Module: AModule_Type;
+  S: AString_Type;
 begin
-  {if (ARuntime.Modules_InitByUid(AUI_Uid) < 0) then
+  if not(Assigned(AUiProcVars.AUi_ShowHelp2)) then
   begin
-    Result := -2;
-    Exit;
-  end;}
-  if (ARuntime.Modules_GetByUid(AUI_Uid, Module) < 0) then
-  begin
-    Result := -3;
+    Result := -1;
     Exit;
   end;
-  if not(Ui_SetProcsP(Module.Procs)) then
-  begin
-    Result := -4;
-    Exit;
-  end;
-  Result := 0;
+  AString_AssignWS(S, FileName);
+  Result := AUiProcVars.AUi_ShowHelp2(S);
 end;
-
-function Ui_Boot(): AError;
-begin
-  Result := AUi_Boot();
-end;
-
-{
-Use AUiProcSet.pas
-function Ui_SetProcs(const UiProcs1: AUiProcs_Type): Boolean;
-begin
-  UiProcs := UiProcs1;
-  Result := True;
-end;
-
-function Ui_SetProcsP(UiProcs: PUiProcs): Boolean;
-begin
-  if not(Assigned(UiProcs)) then
-  begin
-    Result := False;
-    Exit;
-  end;
-  Result := Ui_SetProcs(UiProcs^);
-end;
-}
 
 end.

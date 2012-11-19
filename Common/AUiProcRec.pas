@@ -51,8 +51,8 @@ type
     Control_SetNameW: AUiControl_SetNameWS_Proc;                    // 24
     Control_SetOnChange02: AUiControl_SetOnChange02_Proc;           // 25
     Control_SetOnClick02: AUiControl_SetOnClick02_Proc;             // 26
-    Control_SetPosition_Old: AUiControl_SetPosition_Old_Proc;       // 27
-    Control_SetSize_Old: AUiControl_SetSize_Old_Proc;               // 28
+    Control_SetPosition03: AUiControl_SetPosition03_Proc;           // 27
+    Control_SetSize03: AUiControl_SetSize03_Proc;                   // 28
     Control_SetTextWS: AUiControl_SetTextWS_Proc;                   // 29
     Control_SetVisible: AUiControl_SetVisible_Proc;                 // 30
     Control_SetWidth: AUiControl_SetWidth_Proc;                     // 31
@@ -158,7 +158,7 @@ type
     TrayIcon_GetMenuItems: AUi_TrayIcon_GetMenuItems;               // 103
 
     TreeView_AddItemWS: AUi_TreeView_AddItem;                       // 104
-    TreeView_New: AUi_TreeView_New;                                 // 105
+    TreeView_New: AUiTreeView_New_Proc;                             // 105
 
     Window_Free: AUi_Window_Free;                                   // 106
     Window_GetMenu: AUi_Window_GetMenu;                             // 107

@@ -2,100 +2,103 @@
 @Abstract User Interface
 @Author Prof1983 <prof1983@ya.ru>
 @Created 24.09.2012
-@LastMod 24.09.2012
+@LastMod 19.11.2012
 }
 unit AUiProcSet;
 
 interface
 
 uses
-  AUiProcTypes, AUiProcVars;
+  ABase,
+  AUiProcRec, AUiProcTypes, AUiProcVars;
 
-procedure UI_SetProcs(const UIProcs: AUIProcs_Type);
-function UI_SetProcsP(UIProcs: PUIProcs): Boolean;
+procedure UI_SetProcs(const UiProcs: AUiProcs_Type);
+function UI_SetProcsP(UiProcs: PUiProcs): Boolean;
 
 implementation
 
-procedure UI_SetProcs(const UIProcs: AUIProcs_Type);
+procedure UI_SetProcs(const UiProcs: AUiProcs_Type);
+var
+  Reserved: AInteger;
 begin
-  UI_IsShowApp := UI.IsShowApp;
-  UI_InitMainTrayIcon := UI.InitMainTrayIcon;
-  UI_InitMenus := UI.InitMenus02;
-  UI_ProcessMessages := UI.ProcessMessages02;
-  UI_IsShowApp_Set := UI.IsShowApp_Set;
-  UI_ShowHelp := UI.ShowHelp02;
-  UI_Shutdown := UI.Shutdown02;
+  AUi_GetIsShowApp := UiProcs.IsShowApp;
+  AUi_InitMainTrayIcon := UiProcs.InitMainTrayIcon;
+  AUi_InitMenus02 := UiProcs.InitMenus02;
+  AUi_ProcessMessages02 := UiProcs.ProcessMessages02;
+  AUi_SetIsShowApp := UiProcs.IsShowApp_Set;
+  AUi_ShowHelp02 := UiProcs.ShowHelp02;
+  AUi_Shutdown02 := UiProcs.Shutdown02;
 
-  UI_Box_New := UI.Box_New;
-  UI_Button_New := UI.Button_New;
+  AUi_Box_New := UiProcs.Box_New;
+  AUi_Button_New := UiProcs.Button_New;
 
-  UI_Control_Free := UI.Control_Free;
-  UI_Control_FreeAndNil := UI.Control_FreeAndNil;
-  UI_Control_GetEnabled := UI.Control_GetEnabled;
-  UI_Control_GetHeight := UI.Control_GetHeight;
-  UI_Control_GetHint := UI.Control_GetHintW;
-  UI_Control_GetName := UI.Control_GetNameW;
-  UI_Control_GetText := UI.Control_GetTextW;
-  UI_Control_GetVisible := UI.Control_GetVisible;
-  UI_Control_GetWidth := UI.Control_GetWidth;
-  UI_Control_SetAlign := UI.Control_SetAlign;
-  UI_Control_SetClientSize := UI.Control_SetClientSize;
-  UI_Control_SetColor := UI.Control_SetColor;
-  UI_Control_SetEnabled := UI.Control_SetEnabled;
-  UI_Control_SetFocus := UI.Control_SetFocus;
-  UI_Control_SetHint := UI.Control_SetHintW;
-  UI_Control_SetName := UI.Control_SetNameW;
-  //UI_Control_SetOnChange := UI.Control_SetOnChange;
-  //UI_Control_SetOnClick := UI.Control_SetOnClick;
-  UI_Control_SetPosition := UI.Control_SetPosition;
-  UI_Control_SetSize := UI.Control_SetSize;
-  UI_Control_SetText := UI.Control_SetTextWS;
-  UI_Control_SetVisible := UI.Control_SetVisible;
-  UI_Control_SetWidth := UI.Control_SetWidth;
+  AUi_Control_Free := UiProcs.Control_Free;
+  AUi_Control_FreeAndNil := UiProcs.Control_FreeAndNil;
+  AUi_Control_GetEnabled := UiProcs.Control_GetEnabled;
+  AUi_Control_GetHeight := UiProcs.Control_GetHeight;
+  AUi_Control_GetHint := UiProcs.Control_GetHintW;
+  AUi_Control_GetName := UiProcs.Control_GetNameW;
+  AUi_Control_GetText := UiProcs.Control_GetTextW;
+  AUi_Control_GetVisible := UiProcs.Control_GetVisible;
+  AUi_Control_GetWidth := UiProcs.Control_GetWidth;
+  AUi_Control_SetAlign := UiProcs.Control_SetAlign;
+  AUi_Control_SetClientSize := UiProcs.Control_SetClientSize;
+  AUi_Control_SetColor := UiProcs.Control_SetColor;
+  AUi_Control_SetEnabled := UiProcs.Control_SetEnabled;
+  AUi_Control_SetFocus := UiProcs.Control_SetFocus;
+  AUi_Control_SetHint := UiProcs.Control_SetHintW;
+  AUi_Control_SetName := UiProcs.Control_SetNameW;
+  AUi_Control_SetOnChange02 := UiProcs.Control_SetOnChange02;
+  AUi_Control_SetOnClick02 := UiProcs.Control_SetOnClick02;
+  AUi_Control_SetPosition := UiProcs.Control_SetPosition03;
+  AUi_Control_SetSize := UiProcs.Control_SetSize03;
+  AUi_Control_SetTextWS := UiProcs.Control_SetTextWS;
+  AUi_Control_SetVisible := UiProcs.Control_SetVisible;
+  AUi_Control_SetWidth := UiProcs.Control_SetWidth;
 
   //UI_DataSource_New := UI.DataSource_New;
   //UI_DataSource_SetOnDataChange := UI.DataSource_SetOnDataChange;
 
-  UI_Dialog_About := UI.Dialog_About;
-  UI_Dialog_Calendar := UI.Dialog_Calendar;
-  UI_Dialog_Color := UI.Dialog_Color;
-  UI_Dialog_DateFilter := UI.Dialog_DateFilter;
-  UI_Dialog_Error := UI.Dialog_Error;
-  UI_Dialog_Font := UI.Dialog_Font;
-  UI_Dialog_GetWindow := UI.Dialog_GetWindow;
-  UI_Dialog_InputBox := UI.Dialog_InputBox;
-  UI_Dialog_InputBox2 := UI.Dialog_InputBox2;
-  UI_Dialog_InputBoxA := UI.Dialog_InputBoxA;
-  UI_Dialog_Login := UI.Dialog_Login;
-  UI_Dialog_Message := UI.Dialog_Message;
-  UI_Dialog_New := UI.Dialog_New;
-  UI_Dialog_OpenFile := UI.Dialog_OpenFile;
-  UI_Dialog_OpenFileA := UI.Dialog_OpenFileA;
-  UI_Dialog_SaveFile := UI.Dialog_SaveFile;
-  UI_Dialog_SaveFileA := UI.Dialog_SaveFileA;
+  UI_Dialog_About := UiProcs.Dialog_About;
+  UI_Dialog_Calendar := UiProcs.Dialog_Calendar;
+  UI_Dialog_Color := UiProcs.Dialog_Color;
+  UI_Dialog_DateFilter := UiProcs.Dialog_DateFilter;
+  AUi_Dialog_ErrorWS := UiProcs.Dialog_Error;
+  AUi_Dialog_FontWS := UiProcs.Dialog_Font;
+  UI_Dialog_GetWindow := UiProcs.Dialog_GetWindow;
+  AUi_Dialog_InputBoxWS := UiProcs.Dialog_InputBox;
+  AUi_Dialog_InputBox2WS := UiProcs.Dialog_InputBox2;
+  AUi_Dialog_InputBoxAWS := UiProcs.Dialog_InputBoxA;
+  AUi_Dialog_LoginWS := UiProcs.Dialog_Login;
+  AUi_Dialog_MessageWS := UiProcs.Dialog_Message;
+  UI_Dialog_New := UiProcs.Dialog_New;
+  AUi_Dialog_OpenFileWS := UiProcs.Dialog_OpenFile;
+  AUi_Dialog_OpenFileAWS := UiProcs.Dialog_OpenFileA;
+  AUi_Dialog_SaveFileWS := UiProcs.Dialog_SaveFile;
+  AUi_Dialog_SaveFileAWS := UiProcs.Dialog_SaveFileA;
 
-  UI_Edit_CheckDate := UI.Edit_CheckDate;
-  UI_Edit_CheckFloat := UI.Edit_CheckFloat;
-  UI_Edit_CheckInt := UI.Edit_CheckInt;
-  UI_Edit_New := UI.Edit_New;
-  //UI_Edit_NewA := UI.Edit_NewA;
+  UI_Edit_CheckDate := UiProcs.Edit_CheckDate;
+  UI_Edit_CheckFloat := UiProcs.Edit_CheckFloat;
+  UI_Edit_CheckInt := UiProcs.Edit_CheckInt;
+  UI_Edit_New := UiProcs.Edit_New;
+  UI_Edit_NewA := UiProcs.Edit_NewA;
 
-  UI_Grid_AddColumn := UI.Grid_AddColumn;
-  UI_Grid_New := UI.Grid_New;
-  UI_Grid_RestoreColProps := UI.Grid_RestoreColProps;
-  UI_Grid_SaveColProps := UI.Grid_SaveColProps;
-  UI_Grid_SetColumnWidth := UI.Grid_SetColumnWidth;
-  UI_Grid_SetColumnWidthA := UI.Grid_SetColumnWidthA;
-  UI_Grid_SetDataSource := UI.Grid_SetDataSource;
+  UI_Grid_AddColumn := UiProcs.Grid_AddColumn;
+  UI_Grid_New := UiProcs.Grid_New;
+  UI_Grid_RestoreColProps := UiProcs.Grid_RestoreColProps;
+  UI_Grid_SaveColProps := UiProcs.Grid_SaveColProps;
+  UI_Grid_SetColumnWidth := UiProcs.Grid_SetColumnWidth;
+  UI_Grid_SetColumnWidthA := UiProcs.Grid_SetColumnWidthA;
+  UI_Grid_SetDataSource := UiProcs.Grid_SetDataSource;
 
-  UI_Image_New := UI.Image_New;
-  UI_Image_LoadFromFile := UI.Image_LoadFromFile;
+  AUiImage_New := UiProcs.Image_New;
+  UI_Image_LoadFromFileWS := UiProcs.Image_LoadFromFile;
 
-  UI_Label_New := UI.Label_New;
+  UI_Label_New := UiProcs.Label_New;
   {$IFDEF A02}
-  UI_Label_SetFont := UI.Label_SetFont;
+  UI_Label_SetFont := UiProcs.Label_SetFont;
   {$ELSE}
-  UI_Reserved0 := UI.Reserved66;
+  Reserved := UiProcs.Reserved66;
     (*{$IFDEF A02}
     //UI_Control_SetFont1 := UI.Label_SetFont;
     //UI_Control_SetFont2 := UI.Control_SetFont2;
@@ -105,17 +108,17 @@ begin
     {$ENDIF}*)
   {$ENDIF}
 
-  UI_ListBox_Add := UI.ListBox_Add;
-  UI_ListBox_Clear := UI.ListBox_Clear;
-  UI_ListBox_New := UI.ListBox_New;
+  UI_ListBox_Add := UiProcs.ListBox_Add;
+  UI_ListBox_Clear := UiProcs.ListBox_Clear;
+  AUiListBox_New := UiProcs.ListBox_New;
 
-  UI_MainTrayIcon := UI.MainTrayIcon;
+  UI_MainTrayIcon := UiProcs.MainTrayIcon;
 
-  UI_MainToolBar := UI.MainToolBar;
+  UI_MainToolBar := UiProcs.MainToolBar;
   {$IFDEF A02}
-  UI_MainToolBar_Set := UI.MainToolBar_Set;
+  UI_MainToolBar_Set := UiProcs.MainToolBar_Set;
   {$ELSE}
-  UI_Reserved1 := UI.Reserved71;
+  Reserved := UiProcs.Reserved71;
   {$ENDIF}
 
   MainWindow := UIProcs.MainWindow;
@@ -132,102 +135,100 @@ begin
   Menu_GetItems := UIProcs.Menu_GetItems;                               // 80
   Menu_New := UIProcs.Menu_New;                                         // 81
 
-  {
-  UI_MenuItem_Add := UI.MenuItem_Add;
-  UI_MenuItem_Add2 := UI.MenuItem_Add2;
-  UI_MenuItem_FindByName := UI.MenuItem_FindByName;
-  UI_PageControl_AddPage := UI.PageControl_AddPage;
-  UI_PageControl_New := UI.PageControl_New;
-  }
+  Menu_AddItem2WS02 := UiProcs.Menu_AddItem2WS02;
+  Menu_AddItem3 := UiProcs.Menu_AddItem3;
+  UI_MenuItem_FindByName := UiProcs.MenuItem_FindByName;
+  AUiPageControl_AddPageWS := UiProcs.PageControl_AddPageWS;
+  AUiPageControl_New := UiProcs.PageControl_New;
 
-  UI_ProgressBar_New := UI.ProgressBar_New;
-  UI_ProgressBar_StepIt := UI.ProgressBar_StepIt;
+  UI_ProgressBar_New := UiProcs.ProgressBar_New;
+  UI_ProgressBar_StepIt := UiProcs.ProgressBar_StepIt;
 
-  UI_PropertyBox_Add := UI.PropertyBox_Add;
-  UI_PropertyBox_AddA := UI.PropertyBox_AddA;
-  UI_PropertyBox_Item_GetValue := UI.PropertyBox_Item_GetValue;
-  UI_PropertyBox_Item_SetValue := UI.PropertyBox_Item_SetValue;
-  UI_PropertyBox_New := UI.PropertyBox_New;
+  UI_PropertyBox_Add := UiProcs.PropertyBox_Add;
+  UI_PropertyBox_AddA := UiProcs.PropertyBox_AddA;
+  UI_PropertyBox_Item_GetValue := UiProcs.PropertyBox_Item_GetValue;
+  UI_PropertyBox_Item_SetValue := UiProcs.PropertyBox_Item_SetValue;
+  UI_PropertyBox_New := UiProcs.PropertyBox_New;
 
-  UI_Splitter_New := UI.Splitter_New;
+  UI_Splitter_New := UiProcs.Splitter_New;
 
-  UI_TextView_AddLine := UI.TextView_AddLine;
-  UI_TextView_New := UI.TextView_New;
-  UI_TextView_SetFont := UI.TextView_SetFont;
-  UI_TextView_SetReadOnly := UI.TextView_SetReadOnly;
-  UI_TextView_SetScrollBars := UI.TextView_SetScrollBars;
-  UI_TextView_SetWordWrap := UI.TextView_SetWordWrap;
+  UI_TextView_AddLine := UiProcs.TextView_AddLine;
+  UI_TextView_New := UiProcs.TextView_New;
+  UI_TextView_SetFont := UiProcs.TextView_SetFont;
+  UI_TextView_SetReadOnly := UiProcs.TextView_SetReadOnly;
+  UI_TextView_SetScrollBars := UiProcs.TextView_SetScrollBars;
+  UI_TextView_SetWordWrap := UiProcs.TextView_SetWordWrap;
 
-  //UI_ToolBar_AddButton := UI.ToolBar_AddButton;
-  //UI_ToolBar_New := UI.ToolBar_New;
+  UI_ToolBar_AddButton := UiProcs.ToolBar_AddButton;
+  UI_ToolBar_New := UiProcs.ToolBar_New;
 
-  UI_TrayIcon_GetMenuItems := UI.TrayIcon_GetMenuItems;
+  UI_TrayIcon_GetMenuItems := UiProcs.TrayIcon_GetMenuItems;
 
-  //UI_TreeView_AddItem := UI.TreeView_AddItem;
-  UI_TreeView_New := UI.TreeView_New;
+  UI_TreeView_AddItem := UiProcs.TreeView_AddItemWS;
+  AUiTreeView_New := UiProcs.TreeView_New;
 
-  UI_Window_Free := UI.Window_Free;
-  UI_Window_GetMenu := UI.Window_GetMenu;
-  UI_Window_LoadConfig := UI.Window_LoadConfig;
-  UI_Window_LoadConfig2 := UI.Window_LoadConfig2;
-  UI_Window_New := UI.Window_New;
-  UI_Window_SaveConfig := UI.Window_SaveConfig;
-  UI_Window_SaveConfig2 := UI.Window_SaveConfig2;
-  UI_Window_SetBorderStyle := UI.Window_SetBorderStyle;
-  UI_Window_SetFormStyle := UI.Window_SetFormStyle;
-  UI_Window_SetPosition := UI.Window_SetPosition;
-  UI_Window_ShowModal := UI.Window_ShowModal;
+  UI_Window_Free := UiProcs.Window_Free;
+  UI_Window_GetMenu := UiProcs.Window_GetMenu;
+  UI_Window_LoadConfig := UiProcs.Window_LoadConfig;
+  UI_Window_LoadConfig2 := UiProcs.Window_LoadConfig2;
+  UI_Window_New := UiProcs.Window_New;
+  UI_Window_SaveConfig := UiProcs.Window_SaveConfig;
+  UI_Window_SaveConfig2 := UiProcs.Window_SaveConfig2;
+  UI_Window_SetBorderStyle := UiProcs.Window_SetBorderStyle;
+  UI_Window_SetFormStyle := UiProcs.Window_SetFormStyle;
+  UI_Window_SetPosition := UiProcs.Window_SetPosition;
+  UI_Window_ShowModal := UiProcs.Window_ShowModal;
 
-  UI_ReportWin_New := UI.ReportWin_New;
+  UI_ReportWin_New := UiProcs.ReportWin_New;
 
-  //UI_WaitWin_New := UI.WaitWin_New;
-  UI_WaitWin_StepBy := UI.WaitWin_StepBy;
+  UI_WaitWin_New := UiProcs.WaitWin_NewWS;
+  UI_WaitWin_StepBy := UiProcs.WaitWin_StepBy;
 
-  //UI_OnMainFormCreate_Set := UI.OnMainFormCreate_Set;
-  UI_MainWindow_SetA := UI.MainWindow_SetA;
+  AUi_SetOnMainFormCreate02 := UiProcs.SetOnMainFormCreate02;
+  MainWindow_SetA := UiProcs.MainWindow_SetA;
 
   {$IFDEF A01}
-  UI_Reserved123 := UI.Reserved123;
-  UI_Reserved124 := UI.Reserved124;
-  UI_Reserved125 := UI.Reserved125;
-  UI_Reserved126 := UI.Reserved126;
-  UI_Reserved127 := UI.Reserved127;
+  Reserved := UiProcs.Reserved123;
+  Reserved := UiProcs.Reserved124;
+  Reserved := UiProcs.Reserved125;
+  Reserved := UiProcs.Reserved126;
+  Reserved := UiProcs.Reserved127;
   {$ELSE}
-  //UI_ReportWin_NewA := UI.ReportWin_NewA;
-  UI_Calendar_GetDate := UI.Calendar_GetDate;
-  UI_Calendar_New := UI.Calendar_New;
-  UI_Calendar_SetMonth := UI.Calendar_SetMonth;
-  UI_Report_New := UI.Report_New;
-  UI_Report_SetText := UI.Report_SetText;
+  UI_ReportWin_NewA := UiProcs.ReportWin_NewA;
+  UI_Calendar_GetDate := UiProcs.Calendar_GetDate;
+  UI_Calendar_New := UiProcs.Calendar_New;
+  UI_Calendar_SetMonth := UiProcs.Calendar_SetMonth;
+  UI_Report_New := UiProcs.Report_New;
+  UI_Report_SetText := UiProcs.Report_SetText;
   {$ENDIF}
 
   {$IFDEF A01}
-    UI_Reserved127 := UI.Reserved127;
-    UI_Reserved128 := UI.Reserved128;
-    UI_Reserved129 := UI.Reserved129;
-    UI_Reserved130 := UI.Reserved130;
-    UI_Reserved131 := UI.Reserved131;
-    UI_Reserved132 := UI.Reserved132;
-    UI_Reserved136 := UI.Reserved136;
-    UI_Reserved137 := UI.Reserved137;
-    UI_Reserved138 := UI.Reserved138;
-    UI_Reserved139 := UI.Reserved139;
+    Reserved := UiProcs.Reserved127;
+    Reserved := UiProcs.Reserved128;
+    Reserved := UiProcs.Reserved129;
+    Reserved := UiProcs.Reserved130;
+    Reserved := UiProcs.Reserved131;
+    Reserved := UiProcs.Reserved132;
+    Reserved := UiProcs.Reserved136;
+    Reserved := UiProcs.Reserved137;
+    Reserved := UiProcs.Reserved138;
+    Reserved := UiProcs.Reserved139;
   {$ELSE}
     {$IFDEF A02}
-    UI_Reserved128 := UI.Reserved128;
-    UI_Reserved129 := UI.Reserved129;
-    UI_Reserved130 := UI.Reserved130;
-    UI_Reserved131 := UI.Reserved131;
-    UI_Reserved132 := UI.Reserved132;
-    UI_Reserved136 := UI.Reserved136;
-    UI_Reserved137 := UI.Reserved137;
-    UI_Reserved138 := UI.Reserved138;
-    UI_Reserved139 := UI.Reserved139;
+    Reserved := UiProcs.Reserved128;
+    Reserved := UiProcs.Reserved129;
+    Reserved := UiProcs.Reserved130;
+    Reserved := UiProcs.Reserved131;
+    Reserved := UiProcs.Reserved132;
+    Reserved := UiProcs.Reserved136;
+    Reserved := UiProcs.Reserved137;
+    Reserved := UiProcs.Reserved138;
+    Reserved := UiProcs.Reserved139;
     {$ELSE}
-    UI_Control_SetFont1 := UI.Control_SetFont1;
-    UI_Control_SetFont2 := UI.Control_SetFont2;
-    UI_Dialog_About_New := UI.Dialog_About_New;
-    //UI_Dialog_AddButton := UI.Dialog_AddButton;
+    UI_Control_SetFont1 := UiProcs.Control_SetFont1;
+    UI_Control_SetFont2 := UiProcs.Control_SetFont2;
+    UI_Dialog_About_New := UiProcs.Dialog_About_New;
+    UI_Dialog_AddButton := UiProcs.Dialog_AddButton;
     //UI_InitMenus := UI.InitMenus;
     {$ENDIF A02}
   {$ENDIF A01}
