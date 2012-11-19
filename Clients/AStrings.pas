@@ -2,7 +2,7 @@
 @Abstract AStrings
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.07.2012
-@LastMod 08.08.2012
+@LastMod 19.11.2012
 }
 unit AStrings;
 
@@ -12,6 +12,8 @@ uses
   ABase, AStringsProcVars;
 
 function AString_Assign(var S: AString_Type; const Value: AString_Type): AError; stdcall;
+
+function AString_AssignA(var S: AString_Type; Value: AStr): AError; stdcall;
 
 function AString_AssignP(var S: AString_Type; const Value: APascalString): AError; stdcall;
 
@@ -31,17 +33,27 @@ function AString_Assign(var S: AString_Type; const Value: AString_Type): AError;
 begin
   if not(Assigned(AStringsProcVars.AString_Assign)) then
   begin
-    Result := 0;
+    Result := -1;
     Exit;
   end;
   Result := AStringsProcVars.AString_Assign(S, Value);
+end;
+
+function AString_AssignA(var S: AString_Type; Value: AStr): AError;
+begin
+  if not(Assigned(AStringsProcVars.AString_AssignA)) then
+  begin
+    Result := -1;
+    Exit;
+  end;
+  Result := AStringsProcVars.AString_AssignA(S, Value);
 end;
 
 function AString_AssignP(var S: AString_Type; const Value: APascalString): AError;
 begin
   if not(Assigned(AStringsProcVars.AString_AssignA)) then
   begin
-    Result := 0;
+    Result := -1;
     Exit;
   end;
   Result := AStringsProcVars.AString_AssignA(S, AStr(AnsiString(Value)));
