@@ -11,7 +11,7 @@ unit AUiSplashMod;
 interface
 
 uses
-  ABase, ARuntime, ARuntimeBase, ASettings, ASettingsBase, ASystem,
+  ABase, ARuntime, ARuntimeBase, ASettings, ASettingsBase, ASystem, ASystemModClient,
   AUi, AUiBase, AUiSplash, AUiSplashBase, AUtils;
 
 function AUiSplashMod_Boot(): AError; stdcall;
@@ -98,6 +98,12 @@ var
 begin
   // --- Init request modules ---
 
+  if (ASettings_Boot() < 0) then
+  begin
+    Result := -2;
+    Exit;
+  end;
+  {
   if (ARuntime.Modules_GetByUid(ASettings_Uid, Module) < 0) then
   begin
     Result := -2;
@@ -108,6 +114,7 @@ begin
     Result := -2;
     Exit;
   end;
+  }
 
   if (ARuntime.Modules_GetByUid(ASystem_Uid, Module) < 0) then
   begin

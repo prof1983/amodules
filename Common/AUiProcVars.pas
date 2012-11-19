@@ -77,8 +77,8 @@ var
   AUi_Control_SetOnChange02: AUiControl_SetOnChange02_Proc;
   AUi_Control_SetOnClick02: AUiControl_SetOnClick02_Proc;
   {$endif}
-  AUi_Control_SetPosition: AUiControl_SetPosition03_Proc;
-  AUi_Control_SetSize: AUiControl_SetSize03_Proc;
+  AUi_Control_SetPosition: AUiControl_SetPosition02_Proc;
+  AUi_Control_SetSize: AUiControl_SetSize02_Proc;
   {$ifdef ADepr}
   AUi_Control_SetTextWS: AUiControl_SetTextWS_Proc;
   {$endif}

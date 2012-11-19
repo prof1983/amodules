@@ -50,8 +50,8 @@ begin
   AUi_Control_SetName := UiProcs.Control_SetNameW;
   AUi_Control_SetOnChange02 := UiProcs.Control_SetOnChange02;
   AUi_Control_SetOnClick02 := UiProcs.Control_SetOnClick02;
-  AUi_Control_SetPosition := UiProcs.Control_SetPosition03;
-  AUi_Control_SetSize := UiProcs.Control_SetSize03;
+  AUi_Control_SetPosition := UiProcs.Control_SetPosition02;
+  AUi_Control_SetSize := UiProcs.Control_SetSize02;
   AUi_Control_SetTextWS := UiProcs.Control_SetTextWS;
   AUi_Control_SetVisible := UiProcs.Control_SetVisible;
   AUi_Control_SetWidth := UiProcs.Control_SetWidth;
