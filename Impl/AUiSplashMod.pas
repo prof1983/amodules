@@ -2,7 +2,7 @@
 @Abstract AUiSplash
 @Author Prof1983 <prof1983@ya.ru>
 @Created 08.12.2009
-@LastMod 16.11.2012
+@LastMod 19.11.2012
 }
 unit AUiSplashMod;
 
@@ -11,8 +11,8 @@ unit AUiSplashMod;
 interface
 
 uses
-  ABase, ARuntime, ARuntimeBase, ASettings, ASettingsBase, ASystem, ASystemModClient,
-  AUi, AUiBase, AUiSplash, AUiSplashBase, AUtils;
+  ABase, ARuntime, ARuntimeBase, ASettings, ASettingsBase, ASystem,
+  AUi, AUiBase, AUiSplash, AUiSplashBase, AUtils, AUtilsBase;
 
 function AUiSplashMod_Boot(): AError; stdcall;
 
@@ -93,51 +93,8 @@ begin
 end;
 
 function AUiSplashMod_Init(): AError;
-var
-  Module: AModule_Type;
 begin
   // --- Init request modules ---
-
-  if (ASettings_Boot() < 0) then
-  begin
-    Result := -2;
-    Exit;
-  end;
-  {
-  if (ARuntime.Modules_GetByUid(ASettings_Uid, Module) < 0) then
-  begin
-    Result := -2;
-    Exit;
-  end;
-  if (Settings_SetProcsP(Module.Procs) < 0) then
-  begin
-    Result := -2;
-    Exit;
-  end;
-  }
-
-  if (ARuntime.Modules_GetByUid(ASystem_Uid, Module) < 0) then
-  begin
-    Result := -3;
-    Exit;
-  end;
-  System_SetProcsP(Module.Procs);
-
-  if (ARuntime.Modules_GetByUid(AUI_Uid, Module) < 0) then
-  begin
-    Result := -4;
-    Exit;
-  end;
-  //UI_SetProcsP(Module.Procs);
-
-  if (ARuntime.Modules_GetByUid(AUtils_Uid, Module) < 0) then
-  begin
-    Result := -5;
-    Exit;
-  end;
-  Utils_SetProcsP(Module.Procs);
-
-  // --- Init modules ---
 
   if (ARuntime.Modules_InitByUid(AUI_Uid) < 0) then
   begin
@@ -153,11 +110,7 @@ begin
 
   // --- Init recomended modules ---
 
-  if (ARuntime.Modules_GetByUid(ASettings_Uid, Module) < 0) then
-  begin
-    Settings_SetProcsP(Module.Procs);
-    ARuntime.Modules_InitByName(ASettings_Name);
-  end;
+  ARuntime.Modules_InitByUid(ASettings_Uid);
 
   // --- Run ---
 
