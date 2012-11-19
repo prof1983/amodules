@@ -2,7 +2,7 @@
 @Abstract AUiWorkbench
 @Author Prof1983 <prof1983@ya.ru>
 @Created 26.08.2009
-@LastMod 06.08.2012
+@LastMod 19.11.2012
 }
 unit AUiWorkbenchMod;
 
@@ -11,7 +11,7 @@ unit AUiWorkbenchMod;
 interface
 
 uses
-  ABase, ARuntime, ARuntimeBase, AUi, AUiBase, AUiWorkbench, AUiWorkbenchBase{$IFDEF ADepr}, AUiWorkbenchProcRec{$ENDIF};
+  ABase, ARuntime, ARuntimeBase, AUi, AUiBase, AUiModClient, AUiWorkbench, AUiWorkbenchBase{$IFDEF ADepr}, AUiWorkbenchProcRec{$ENDIF};
 
 function AUiWorkbenchModule_Boot(): AError; stdcall;
 
