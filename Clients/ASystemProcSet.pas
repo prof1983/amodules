@@ -11,12 +11,6 @@ interface
 uses
   ABase, ASystemBase, ASystemProcRec, ASystemProcVars;
 
-{
-const
-  ASystem_Name02 = 'System';
-  ASystem_Name03 = ASystemName;
-}
-
 function System_SetProcs(const Procs: ASystemProcs_Type): AInteger;
 function System_SetProcsP(Procs: PSystemProcs): AInteger;
 
@@ -26,26 +20,26 @@ function System_SetProcs(const Procs: ASystemProcs_Type): AInteger;
 begin
   ASystem_GetConfig := Procs.GetConfig;
   ASystem_GetIsShutdown := Procs.GetIsShutdown;
-  //Runtime_GetResourceString := Procs.GetResourceString02;
-  ASystem_ProcessMessages := Procs.ProcessMessages02;
+  ASystem_GetResourceStringWS := Procs.GetResourceStringWS;
+  ASystem_ProcessMessages02 := Procs.ProcessMessages02;
   ASystem_SetConfig := Procs.SetConfig;
-  ASystem_ShowError := Procs.ShowError02;
-  //Runtime_ShowMessage := Procs.ShowMessageWS;
-  //Runtime_ShowMessageA := Procs.ShowMessageA;
-  ASystem_Shutdown := Procs.Shutdown02;
+  ASystem_ShowError02 := Procs.ShowError02;
+  ASystem_ShowMessageWS := Procs.ShowMessageWS;
+  ASystem_ShowMessageExWS := Procs.ShowMessageExWS;
+  ASystem_Shutdown02 := Procs.Shutdown02;
 
-  ASystem_SetOnProcessMessages := Procs.SetOnProcessMessages02;
-  ASystem_SetOnRun := Procs.SetOnRun;
-  ASystem_SetOnShutdown := Procs.SetOnShutdown;
+  ASystem_SetOnProcessMessages02 := Procs.SetOnProcessMessages02;
+  ASystem_SetOnRun02 := Procs.SetOnRun;
+  ASystem_SetOnShutdown02 := Procs.SetOnShutdown;
   ASystem_SetOnShowError := Procs.SetOnShowError;
   ASystem_SetOnShowMessage := Procs.SetOnShowMessage;
 
   ASystem_OnAfterRun := Procs.OnAfterRun;
   ASystem_OnBeforeRun := Procs.OnBeforeRun;
-  ASystem_OnAfterRun_Connect := Procs.OnAfterRun_Connect02;
-  ASystem_OnAfterRun_Disconnect := Procs.OnAfterRun_Disconnect02;
-  ASystem_OnBeforeRun_Connect := Procs.OnBeforeRun_Connect02;
-  ASystem_OnBeforeRun_Disconnect := Procs.OnBeforeRun_Disconnect02;
+  ASystem_OnAfterRun_Connect02 := Procs.OnAfterRun_Connect02;
+  ASystem_OnAfterRun_Disconnect02 := Procs.OnAfterRun_Disconnect02;
+  ASystem_OnBeforeRun_Connect02 := Procs.OnBeforeRun_Connect02;
+  ASystem_OnBeforeRun_Disconnect02 := Procs.OnBeforeRun_Disconnect02;
 
   {$IFDEF ARUNTIMEOLD}
   Runtime_Module_Count := ASystem.Module_Count;
