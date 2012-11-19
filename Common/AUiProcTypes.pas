@@ -2,7 +2,7 @@
 @Abstract User interface proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 27.08.2012
+@LastMod 19.11.2012
 }
 unit AUiProcTypes;
 
@@ -77,6 +77,7 @@ type
   AUiControl_SetEnabled_Proc = procedure(Control: AControl; Value: ABoolean); stdcall;
   AUiControl_SetFocus_Proc = function(Control: AControl): ABoolean; stdcall;
   AUiControl_SetFont1_Proc = procedure(Control: AControl; const FontName: AString_Type; FontSize: AInteger); stdcall;
+  AUiControl_SetFont1A_Proc = function(Control: AControl; FontName: AStr; FontSize: AInt): AError; stdcall;
   AUiControl_SetFont2_Proc = procedure(Control: AControl; const FontName: AString_Type; FontSize: AInteger; Color: AColor); stdcall;
   {$ifdef ADepr}
   AUiControl_SetFontW1_Proc = procedure(Control: AControl; const FontName: AWideString; FontSize: AInteger); stdcall;
@@ -233,18 +234,23 @@ type // --- V03 ---
   AUi_Grid_SetDataSource_Proc = procedure(Grid: AControl; Value: PADataSource); stdcall;
 
 type
-  AUi_Image_New = function(Parent: AControl): AControl; stdcall;
+  AUiImage_LoadFromFile_Proc = function(Image: AControl; const FileName: AString_Type): AError; stdcall;
+  AUiImage_LoadFromFileA_Proc = function(Image: AControl; FileName: AStr): AError; stdcall;
+  {$ifdef ADepr}
   AUi_Image_LoadFromFile_Proc = function(Image: AControl; const FileName: AString_Type): ABoolean; stdcall;
   AUi_Image_LoadFromFileWS_Proc = function(Image: AControl; const FileName: AWideString): ABoolean; stdcall;
-  //AUi_Image_LoadFromFile = AUi_Image_LoadFromFileWS_Proc;
+  {$endif}
+  AUiImage_New_Proc = function(Parent: AControl): AControl; stdcall;
 type
   AUi_Label_New = function(Parent: AControl): AControl; stdcall;
 type
-  AUi_ListBox_Add_Proc = function(ListBox: AControl; const Text: AString_Type): Integer; stdcall;
-  AUi_ListBox_AddWS_Proc = function(ListBox: AControl; const Text: AWideString): Integer; stdcall;
-  //AUi_ListBox_Add = AUi_ListBox_AddWS_Proc;
+  AUiListBox_Add_Proc = function(ListBox: AControl; const Text: AString_Type): AInt; stdcall;
+  AUiListBox_Clear_Proc = function(ListBox: AControl): AError; stdcall;
+  AUiListBox_New_Proc = function(Parent: AControl): AControl; stdcall;
+  {$ifdef ADepr}
+  AUi_ListBox_AddWS_Proc = function(ListBox: AControl; const Text: AWideString): AInt; stdcall;
   AUi_ListBox_Clear = procedure(ListBox: AControl); stdcall;
-  AUi_ListBox_New = function(Parent: AControl): AControl; stdcall;
+  {$endif}
 type
   AUi_MainToolBar = function: AControl; stdcall;
   {$IFDEF A01}AUi_MainToolBar_Set = procedure(ToolBar: AControl); stdcall;{$ENDIF}
@@ -282,11 +288,13 @@ type
 type
   { Создает новую вкладку. Возврашает:
     0 - если произошла ошибка, иначе идентификатор новой вкладки (если операция прошла успешно) }
-  AUi_PageControl_AddPage_Proc = function(PageControl: AControl; const Name, Text: AString_Type): AControl; stdcall;
+  AUiPageControl_AddPage_Proc = function(PageControl: AControl; const Name, Text: AString_Type): AControl; stdcall;
+  {$ifdef ADepr}
   { Создает новую вкладку. Возврашает:
     0 - если произошла ошибка, иначе идентификатор новой вкладки (если операция прошла успешно) }
   AUi_PageControl_AddPageWS_Proc = function(PageControl: AControl; const Name, Text: AWideString): AControl; stdcall;
-  AUi_PageControl_New_Proc = function(Parent: AControl): AControl; stdcall;
+  {$endif}
+  AUiPageControl_New_Proc = function(Parent: AControl): AControl; stdcall;
 
 type
   AUi_ProgressBar_New_Proc = function(Parent: AControl; Max: AInteger): AControl; stdcall;
@@ -365,9 +373,11 @@ type
   AUi_TrayIcon_GetMenuItems = function(TrayIcon: ATrayIcon): AMenuItem; stdcall; // $IFNDEF UNIX
 
 type
+  AUiTreeView_AddItem_Proc = function(TreeView: AControl; Parent: ATreeNode; Text: AString_Type): ATreeNode; stdcall;
+  AUiTreeView_New_Proc = function(Parent: AControl): AControl; stdcall;
+  {$ifdef ADepr}
   AUi_TreeView_AddItem = function(TreeView: AControl; Parent: ATreeNode; Text: AWideString): ATreeNode; stdcall;
-  A_UI_TreeView_AddItem = function(TreeView: AControl; Parent: ATreeNode; Text: AString_Type): ATreeNode; stdcall;
-  AUi_TreeView_New = function(Parent: AControl): AControl; stdcall;
+  {$endif}
 
 type
   AUi_WaitWin_NewWS_Proc = function(const Caption, Text: AWideString; MaxPosition: Integer): AWindow; stdcall;

@@ -2,7 +2,7 @@
 @Abstract User interface proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 27.08.2012
+@LastMod 19.11.2012
 }
 unit AUiProcRec;
 
@@ -52,7 +52,7 @@ type
     Control_SetOnChange02: AUiControl_SetOnChange02_Proc;           // 25
     Control_SetOnClick02: AUiControl_SetOnClick02_Proc;             // 26
     Control_SetPosition_Old: AUiControl_SetPosition_Old_Proc;       // 27
-    Control_SetSize: AUiControl_SetSize_Proc;                       // 28
+    Control_SetSize_Old: AUiControl_SetSize_Old_Proc;               // 28
     Control_SetTextWS: AUiControl_SetTextWS_Proc;                   // 29
     Control_SetVisible: AUiControl_SetVisible_Proc;                 // 30
     Control_SetWidth: AUiControl_SetWidth_Proc;                     // 31
@@ -92,7 +92,7 @@ type
     Grid_SetColumnWidthA: AUi_Grid_SetColumnWidthA;                 // 61
     Grid_SetDataSource: AUi_Grid_SetDataSource;                     // 62
 
-    Image_New: AUi_Image_New;                                       // 63
+    Image_New: AUiImage_New_Proc;                                   // 63
     Image_LoadFromFile: AUi_Image_LoadFromFileWS_Proc;              // 64
 
     Label_New: AUi_Label_New;                                       // 65
@@ -105,7 +105,7 @@ type
 
     ListBox_Add: AUi_ListBox_AddWS_Proc;                            // 67
     ListBox_Clear: AUi_ListBox_Clear;                               // 68
-    ListBox_New: AUi_ListBox_New;                                   // 69
+    ListBox_New: AUiListBox_New_Proc;                               // 69
 
     MainToolBar: AUi_MainToolBar;                                   // 70
     {$IFDEF A02}
@@ -132,7 +132,7 @@ type
     MenuItem_FindByName: AUi_MenuItem_FindByName;                   // 84
 
     PageControl_AddPageWS: AUi_PageControl_AddPageWS_Proc;          // 85
-    PageControl_New: AUi_PageControl_New_Proc;                      // 86
+    PageControl_New: AUiPageControl_New_Proc;                       // 86
 
     ProgressBar_New: AUi_ProgressBar_New_Proc;                      // 87
     ProgressBar_StepIt: AUi_ProgressBar_StepIt_Proc;                // 88

@@ -2,7 +2,7 @@
 @Abstract User Interface
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 16.11.2012
+@LastMod 19.11.2012
 }
 unit AUiMod;
 
@@ -61,8 +61,8 @@ const
     Control_SetNameW: AUI.Control_SetName02;                        // 24
     Control_SetOnChange02: AUI.Control_SetOnChange02;               // 25
     Control_SetOnClick02: AUI.Control_SetOnClick02;                 // 26
-    Control_SetPosition: AUI.Control_SetPosition02;                 // 27
-    Control_SetSize: AUI.Control_SetSize02;                         // 28
+    Control_SetPosition_Old: AUI.Control_SetPosition02;             // 27
+    Control_SetSize_Old: AUI.Control_SetSize02;                     // 28
     Control_SetTextWS: AUI.Control_SetText02;                       // 29
     Control_SetVisible: AUI.Control_SetVisible02;                   // 30
     Control_SetWidth: AUI.Control_SetWidth;                         // 31
