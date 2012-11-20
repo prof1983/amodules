@@ -9,7 +9,7 @@ unit ARuntime;
 interface
 
 uses
-  ABase; {ARuntimeBase, ARuntimeProcRec;}
+  ABase, ARuntimeBase, ARuntimeMain;
 
 // ----
 

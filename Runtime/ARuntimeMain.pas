@@ -31,6 +31,8 @@ function ARuntime_InitModuleByName(Name: PAnsiChar): AInteger; {$ifdef AStdCall}
 
 function ARuntime_InitModuleByUid(Uid: AModuleUid): AInteger; {$ifdef AStdCall}stdcall;{$endif}
 
+function ARuntime_RegisterModule(const Module: AModule_Type): AInteger; {$ifdef AStdCall}stdcall;{$endif}
+
 implementation
 
 // --- ARuntime ---
@@ -136,6 +138,16 @@ begin
     Exit;
   end;
   Result := ARuntimeProcVars.ARuntime_InitModuleByUid(Uid);
+end;
+
+function ARuntime_RegisterModule(const Module: AModule_Type): AInteger;
+begin
+  if not(Assigned(ARuntimeProcVars.ARuntime_RegisterModule)) then
+  begin
+    Result := -1;
+    Exit;
+  end;
+  Result := ARuntimeProcVars.ARuntime_RegisterModule(Module);
 end;
 
 end.

@@ -2,14 +2,14 @@
 Abstract ACollections
 Author Prof1983 <prof1983@ya.ru>
 Created 19.11.2012
-LastMod 19.11.2012
+LastMod 20.11.2012
 }
 unit ACollectionsModClient;
 
 interface
 
 uses
-  ABase, ACollectionsBase, ARuntime, ARuntimeBase;
+  ABase, ACollectionsBase, ARuntimeBase, ARuntimeMain;
 
 function ACollections_Boot(): AError;
 

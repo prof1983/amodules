@@ -16,11 +16,11 @@ uses
 
 { Module }
 
-function ModuleManager_Boot(): AError; stdcall;
+function AModuleManagerMod_Boot(): AError; stdcall;
 
-function ModuleManager_Fin(): AError; stdcall;
+function AModuleManagerMod_Fin(): AError; stdcall;
 
-function ModuleManager_Init(): AError; stdcall;
+function AModuleManagerMod_Init(): AError; stdcall;
 
 {$IFDEF ADepr}
 const
@@ -56,7 +56,7 @@ const
     Name: AModuleManager_Name;
     Description: nil;
     Init: AModuleManagerMod_Init;
-    Done: AModuleManagerMod_Done;
+    Fin: AModuleManagerMod_Fin;
     GetProc: nil;
     Procs: {$IFDEF ADepr}Addr(ModuleManagerProcs){$ELSE}nil{$ENDIF};
     );

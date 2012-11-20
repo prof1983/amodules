@@ -2,7 +2,7 @@
 @Abstract ASettings
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 19.11.2012
+@LastMod 20.11.2012
 }
 unit ASettingsModClient;
 
@@ -11,7 +11,7 @@ unit ASettingsModClient;
 interface
 
 uses
-  ABase, ARuntime, ARuntimeBase, ASettingsBase, ASettingsProcRec, ASettingsProcSet;
+  ABase, ARuntimeBase, ARuntimeMain, ASettingsBase, ASettingsProcRec, ASettingsProcSet;
 
 function ASettings_Boot(): AError; stdcall;
 
