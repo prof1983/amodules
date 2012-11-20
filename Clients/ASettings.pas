@@ -2,7 +2,7 @@
 @Abstract ASettings
 @Author Prof1983 <prof1983@ya.ru>
 @Created 01.08.2012
-@LastMod 19.11.2012
+@LastMod 20.11.2012
 }
 unit ASettings;
 
@@ -42,13 +42,14 @@ begin
   end;
 
   {$IFDEF ADepr}
-  if not(Assigned(ASettingsProcVars.ASettings_ReadBoolWS)) then
+  if Assigned(ASettingsProcVars.ASettings_ReadBoolWS) then
   begin
-    Result := DefValue;
+    Result := ASettingsProcVars.ASettings_ReadBoolWS(Config, Section, Name, DefValue);
     Exit;
   end;
-  Result := ASettingsProcVars.ASettings_ReadBoolWS(Config, Section, Name, DefValue);
   {$ENDIF}
+
+  Result := DefValue;
 end;
 
 end.
