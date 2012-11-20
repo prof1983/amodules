@@ -2,7 +2,7 @@
 @Abstract User Interface client
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 19.11.2012
+@LastMod 20.11.2012
 }
 unit AUi;
 
@@ -13,7 +13,8 @@ interface
 uses
   ABase, ABaseTypes,
   AStrings,
-  AUiBase, AUiImages, AUiListBox, AUiPageControl, AUiProcVars, AUiTreeView;
+  AUiBase, AUiControlsA, AUiImages, AUiListBox, AUiMain, AUiMainWindow,
+  AUiPageControl, AUiProcVars, AUiTreeView;
 
 // ----
 
@@ -274,7 +275,7 @@ end;
 
 function Control_SetOnChange(Control: AControl; OnChange: ACallbackProc): AError; stdcall;
 begin
-  Result := AUiProcVars.AUi_Control_SetOnChange(Control, OnChange);
+  Result := AUiControl_SetOnChange(Control, OnChange);
 end;
 
 function Control_SetPosition(Control: AControl; Left, Top: AInteger): AError; stdcall;
@@ -371,7 +372,7 @@ end;
 
 function MainWindow_GetMainContainer(): AControl; stdcall;
 begin
-  Result := AUiProcVars.MainWindow_GetMainContainer();
+  Result := AUiMainWindow_GetMainContainer();
 end;
 
 // --- Menu ---
@@ -493,12 +494,7 @@ end;
 
 function Init(): AError; stdcall;
 begin
-  if not(Assigned(AUiProcVars.AUi_Init)) then
-  begin
-    Result := -1;
-    Exit;
-  end;
-  Result := AUiProcVars.AUi_Init();
+  Result := AUi_Init();
 end;
 
 function OnDone_Connect(Proc: ACallbackProc): AInteger; stdcall;
