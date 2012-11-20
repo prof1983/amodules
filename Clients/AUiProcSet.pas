@@ -2,7 +2,7 @@
 @Abstract User Interface
 @Author Prof1983 <prof1983@ya.ru>
 @Created 24.09.2012
-@LastMod 19.11.2012
+@LastMod 20.11.2012
 }
 unit AUiProcSet;
 
@@ -29,10 +29,10 @@ begin
   AUi_ShowHelp02 := UiProcs.ShowHelp02;
   AUi_Shutdown02 := UiProcs.Shutdown02;
 
-  AUi_Box_New := UiProcs.Box_New;
+  AUiBox_New := UiProcs.Box_New;
   AUi_Button_New := UiProcs.Button_New;
 
-  AUi_Control_Free := UiProcs.Control_Free;
+  UI_Control_Free := UiProcs.Control_Free;
   AUi_Control_FreeAndNil := UiProcs.Control_FreeAndNil;
   AUi_Control_GetEnabled := UiProcs.Control_GetEnabled;
   AUi_Control_GetHeight := UiProcs.Control_GetHeight;
@@ -41,9 +41,9 @@ begin
   AUi_Control_GetText := UiProcs.Control_GetTextW;
   AUi_Control_GetVisible := UiProcs.Control_GetVisible;
   AUi_Control_GetWidth := UiProcs.Control_GetWidth;
-  AUi_Control_SetAlign := UiProcs.Control_SetAlign;
-  AUi_Control_SetClientSize := UiProcs.Control_SetClientSize;
-  AUi_Control_SetColor := UiProcs.Control_SetColor;
+  UI_Control_SetAlign := UiProcs.Control_SetAlign;
+  UI_Control_SetClientSize := UiProcs.Control_SetClientSize;
+  UI_Control_SetColor := UiProcs.Control_SetColor;
   AUi_Control_SetEnabled := UiProcs.Control_SetEnabled;
   AUi_Control_SetFocus := UiProcs.Control_SetFocus;
   AUi_Control_SetHint := UiProcs.Control_SetHintW;

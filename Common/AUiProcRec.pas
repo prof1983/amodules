@@ -2,7 +2,7 @@
 @Abstract User interface proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 19.11.2012
+@LastMod 20.11.2012
 }
 unit AUiProcRec;
 
@@ -33,7 +33,7 @@ type
     Box_New: AUiBox_New_Proc;                                       // 07
     Button_New: AUiButton_New_Proc;                                 // 08
 
-    Control_Free: AUiControl_Free_Proc;                             // 09
+    Control_Free: AUiControl_Free02_Proc;                           // 09
     Control_FreeAndNil: AUiControl_FreeAndNil_Proc;                 // 10
     Control_GetEnabled: AUiControl_GetEnabled_Proc;                 // 11
     Control_GetHeight: AUiControl_GetHeight_Proc;                   // 12
@@ -42,9 +42,9 @@ type
     Control_GetTextW: AUiControl_GetTextWS_Proc;                    // 15
     Control_GetVisible: AUiControl_GetVisible_Proc;                 // 16
     Control_GetWidth: AUiControl_GetWidth_Proc;                     // 17
-    Control_SetAlign: AUiControl_SetAlign_Proc;                     // 18
-    Control_SetClientSize: AUiControl_SetClientSize_Proc;           // 19
-    Control_SetColor: AUiControl_SetColor_Proc;                     // 20
+    Control_SetAlign: AUiControl_SetAlign02_Proc;                   // 18
+    Control_SetClientSize: AUiControl_SetClientSize02_Proc;         // 19
+    Control_SetColor: AUiControl_SetColor02_Proc;                   // 20
     Control_SetEnabled: AUiControl_SetEnabled_Proc;                 // 21
     Control_SetFocus: AUiControl_SetFocus_Proc;                     // 22
     Control_SetHintW: AUiControl_SetHintWS_Proc;                    // 23

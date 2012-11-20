@@ -86,6 +86,7 @@ begin
   begin
     AUiProcVars.UI_Control_SetAlign(Control, Align);
     Result := 0;
+    Exit;
   end;
 
   Result := -1;
@@ -103,6 +104,7 @@ begin
   begin
     AUiProcVars.UI_Control_SetClientSize(Control, ClientWidth, ClientHeight);
     Result := 0;
+    Exit;
   end;
 
   Result := -1;
@@ -120,6 +122,7 @@ begin
   begin
     AUiProcVars.UI_Control_SetColor(Control, Color);
     Result := 0;
+    Exit;
   end;
 
   Result := -1;

@@ -11,8 +11,8 @@ unit AModuleManagerMod;
 interface
 
 uses
-  ABase, AModuleManager, {$IFDEF ADepr}AModuleManagerProcTypes,{$ENDIF} ARuntime, ARuntimeBase,
-  ASettings, ASystem, AUi, AUiWorkbench;
+  ABase, AModuleManagerMain, {$IFDEF ADepr}AModuleManagerProcTypes,{$ENDIF} ARuntime, ARuntimeBase,
+  ASettingsModClient, ASystemModClient, AUiMain, AUiModClient, AUiWorkbenchModClient;
 
 { Module }
 
@@ -63,26 +63,6 @@ const
 
 var
   FInitialized: Boolean;
-
-// --- Private ---
-
-TODO: Use ASettings.pas
-function ASettings_Boot(): AError;
-var
-  Module: AModule_Type;
-begin
-  if (ARuntime.Modules_GetByUid(ASettings_Uid, Module) < 0) then
-  begin
-    Result := -2;
-    Exit;
-  end;
-  if (Settings_SetProcsP(Module.Procs) < 0) then
-  begin
-    Result := -3;
-    Exit;
-  end;
-  Result := 0;
-end;
 
 // --- AModuleManagerMod ---
 
@@ -141,11 +121,11 @@ begin
 
   // --- Boot recomended modules ---
 
-  AUIWorkbench_Boot();
+  AUiWorkbench_Boot();
 
   // --- Init reguest modules ---
 
-  if (AUI.Init() < 0) then
+  if (AUi_Init() < 0) then
   begin
     Result := -6;
     Exit;
@@ -153,7 +133,7 @@ begin
 
   // --- Init ---
 
-  ModuleManager_Init();
+  AModuleManager_Init();
 
   FInitialized := True;
   Result := 0;
