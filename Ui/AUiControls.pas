@@ -1,7 +1,8 @@
 {**
+Abstract AUiControl functions
 Author Prof1983 <prof1983@ya.ru>
 Created 16.11.2012
-LastMod 16.11.2012
+LastMod 20.11.2012
 }
 unit AUiControls;
 
@@ -13,9 +14,17 @@ uses
   ABase, AStrings,
   AUiBase, AUiProcVars;
 
+function AUiControl_Free(Control: AControl): AError; {$ifdef AStdCall}stdcall;{$endif}
+
 function AUiControl_GetText(Control: AControl; out Value: AString_Type): AError; {$ifdef AStdCall}stdcall;{$endif}
 
 function AUiControl_GetTextP(Control: AControl): APascalString; {$ifdef AStdCall}stdcall;{$endif}
+
+function AUiControl_SetAlign(Control: AControl; Align: TUiAlign): AError; {$ifdef AStdCall}stdcall;{$endif}
+
+function AUiControl_SetClientSize(Control: AControl; ClientWidth, ClientHeight: AInt): AError; {$ifdef AStdCall}stdcall;{$endif}
+
+function AUiControl_SetColor(Control: AControl; Color: AColor): AError; {$ifdef AStdCall}stdcall;{$endif}
 
 function AUiControl_SetPosition(Control: AControl; Left, Top: AInt): AError; {$ifdef AStdCall}stdcall;{$endif}
 
@@ -27,7 +36,23 @@ function AUiControl_SetTextP(Control: AControl; const Value: APascalString): AEr
 
 implementation
 
-function AUiControl_GetText(Control: AControl; out Value: AString_Type): AError; 
+function AUiControl_Free(Control: AControl): AError;
+begin
+  if Assigned(AUiProcVars.AUiControl_Free) then
+  begin
+    Result := AUiProcVars.AUiControl_Free(Control);
+    Exit;
+  end;
+  if Assigned(AUiProcVars.UI_Control_Free) then
+  begin
+    AUiProcVars.UI_Control_Free(Control);
+    Result := 0;
+    Exit;
+  end;
+  Result := -1;
+end;
+
+function AUiControl_GetText(Control: AControl; out Value: AString_Type): AError;
 begin
   if not(Assigned(AUiProcVars.AUiControl_GetText)) then
   begin
@@ -47,6 +72,57 @@ begin
     Exit;
   end;
   Result := AString_ToPascalString(S);
+end;
+
+function AUiControl_SetAlign(Control: AControl; Align: TUiAlign): AError;
+begin
+  if Assigned(AUiProcVars.AUiControl_SetAlign) then
+  begin
+    Result := AUiProcVars.AUiControl_SetAlign(Control, Align);
+    Exit;
+  end;
+
+  if Assigned(AUiProcVars.UI_Control_SetAlign) then
+  begin
+    AUiProcVars.UI_Control_SetAlign(Control, Align);
+    Result := 0;
+  end;
+
+  Result := -1;
+end;
+
+function AUiControl_SetClientSize(Control: AControl; ClientWidth, ClientHeight: AInt): AError;
+begin
+  if Assigned(AUiProcVars.AUiControl_SetClientSize) then
+  begin
+    Result := AUiProcVars.AUiControl_SetClientSize(Control, ClientWidth, ClientHeight);
+    Exit;
+  end;
+
+  if Assigned(AUiProcVars.UI_Control_SetClientSize) then
+  begin
+    AUiProcVars.UI_Control_SetClientSize(Control, ClientWidth, ClientHeight);
+    Result := 0;
+  end;
+
+  Result := -1;
+end;
+
+function AUiControl_SetColor(Control: AControl; Color: AColor): AError;
+begin
+  if Assigned(AUiProcVars.AUiControl_SetColor) then
+  begin
+    Result := AUiProcVars.AUiControl_SetColor(Control, Color);
+    Exit;
+  end;
+
+  if Assigned(AUiProcVars.UI_Control_SetColor) then
+  begin
+    AUiProcVars.UI_Control_SetColor(Control, Color);
+    Result := 0;
+  end;
+
+  Result := -1;
 end;
 
 function AUiControl_SetPosition(Control: AControl; Left, Top: AInt): AError;

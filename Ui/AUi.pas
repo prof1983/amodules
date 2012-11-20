@@ -13,8 +13,8 @@ interface
 uses
   ABase, ABaseTypes,
   AStrings,
-  AUiBase, AUiControlsA, AUiImages, AUiListBox, AUiMain, AUiMainWindow,
-  AUiPageControl, AUiProcVars, AUiTreeView;
+  AUiBase, AUiBox, AUiControls, AUiControlsA, AUiImages, AUiListBox, AUiMain, AUiMainWindow,
+  AUiMenus, AUiPageControl, AUiProcVars, AUiTreeView;
 
 // ----
 
@@ -218,43 +218,36 @@ function Window_ShowModal(Window: AWindow): ABoolean; stdcall;
 
 implementation
 
-{var
-  UiProcs: AUiProcs_Type;}
-
 // --- Box ---
 
-function Box_New(Parent: AControl; BoxType: AInteger): AControl; stdcall;
+function Box_New(Parent: AControl; BoxType: AInteger): AControl;
 begin
-  Result := AUiProcVars.AUi_Box_New(Parent, BoxType);
+  Result := AUiBox.AUiBox_New(Parent, BoxType);
 end;
 
 // --- Control ---
 
-function Control_Free(Control: AControl): AError; stdcall;
+function Control_Free(Control: AControl): AError;
 begin
-  AUiProcVars.AUi_Control_Free(Control);
-  Result := 0;
+  Result := AUiControls.AUiControl_Free(Control);
 end;
 
-function Control_SetAlign(Control: AControl; Align: TUIAlign): AError; stdcall;
+function Control_SetAlign(Control: AControl; Align: TUiAlign): AError;
 begin
-  AUiProcVars.AUi_Control_SetAlign(Control, Align);
-  Result := 0;
+  Result := AUiControls.AUiControl_SetAlign(Control, Align);
 end;
 
-function Control_SetClientSize(Control: AControl; ClientWidth, ClientHeight: AInteger): AError; stdcall;
+function Control_SetClientSize(Control: AControl; ClientWidth, ClientHeight: AInteger): AError;
 begin
-  AUiProcVars.AUi_Control_SetClientSize(Control, ClientWidth, ClientHeight);
-  Result := 0;
+  Result := AUiControls.AUiControl_SetClientSize(Control, ClientWidth, ClientHeight);
 end;
 
-function Control_SetColor(Control: AControl; Color: AColor): AError; stdcall;
+function Control_SetColor(Control: AControl; Color: AColor): AError;
 begin
-  AUiProcVars.AUi_Control_SetColor(Control, Color);
-  Result := 0;
+  Result := AUiControls.AUiControl_SetColor(Control, Color);
 end;
 
-function Control_SetFont1A(Control: AControl; {const} FontName: PAnsiChar; FontSize: AInteger): AError; stdcall;
+function Control_SetFont1A(Control: AControl; {const} FontName: PAnsiChar; FontSize: AInteger): AError;
 var
   S: AString_Type;
 begin
@@ -273,30 +266,30 @@ begin
   Result := -1;
 end;
 
-function Control_SetOnChange(Control: AControl; OnChange: ACallbackProc): AError; stdcall;
+function Control_SetOnChange(Control: AControl; OnChange: ACallbackProc): AError;
 begin
   Result := AUiControl_SetOnChange(Control, OnChange);
 end;
 
-function Control_SetPosition(Control: AControl; Left, Top: AInteger): AError; stdcall;
+function Control_SetPosition(Control: AControl; Left, Top: AInteger): AError;
 begin
   AUiProcVars.AUi_Control_SetPosition(Control, Left, Top);
   Result := 0;
 end;
 
-function Control_SetSize(Control: AControl; Width, Height: Integer): AError; stdcall;
+function Control_SetSize(Control: AControl; Width, Height: Integer): AError;
 begin
   AUiProcVars.AUi_Control_SetSize(Control, Width, Height);
   Result := 0;
 end;
 
-function Control_SetTextWS(Control: AControl; const Value: AWideString): AError; stdcall;
+function Control_SetTextWS(Control: AControl; const Value: AWideString): AError;
 begin
   AUiProcVars.AUi_Control_SetTextWS(Control, Value);
   Result := 0;
 end;
 
-function Control_SetVisible(Control: AControl; Value: ABoolean): AError; stdcall;
+function Control_SetVisible(Control: AControl; Value: ABoolean): AError;
 begin
   AUiProcVars.AUi_Control_SetVisible(Control, Value);
   Result := 0;
@@ -367,7 +360,7 @@ end;
 function MainWindow_AddMenuItem(const ParentItemName, Name, Text: APascalString;
     OnClick: ACallbackProc; ImageID, Weight: Integer): AMenuItem; stdcall;
 begin
-  Result := AUiProcVars.MainWindow_AddMenuItem(ParentItemName, Name, Text, OnClick, ImageId, Weight);
+  Result := AUiMainWindow_AddMenuItemP(ParentItemName, Name, Text, OnClick, ImageId, Weight);
 end;
 
 function MainWindow_GetMainContainer(): AControl; stdcall;
@@ -380,7 +373,7 @@ end;
 function Menu_AddItem2WS(Parent: AMenuItem; const Name, Text: AWideString;
     OnClick: ACallbackProc; ImageId, Weight: Integer): AMenuItem; stdcall;
 begin
-  Result := AUiProcVars.Menu_AddItem2WS(Parent, Name, Text, OnClick, ImageId, Weight);
+  Result := AUiMenus.AUiMenu_AddItem2P(Parent, Name, Text, OnClick, ImageId, Weight);
 end;
 
 // --- PageControl ---

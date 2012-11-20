@@ -2,7 +2,7 @@
 @Abstract User interface proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 19.11.2012
+@LastMod 20.11.2012
 }
 unit AUiProcTypes;
 
@@ -56,7 +56,8 @@ type
   AUi_Calendar_SetMonth = procedure(Calendar: AControl; Value: AInteger); stdcall;
 
 type
-  AUiControl_Free_Proc = procedure(Control: AControl); stdcall;
+  AUiControl_Free02_Proc = procedure(Control: AControl); stdcall;
+  AUiControl_Free04_Proc = function(Control: AControl): AError; stdcall;
   AUiControl_FreeAndNil_Proc = procedure(var Control: AControl); stdcall;
   AUiControl_GetEnabled_Proc = function(Control: AControl): ABoolean; stdcall;
   AUiControl_GetHeight_Proc = function(Control: AControl): AInteger; stdcall;
@@ -74,9 +75,12 @@ type
   {$endif}
   AUiControl_GetVisible_Proc = function(Control: AControl): ABoolean; stdcall;
   AUiControl_GetWidth_Proc = function(Control: AControl): AInteger; stdcall;
-  AUiControl_SetAlign_Proc = procedure(Control: AControl; Align: TUIAlign); stdcall;
-  AUiControl_SetClientSize_Proc = procedure(Control: AControl; ClientWidth, ClientHeight: AInteger); stdcall;
-  AUiControl_SetColor_Proc = procedure(Control: AControl; Color: AColor); stdcall;
+  AUiControl_SetAlign02_Proc = procedure(Control: AControl; Align: TUiAlign); stdcall;
+  AUiControl_SetAlign04_Proc = function(Control: AControl; Align: TUiAlign): AError; stdcall;
+  AUiControl_SetClientSize02_Proc = procedure(Control: AControl; ClientWidth, ClientHeight: AInteger); stdcall;
+  AUiControl_SetClientSize04_Proc = function(Control: AControl; ClientWidth, ClientHeight: AInt): AError; stdcall;
+  AUiControl_SetColor02_Proc = procedure(Control: AControl; Color: AColor); stdcall;
+  AUiControl_SetColor04_Proc = function(Control: AControl; Color: AColor): AError; stdcall;
   AUiControl_SetEnabled_Proc = procedure(Control: AControl; Value: ABoolean); stdcall;
   AUiControl_SetFocus_Proc = function(Control: AControl): ABoolean; stdcall;
   AUiControl_SetFont1_Proc = procedure(Control: AControl; const FontName: AString_Type; FontSize: AInteger); stdcall;
@@ -250,6 +254,11 @@ type
 type
   AUi_MainTrayIcon_Proc = function(): ATrayIcon; stdcall;
 type
+  AUiMainWindow_AddMenuItem_Proc = function(const ParentItemName, Name, Text: AString_Type;
+      OnClick: ACallbackProc; ImageId, Weight: AInteger): AMenuItem; stdcall;
+  AUiMainWindow_AddMenuItemA_Proc = function(ParentItemName, Name, Text: AStr;
+      OnClick: ACallbackProc; ImageId, Weight: AInteger): AMenuItem; stdcall;
+type
   AUi_MainWindow = function: AWindow; stdcall;
   AUi_MainWindow_AddMenuItem02WS_Proc = function(const ParentItemName, Name, Text: AWideString;
       OnClick: ACallbackProc02; ImageId, Weight: AInteger): AMenuItem; stdcall;
@@ -268,6 +277,11 @@ type
   AUi_Menu_New = function(MenuType: AInteger): AMenu; stdcall;
 
 type
+  AUiMenu_AddItem0_Proc = function(Parent: AMenuItem; MenuItem: AMenuItem; Weight: AInteger): AMenuItem; stdcall;
+  AUiMenu_AddItem1_Proc = function(Menu: AMenu; const Name, Text: AString_Type;
+      OnClick: ACallbackProc; ImageId, Weight: AInteger): AMenuItem; stdcall;
+  AUiMenu_AddItem2_Proc = function(Parent: AMenuItem; const Name, Text: AString_Type;
+      OnClick: ACallbackProc; ImageId, Weight: AInteger): AMenuItem; stdcall;
   AUi_Menu_AddItem2WS02_Proc = function(Parent: AMenuItem; const Name, Text: AWideString; OnClick: ACallbackProc02; ImageId, Weight: AInteger): AMenuItem; stdcall;
   AUi_Menu_AddItem2WS03_Proc = function(Parent: AMenuItem; const Name, Text: AWideString; OnClick: ACallbackProc03; ImageId, Weight: AInteger): AMenuItem; stdcall;
   AUi_Menu_AddItem3_Proc = function(Parent: AMenuItem; MenuItem: AMenuItem; Weight: AInteger): AMenuItem; stdcall;

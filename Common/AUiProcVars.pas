@@ -2,7 +2,7 @@
 @Abstract User Interface procs var
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 19.11.2012
+@LastMod 20.11.2012
 }
 unit AUiProcVars;
 
@@ -41,16 +41,20 @@ var
   AUi_Shutdown02: AUi_Shutdown02_Proc;
   {$endif}
 var
-  AUi_Box_New: AUiBox_New_Proc;
+  AUiBox_New: AUiBox_New_Proc;
   AUi_Button_New: AUiButton_New_Proc;
 var
+  AUiControl_Free: AUiControl_Free04_Proc;
   AUiControl_GetText: AUiControl_GetText_Proc;
+  AUiControl_SetAlign: AUiControl_SetAlign04_Proc;
+  AUiControl_SetClientSize: AUiControl_SetClientSize04_Proc;
+  AUiControl_SetColor: AUiControl_SetColor04_Proc;
   AUiControl_SetFont1A: AUiControl_SetFont1A_Proc;
   AUiControl_SetPosition: AUiControl_SetPosition04_Proc;
   AUiControl_SetSize: AUiControl_SetSize04_Proc;
   AUiControl_SetText: AUiControl_SetText04_Proc;
 var
-  AUi_Control_Free: AUiControl_Free_Proc;
+  UI_Control_Free: AUiControl_Free02_Proc;
   AUi_Control_FreeAndNil: AUiControl_FreeAndNil_Proc;
   AUi_Control_GetEnabled: AUiControl_GetEnabled_Proc;
   AUi_Control_GetHeight: AUiControl_GetHeight_Proc;
@@ -61,9 +65,9 @@ var
   {$endif}
   AUi_Control_GetVisible: AUiControl_GetVisible_Proc;
   AUi_Control_GetWidth: AUiControl_GetWidth_Proc;
-  AUi_Control_SetAlign: AUiControl_SetAlign_Proc;
-  AUi_Control_SetClientSize: AUiControl_SetClientSize_Proc;
-  AUi_Control_SetColor: AUiControl_SetColor_Proc;
+  UI_Control_SetAlign: AUiControl_SetAlign02_Proc;
+  UI_Control_SetClientSize: AUiControl_SetClientSize02_Proc;
+  UI_Control_SetColor: AUiControl_SetColor02_Proc;
   AUi_Control_SetEnabled: AUiControl_SetEnabled_Proc;
   AUi_Control_SetFocus: AUiControl_SetFocus_Proc;
   AUi_Control_SetFont1: AUiControl_SetFont1_Proc;
@@ -164,6 +168,8 @@ var
   UI_MainTrayIcon: AUi_MainTrayIcon_Proc;
 
 var
+  AUiMainWindow_AddMenuItem: AUiMainWindow_AddMenuItem_Proc;
+  AUiMainWindow_AddMenuItemA: AUiMainWindow_AddMenuItemA_Proc;
   MainWindow: AUI_MainWindow;
   MainWindow_AddMenuItem: AUi_MainWindow_AddMenuItem03WS_Proc;
   MainWindow_AddMenuItem2: AUi_MainWindow_AddMenuItemWS2_Proc;
@@ -174,6 +180,9 @@ var
   MainWindow_SetA: AUI_MainWindow_SetA;
 
 var
+  AUiMenu_AddItem0: AUiMenu_AddItem0_Proc;
+  AUiMenu_AddItem1: AUiMenu_AddItem1_Proc;
+  AUiMenu_AddItem2: AUiMenu_AddItem2_Proc;
   Menu_AddItem2WS: AUi_Menu_AddItem2WS03_Proc;
   Menu_AddItem2WS02: AUi_Menu_AddItem2WS02_Proc;
   Menu_AddItem3: AUi_Menu_AddItem3_Proc;
