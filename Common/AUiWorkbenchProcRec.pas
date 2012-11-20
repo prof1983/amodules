@@ -2,7 +2,7 @@
 @Abstract AUiWorkbench
 @Author Prof1983 <prof1983@ya.ru>
 @Created 29.08.2011
-@LastMod 30.07.2012
+@LastMod 20.11.2012
 }
 unit AUiWorkbenchProcRec;
 
@@ -44,6 +44,7 @@ type
       {$ENDIF A02}
     {$ENDIF A01}
   end;
+  PAUiWorkbenchProcs = ^AUiWorkbenchProcs_Type;
 
 implementation
 
