@@ -2,7 +2,7 @@
 @Abstract AModuleManager module v0.3
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.08.2009
-@LastMod 19.11.2012
+@LastMod 20.11.2012
 }
 unit AModuleManagerMod;
 
@@ -11,7 +11,7 @@ unit AModuleManagerMod;
 interface
 
 uses
-  ABase, AModuleManager, {$IFDEF ADepr}AModuleManagerProcs,{$ENDIF} ARuntime, ARuntimeBase,
+  ABase, AModuleManager, {$IFDEF ADepr}AModuleManagerProcTypes,{$ENDIF} ARuntime, ARuntimeBase,
   ASettings, ASystem, AUi, AUiWorkbench;
 
 { Module }

@@ -1,11 +1,10 @@
 {**
-@Abstract(AModuleManager proc types)
-@Author(Prof1983 prof1983@yandex.ru)
-@Created(23.07.2010)
-@LastMod(29.03.2012)
-@Version(0.3)
+@Abstract AModuleManager proc types
+@Author Prof1983 <prof1983@ya.ru>
+@Created 23.07.2010
+@LastMod 20.11.2012
 }
-unit AModuleManagerProcs;
+unit AModuleManagerProcTypes;
 
 {DEFINE A02}
 
