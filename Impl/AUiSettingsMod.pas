@@ -2,7 +2,7 @@
 @Abstract AUiSettings
 @Author Prof1983 <prof1983@ya.ru>
 @Created 13.03.2009
-@LastMod 06.08.2012
+@LastMod 20.11.2012
 }
 unit AUiSettingsMod;
 
@@ -11,7 +11,7 @@ unit AUiSettingsMod;
 interface
 
 uses
-  ABase, ARuntime, ARuntimeBase, AUi,
+  ABase, ARuntime, ARuntimeBase, AUiModClient,
   AUiSettings, AUiSettingsBase{$IFDEF ADepr}, AUiSettingsProcRec{$ENDIF};
 
 function AUiSettingsMod_Boot(): AError; stdcall;
