@@ -2,7 +2,7 @@
 @Abstract AUiListBox
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 19.11.2012
+@LastMod 21.11.2012
 }
 unit AUiListBox;
 
@@ -26,20 +26,35 @@ implementation
 
 function AUiListBox_Add(ListBox: AControl; const Text: AString_Type): AInt;
 begin
-  if not(Assigned(AUiProcVars.AUiListBox_Add)) then
+  if Assigned(AUiProcVars.AUiListBox_Add) then
   begin
-    Result := -1;
+    Result := AUiProcVars.AUiListBox_Add(ListBox, Text);
     Exit;
   end;
-  Result := AUiProcVars.AUiListBox_Add(ListBox, Text);
+  if Assigned(AUiProcVars.UI_ListBox_Add) then
+  begin
+    Result := AUiProcVars.UI_ListBox_Add(ListBox, AString_ToWideString(Text));
+    Exit;
+  end;
+  Result := -1;
 end;
 
 function AUiListBox_AddP(ListBox: AControl; const Text: APascalString): AInt;
 var
   S: AString_Type;
 begin
-  AString_AssignP(S, Text);
-  Result := AUiListBox_Add(ListBox, S);
+  if Assigned(AUiProcVars.AUiListBox_Add) then
+  begin
+    AString_AssignP(S, Text);
+    Result := AUiListBox_Add(ListBox, S);
+    Exit;
+  end;
+  if Assigned(AUiProcVars.UI_ListBox_Add) then
+  begin
+    Result := AUiProcVars.UI_ListBox_Add(ListBox, Text);
+    Exit;
+  end;
+  Result := -1;
 end;
 
 function AUiListBox_Clear(ListBox: AControl): AError;

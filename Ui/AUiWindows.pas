@@ -2,7 +2,7 @@
 @Abstract User Interface window functions
 @Author Prof1983 <prof1983@ya.ru>
 @Created 21.08.2012
-@LastMod 16.11.2012
+@LastMod 21.11.2012
 }
 unit AUiWindows;
 
@@ -27,9 +27,9 @@ function AUi_Window_GetMenu(Window: AWindow): AMenu;
 
 function AUiWindow_New(): AControl; stdcall;
 
-{
-function AUi_Window_SetBorderStyle(Window: AWindow; BorderStyle: AInt): AError;
+function AUiWindow_SetBorderStyle(Window: AWindow; BorderStyle: AInt): AError;
 
+{
 function AUi_Window_SetFormStyle(Window: AWindow; FormStyle: AInt): AError;
 
 function AUi_Window_SetPosition(Window: AWindow; Position: AInt): AError;
@@ -55,22 +55,49 @@ end;
 
 function AUiWindow_New(): AControl;
 begin
-  if not(Assigned(AUiProcVars.AUiWindow_New)) then
+  if Assigned(AUiProcVars.AUiWindow_New) then
   begin
+    Result := AUiProcVars.AUiWindow_New();
+    Exit;
+  end;
+  if Assigned(AUiProcVars.UI_Window_New) then
+  begin
+    Result := AUiProcVars.UI_Window_New();
+    Exit;
+  end;
+  Result := 0;
+end;
+
+function AUiWindow_SetBorderStyle(Window: AWindow; BorderStyle: AInt): AError;
+begin
+  if Assigned(AUiProcVars.UI_Window_SetBorderStyle) then
+  begin
+    AUiProcVars.UI_Window_SetBorderStyle(Window, BorderStyle);
     Result := 0;
     Exit;
   end;
-  Result := AUiProcVars.AUiWindow_New();
+  if Assigned(AUiProcVars.AUiWindow_SetBorderStyle) then
+  begin
+    Result := AUiProcVars.AUiWindow_SetBorderStyle(Window, BorderStyle);
+    Exit;
+  end;
+  Result := -1;
 end;
 
 function AUiWindow_ShowModal(Window: AWindow): ABoolean;
 begin
-  if not(Assigned(AUiProcVars.AUiWindow_ShowModal)) then
+  if Assigned(AUiProcVars.AUiWindow_ShowModal) then
   begin
-    Result := False;
+    Result := AUiProcVars.AUiWindow_ShowModal(Window);
     Exit;
   end;
-  Result := AUiProcVars.AUiWindow_ShowModal(Window);
+
+  if Assigned(AUiProcVars.AUiWindow_ShowModal) then
+  begin
+    Result := AUiProcVars.AUiWindow_ShowModal(Window);
+    Exit;
+  end;
+  Result := False;
 end;
 
 end.

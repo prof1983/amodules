@@ -122,7 +122,7 @@ begin
   {$ENDIF}
 
   MainWindow := UIProcs.MainWindow;
-  MainWindow_AddMenuItem := UIProcs.MainWindow_AddMenuItem;
+  MainWindow_AddMenuItem := UiProcs.MainWindow_AddMenuItem03WS;
   MainWindow_AddMenuItem2 := UIProcs.MainWindow_AddMenuItem2;
   MainWindow_GetLeftContainer := UIProcs.MainWindow_GetLeftContainer;
   MainWindow_GetMainContainer := UIProcs.MainWindow_GetMainContainer;
@@ -174,10 +174,10 @@ begin
   UI_Window_New := UiProcs.Window_New;
   UI_Window_SaveConfig := UiProcs.Window_SaveConfig;
   UI_Window_SaveConfig2 := UiProcs.Window_SaveConfig2;
-  UI_Window_SetBorderStyle := UiProcs.Window_SetBorderStyle;
+  UI_Window_SetBorderStyle := UiProcs.Window_SetBorderStyle02;
   UI_Window_SetFormStyle := UiProcs.Window_SetFormStyle;
   UI_Window_SetPosition := UiProcs.Window_SetPosition;
-  UI_Window_ShowModal := UiProcs.Window_ShowModal;
+  AUiWindow_ShowModal := UiProcs.Window_ShowModal;
 
   UI_ReportWin_New := UiProcs.ReportWin_New;
 
@@ -232,6 +232,19 @@ begin
     //UI_InitMenus := UI.InitMenus;
     {$ENDIF A02}
   {$ENDIF A01}
+
+  AUiProcVars.AUiGrid_ClearA := UiProcs.Grid_ClearA;
+  AUiProcVars.AUiGrid_Clear := UiProcs.Grid_Clear;
+  AUiProcVars.AUiGrid_FindInt := UiProcs.Grid_FindInt;
+
+  AUiProcVars.AUiControl_SetOnChange := UiProcs.Control_SetOnChange;
+  AUiProcVars.AUiGrid_DeleteRow2 := UiProcs.Grid_DeleteRow2;
+  AUiProcVars.AUi_ShowHelp2WS := UiProcs.ShowHelp2WS;
+  AUiProcVars.AUiWindow_SetBorderStyle := UiProcs.Window_SetBorderStyle;
+  AUiProcVars.MainWindow_AddMenuItem := UiProcs.MainWindow_AddMenuItem03WS;
+  AUiProcVars.AUi_OnDone_Disconnect := UiProcs.OnDone_Disconnect03;
+  AUiProcVars.AUiMainWindow_AddMenuItem := UiProcs.MainWindow_AddMenuItem;
+  AUiProcVars.AUiMainWindow_AddMenuItemA := UiProcs.MainWindow_AddMenuItemA;
 end;
 
 function UI_SetProcsP(UiProcs: PUiProcs; Ui_Init: AUi_Init_Proc; Ui_Fin: AUi_Fin_Proc): Boolean;

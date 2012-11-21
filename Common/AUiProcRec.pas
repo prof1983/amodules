@@ -2,7 +2,7 @@
 @Abstract User interface proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 20.11.2012
+@LastMod 21.11.2012
 }
 unit AUiProcRec;
 
@@ -225,10 +225,10 @@ type
     Grid_DeleteRow2: AUi_Grid_DeleteRow2_Proc;                      // 145
     ShowHelp2WS: AUi_ShowHelp2WS_Proc;                              // 146
     Window_SetBorderStyle: AUI_Window_SetBorderStyle03;             // 147
-    MainWindow_AddMenuItem: AUi_MainWindow_AddMenuItem03WS_Proc;    // 148
+    MainWindow_AddMenuItem03WS: AUi_MainWindow_AddMenuItem03WS_Proc;// 148
     OnDone_Disconnect03: AUi_OnDone_Disconnect03_Proc;              // 149
-      Reserved150: Integer;
-      Reserved151: Integer;
+    MainWindow_AddMenuItem: AUiMainWindow_AddMenuItem_Proc;         // 150
+    MainWindow_AddMenuItemA: AUiMainWindow_AddMenuItemA_Proc;       // 151
       Reserved152: Integer;
       Reserved153: Integer;
       Reserved154: Integer;

@@ -2,7 +2,7 @@
 @Abstract User Interface client
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 20.11.2012
+@LastMod 21.11.2012
 }
 unit AUi;
 
@@ -463,7 +463,7 @@ end;
 
 function Window_SetBorderStyle(Window: AWindow; BorderStyle: AInteger): AError; stdcall;
 begin
-  Result := AUiProcVars.UI_Window_SetBorderStyle(Window, BorderStyle);
+  Result := AUiWindow_SetBorderStyle(Window, BorderStyle);
 end;
 
 function Window_SetFormStyle(Window: AWindow; FormStyle: AInteger): AError; stdcall;
@@ -480,7 +480,7 @@ end;
 
 function Window_ShowModal(Window: AWindow): ABoolean; stdcall;
 begin
-  Result := AUiProcVars.UI_Window_ShowModal(Window);
+  Result := AUiProcVars.AUiWindow_ShowModal(Window);
 end;
 
 { Public }

@@ -2,7 +2,7 @@
 @Abstract User Interface
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 19.11.2012
+@LastMod 21.11.2012
 }
 unit AUiMod;
 
@@ -17,7 +17,7 @@ interface
 uses
   ABase, ARuntime, ARuntimeBase,
   AUi, AUiBase, AUiCalendar, AUiControls, AUiDialogs, AUiGrids, AUiImages, AUiLabels, AUiListBox,
-  AUiMain, {$IFDEF ADepr}AUiProcRec,{$ENDIF} AUiTextView, AUiWindows, AUiWindowSettings;
+  AUiMain, AUiMainWindow2, {$IFDEF ADepr}AUiProcRec,{$ENDIF} AUiTextView, AUiWindows, AUiWindowSettings;
 
 // --- AUi ---
 
@@ -206,10 +206,10 @@ const
     Grid_DeleteRow2: AUI.Grid_DeleteRow2;                           // 145
     ShowHelp2WS: AUI.ShowHelp2WS;                                   // 146
     Window_SetBorderStyle: AUI.Window_SetBorderStyle;               // 147
-    MainWindow_AddMenuItem: AUI.MainWindow_AddMenuItem03WS;         // 148
+    MainWindow_AddMenuItem03WS: AUI.MainWindow_AddMenuItem03WS;     // 148
     OnDone_Disconnect03: AUI.OnDone_Disconnect;                     // 149
-    Reserved150: 0;
-    Reserved151: 0;
+    MainWindow_AddMenuItem: AUiMainWindow_AddMenuItem;              // 150
+    MainWindow_AddMenuItemA: AUiMainWindow_AddMenuItemA;            // 151
     Reserved152: 0;
     Reserved153: 0;
     Reserved154: 0;
