@@ -2,7 +2,7 @@
 @Abstract User Interface client
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 19.11.2012
+@LastMod 21.11.2012
 }
 unit AUiModClient;
 
@@ -28,17 +28,12 @@ function AUi_Boot(): AError;
 var
   Module: AModule_Type;
 begin
-  {if (ARuntime.Modules_InitByUid(AUI_Uid) < 0) then
-  begin
-    Result := -2;
-    Exit;
-  end;}
   if (ARuntime.Modules_GetByUid(AUI_Uid, Module) < 0) then
   begin
     Result := -3;
     Exit;
   end;
-  if not(Ui_SetProcsP(Module.Procs)) then
+  if not(Ui_SetProcsP(Module.Procs, Module.Init, Module.Fin)) then
   begin
     Result := -4;
     Exit;

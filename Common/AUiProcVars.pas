@@ -2,7 +2,7 @@
 @Abstract User Interface procs var
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 20.11.2012
+@LastMod 21.11.2012
 }
 unit AUiProcVars;
 
@@ -18,7 +18,8 @@ uses
 
 var
   AUi_GetIsShowApp: AUi_GetIsShowApp_Proc;
-  AUi_Init: AProc;
+  AUi_Fin: AUi_Fin_Proc;
+  AUi_Init: AUi_Init_Proc;
   AUi_InitMainTrayIcon: AUi_InitMainTrayIcon_Proc;
   AUi_InitMenus: AUi_InitMenus_Proc;
   {$ifdef ADepr}

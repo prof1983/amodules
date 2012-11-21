@@ -2,7 +2,7 @@
 @Abstract User Interface
 @Author Prof1983 <prof1983@ya.ru>
 @Created 24.09.2012
-@LastMod 20.11.2012
+@LastMod 21.11.2012
 }
 unit AUiProcSet;
 
@@ -13,7 +13,7 @@ uses
   AUiProcRec, AUiProcTypes, AUiProcVars;
 
 procedure UI_SetProcs(const UiProcs: AUiProcs_Type);
-function UI_SetProcsP(UiProcs: PUiProcs): Boolean;
+function UI_SetProcsP(UiProcs: PUiProcs; Ui_Init: AUi_Init_Proc; Ui_Fin: AUi_Fin_Proc): Boolean;
 
 implementation
 
@@ -234,14 +234,16 @@ begin
   {$ENDIF A01}
 end;
 
-function UI_SetProcsP(UIProcs: PUIProcs): Boolean;
+function UI_SetProcsP(UiProcs: PUiProcs; Ui_Init: AUi_Init_Proc; Ui_Fin: AUi_Fin_Proc): Boolean;
 begin
-  if not(Assigned(UIProcs)) then
+  if not(Assigned(UiProcs)) then
   begin
     Result := False;
     Exit;
   end;
-  UI_SetProcs(UIProcs^);
+  UI_SetProcs(UiProcs^);
+  AUi_Init := Ui_Init;
+  AUi_Fin := Ui_Fin;
   Result := True;
 end;
 
