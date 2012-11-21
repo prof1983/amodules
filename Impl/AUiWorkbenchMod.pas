@@ -2,7 +2,7 @@
 @Abstract AUiWorkbench
 @Author Prof1983 <prof1983@ya.ru>
 @Created 26.08.2009
-@LastMod 20.11.2012
+@LastMod 21.11.2012
 }
 unit AUiWorkbenchMod;
 
@@ -11,9 +11,10 @@ unit AUiWorkbenchMod;
 interface
 
 uses
-  ABase, ARuntime, ARuntimeBase, AUi, AUiBase, AUiModClient, AUiWorkbenchMain, AUiWorkbenchBase{$IFDEF ADepr}, AUiWorkbenchProcRec{$ENDIF};
+  ABase, ARuntimeBase, ARuntimeMain, AUiBase, AUiMain,
+  AUiWorkbenchMain, AUiWorkbenchBase{$IFDEF ADepr}, AUiWorkbenchProcRec{$ENDIF};
 
-function AUiWorkbenchModule_Boot(): AError; stdcall;
+function AUiWorkbenchMod_Boot(): AError; stdcall;
 
 function AUiWorkbenchModule_Fin(): AError; stdcall;
 
@@ -65,26 +66,26 @@ var
 
 // --- AUiWorkbenchModule ---
 
-function AUiWorkbenchModule_Boot(): AError;
+function AUiWorkbenchMod_Boot(): AError;
 begin
-  if (ARuntime.Modules_FindByUid(AUIWorkbench_Uid) >= 0) then
+  if (ARuntime_FindModuleByUid(AUiWorkbench_Uid) >= 0) then
   begin
     Result := -2;
     Exit;
   end;
 
-  if (ARuntime.Modules_FindByName(AUIWorkbench_Name) >= 0) then
+  if (ARuntime_FindModuleByName(AUiWorkbench_Name) >= 0) then
   begin
     Result := -3;
     Exit;
   end;
 
-  Result := ARuntime.Module_Register(Module);
+  Result := ARuntime_RegisterModule(Module);
 end;
 
 function AUiWorkbenchModule_Fin(): AError;
 begin
-  ARuntime.Modules_DeleteByUid(AUIWorkbench_Uid);
+  ARuntime_DeleteModuleByUid(AUIWorkbench_Uid);
   Result := AUiWorkbench_Fin();
 end;
 
@@ -102,7 +103,7 @@ begin
   end;
 
   // --- Init request modules ---
-  AUi_Boot();
+  AUi_Init();
 
   Result := AUiWorkbench_Init();
 end;

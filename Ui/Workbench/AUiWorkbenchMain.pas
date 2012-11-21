@@ -2,9 +2,11 @@
 @Abstract AUiWorkbench
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 20.11.2012
+@LastMod 21.11.2012
 }
 unit AUiWorkbenchMain;
+
+{$ifdef A04}{$define ADepr}{$endif}
 
 interface
 
@@ -36,11 +38,13 @@ begin
     Result := AUiWorkbenchProcVars.AUiWorkbench_AddPage(Name, Text);
     Exit;
   end;
+  {$ifdef ADepr}
   if Assigned(AUiWorkbenchProcVars.AUiWorkbench_AddPageWS) then
   begin
     Result := AUiWorkbenchProcVars.AUiWorkbench_AddPageWS(AString_ToWideString(Name), AString_ToWideString(Text));
     Exit;
   end;
+  {$endif}
   Result := -1;
 end;
 
@@ -54,14 +58,19 @@ var
   SName: AString_Type;
   SText: AString_Type;
 begin
+  if Assigned(AUiWorkbenchProcVars.AUiWorkbench_AddPage) then
+  begin
+    AString_AssignWS(SName, Name);
+    AString_AssignWS(SText, Text);
+    Result := AUiWorkbench_AddPage(SName, SText);
+  end;
+  {$ifdef ADepr}
   if Assigned(AUiWorkbenchProcVars.AUiWorkbench_AddPageWS) then
   begin
     Result := AUiWorkbenchProcVars.AUiWorkbench_AddPageWS(Name, Text);
     Exit;
   end;
-  AString_AssignWS(SName, Name);
-  AString_AssignWS(SText, Text);
-  Result := AUiWorkbench_AddPage(SName, SText);
+  {$endif}
 end;
 
 function AUiWorkbench_Fin(): AError;
