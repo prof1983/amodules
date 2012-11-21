@@ -2,24 +2,34 @@
 @Abstract ASystem
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.07.2012
-@LastMod 16.11.2012
+@LastMod 21.11.2012
 }
 unit ASystem;
 
 interface
 
 uses
-  ABase, ABaseTypes, AStrings, ASystemMain, ASystemProcVars;
+  ABase, ABaseTypes, AStrings, ASystemMain, ASystemResourceString;
 
 // ----
 
 function GetConfig(): AConfig; stdcall;
 
+function GetDataDirectoryPathWS(): AWideString; stdcall;
+
 function GetExePathP(): APascalString; stdcall;
 
 function GetExePathWS(): AWideString; stdcall;
 
+{** Gets the name, without the extension, of the assembly file for the application.
+    Prototype: System.Application.Info.AssemblyName }
+function GetProgramNameWS(): AWideString; stdcall;
+
 function GetResourceStringWS(const Section, Name, Default: AWideString): AWideString; stdcall;
+
+function GetTitleWS(): AWideString; stdcall;
+
+function Init(): AError; stdcall;
 
 function OnBeforeRun_Connect(Callback: ACallbackProc): AInteger; stdcall;
 
@@ -57,6 +67,11 @@ begin
   Result := ASystem_GetConfig();
 end;
 
+function GetDataDirectoryPathWS(): AWideString;
+begin
+  Result := ASystem_GetDataDirectoryPathP();
+end;
+
 function GetExePathP(): APascalString;
 begin
   Result := ASystem_GetExePathP();
@@ -67,26 +82,24 @@ begin
   Result := ASystem_GetExePathWS();
 end;
 
-function GetResourceStringWS(const Section, Name, Default: AWideString): AWideString;
-var
-  SSection: AString_Type;
-  SName: AString_Type;
-  SDefault: AString_Type;
-  SRes: AString_Type;
+function GetProgramNameWS(): AWideString;
 begin
-  if not(Assigned(ASystemProcVars.ASystem_GetResourceString)) then
-  begin
-    Result := '';
-    Exit;
-  end;
+  Result := ASystem_GetProgramNameP();
+end;
 
-  AString_AssignWS(SSection, Section);
-  AString_AssignWS(SName, Name);
-  AString_AssignWS(SDefault, Default);
+function GetResourceStringWS(const Section, Name, Default: AWideString): AWideString;
+begin
+  Result := ASystem_GetResourceStringP(Section, Name, Default);
+end;
 
-  ASystemProcVars.ASystem_GetResourceString(SSection, SName, SDefault, SRes);
+function GetTitleWS(): AWideString;
+begin
+  Result := ASystem_GetTitleP();
+end;
 
-  Result := AString_ToWideString(SRes);
+function Init(): AError;
+begin
+  Result := ASystem_Init();
 end;
 
 function OnBeforeRun_Connect(Callback: ACallbackProc): AInteger;
@@ -108,12 +121,7 @@ function Prepare2A(Title, ProgramName: PAnsiChar; ProgramVersion: AVersion;
     ProductName: PAnsiChar; ProductVersion: AVersion;
     CompanyName, Copyright, Url, Description, DataPath: PAnsiChar): AError; stdcall;
 begin
-  if not(Assigned(ASystemProcVars.ASystem_Prepare2A)) then
-  begin
-    Result := -2;
-    Exit;
-  end;
-  Result := ASystemProcVars.ASystem_Prepare2A(Title, ProgramName, ProgramVersion,
+  Result := ASystem_Prepare2A(Title, ProgramName, ProgramVersion,
       ProductName, ProductVersion, CompanyName, Copyright, Url, Description, DataPath);
 end;
 
@@ -131,12 +139,7 @@ function Prepare4A(Title, ProgramName: AStr; ProgramVersion: AVersion;
     ProductName: AStr; ProductVersion: AVersion;
     CompanyName, Copyright, Url, Description, Comments, DataPath, ConfigPath: AStr): AError;
 begin
-  if not(Assigned(ASystemProcVars.ASystem_Prepare4A)) then
-  begin
-    Result := -2;
-    Exit;
-  end;
-  Result := ASystemProcVars.ASystem_Prepare4A(Title, ProgramName, ProgramVersion,
+  Result := ASystem_Prepare4A(Title, ProgramName, ProgramVersion,
       ProductName, ProductVersion, CompanyName, Copyright, Url, Description,
       Comments, DataPath, ConfigPath);
 end;
@@ -154,12 +157,7 @@ end;
 
 function ProcessMessages(): AError;
 begin
-  if not(Assigned(ASystemProcVars.ASystem_ProcessMessages)) then
-  begin
-    Result := -2;
-    Exit;
-  end;
-  Result := ASystemProcVars.ASystem_ProcessMessages();
+  Result := ASystem_ProcessMessages();
 end;
 
 function ShowMessageExWS(const Text, Caption: AWideString; Flags: AMessageBoxFlags): ADialogBoxCommands;
@@ -168,16 +166,8 @@ begin
 end;
 
 function ShowMessageWS(const Msg: AWideString): ADialogBoxCommands;
-var
-  Msg1: AString_Type;
 begin
-  if not(Assigned(ASystemProcVars.ASystem_ShowMessage)) then
-  begin
-    Result := 0;
-    Exit;
-  end;
-  AString_AssignWS(Msg1, Msg);
-  Result := ASystem_ShowMessage(Msg1);
+  Result := ASystem_ShowMessageP(Msg);
 end;
 
 end.

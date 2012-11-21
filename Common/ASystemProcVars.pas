@@ -2,7 +2,7 @@
 @Abstract ASystem
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.07.2012
-@LastMod 19.11.2012
+@LastMod 21.11.2012
 }
 unit ASystemProcVars;
 
@@ -21,6 +21,7 @@ var
   ASystem_GetProgramName: ASystem_GetProgramName_Proc;
   ASystem_GetResourceString: ASystem_GetResourceString_Proc;
   ASystem_GetTitle: ASystem_GetTitle_Proc;
+  ASystem_Init: ASystem_Init_Proc;
   ASystem_OnAfterRun: ASystem_OnAfterRun_Proc;
   ASystem_OnAfterRun_Connect: ASystem_OnAfterRun_Connect_Proc;
   ASystem_OnAfterRun_Disconnect: ASystem_OnAfterRun_Disconnect_Proc;

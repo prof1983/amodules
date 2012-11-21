@@ -2,7 +2,7 @@
 @Abstract ASystemProcs
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.08.2009
-@LastMod 16.11.2012
+@LastMod 21.11.2012
 }
 unit ASystemProcTypes;
 
@@ -40,6 +40,7 @@ type
   ASystem_GetResourceString_Proc = function(const Section, Name, Default: AString_Type; out Value: AString_Type): AInteger; stdcall;
   {$IFDEF ADepr}ASystem_GetResourceStringWS_Proc = function(const Section, Name, Default: AWideString): AWideString; stdcall;{$ENDIF}
   ASystem_GetTitle_Proc = function(out S: AString_Type): AError; stdcall;
+  ASystem_Init_Proc = function(): AError; stdcall;
   ASystem_InitModuleByName_Proc = function(Name: AStr): AInteger; stdcall;
   {$IFDEF ADepr}ASystem_InitModuleByNameWS_Proc = function(const ModuleName: AWideString): AInteger; stdcall;{$ENDIF}
   ASystem_InitModuleByUid_Proc = function(Uid: AModuleUid): AInteger; stdcall;

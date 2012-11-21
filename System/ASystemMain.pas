@@ -2,7 +2,7 @@
 @Abstract ASystem client
 @Author Prof1983 <prof1983@ya.ru>
 @Created 27.08.2012
-@LastMod 16.11.2012
+@LastMod 21.11.2012
 }
 unit ASystemMain;
 
@@ -25,9 +25,23 @@ function ASystem_GetProgramNameP(): APascalString; stdcall;
 
 function ASystem_GetTitleP(): APascalString; stdcall;
 
+function ASystem_Init(): AError; stdcall;
+
+function ASystem_OnBeforeRun_Connect(Callback: ACallbackProc): AInteger; stdcall;
+
+function ASystem_OnBeforeRun_Disconnect(Callback: ACallbackProc): AInteger; stdcall;
+
 function ASystem_ParamStrP(Index: AInt): APascalString; stdcall;
 
 function ASystem_ParamStrWS(Index: AInt): AWideString; stdcall;
+
+function ASystem_Prepare2A(Title, ProgramName: PAnsiChar; ProgramVersion: AVersion;
+    ProductName: PAnsiChar; ProductVersion: AVersion;
+    CompanyName, Copyright, Url, Description, DataPath: PAnsiChar): AError; stdcall;
+
+function ASystem_Prepare4A(Title, ProgramName: AStr; ProgramVersion: AVersion;
+    ProductName: AStr; ProductVersion: AVersion;
+    CompanyName, Copyright, Url, Description, Comments, DataPath, ConfigPath: AStr): AError; stdcall;
 
 function ASystem_ProcessMessages(): AError; stdcall;
 
@@ -143,6 +157,36 @@ begin
   Result := AString_ToPascalString(S);
 end;
 
+function ASystem_Init(): AError;
+begin
+  if not(Assigned(ASystemProcVars.ASystem_Init)) then
+  begin
+    Result := -1;
+    Exit;
+  end;
+  Result := ASystemProcVars.ASystem_Init();
+end;
+
+function ASystem_OnBeforeRun_Connect(Callback: ACallbackProc): AInteger;
+begin
+  if not(Assigned(ASystemProcVars.ASystem_OnBeforeRun_Connect)) then
+  begin
+    Result := 0;
+    Exit;
+  end;
+  Result := ASystemProcVars.ASystem_OnBeforeRun_Connect(Callback);
+end;
+
+function ASystem_OnBeforeRun_Disconnect(Callback: ACallbackProc): AInteger;
+begin
+  if not(Assigned(ASystemProcVars.ASystem_OnBeforeRun_Disconnect)) then
+  begin
+    Result := 0;
+    Exit;
+  end;
+  Result := ASystemProcVars.ASystem_OnBeforeRun_Disconnect(Callback);
+end;
+
 function ASystem_ParamStrP(Index: AInt): APascalString;
 var
   Res: AString_Type;
@@ -177,9 +221,36 @@ begin
   Result := AString_ToWideString(Res);
 end;
 
+function ASystem_Prepare2A(Title, ProgramName: PAnsiChar; ProgramVersion: AVersion;
+    ProductName: PAnsiChar; ProductVersion: AVersion;
+    CompanyName, Copyright, Url, Description, DataPath: PAnsiChar): AError;
+begin
+  if not(Assigned(ASystemProcVars.ASystem_Prepare2A)) then
+  begin
+    Result := -2;
+    Exit;
+  end;
+  Result := ASystemProcVars.ASystem_Prepare2A(Title, ProgramName, ProgramVersion,
+      ProductName, ProductVersion, CompanyName, Copyright, Url, Description, DataPath);
+end;
+
+function ASystem_Prepare4A(Title, ProgramName: AStr; ProgramVersion: AVersion;
+    ProductName: AStr; ProductVersion: AVersion;
+    CompanyName, Copyright, Url, Description, Comments, DataPath, ConfigPath: AStr): AError;
+begin
+  if not(Assigned(ASystemProcVars.ASystem_Prepare4A)) then
+  begin
+    Result := -2;
+    Exit;
+  end;
+  Result := ASystemProcVars.ASystem_Prepare4A(Title, ProgramName, ProgramVersion,
+      ProductName, ProductVersion, CompanyName, Copyright, Url, Description,
+      Comments, DataPath, ConfigPath);
+end;
+
 function ASystem_ProcessMessages(): AError;
 begin
-  if not(Assigned(ASystemProcVars.ASystem_ParamStr)) then
+  if not(Assigned(ASystemProcVars.ASystem_ProcessMessages)) then
   begin
     Result := -1;
     Exit;
@@ -216,12 +287,12 @@ var
 begin
   if (AString_AssignP(S, Msg) < 0) then
   begin
-    Result := -1;
+    Result := 0;
     Exit;
   end;
   if not(Assigned(ASystemProcVars.ASystem_ShowMessage)) then
   begin
-    Result := -1;
+    Result := 0;
     Exit;
   end;
   Result := ASystemProcVars.ASystem_ShowMessage(S)
