@@ -260,7 +260,6 @@ begin
     Result := AUtilsProcVars.AUtils_Sleep(Milliseconds);
     Exit;
   except
-    Result := -1;
   end;
 
   if Assigned(AUtilsProcVars.AUtils_Sleep02) then
@@ -269,7 +268,6 @@ begin
     Result := 0;
     Exit;
   except
-    Result := -1;
   end;
 
   Result := -1;
