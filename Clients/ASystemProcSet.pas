@@ -2,7 +2,7 @@
 @Abstract ASystem
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.08.2009
-@LastMod 19.11.2012
+@LastMod 21.11.2012
 }
 unit ASystemProcSet;
 
@@ -18,28 +18,28 @@ implementation
 
 function System_SetProcs(const Procs: ASystemProcs_Type): AInteger;
 begin
-  ASystem_GetConfig := Procs.GetConfig;
-  ASystem_GetIsShutdown := Procs.GetIsShutdown;
-  ASystem_GetResourceStringWS := Procs.GetResourceStringWS;
-  ASystem_ProcessMessages02 := Procs.ProcessMessages02;
-  ASystem_SetConfig := Procs.SetConfig;
-  ASystem_ShowError02 := Procs.ShowError02;
-  ASystem_ShowMessageWS := Procs.ShowMessageWS;
-  ASystem_ShowMessageExWS := Procs.ShowMessageExWS;
-  ASystem_Shutdown02 := Procs.Shutdown02;
+  ASystemProcVars.ASystem_GetConfig := Procs.GetConfig;
+  ASystemProcVars.ASystem_GetIsShutdown := Procs.GetIsShutdown;
+  ASystemProcVars.ASystem_GetResourceStringWS := Procs.GetResourceStringWS;
+  ASystemProcVars.ASystem_ProcessMessages02 := Procs.ProcessMessages02;
+  ASystemProcVars.ASystem_SetConfig := Procs.SetConfig;
+  ASystemProcVars.ASystem_ShowError02 := Procs.ShowError02;
+  ASystemProcVars.ASystem_ShowMessageWS := Procs.ShowMessageWS;
+  ASystemProcVars.ASystem_ShowMessageExWS := Procs.ShowMessageExWS;
+  ASystemProcVars.ASystem_Shutdown02 := Procs.Shutdown02;
 
-  ASystem_SetOnProcessMessages02 := Procs.SetOnProcessMessages02;
-  ASystem_SetOnRun02 := Procs.SetOnRun;
-  ASystem_SetOnShutdown02 := Procs.SetOnShutdown;
-  ASystem_SetOnShowError := Procs.SetOnShowError;
-  ASystem_SetOnShowMessage := Procs.SetOnShowMessage;
+  ASystemProcVars.ASystem_SetOnProcessMessages02 := Procs.SetOnProcessMessages02;
+  ASystemProcVars.ASystem_SetOnRun02 := Procs.SetOnRun;
+  ASystemProcVars.ASystem_SetOnShutdown02 := Procs.SetOnShutdown;
+  ASystemProcVars.ASystem_SetOnShowError := Procs.SetOnShowError;
+  ASystemProcVars.ASystem_SetOnShowMessage := Procs.SetOnShowMessage;
 
-  ASystem_OnAfterRun := Procs.OnAfterRun;
-  ASystem_OnBeforeRun := Procs.OnBeforeRun;
-  ASystem_OnAfterRun_Connect02 := Procs.OnAfterRun_Connect02;
-  ASystem_OnAfterRun_Disconnect02 := Procs.OnAfterRun_Disconnect02;
-  ASystem_OnBeforeRun_Connect02 := Procs.OnBeforeRun_Connect02;
-  ASystem_OnBeforeRun_Disconnect02 := Procs.OnBeforeRun_Disconnect02;
+  ASystemProcVars.ASystem_OnAfterRun := Procs.OnAfterRun;
+  ASystemProcVars.ASystem_OnBeforeRun := Procs.OnBeforeRun;
+  ASystemProcVars.ASystem_OnAfterRun_Connect02 := Procs.OnAfterRun_Connect02;
+  ASystemProcVars.ASystem_OnAfterRun_Disconnect02 := Procs.OnAfterRun_Disconnect02;
+  ASystemProcVars.ASystem_OnBeforeRun_Connect02 := Procs.OnBeforeRun_Connect02;
+  ASystemProcVars.ASystem_OnBeforeRun_Disconnect02 := Procs.OnBeforeRun_Disconnect02;
 
   {$IFDEF ARUNTIMEOLD}
   Runtime_Module_Count := ASystem.Module_Count;
