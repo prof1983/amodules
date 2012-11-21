@@ -2,7 +2,7 @@
 @Abstract AUtils
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.07.2012
-@LastMod 08.08.2012
+@LastMod 21.11.2012
 }
 unit AUtilsProcVars;
 
@@ -33,6 +33,7 @@ var
   AUtils_FormatStr: AUtils_FormatStr_Proc;
   {$IFDEF ADepr}AUtils_FormatStrWS: AUtils_FormatStrWS_Proc;{$ENDIF}
   {$IFDEF ADepr}AUtils_FormatStrStrWS: AUtils_FormatStrStrWS_Proc;{$ENDIF}
+  AUtils_GetNowDateTime: AUtils_GetNowDateTime_Proc;
   AUtils_Init: AUtils_Init_Proc;
   AUtils_IntToStr: AUtils_IntToStr_Proc;
   {$IFDEF ADepr}AUtils_IntToStrWS: AUtils_IntToStrWS_Proc;{$ENDIF}
@@ -42,7 +43,8 @@ var
   AUtils_Power: AUtils_Power_Proc;
   AUtils_ReplaceComma: AUtils_ReplaceComma_Proc;
   {$IFDEF ADepr}AUtils_ReplaceCommaWS: AUtils_ReplaceCommaWS_Proc;{$ENDIF}
-  AUtils_Sleep: AUtils_Sleep_Proc;
+  AUtils_Sleep: AUtils_Sleep04_Proc;
+  {$IFDEF ADepr}AUtils_Sleep02: AUtils_Sleep02_Proc;{$ENDIF}
   AUtils_StrToDate: AUtils_StrToDate_Proc;
   {$IFDEF ADepr}AUtils_StrToDateWS: AUtils_StrToDateWS_Proc;{$ENDIF}
   AUtils_StrToFloat: AUtils_StrToFloat_Proc;

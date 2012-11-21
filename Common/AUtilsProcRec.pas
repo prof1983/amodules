@@ -2,7 +2,7 @@
 @Abstract AUtils proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.09.2009
-@LastMod 06.08.2012
+@LastMod 21.11.2012
 }
 unit AUtilsProcRec;
 
@@ -32,7 +32,7 @@ type
     NormalizeFloat: AUtils_NormalizeFloat_Proc;                 // 04
     NormalizeStrWS: AUtils_NormalizeStrWS_Proc;                 // 05
     FileExistsWS: AUtils_FileExistsWS_Proc;                     // 06
-    Sleep: AUtils_Sleep_Proc;                                   // 07
+    Sleep: AUtils_Sleep02_Proc;                                 // 07
     Time_Now: AUtils_Time_Now_Proc;                             // 08
     IntToStrWS: AUtils_IntToStrWS_Proc;                         // 09
     StrToFloatWS: AUtils_StrToFloatWS_Proc;                     // 10

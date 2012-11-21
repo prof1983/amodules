@@ -2,7 +2,7 @@
 @Abstract AUtils
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 19.11.2012
+@LastMod 21.11.2012
 }
 unit AUtilsProcSet;
 
@@ -22,7 +22,7 @@ begin
   AUtilsProcVars.AUtils_NormalizeFloat := Procs.NormalizeFloat;
   AUtilsProcVars.AUtils_NormalizeStrWS := Procs.NormalizeStrWS;
   AUtilsProcVars.AUtils_FileExistsWS := Procs.FileExistsWS;
-  AUtilsProcVars.AUtils_Sleep := Procs.Sleep;
+  AUtilsProcVars.AUtils_Sleep02 := Procs.Sleep;
   AUtilsProcVars.AUtils_Time_Now := Procs.Time_Now;
   AUtilsProcVars.AUtils_IntToStrWS := Procs.IntToStrWS;
   AUtilsProcVars.AUtils_StrToFloatWS := Procs.StrToFloatWS;

@@ -2,14 +2,14 @@
 @Abstract AUtils
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.07.2012
-@LastMod 20.11.2012
+@LastMod 21.11.2012
 }
 unit AUtils;
 
 interface
 
 uses
-  ABase, AUtilsProcVars;
+  ABase, AUtilsMain;
 
 // ----
 
@@ -18,6 +18,8 @@ function ExtractFileExtWS(const FileName: AWideString): AWideString; stdcall;
 function FileExistsWS(const FileName: AWideString): ABoolean; stdcall;
 
 function GetNowDateTime(): TDateTime; stdcall;
+
+function Init(): AError; stdcall;
 
 function IntToStrWS(Value: AInt): AWideString; stdcall;
 
@@ -34,6 +36,8 @@ function StrToFloatWS(const S: AWideString): AFloat; stdcall;
 function StrToIntDefWS(const S: AWideString; DefValue: AInt): AInt; stdcall;
 
 function StrToIntWS(const S: AWideString): AInt; stdcall;
+
+function Time_Now(): TDateTime; stdcall; deprecated; // Use GetNowDateTime()
 
 function TrimWS(const S: AWideString): AWideString; stdcall;
 
@@ -53,12 +57,12 @@ end;
 
 function GetNowDateTime(): TDateTime;
 begin
-  if not(Assigned(AUtilsProcVars.AUtils_Time_Now)) then
-  begin
-    Result := 0;
-    Exit;
-  end;
-  Result := AUtilsProcVars.AUtils_Time_Now();
+  Result := AUtils_GetNowDateTime();
+end;
+
+function Init(): AError;
+begin
+  Result := AUtils_Init();
 end;
 
 function IntToStrWS(Value: AInt): AWideString;
@@ -74,17 +78,7 @@ end;
 
 function Sleep(Milliseconds: AUInt): AError;
 begin
-  if not(Assigned(AUtils_Sleep)) then
-  begin
-    Result := -2;
-    Exit;
-  end;
-  try
-    AUtils_Sleep(Milliseconds);
-    Result := 0;
-  except
-    Result := -1;
-  end
+  Result := AUtils_Sleep(Milliseconds);
 end;
 
 function StrToFloatDefWS(const S: AWideString; DefValue: AFloat): AFloat;
@@ -105,6 +99,11 @@ end;
 function StrToIntWS(const S: AWideString): AInt;
 begin
   Result := AUtils_StrToIntDefWS(S, 0);
+end;
+
+function Time_Now(): TDateTime;
+begin
+  Result := AUtils_GetNowDateTime();
 end;
 
 function TrimWS(const S: AWideString): AWideString;

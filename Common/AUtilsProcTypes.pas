@@ -2,7 +2,7 @@
 @Abstract AUtils proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.09.2009
-@LastMod 08.08.2012
+@LastMod 21.11.2012
 }
 unit AUtilsProcTypes;
 
@@ -42,6 +42,7 @@ type
   AUtils_FormatStr_Proc = function(const Value: AString_Type; Len: AInt; out Res: AString_Type): AError; stdcall;
   {$IFDEF ADepr}AUtils_FormatStrWS_Proc = function(const Value: AWideString; Len: AInteger): AWideString; stdcall;{$ENDIF}
   {$IFDEF ADepr}AUtils_FormatStrStrWS_Proc = function(const FormatStr, S: AWideString): AWideString; stdcall;{$ENDIF}
+  AUtils_GetNowDateTime_Proc = function(): TDateTime; stdcall;
   AUtils_Init_Proc = function(): AError; stdcall;
   AUtils_IntToStr_Proc = function(Value: AInt; out Res: AString_Type): AError; stdcall;
   {$IFDEF ADepr}AUtils_IntToStrWS_Proc = function(Value: AInteger): AWideString; stdcall;{$ENDIF}
@@ -56,7 +57,8 @@ type
     Если параметр DecimalSeparator указан, то региональные настройки игнорируются. }
   AUtils_ReplaceComma_Proc = function(const S: AString_Type; DecimalSeparator: AChar {= #0}; ClearSpace: ABoolean {= True}; out Res: AString_Type): AError; stdcall;
   {$IFDEF ADepr}AUtils_ReplaceCommaWS_Proc = function(const S: AWideString; DecimalSeparator: AChar = #0; ClearSpace: ABoolean = True): AWideString; stdcall;{$ENDIF}
-  AUtils_Sleep_Proc = procedure(Milliseconds: AUInt); stdcall;
+  AUtils_Sleep02_Proc = procedure(Milliseconds: AUInt); stdcall;
+  AUtils_Sleep04_Proc = function(Milliseconds: AUInt): AError; stdcall;
   AUtils_StrToDate_Proc = function(const Value: AString_Type): TDateTime; stdcall;
   {$IFDEF ADepr}AUtils_StrToDateWS_Proc = function(const Value: AWideString): TDateTime; stdcall;{$ENDIF}
   AUtils_StrToFloat_Proc = function(const Value: AString_Type): AFloat; stdcall;

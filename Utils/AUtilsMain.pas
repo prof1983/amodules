@@ -2,7 +2,7 @@
 @Abstract AUtils - Main
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 20.11.2012
+@LastMod 21.11.2012
 }
 unit AUtilsMain;
 
@@ -23,6 +23,10 @@ function AUtils_FileExists(const FileName: AString_Type): ABoolean; stdcall;
 
 function AUtils_FileExistsWS(const FileName: AWideString): ABoolean; stdcall;
 
+function AUtils_GetNowDateTime(): TDateTime; stdcall;
+
+function AUtils_Init(): AError; stdcall;
+
 function AUtils_IntToStr(Value: AInt; out Res: AString_Type): AError; stdcall;
 
 function AUtils_IntToStrP(Value: AInt): APascalString; stdcall;
@@ -31,6 +35,8 @@ function AUtils_IntToStrWS(Value: AInt): AWideString; stdcall;
 
 function AUtils_ReplaceCommaWS(const S: AWideString; DecimalSeparator: AChar = #0;
     ClearSpace: ABoolean = True): AWideString; stdcall;
+
+function AUtils_Sleep(Milliseconds: AUInt): AError; stdcall;
 
 function AUtils_StrToFloatDefWS(const S: AWideString; DefValue: AFloat): AFloat; stdcall;
 
@@ -149,6 +155,33 @@ begin
   Result := AUtils_FileExists(S);
 end;
 
+function AUtils_GetNowDateTime(): TDateTime;
+begin
+  if Assigned(AUtilsProcVars.AUtils_GetNowDateTime) then
+  begin
+    Result := AUtilsProcVars.AUtils_GetNowDateTime();
+    Exit;
+  end;
+
+  if Assigned(AUtilsProcVars.AUtils_Time_Now) then
+  begin
+    Result := AUtilsProcVars.AUtils_Time_Now();
+    Exit;
+  end;
+
+  Result := 0;
+end;
+
+function AUtils_Init(): AError;
+begin
+  if not(Assigned(AUtilsProcVars.AUtils_Init)) then
+  begin
+    Result := -1;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_Init();
+end;
+
 function AUtils_IntToStr(Value: AInt; out Res: AString_Type): AError;
 begin
   if not(Assigned(AUtilsProcVars.AUtils_IntToStr)) then
@@ -218,6 +251,28 @@ begin
   end;
   {$ENDIF}
   Result := S;
+end;
+
+function AUtils_Sleep(Milliseconds: AUInt): AError;
+begin
+  if Assigned(AUtilsProcVars.AUtils_Sleep) then
+  try
+    Result := AUtilsProcVars.AUtils_Sleep(Milliseconds);
+    Exit;
+  except
+    Result := -1;
+  end;
+
+  if Assigned(AUtilsProcVars.AUtils_Sleep02) then
+  try
+    AUtilsProcVars.AUtils_Sleep02(Milliseconds);
+    Result := 0;
+    Exit;
+  except
+    Result := -1;
+  end;
+
+  Result := -1;
 end;
 
 function AUtils_StrToFloatDefWS(const S: AWideString; DefValue: AFloat): AFloat;
