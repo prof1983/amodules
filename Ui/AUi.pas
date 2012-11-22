@@ -15,7 +15,7 @@ uses
   AStrings,
   AUiBase, AUiBox, AUiControls, AUiControlsA, AUiDialogs, AUiGrids, AUiImages, AUiLabels,
   AUiListBox, AUiMain, AUiMainWindow, AUiMenus, AUiPageControl, AUiProgressBar, {AUiProcVars,}
-  AUiSplitter, AUiTreeView;
+  AUiSplitter, AUiTextView, AUiTreeView;
 
 // ----
 
@@ -394,30 +394,27 @@ end;
 
 function TextView_AddLineWS(TextView: AControl; const Text: AWideString): AInteger; stdcall;
 begin
-  Result := AUiProcVars.UI_TextView_AddLine(TextView, Text);
+  Result := AUiTextView_AddLineP(TextView, Text);
 end;
 
 function TextView_New(Parent: AControl; ViewType: AInteger): AControl; stdcall;
 begin
-  Result := AUiProcVars.UI_TextView_New(Parent, ViewType);
+  Result := AUiTextView_New(Parent, ViewType);
 end;
 
 function TextView_SetReadOnly(TextView: AControl; ReadOnly: ABoolean): AError; stdcall;
 begin
-  AUiProcVars.UI_TextView_SetReadOnly(TextView, ReadOnly);
-  Result := 0;
+  Result := AUiTextView_SetReadOnly(TextView, ReadOnly);
 end;
 
 function TextView_SetScrollBars(TextView: AControl; ScrollBars: AInteger): AError; stdcall;
 begin
-  AUiProcVars.UI_TextView_SetScrollBars(TextView, ScrollBars);
-  Result := 0;
+  Result := AUiTextView_SetScrollBars(TextView, ScrollBars);
 end;
 
 function TextView_SetWordWrap(TextView: AControl; Value: ABoolean): AError; stdcall;
 begin
-  AUiProcVars.UI_TextView_SetWordWrap(TextView, Value);
-  Result := 0;
+  Result := AUiTextView_SetWordWrap(TextView, Value);
 end;
 
 // --- TreeView ---

@@ -143,14 +143,14 @@ type
     PropertyBox_Item_SetValue: AUi_PropertyBox_Item_SetValue;       // 92
     PropertyBox_New: AUi_PropertyBox_New;                           // 93
 
-    Splitter_New: AUi_Splitter_New;                                 // 94
+    Splitter_New: AUiSplitter_New_Proc;                             // 94
 
-    TextView_AddLine: AUi_TextView_AddLine;                         // 95
-    TextView_New: AUi_TextView_New;                                 // 96
-    TextView_SetFont: AUi_TextView_SetFont;                         // 97
-    TextView_SetReadOnly: AUi_TextView_SetReadOnly;                 // 98
-    TextView_SetScrollBars: AUi_TextView_SetScrollBars;             // 99
-    TextView_SetWordWrap: AUi_TextView_SetWordWrap;                 // 100
+    TextView_AddLine: AUiTextView_AddLineWS_Proc;                   // 95
+    TextView_New: AUiTextView_New_Proc;                             // 96
+    TextView_SetFont: AUiTextView_SetFont02_Proc;                   // 97
+    TextView_SetReadOnly: AUiTextView_SetReadOnly02_Proc;           // 98
+    TextView_SetScrollBars: AUiTextView_SetScrollBars02_Proc;       // 99
+    TextView_SetWordWrap: AUiTextView_SetWordWrap02_Proc;           // 100
 
     ToolBar_AddButton: AUi_ToolBar_AddButton02_Proc;                // 101
     ToolBar_New: AUi_ToolBar_New_Proc;                              // 102

@@ -216,14 +216,15 @@ var
   UI_ReportWin_NewA: AUi_ReportWin_NewWS_Proc = nil;
   {$endif}
 var
-  AUiSplitter_New: AUI_Splitter_New = nil;
-var 
-  UI_TextView_AddLine: AUI_TextView_AddLine = nil;
-  UI_TextView_New: AUI_TextView_New = nil;
-  UI_TextView_SetFont: AUI_TextView_SetFont = nil;
-  UI_TextView_SetReadOnly: AUI_TextView_SetReadOnly = nil;
-  UI_TextView_SetScrollBars: AUI_TextView_SetScrollBars = nil;
-  UI_TextView_SetWordWrap: AUI_TextView_SetWordWrap = nil;
+  AUiSplitter_New: AUiSplitter_New_Proc = nil;
+var
+  AUiTextView_AddLine: AUiTextView_AddLine04_Proc = nil;
+  UI_TextView_AddLine: AUiTextView_AddLineWS_Proc = nil;
+  UI_TextView_New: AUiTextView_New_Proc = nil;
+  UI_TextView_SetFont: AUiTextView_SetFont02_Proc = nil;
+  UI_TextView_SetReadOnly: AUiTextView_SetReadOnly02_Proc = nil;
+  UI_TextView_SetScrollBars: AUiTextView_SetScrollBars02_Proc = nil;
+  UI_TextView_SetWordWrap: AUiTextView_SetWordWrap02_Proc = nil;
 var
   AUi_ToolBar_AddButton: AUi_ToolBar_AddButton03_Proc = nil;
   {$ifdef ADepr}

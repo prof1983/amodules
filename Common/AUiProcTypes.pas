@@ -304,42 +304,32 @@ type
   AUi_ReportWin_NewWS_Proc = function(ReportWinType: AInteger; const Text: AWideString): AWindow; stdcall;
 
 type
-  AUi_Splitter_New = function(Parent: AControl; SplitterType: AUISplitterType): AControl; stdcall;
+  AUiSplitter_New_Proc = function(Parent: AControl; SplitterType: AUISplitterType): AControl; stdcall;
 
 type // --- V02 ---
-  // Добавляет строку в элемент TextView
-  AUi_TextView_AddLine = function(TextView: AControl; const Text: AWideString): AInteger; stdcall;
+  AUiTextView_AddLine04_Proc = function(TextView: AControl; const Text: AString_Type): AInteger; stdcall;
   { Создает новый элемент редактирования текста
     ViewType
       0 - TMemo
       1 - RichEdit }
-  AUi_TextView_New = function(Parent: AControl; ViewType: AInteger): AControl; stdcall;
-  AUi_TextView_SetFont = procedure(TextView: AControl; const FontName: AWideString; FontSize: AInteger); stdcall;
-  AUi_TextView_SetReadOnly = procedure(TextView: AControl; ReadOnly: ABoolean); stdcall;
-  { ScrollBars
+  AUiTextView_New_Proc = function(Parent: AControl; ViewType: AInteger): AControl; stdcall;
+  AUiTextView_SetFont03_Proc = procedure(TextView: AControl; const FontName: AString_Type; FontSize: AInteger); stdcall;
+  AUiTextView_SetFont04_Proc = function(TextView: AControl; const FontName: AString_Type; FontSize: AInteger): AError; stdcall;
+  AUiTextView_SetReadOnly04_Proc = function(TextView: AControl; ReadOnly: ABoolean): AError; stdcall;
+  {** ScrollBars
       0 - ssNone
       1 - ssHorizontal
       2 - ssVertical
       3 - ssBoth }
-  AUi_TextView_SetScrollBars = procedure(TextView: AControl; ScrollBars: AInteger); stdcall;
-  AUi_TextView_SetWordWrap = procedure(TextView: AControl; Value: ABoolean); stdcall;
-type // --- V03 ---
-  { Добавляет строку в элемент TextView }
-  A_UI_TextView_AddLine = function(TextView: AControl; const Text: AString_Type): AInteger; stdcall;
-  { Создает новый элемент редактирования текста
-    ViewType
-      0 - TMemo
-      1 - RichEdit }
-  A_UI_TextView_New = function(Parent: AControl; ViewType: AInteger): AControl; stdcall;
-  A_UI_TextView_SetFont = procedure(TextView: AControl; const FontName: AString_Type; FontSize: AInteger); stdcall;
-  A_UI_TextView_SetReadOnly = procedure(TextView: AControl; ReadOnly: ABoolean); stdcall;
-  { ScrollBars
-      0 - ssNone
-      1 - ssHorizontal
-      2 - ssVertical
-      3 - ssBoth }
-  A_UI_TextView_SetScrollBars = procedure(TextView: AControl; ScrollBars: AInteger); stdcall;
-  A_UI_TextView_SetWordWrap = procedure(TextView: AControl; Value: ABoolean); stdcall;
+  AUiTextView_SetScrollBars04_Proc = function(TextView: AControl; ScrollBars: AInteger): AError; stdcall;
+  AUiTextView_SetWordWrap04_Proc = function(TextView: AControl; Value: ABoolean): AError; stdcall;
+  {$ifdef ADepr}
+  AUiTextView_AddLineWS_Proc = function(TextView: AControl; const Text: AWideString): AInteger; stdcall;
+  AUiTextView_SetFont02_Proc = procedure(TextView: AControl; const FontName: AWideString; FontSize: AInteger); stdcall;
+  AUiTextView_SetReadOnly02_Proc = procedure(TextView: AControl; ReadOnly: ABoolean); stdcall;
+  AUiTextView_SetScrollBars02_Proc = procedure(TextView: AControl; ScrollBars: AInteger); stdcall;
+  AUiTextView_SetWordWrap02_Proc = procedure(TextView: AControl; Value: ABoolean); stdcall;
+  {$endif}
 
 type
   AUi_ToolBar_AddButton02_Proc = function(ToolBar: AControl; const Name, Text, Hint: AWideString;
