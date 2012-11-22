@@ -81,14 +81,6 @@ begin
   end;
 
   Result := ARuntime_RegisterModule(Module);
-
-  if (AUi_Boot() < 0) then
-  begin
-    Result := -4;
-    Exit;
-  end;
-
-  //AUi_
 end;
 
 function AUiWorkbenchMod_Fin(): AError;
@@ -107,6 +99,12 @@ begin
   if FInitialized then
   begin
     Result := 0;
+    Exit;
+  end;
+
+  if (AUi_Boot() < 0) then
+  begin
+    Result := -4;
     Exit;
   end;
 
