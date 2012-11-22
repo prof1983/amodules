@@ -179,9 +179,9 @@ type
     MainWindow_SetA: AUi_MainWindow_SetA;                           // 121
 
     ReportWin_NewA: AUi_ReportWin_NewWS_Proc;                       // 122
-    Calendar_GetDate: AUi_Calendar_GetDate;                         // 123
-    Calendar_New: AUi_Calendar_New;                                 // 124
-    Calendar_SetMonth: AUi_Calendar_SetMonth;                       // 125
+    Calendar_GetDate: AUiCalendar_GetDate_Proc;                     // 123
+    Calendar_New: AUiCalendar_New_Proc;                             // 124
+    Calendar_SetMonth: AUiCalendar_SetMonth02_Proc;                 // 125
     Report_New: AUi_Report_New;                                     // 126
     Report_SetText: AUi_Report_SetText;                             // 127
 

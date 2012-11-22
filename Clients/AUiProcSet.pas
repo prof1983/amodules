@@ -150,7 +150,7 @@ begin
   UI_PropertyBox_Item_SetValue := UiProcs.PropertyBox_Item_SetValue;
   UI_PropertyBox_New := UiProcs.PropertyBox_New;
 
-  UI_Splitter_New := UiProcs.Splitter_New;
+  AUiSplitter_New := UiProcs.Splitter_New;
 
   UI_TextView_AddLine := UiProcs.TextView_AddLine;
   UI_TextView_New := UiProcs.TextView_New;
@@ -195,8 +195,8 @@ begin
   Reserved := UiProcs.Reserved127;
   {$ELSE}
   UI_ReportWin_NewA := UiProcs.ReportWin_NewA;
-  UI_Calendar_GetDate := UiProcs.Calendar_GetDate;
-  UI_Calendar_New := UiProcs.Calendar_New;
+  AUiCalendar_GetDate := UiProcs.Calendar_GetDate;
+  AUiCalendar_New := UiProcs.Calendar_New;
   UI_Calendar_SetMonth := UiProcs.Calendar_SetMonth;
   UI_Report_New := UiProcs.Report_New;
   UI_Report_SetText := UiProcs.Report_SetText;

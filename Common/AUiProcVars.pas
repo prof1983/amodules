@@ -40,6 +40,13 @@ var
   AUiBox_New: AUiBox_New_Proc = nil;
   AUi_Button_New: AUiButton_New_Proc = nil;
 var
+  AUiCalendar_GetDate: AUiCalendar_GetDate_Proc = nil;
+  AUiCalendar_New: AUiCalendar_New_Proc = nil;
+  AUiCalendar_SetMonth: AUiCalendar_SetMonth04_Proc = nil;
+  {$ifdef ADepr}
+  UI_Calendar_SetMonth: AUiCalendar_SetMonth02_Proc = nil;
+  {$endif}
+var
   AUiControl_Free: AUiControl_Free04_Proc = nil;
   AUiControl_FreeAndNil: AUiControl_FreeAndNil04_Proc = nil;
   AUiControl_GetEnabled: AUiControl_GetEnabled_Proc = nil;
@@ -209,7 +216,7 @@ var
   UI_ReportWin_NewA: AUi_ReportWin_NewWS_Proc = nil;
   {$endif}
 var
-  UI_Splitter_New: AUI_Splitter_New = nil;
+  AUiSplitter_New: AUI_Splitter_New = nil;
 var 
   UI_TextView_AddLine: AUI_TextView_AddLine = nil;
   UI_TextView_New: AUI_TextView_New = nil;
@@ -252,9 +259,6 @@ var
   UI_WaitWin_New: AUi_WaitWin_NewWS_Proc = nil;
   UI_WaitWin_StepBy: AUI_WaitWin_StepBy = nil;
 var
-  UI_Calendar_GetDate: AUI_Calendar_GetDate = nil;
-  UI_Calendar_New: AUI_Calendar_New = nil;
-  UI_Calendar_SetMonth: AUI_Calendar_SetMonth = nil;
   UI_Report_New: AUI_Report_New = nil;
   UI_Report_SetText: AUI_Report_SetText = nil;
 var

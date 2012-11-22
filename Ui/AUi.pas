@@ -2,7 +2,7 @@
 @Abstract User Interface client
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 21.11.2012
+@LastMod 22.11.2012
 }
 unit AUi;
 
@@ -14,7 +14,8 @@ uses
   ABase, ABaseTypes,
   AStrings,
   AUiBase, AUiBox, AUiControls, AUiControlsA, AUiDialogs, AUiGrids, AUiImages, AUiLabels,
-  AUiListBox, AUiMain, AUiMainWindow, AUiMenus, AUiPageControl, AUiProgressBar, {AUiProcVars,} AUiTreeView;
+  AUiListBox, AUiMain, AUiMainWindow, AUiMenus, AUiPageControl, AUiProgressBar, {AUiProcVars,}
+  AUiSplitter, AUiTreeView;
 
 // ----
 
@@ -386,7 +387,7 @@ end;
 
 function Splitter_New(Parent: AControl; SplitterType: AUISplitterType): AControl; stdcall;
 begin
-  Result := AUiProcVars.UI_Splitter_New(Parent, SplitterType);
+  Result := AUiSplitter_New(Parent, SplitterType);
 end;
 
 // --- TextView ---
