@@ -2,7 +2,7 @@
 @Abstract AUiWorkbench
 @Author Prof1983 <prof1983@ya.ru>
 @Created 26.08.2009
-@LastMod 21.11.2012
+@LastMod 22.11.2012
 }
 unit AUiWorkbenchMod;
 
@@ -11,7 +11,7 @@ unit AUiWorkbenchMod;
 interface
 
 uses
-  ABase, ARuntimeBase, ARuntimeMain, AUiBase, AUiMain,
+  ABase, ARuntimeBase, ARuntimeMain, AUiBase, AUiMain, AUiModClient,
   AUiWorkbenchMain, AUiWorkbenchBase{$IFDEF ADepr}, AUiWorkbenchProcRec{$ENDIF};
 
 function AUiWorkbenchMod_Boot(): AError; stdcall;
@@ -81,6 +81,12 @@ begin
   end;
 
   Result := ARuntime_RegisterModule(Module);
+
+  if (AUi_Boot() < 0) then
+  begin
+    Result := -4;
+    Exit;
+  end;
 end;
 
 function AUiWorkbenchModule_Fin(): AError;
