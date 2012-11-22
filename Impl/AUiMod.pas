@@ -18,7 +18,7 @@ uses
   ABase, ARuntime, ARuntimeBase,
   AUi, AUiBase, AUiCalendar, AUiControls, AUiDialogs, AUiGrids, AUiImages, AUiLabels, AUiListBox,
   AUiMain, AUiMainWindow2, {$IFDEF ADepr}AUiProcRec,{$ENDIF} AUiPropertyBox,
-  AUiTextView, AUiWindows, AUiWindowSettings;
+  AUiSplitter, AUiTextView, AUiWindows, AUiWindowSettings;
 
 // --- AUi ---
 
@@ -145,7 +145,7 @@ const
     PropertyBox_Item_SetValue: UI_PropertyBox_Item_SetValue;        // 92
     PropertyBox_New: AUi_PropertyBox_New;                           // 93
 
-    Splitter_New: AUi_Splitter_New;                                 // 94
+    Splitter_New: AUiSplitter_New;                                  // 94
 
     TextView_AddLine: UI_TextView_AddLine;                          // 95
     TextView_New: AUi_TextView_New;                                 // 96

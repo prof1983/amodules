@@ -160,17 +160,17 @@ type
     TreeView_AddItemWS: AUi_TreeView_AddItem;                       // 104
     TreeView_New: AUiTreeView_New_Proc;                             // 105
 
-    Window_Free: AUi_Window_Free;                                   // 106
-    Window_GetMenu: AUi_Window_GetMenu;                             // 107
-    Window_LoadConfig: AUi_Window_LoadConfig;                       // 108
-    Window_LoadConfig2: AUi_Window_LoadConfig2;                     // 109
-    Window_New: AUi_Window_New;                                     // 110
-    Window_SaveConfig: AUi_Window_SaveConfig;                       // 111
-    Window_SaveConfig2: AUi_Window_SaveConfig2;                     // 112
-    Window_SetBorderStyle02: AUi_Window_SetBorderStyle02;           // 113
-    Window_SetFormStyle: AUi_Window_SetFormStyle;                   // 114
-    Window_SetPosition: AUi_Window_SetPosition;                     // 115
-    Window_ShowModal: AUi_Window_ShowModal;                         // 116
+    Window_Free: AUiWindow_Free02_Proc;                             // 106
+    Window_GetMenu: AUiWindow_GetMenu_Proc;                         // 107
+    Window_LoadConfig: AUiWindow_LoadConfig_02_Proc;                // 108
+    Window_LoadConfig2: AUiWindow_LoadConfig2_WS_Proc; {?}          // 109
+    Window_New: AUiWindow_New_Proc;                                 // 110
+    Window_SaveConfig: AUiWindow_SaveConfig_02_Proc;                // 111
+    Window_SaveConfig2: AUiWindow_SaveConfig2_WS_Proc; {?}          // 112
+    Window_SetBorderStyle02: AUiWindow_SetBorderStyle02_Proc;       // 113
+    Window_SetFormStyle: AUiWindow_SetFormStyle02_Proc;             // 114
+    Window_SetPosition: AUiWindow_SetPosition02_Proc;               // 115
+    Window_ShowModal: AUiWindow_ShowModal_Proc;                     // 116
 
     ReportWin_New: AUi_ReportWin_New;                               // 117
     WaitWin_NewWS: AUi_WaitWin_NewWS_Proc;                          // 118
@@ -224,7 +224,7 @@ type
     Control_SetOnChange: AUiControl_SetOnChange_Proc;               // 144
     Grid_DeleteRow2: AUiGrid_DeleteRow2_Proc;                       // 145
     ShowHelp2WS: AUi_ShowHelp2WS_Proc;                              // 146
-    Window_SetBorderStyle: AUI_Window_SetBorderStyle03;             // 147
+    Window_SetBorderStyle: AUiWindow_SetBorderStyle03_Proc;         // 147
     MainWindow_AddMenuItem03WS: AUi_MainWindow_AddMenuItem03WS_Proc;// 148
     OnDone_Disconnect03: AUi_OnDone_Disconnect03_Proc;              // 149
     MainWindow_AddMenuItem: AUiMainWindow_AddMenuItem_Proc;         // 150

@@ -242,20 +242,20 @@ var
 var
   AUiWindow_Free: AUiWindow_Free_Proc = nil;
   AUiWindow_New: AUiWindow_New_Proc = nil;
-  AUiWindow_SetBorderStyle: AUi_Window_SetBorderStyle03 = nil;
+  AUiWindow_SetBorderStyle: AUiWindow_SetBorderStyle03_Proc = nil;
   AUiWindow_ShowModal: AUiWindow_ShowModal_Proc = nil;
   {$ifdef ADepr}
-  UI_Window_Free: AUI_Window_Free = nil;
+  UI_Window_Free: AUiWindow_Free02_Proc = nil;
   {$endif}
-  UI_Window_GetMenu: AUI_Window_GetMenu = nil;
-  UI_Window_LoadConfig: AUI_Window_LoadConfig = nil;
-  UI_Window_LoadConfig2: AUI_Window_LoadConfig2 = nil;
-  UI_Window_New: AUI_Window_New = nil;
-  UI_Window_SaveConfig: AUI_Window_SaveConfig = nil;
-  UI_Window_SaveConfig2: AUI_Window_SaveConfig2 = nil;
-  UI_Window_SetBorderStyle: AUi_Window_SetBorderStyle02 = nil;
-  UI_Window_SetFormStyle: AUI_Window_SetFormStyle = nil;
-  UI_Window_SetPosition: AUI_Window_SetPosition = nil;
+  UI_Window_GetMenu: AUiWindow_GetMenu_Proc = nil;
+  UI_Window_LoadConfig: AUiWindow_LoadConfig_02_Proc = nil;
+  UI_Window_LoadConfig2: AUiWindow_LoadConfig2_WS_Proc = nil;
+  UI_Window_New: AUiWindow_New_Proc = nil;
+  UI_Window_SaveConfig: AUiWindow_SaveConfig_02_Proc = nil;
+  UI_Window_SaveConfig2: AUiWindow_SaveConfig2_WS_Proc = nil;
+  UI_Window_SetBorderStyle: AUiWindow_SetBorderStyle02_Proc = nil;
+  UI_Window_SetFormStyle: AUiWindow_SetFormStyle02_Proc = nil;
+  UI_Window_SetPosition: AUiWindow_SetPosition02_Proc = nil;
 var
   UI_WaitWin_New: AUi_WaitWin_NewWS_Proc = nil;
   UI_WaitWin_StepBy: AUI_WaitWin_StepBy = nil;

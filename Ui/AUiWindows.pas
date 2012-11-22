@@ -2,9 +2,11 @@
 @Abstract User Interface window functions
 @Author Prof1983 <prof1983@ya.ru>
 @Created 21.08.2012
-@LastMod 21.11.2012
+@LastMod 22.11.2012
 }
 unit AUiWindows;
+
+{$define AStdCall}
 
 interface
 
@@ -25,13 +27,13 @@ function AUi_Window_FreeAndNil(var Window: AWindow): AError;
 function AUi_Window_GetMenu(Window: AWindow): AMenu;
 }
 
-function AUiWindow_New(): AControl; stdcall;
+function AUiWindow_New(): AControl; {$ifdef AStdCall}stdcall;{$endif}
 
-function AUiWindow_SetBorderStyle(Window: AWindow; BorderStyle: AInt): AError;
+function AUiWindow_SetBorderStyle(Window: AWindow; BorderStyle: AInt): AError; {$ifdef AStdCall}stdcall;{$endif}
+
+function AUiWindow_SetFormStyle(Window: AWindow; FormStyle: AInt): AError; {$ifdef AStdCall}stdcall;{$endif}
 
 {
-function AUi_Window_SetFormStyle(Window: AWindow; FormStyle: AInt): AError;
-
 function AUi_Window_SetPosition(Window: AWindow; Position: AInt): AError;
 
 function AUi_Window_SetState(Window: AWindow; State: AInt): AError;
@@ -82,6 +84,10 @@ begin
     Exit;
   end;
   Result := -1;
+end;
+
+function AUiWindow_SetFormStyle(Window: AWindow; FormStyle: AInt): AError;
+begin
 end;
 
 function AUiWindow_ShowModal(Window: AWindow): ABoolean;

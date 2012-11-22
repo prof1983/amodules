@@ -15,7 +15,7 @@ uses
   AStrings,
   AUiBase, AUiBox, AUiControls, AUiControlsA, AUiDialogs, AUiGrids, AUiImages, AUiLabels,
   AUiListBox, AUiMain, AUiMainWindow, AUiMenus, AUiPageControl, AUiProgressBar, {AUiProcVars,}
-  AUiSplitter, AUiTextView, AUiTreeView;
+  AUiSplitter, AUiTextView, AUiTreeView, AUiWindows;
 
 // ----
 
@@ -433,12 +433,12 @@ end;
 
 procedure Window_Free(Window: AWindow); stdcall;
 begin
-  AUiProcVars.UI_Window_Free(Window);
+  AUiWindow_Free(Window);
 end;
 
 function Window_New(): AControl; stdcall;
 begin
-  Result := AUiProcVars.UI_Window_New();
+  Result := AUiWindow_New();
 end;
 
 function Window_SetBorderStyle(Window: AWindow; BorderStyle: AInteger): AError; stdcall;

@@ -355,24 +355,28 @@ type
 
 type
   AUiWindow_Free_Proc = function(Window: AWindow): AError; stdcall;
+  AUiWindow_GetMenu_Proc = function(Window: AWindow): AMenu; stdcall;
+  AUiWindow_LoadConfig_04_Proc = function(Window: AWindow; Config: AConfig): AError; stdcall;
+  AUiWindow_LoadConfig2_04_Proc = function(Window: AWindow; Config: AConfig; const ConfigKey: AString_Type): AError; stdcall;
   AUiWindow_New_Proc = function(): AControl; stdcall;
+  AUiWindow_SaveConfig_04_Proc = function(Window: AWindow; Config: AConfig): AError; stdcall;
+  AUiWindow_SaveConfig2_04_Proc = function(Window: AWindow; Config: AConfig; const ConfigKey: AString_Type): AError; stdcall;
+  AUiWindow_SetBorderStyle03_Proc = function(Window: AWindow; BorderStyle: AInt): AError; stdcall;
+  AUiWindow_SetFormStyle04_Proc = function(Window: AWindow; FormStyle: AInt): AError; stdcall;
+  AUiWindow_SetPosition04_Proc = function(Window: AWindow; Position: AInt): AError; stdcall;
   AUiWindow_ShowModal_Proc = function(Window: AWindow): ABoolean; stdcall;
-  AUi_Window_Free = procedure(Window: AWindow); stdcall;
-  AUi_Window_GetMenu = function(Window: AWindow): AMenu; stdcall;
-  AUi_Window_LoadConfig = function(Window: AWindow; Config: AConfig): ABoolean; stdcall;
-  AUi_Window_LoadConfig2 = function(Window: AWindow; Config: AConfig; const ConfigKey: AWideString): ABoolean; stdcall;
-  A_UI_Window_LoadConfig2 = function(Window: AWindow; Config: AConfig; const ConfigKey: AString_Type): ABoolean; stdcall;
-  AUi_Window_New = AUiWindow_New_Proc;
-  AUi_Window_SaveConfig = function(Window: AWindow; Config: AConfig): ABoolean; stdcall;
-  AUi_Window_SaveConfig2 = function(Window: AWindow; Config: AConfig; const ConfigKey: AWideString): ABoolean; stdcall;
-  A_UI_Window_SaveConfig2 = function(Window: AWindow; Config: AConfig; const ConfigKey: AString_Type): ABoolean; stdcall;
-    //** Задает стиль окантовки окна.
-  AUi_Window_SetBorderStyle02 = procedure(Window: AWindow; BorderStyle: AInteger); stdcall;
-    //** Задает стиль окантовки окна.
-  AUi_Window_SetBorderStyle03 = function(Window: AWindow; BorderStyle: AInteger): AError; stdcall;
-  AUi_Window_SetFormStyle = procedure(Window: AWindow; FormStyle: AInteger); stdcall;
-  AUi_Window_SetPosition = procedure(Window: AWindow; Position: AInteger); stdcall;
-  AUi_Window_ShowModal = AUiWindow_ShowModal_Proc;
+  {$ifdef ADepr}
+  AUiWindow_Free02_Proc = procedure(Window: AWindow); stdcall;
+  AUiWindow_LoadConfig_02_Proc = function(Window: AWindow; Config: AConfig): ABoolean; stdcall;
+  AUiWindow_LoadConfig2_02_Proc = function(Window: AWindow; Config: AConfig; const ConfigKey: AString_Type): ABoolean; stdcall;
+  AUiWindow_LoadConfig2_WS_Proc = function(Window: AWindow; Config: AConfig; const ConfigKey: AWideString): ABoolean; stdcall;
+  AUiWindow_SaveConfig_02_Proc = function(Window: AWindow; Config: AConfig): ABoolean; stdcall;
+  AUiWindow_SaveConfig2_02_Proc = function(Window: AWindow; Config: AConfig; const ConfigKey: AString_Type): ABoolean; stdcall;
+  AUiWindow_SaveConfig2_WS_Proc = function(Window: AWindow; Config: AConfig; const ConfigKey: AWideString): ABoolean; stdcall;
+  AUiWindow_SetBorderStyle02_Proc = procedure(Window: AWindow; BorderStyle: AInt); stdcall;
+  AUiWindow_SetFormStyle02_Proc = procedure(Window: AWindow; FormStyle: AInt); stdcall;
+  AUiWindow_SetPosition02_Proc = procedure(Window: AWindow; Position: AInt); stdcall;
+  {$endif}
 
 implementation
 
