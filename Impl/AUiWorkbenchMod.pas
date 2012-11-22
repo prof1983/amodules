@@ -2,7 +2,7 @@
 @Abstract AUiWorkbench
 @Author Prof1983 <prof1983@ya.ru>
 @Created 26.08.2009
-@LastMod 21.11.2012
+@LastMod 22.11.2012
 }
 unit AUiWorkbenchMod;
 
@@ -11,23 +11,23 @@ unit AUiWorkbenchMod;
 interface
 
 uses
-  ABase, ARuntimeBase, ARuntimeMain, AUiBase, AUiMain,
+  ABase, ARuntimeBase, ARuntimeMain, AUiBase, AUiMain, AUiModClient,
   AUiWorkbenchMain, AUiWorkbenchBase{$IFDEF ADepr}, AUiWorkbenchProcRec{$ENDIF};
 
 function AUiWorkbenchMod_Boot(): AError; stdcall;
 
-function AUiWorkbenchModule_Fin(): AError; stdcall;
+function AUiWorkbenchMod_Fin(): AError; stdcall;
 
-function AUiWorkbenchModule_GetProc(ProcName: AStr): Pointer; stdcall;
+function AUiWorkbenchMod_GetProc(ProcName: AStr): Pointer; stdcall;
 
-function AUiWorkbenchModule_Init(): AError; stdcall;
+function AUiWorkbenchMod_Init(): AError; stdcall;
 
 {$IFDEF ADepr}
 const
   UiWorkbenchProcs: AUiWorkbenchProcs_Type = (
     AddPageWS: AUiWorkbench_AddPageWS;                          // 00
-    Init: AUiWorkbenchModule_Init;                              // 01
-    Fin: AUiWorkbenchModule_Fin;                                // 02
+    Init: AUiWorkbenchMod_Init;                                 // 01
+    Fin: AUiWorkbenchMod_Fin;                                   // 02
     Reserved03: 0;
     Reserved04: 0;
     Reserved05: 0;
@@ -55,9 +55,9 @@ const
     Uid: AUiWorkbench_Uid;
     Name: AUiWorkbench_Name;
     Description: nil;
-    Init: AUiWorkbenchModule_Init;
-    Fin: AUiWorkbenchModule_Fin;
-    GetProc: AUiWorkbenchModule_GetProc;
+    Init: AUiWorkbenchMod_Init;
+    Fin: AUiWorkbenchMod_Fin;
+    GetProc: AUiWorkbenchMod_GetProc;
     Procs: {$IFDEF ADepr}Addr(UiWorkbenchProcs){$ELSE}nil{$ENDIF};
     );
 
@@ -81,20 +81,28 @@ begin
   end;
 
   Result := ARuntime_RegisterModule(Module);
+
+  if (AUi_Boot() < 0) then
+  begin
+    Result := -4;
+    Exit;
+  end;
+
+  //AUi_
 end;
 
-function AUiWorkbenchModule_Fin(): AError;
+function AUiWorkbenchMod_Fin(): AError;
 begin
   ARuntime_DeleteModuleByUid(AUIWorkbench_Uid);
   Result := AUiWorkbench_Fin();
 end;
 
-function AUiWorkbenchModule_GetProc(ProcName: AStr): Pointer;
+function AUiWorkbenchMod_GetProc(ProcName: AStr): Pointer;
 begin
   Result := nil;
 end;
 
-function AUiWorkbenchModule_Init(): AError;
+function AUiWorkbenchMod_Init(): AError;
 begin
   if FInitialized then
   begin
