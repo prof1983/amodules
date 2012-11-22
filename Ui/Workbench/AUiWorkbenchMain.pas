@@ -2,7 +2,7 @@
 @Abstract AUiWorkbench
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 21.11.2012
+@LastMod 22.11.2012
 }
 unit AUiWorkbenchMain;
 
@@ -63,6 +63,7 @@ begin
     AString_AssignWS(SName, Name);
     AString_AssignWS(SText, Text);
     Result := AUiWorkbench_AddPage(SName, SText);
+    Exit;
   end;
   {$ifdef ADepr}
   if Assigned(AUiWorkbenchProcVars.AUiWorkbench_AddPageWS) then
@@ -71,6 +72,7 @@ begin
     Exit;
   end;
   {$endif}
+  Result := 0;
 end;
 
 function AUiWorkbench_Fin(): AError;
