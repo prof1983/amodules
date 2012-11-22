@@ -2,7 +2,7 @@
 @Abstract User interface proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 21.11.2012
+@LastMod 22.11.2012
 }
 unit AUiProcRec;
 
@@ -34,7 +34,7 @@ type
     Button_New: AUiButton_New_Proc;                                 // 08
 
     Control_Free: AUiControl_Free02_Proc;                           // 09
-    Control_FreeAndNil: AUiControl_FreeAndNil_Proc;                 // 10
+    Control_FreeAndNil: AUiControl_FreeAndNil02_Proc;               // 10
     Control_GetEnabled: AUiControl_GetEnabled_Proc;                 // 11
     Control_GetHeight: AUiControl_GetHeight_Proc;                   // 12
     Control_GetHintW: AUiControl_GetHintWS_Proc;                    // 13
@@ -45,16 +45,16 @@ type
     Control_SetAlign: AUiControl_SetAlign02_Proc;                   // 18
     Control_SetClientSize: AUiControl_SetClientSize02_Proc;         // 19
     Control_SetColor: AUiControl_SetColor02_Proc;                   // 20
-    Control_SetEnabled: AUiControl_SetEnabled_Proc;                 // 21
+    Control_SetEnabled: AUiControl_SetEnabled02_Proc;               // 21
     Control_SetFocus: AUiControl_SetFocus_Proc;                     // 22
     Control_SetHintW: AUiControl_SetHintWS_Proc;                    // 23
     Control_SetNameW: AUiControl_SetNameWS_Proc;                    // 24
     Control_SetOnChange02: AUiControl_SetOnChange02_Proc;           // 25
-    Control_SetOnClick02: AUiControl_SetOnClick02_Proc;             // 26
+    Control_SetOnClick02: AUiControl_SetOnClick02_Old_Proc;         // 26
     Control_SetPosition02: AUiControl_SetPosition02_Proc;           // 27
     Control_SetSize02: AUiControl_SetSize02_Proc;                   // 28
     Control_SetTextWS: AUiControl_SetTextWS_Proc;                   // 29
-    Control_SetVisible: AUiControl_SetVisible_Proc;                 // 30
+    Control_SetVisible: AUiControl_SetVisible02_Proc;               // 30
     Control_SetWidth: AUiControl_SetWidth_Proc;                     // 31
 
     DataSource_New: AUi_DataSource_New_Proc;                        // 32
@@ -84,18 +84,18 @@ type
     Edit_New: AUi_Edit_New;                                         // 54
     Edit_NewA: AUi_Edit_New02_Proc;                                 // 55
 
-    Grid_AddColumn: AUi_Grid_AddColumn;                             // 56
-    Grid_New: AUi_Grid_New;                                         // 57
-    Grid_RestoreColProps: AUi_Grid_RestoreColPropsWS_Proc;          // 58
-    Grid_SaveColProps: AUi_Grid_SaveColPropsWS02_Proc;              // 59
-    Grid_SetColumnWidth: AUi_Grid_SetColumnWidth;                   // 60
-    Grid_SetColumnWidthA: AUi_Grid_SetColumnWidthA;                 // 61
-    Grid_SetDataSource: AUi_Grid_SetDataSource;                     // 62
+    Grid_AddColumn: AUiGrid_AddColumnWS_Proc;                       // 56
+    Grid_New: AUiGrid_New_Proc;                                     // 57
+    Grid_RestoreColProps: AUiGrid_RestoreColPropsWS_Proc;           // 58
+    Grid_SaveColProps: AUiGrid_SaveColPropsWS02_Proc;               // 59
+    Grid_SetColumnWidth: AUiGrid_SetColumnWidth02_Proc;             // 60
+    Grid_SetColumnWidthA: AUiGrid_SetColumnWidthA_Proc;             // 61
+    Grid_SetDataSource: AUiGrid_SetDataSource02_Proc;               // 62
 
     Image_New: AUiImage_New_Proc;                                   // 63
     Image_LoadFromFile: AUi_Image_LoadFromFileWS_Proc;              // 64
 
-    Label_New: AUi_Label_New;                                       // 65
+    Label_New: AUiLabel_New_Proc;                                   // 65
 
     {$IFDEF A02}
     Label_SetFont: AUi_Control_SetFontW1;                           // 66
@@ -134,8 +134,8 @@ type
     PageControl_AddPageWS: AUi_PageControl_AddPageWS_Proc;          // 85
     PageControl_New: AUiPageControl_New_Proc;                       // 86
 
-    ProgressBar_New: AUi_ProgressBar_New_Proc;                      // 87
-    ProgressBar_StepIt: AUi_ProgressBar_StepIt_Proc;                // 88
+    ProgressBar_New: AUiProgressBar_New_Proc;                       // 87
+    ProgressBar_StepIt: AUiProgressBar_StepIt_Proc;                 // 88
 
     PropertyBox_Add: AUi_PropertyBox_Add;                           // 89
     PropertyBox_AddA: AUi_PropertyBox_AddA;                         // 90
@@ -214,15 +214,15 @@ type
       ProcessMessages: AUi_ProcessMessages_Proc;                    // 137
       ShowHelp: AUi_ShowHelp_Proc;                                  // 138
       Shutdown: AUi_Shutdown_Proc;                                  // 139
-      Grid_ClearA: AUi_Grid_ClearA_Proc;                            // 140
-      Grid_Clear: AUi_Grid_Clear_Proc;                              // 141
+      Grid_ClearA: AUiGrid_ClearA_Proc;                             // 140
+      Grid_Clear: AUiGrid_Clear_Proc;                               // 141
       Menu_AddItem2WS: AUi_Menu_AddItem2WS03_Proc;                  // 142
-      Grid_FindInt: AUi_Grid_FindInt_Proc;                          // 143
+      Grid_FindInt: AUiGrid_FindInt_Proc;                           // 143
     {$ENDIF A01}
 
     {$IFDEF A03UP}
     Control_SetOnChange: AUiControl_SetOnChange_Proc;               // 144
-    Grid_DeleteRow2: AUi_Grid_DeleteRow2_Proc;                      // 145
+    Grid_DeleteRow2: AUiGrid_DeleteRow2_Proc;                       // 145
     ShowHelp2WS: AUi_ShowHelp2WS_Proc;                              // 146
     Window_SetBorderStyle: AUI_Window_SetBorderStyle03;             // 147
     MainWindow_AddMenuItem03WS: AUi_MainWindow_AddMenuItem03WS_Proc;// 148

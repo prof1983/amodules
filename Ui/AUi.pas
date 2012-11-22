@@ -13,8 +13,8 @@ interface
 uses
   ABase, ABaseTypes,
   AStrings,
-  AUiBase, AUiBox, AUiControls, AUiControlsA, AUiImages, AUiListBox, AUiMain, AUiMainWindow,
-  AUiMenus, AUiPageControl, AUiProcVars, AUiTreeView;
+  AUiBase, AUiBox, AUiControls, AUiControlsA, AUiDialogs, AUiGrids, AUiImages, AUiLabels,
+  AUiListBox, AUiMain, AUiMainWindow, AUiMenus, AUiPageControl, AUiProgressBar, {AUiProcVars,} AUiTreeView;
 
 // ----
 
@@ -248,22 +248,8 @@ begin
 end;
 
 function Control_SetFont1A(Control: AControl; {const} FontName: PAnsiChar; FontSize: AInteger): AError;
-var
-  S: AString_Type;
 begin
-  if Assigned(AUiControl_SetFont1A) then
-  begin
-    Result := AUiProcVars.AUiControl_SetFont1A(Control, FontName, FontSize);
-    Exit;
-  end;
-  if Assigned(AUi_Control_SetFont1) then
-  begin
-    AString_AssignA(S, FontName);
-    AUiProcVars.AUi_Control_SetFont1(Control, S, FontSize);
-    Result := 0;
-    Exit;
-  end;
-  Result := -1;
+  Result := AUiControl_SetFont1A(Control, FontName, FontSize);
 end;
 
 function Control_SetOnChange(Control: AControl; OnChange: ACallbackProc): AError;
@@ -273,55 +259,51 @@ end;
 
 function Control_SetPosition(Control: AControl; Left, Top: AInteger): AError;
 begin
-  AUiProcVars.AUi_Control_SetPosition(Control, Left, Top);
-  Result := 0;
+  Result := AUiControl_SetPosition(Control, Left, Top);
 end;
 
 function Control_SetSize(Control: AControl; Width, Height: Integer): AError;
 begin
-  AUiProcVars.AUi_Control_SetSize(Control, Width, Height);
-  Result := 0;
+  Result := AUiControl_SetSize(Control, Width, Height);
 end;
 
 function Control_SetTextWS(Control: AControl; const Value: AWideString): AError;
 begin
-  AUiProcVars.AUi_Control_SetTextWS(Control, Value);
-  Result := 0;
+  Result := AUiControl_SetTextP(Control, Value);
 end;
 
 function Control_SetVisible(Control: AControl; Value: ABoolean): AError;
 begin
-  AUiProcVars.AUi_Control_SetVisible(Control, Value);
-  Result := 0;
+  Result := AUiControl_SetVisible(Control, Value);
 end;
 
 // --- Dialog ---
 
 function Dialog_GetWindow(Dialog: ADialog): AWindow; stdcall;
 begin
-  Result := AUiProcVars.Ui_Dialog_GetWindow(Dialog);
+  Result := AUiDialog_GetWindow(Dialog);
 end;
 
 function Dialog_New(Buttons: AUIWindowButtons): ADialog; stdcall;
 begin
-  Result := AUiProcVars.Ui_Dialog_New(Buttons);
+  Result := AUiDialog_New(Buttons);
 end;
 
 // --- Grid ---
 
 function Grid_Clear(Grid: AControl): AError; stdcall;
 begin
-  Result := AUiProcVars.AUiGrid_Clear(Grid);
+  Result := AUiGrid_Clear(Grid);
 end;
 
 function Grid_DeleteRow2(Grid: AControl; Row: AInteger): AError; stdcall;
 begin
-  Result := AUiProcVars.AUiGrid_DeleteRow2(Grid, Row);
+  Result := AUiGrid_DeleteRow2(Grid, Row);
 end;
 
 function Grid_FindInt(Grid: AControl; Col, Value: AInteger): AInteger; stdcall;
 begin
-  Result := AUiProcVars.AUiGrid_FindInt(Grid, Col, Value);
+  Result := AUiGrid_FindInt(Grid, Col, Value);
 end;
 
 // --- Image ---
@@ -340,7 +322,7 @@ end;
 
 function Label_New(Parent: AControl): AControl; stdcall;
 begin
-  Result := AUiProcVars.UI_Label_New(Parent);
+  Result := AUiLabel_New(Parent);
 end;
 
 // --- ListBox ---
@@ -392,12 +374,12 @@ end;
 
 function ProgressBar_New(Parent: AControl; Max: AInteger): AControl; stdcall;
 begin
-  Result := AUiProcVars.UI_ProgressBar_New(Parent, Max);
+  Result := AUiProgressBar_New(Parent, Max);
 end;
 
 function ProgressBar_StepIt(ProgressBar: AControl): AInteger; stdcall;
 begin
-  Result := AUiProcVars.UI_ProgressBar_StepIt(ProgressBar);
+  Result := AUiProgressBar_StepIt(ProgressBar);
 end;
 
 // --- Splitter ---

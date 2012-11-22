@@ -2,7 +2,7 @@
 @Abstract User Interface
 @Author Prof1983 <prof1983@ya.ru>
 @Created 24.09.2012
-@LastMod 21.11.2012
+@LastMod 22.11.2012
 }
 unit AUiProcSet;
 
@@ -33,28 +33,28 @@ begin
   AUi_Button_New := UiProcs.Button_New;
 
   UI_Control_Free := UiProcs.Control_Free;
-  AUi_Control_FreeAndNil := UiProcs.Control_FreeAndNil;
-  AUi_Control_GetEnabled := UiProcs.Control_GetEnabled;
-  AUi_Control_GetHeight := UiProcs.Control_GetHeight;
-  AUi_Control_GetHint := UiProcs.Control_GetHintW;
-  AUi_Control_GetName := UiProcs.Control_GetNameW;
-  AUi_Control_GetText := UiProcs.Control_GetTextW;
-  AUi_Control_GetVisible := UiProcs.Control_GetVisible;
-  AUi_Control_GetWidth := UiProcs.Control_GetWidth;
+  UI_Control_FreeAndNil := UiProcs.Control_FreeAndNil;
+  AUiControl_GetEnabled := UiProcs.Control_GetEnabled;
+  AUiControl_GetHeight := UiProcs.Control_GetHeight;
+  UI_Control_GetHint := UiProcs.Control_GetHintW;
+  UI_Control_GetName := UiProcs.Control_GetNameW;
+  UI_Control_GetText := UiProcs.Control_GetTextW;
+  AUiControl_GetVisible := UiProcs.Control_GetVisible;
+  AUiControl_GetWidth := UiProcs.Control_GetWidth;
   UI_Control_SetAlign := UiProcs.Control_SetAlign;
   UI_Control_SetClientSize := UiProcs.Control_SetClientSize;
   UI_Control_SetColor := UiProcs.Control_SetColor;
-  AUi_Control_SetEnabled := UiProcs.Control_SetEnabled;
-  AUi_Control_SetFocus := UiProcs.Control_SetFocus;
-  AUi_Control_SetHint := UiProcs.Control_SetHintW;
-  AUi_Control_SetName := UiProcs.Control_SetNameW;
-  AUi_Control_SetOnChange02 := UiProcs.Control_SetOnChange02;
-  AUi_Control_SetOnClick02 := UiProcs.Control_SetOnClick02;
-  AUi_Control_SetPosition := UiProcs.Control_SetPosition02;
-  AUi_Control_SetSize := UiProcs.Control_SetSize02;
-  AUi_Control_SetTextWS := UiProcs.Control_SetTextWS;
-  AUi_Control_SetVisible := UiProcs.Control_SetVisible;
-  AUi_Control_SetWidth := UiProcs.Control_SetWidth;
+  UI_Control_SetEnabled := UiProcs.Control_SetEnabled;
+  AUiControl_SetFocus := UiProcs.Control_SetFocus;
+  UI_Control_SetHint := UiProcs.Control_SetHintW;
+  UI_Control_SetName := UiProcs.Control_SetNameW;
+  UI_Control_SetOnChange02 := UiProcs.Control_SetOnChange02;
+  UI_Control_SetOnClick02 := UiProcs.Control_SetOnClick02;
+  UI_Control_SetPosition := UiProcs.Control_SetPosition02;
+  UI_Control_SetSize := UiProcs.Control_SetSize02;
+  UI_Control_SetTextWS := UiProcs.Control_SetTextWS;
+  UI_Control_SetVisible := UiProcs.Control_SetVisible;
+  AUiControl_SetWidth := UiProcs.Control_SetWidth;
 
   //UI_DataSource_New := UI.DataSource_New;
   //UI_DataSource_SetOnDataChange := UI.DataSource_SetOnDataChange;
@@ -84,7 +84,7 @@ begin
   UI_Edit_NewA := UiProcs.Edit_NewA;
 
   UI_Grid_AddColumn := UiProcs.Grid_AddColumn;
-  UI_Grid_New := UiProcs.Grid_New;
+  AUiGrid_New := UiProcs.Grid_New;
   UI_Grid_RestoreColProps := UiProcs.Grid_RestoreColProps;
   UI_Grid_SaveColProps := UiProcs.Grid_SaveColProps;
   UI_Grid_SetColumnWidth := UiProcs.Grid_SetColumnWidth;
@@ -94,7 +94,7 @@ begin
   AUiImage_New := UiProcs.Image_New;
   UI_Image_LoadFromFileWS := UiProcs.Image_LoadFromFile;
 
-  UI_Label_New := UiProcs.Label_New;
+  AUiLabel_New := UiProcs.Label_New;
   {$IFDEF A02}
   UI_Label_SetFont := UiProcs.Label_SetFont;
   {$ELSE}
@@ -141,8 +141,8 @@ begin
   AUiPageControl_AddPageWS := UiProcs.PageControl_AddPageWS;
   AUiPageControl_New := UiProcs.PageControl_New;
 
-  UI_ProgressBar_New := UiProcs.ProgressBar_New;
-  UI_ProgressBar_StepIt := UiProcs.ProgressBar_StepIt;
+  AUiProgressBar_New := UiProcs.ProgressBar_New;
+  AUiProgressBar_StepIt := UiProcs.ProgressBar_StepIt;
 
   UI_PropertyBox_Add := UiProcs.PropertyBox_Add;
   UI_PropertyBox_AddA := UiProcs.PropertyBox_AddA;
@@ -225,8 +225,8 @@ begin
     Reserved := UiProcs.Reserved138;
     Reserved := UiProcs.Reserved139;
     {$ELSE}
-    UI_Control_SetFont1 := UiProcs.Control_SetFont1;
-    UI_Control_SetFont2 := UiProcs.Control_SetFont2;
+    UI_Control_SetFontW1 := UiProcs.Control_SetFont1;
+    UI_Control_SetFontW2 := UiProcs.Control_SetFont2;
     UI_Dialog_About_New := UiProcs.Dialog_About_New;
     UI_Dialog_AddButton := UiProcs.Dialog_AddButton;
     //UI_InitMenus := UI.InitMenus;

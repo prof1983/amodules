@@ -2,7 +2,7 @@
 @Abstract User Interface procs var
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 21.11.2012
+@LastMod 22.11.2012
 }
 unit AUiProcVars;
 
@@ -22,22 +22,16 @@ var
   AUi_Init: AUi_Init_Proc = nil;
   AUi_InitMainTrayIcon: AUi_InitMainTrayIcon_Proc = nil;
   AUi_InitMenus: AUi_InitMenus_Proc = nil;
-  {$ifdef ADepr}
-  AUi_InitMenus02: AUi_InitMenus02_Proc = nil;
-  {$endif}
   AUi_OnDone_Connect: AUi_OnDone_Connect_Proc = nil;
   AUi_OnDone_Disconnect: AUi_OnDone_Disconnect03_Proc = nil;
   AUi_ProcessMessages: AUi_ProcessMessages_Proc = nil;
-  {$ifdef ADepr}
-  AUi_ProcessMessages02: AUi_ProcessMessages02_Proc = nil;
-  {$endif}
   AUi_SetIsShowApp: AUi_SetIsShowApp_Proc = nil;
-  {$ifdef ADepr}
-  AUi_SetOnMainFormCreate02: AUi_SetOnMainFormCreate02_Proc = nil;
-  {$endif}
   AUi_ShowHelp: AUi_ShowHelp_Proc = nil;
   AUi_ShowHelp2: AUi_ShowHelp2_Proc = nil;
   {$ifdef ADepr}
+  AUi_InitMenus02: AUi_InitMenus02_Proc = nil;
+  AUi_ProcessMessages02: AUi_ProcessMessages02_Proc = nil;
+  AUi_SetOnMainFormCreate02: AUi_SetOnMainFormCreate02_Proc = nil;
   AUi_ShowHelp02: AUi_ShowHelp02_Proc = nil;
   AUi_ShowHelp2WS: AUi_ShowHelp2WS_Proc = nil;
   AUi_Shutdown02: AUi_Shutdown02_Proc = nil;
@@ -47,49 +41,46 @@ var
   AUi_Button_New: AUiButton_New_Proc = nil;
 var
   AUiControl_Free: AUiControl_Free04_Proc = nil;
+  AUiControl_FreeAndNil: AUiControl_FreeAndNil04_Proc = nil;
+  AUiControl_GetEnabled: AUiControl_GetEnabled_Proc = nil;
+  AUiControl_GetHeight: AUiControl_GetHeight_Proc = nil;
   AUiControl_GetText: AUiControl_GetText_Proc = nil;
+  AUiControl_GetVisible: AUiControl_GetVisible_Proc = nil;
+  AUiControl_GetWidth: AUiControl_GetWidth_Proc = nil;
   AUiControl_SetAlign: AUiControl_SetAlign04_Proc = nil;
   AUiControl_SetClientSize: AUiControl_SetClientSize04_Proc = nil;
   AUiControl_SetColor: AUiControl_SetColor04_Proc = nil;
+  AUiControl_SetEnabled: AUiControl_SetEnabled04_Proc = nil;
+  AUiControl_SetFocus: AUiControl_SetFocus_Proc = nil;
+  AUiControl_SetFont1: AUiControl_SetFont1_Proc = nil;
   AUiControl_SetFont1A: AUiControl_SetFont1A_Proc = nil;
+  AUiControl_SetOnChange: AUiControl_SetOnChange_Proc = nil;
   AUiControl_SetPosition: AUiControl_SetPosition04_Proc = nil;
   AUiControl_SetSize: AUiControl_SetSize04_Proc = nil;
   AUiControl_SetText: AUiControl_SetText04_Proc = nil;
-var
-  UI_Control_Free: AUiControl_Free02_Proc = nil;
-  AUi_Control_FreeAndNil: AUiControl_FreeAndNil_Proc = nil;
-  AUi_Control_GetEnabled: AUiControl_GetEnabled_Proc = nil;
-  AUi_Control_GetHeight: AUiControl_GetHeight_Proc = nil;
+  AUiControl_SetWidth: AUiControl_SetWidth_Proc = nil;
   {$ifdef ADepr}
-  AUi_Control_GetHint: AUiControl_GetHintWS_Proc = nil;
-  AUi_Control_GetName: AUiControl_GetNameWS_Proc = nil;
-  AUi_Control_GetText: AUiControl_GetTextWS_Proc = nil;
-  {$endif}
-  AUi_Control_GetVisible: AUiControl_GetVisible_Proc = nil;
-  AUi_Control_GetWidth: AUiControl_GetWidth_Proc = nil;
+  UI_Control_Free: AUiControl_Free02_Proc = nil;
+  UI_Control_FreeAndNil: AUiControl_FreeAndNil02_Proc = nil;
+  UI_Control_GetHint: AUiControl_GetHintWS_Proc = nil;
+  UI_Control_GetName: AUiControl_GetNameWS_Proc = nil;
+  UI_Control_GetText: AUiControl_GetTextWS_Proc = nil;
   UI_Control_SetAlign: AUiControl_SetAlign02_Proc = nil;
   UI_Control_SetClientSize: AUiControl_SetClientSize02_Proc = nil;
   UI_Control_SetColor: AUiControl_SetColor02_Proc = nil;
-  AUi_Control_SetEnabled: AUiControl_SetEnabled_Proc = nil;
-  AUi_Control_SetFocus: AUiControl_SetFocus_Proc = nil;
-  AUi_Control_SetFont1: AUiControl_SetFont1_Proc = nil;
-  AUi_Control_SetFont2: AUiControl_SetFont2_Proc = nil;
-  {$ifdef ADepr}
-  AUi_Control_SetHint: AUiControl_SetHintWS_Proc = nil;
-  AUi_Control_SetName: AUiControl_SetNameWS_Proc = nil;
+  UI_Control_SetEnabled: AUiControl_SetEnabled02_Proc = nil;
+  UI_Control_SetFont2: AUiControl_SetFont2_Old_Proc = nil;
+  UI_Control_SetFontW1: AUiControl_SetFontW1_Proc = nil;
+  UI_Control_SetFontW2: AUiControl_SetFontW2_Proc = nil;
+  UI_Control_SetHint: AUiControl_SetHintWS_Proc = nil;
+  UI_Control_SetName: AUiControl_SetNameWS_Proc = nil;
+  UI_Control_SetOnChange02: AUiControl_SetOnChange02_Proc = nil;
+  UI_Control_SetOnClick02: AUiControl_SetOnClick02_Old_Proc = nil;
+  UI_Control_SetPosition: AUiControl_SetPosition02_Proc = nil;
+  UI_Control_SetSize: AUiControl_SetSize02_Proc = nil;
+  UI_Control_SetTextWS: AUiControl_SetTextWS_Proc = nil;
+  UI_Control_SetVisible: AUiControl_SetVisible02_Proc = nil;
   {$endif}
-  AUiControl_SetOnChange: AUiControl_SetOnChange_Proc = nil;
-  {$ifdef ADepr}
-  AUi_Control_SetOnChange02: AUiControl_SetOnChange02_Proc = nil;
-  AUi_Control_SetOnClick02: AUiControl_SetOnClick02_Proc = nil;
-  {$endif}
-  AUi_Control_SetPosition: AUiControl_SetPosition02_Proc = nil;
-  AUi_Control_SetSize: AUiControl_SetSize02_Proc = nil;
-  {$ifdef ADepr}
-  AUi_Control_SetTextWS: AUiControl_SetTextWS_Proc = nil;
-  {$endif}
-  AUi_Control_SetVisible: AUiControl_SetVisible_Proc = nil;
-  AUi_Control_SetWidth: AUiControl_SetWidth_Proc = nil;
 var
   UI_Dialog_About: AUi_Dialog_About_Proc = nil;
   UI_Dialog_Calendar: AUi_Dialog_Calendar_Proc = nil;
@@ -130,19 +121,20 @@ var
   UI_Edit_NewA: AUI_Edit_New02_Proc = nil;
   {$endif}
 var
-  UI_Grid_AddColumn: AUI_Grid_AddColumn = nil;
-  AUiGrid_Clear: AUi_Grid_Clear_Proc = nil;
-  AUiGrid_ClearA: AUi_Grid_ClearA_Proc = nil;
-  AUiGrid_DeleteRow2: AUi_Grid_DeleteRow2_Proc = nil;
-  AUiGrid_FindInt: AUi_Grid_FindInt_Proc = nil;
-  UI_Grid_New: AUI_Grid_New = nil;
+  AUiGrid_Clear: AUiGrid_Clear_Proc = nil;
+  AUiGrid_ClearA: AUiGrid_ClearA_Proc = nil;
+  AUiGrid_DeleteRow: AUiGrid_DeleteRow_Proc = nil;
+  AUiGrid_DeleteRow2: AUiGrid_DeleteRow2_Proc = nil;
+  AUiGrid_FindInt: AUiGrid_FindInt_Proc = nil;
+  AUiGrid_New: AUiGrid_New_Proc = nil;
   {$ifdef ADepr}
-  UI_Grid_RestoreColProps: AUi_Grid_RestoreColPropsWS_Proc = nil;
-  UI_Grid_SaveColProps: AUi_Grid_SaveColPropsWS02_Proc = nil;
+  UI_Grid_AddColumn: AUiGrid_AddColumnWS_Proc = nil;
+  UI_Grid_RestoreColProps: AUiGrid_RestoreColPropsWS_Proc = nil;
+  UI_Grid_SaveColProps: AUiGrid_SaveColPropsWS02_Proc = nil;
+  UI_Grid_SetColumnWidth: AUiGrid_SetColumnWidth02_Proc = nil;
+  UI_Grid_SetColumnWidthA: AUiGrid_SetColumnWidthA_Proc = nil;
+  UI_Grid_SetDataSource: AUiGrid_SetDataSource02_Proc = nil;
   {$endif}
-  UI_Grid_SetColumnWidth: AUI_Grid_SetColumnWidth = nil;
-  UI_Grid_SetColumnWidthA: AUI_Grid_SetColumnWidthA = nil;
-  UI_Grid_SetDataSource: AUI_Grid_SetDataSource = nil;
 var
   AUiImage_LoadFromFile: AUiImage_LoadFromFile_Proc = nil;
   AUiImage_LoadFromFileA: AUiImage_LoadFromFileA_Proc = nil;
@@ -151,7 +143,7 @@ var
   UI_Image_LoadFromFileWS: AUi_Image_LoadFromFileWS_Proc = nil;
   {$endif}
 var
-  UI_Label_New: AUI_Label_New = nil;
+  AUiLabel_New: AUiLabel_New_Proc = nil;
 var
   AUiListBox_Add: AUiListBox_Add_Proc = nil;
   AUiListBox_Clear: AUiListBox_Clear_Proc = nil;
@@ -203,8 +195,8 @@ var
   AUiPageControl_AddPageWS: AUi_PageControl_AddPageWS_Proc = nil;
   {$endif}
 var
-  UI_ProgressBar_New: AUi_ProgressBar_New_Proc = nil;
-  UI_ProgressBar_StepIt: AUi_ProgressBar_StepIt_Proc = nil;
+  AUiProgressBar_New: AUiProgressBar_New_Proc = nil;
+  AUiProgressBar_StepIt: AUiProgressBar_StepIt_Proc = nil;
 var
   UI_PropertyBox_Add: AUI_PropertyBox_Add = nil;
   UI_PropertyBox_AddA: AUI_PropertyBox_AddA = nil;
@@ -266,10 +258,6 @@ var
   UI_Report_New: AUI_Report_New = nil;
   UI_Report_SetText: AUI_Report_SetText = nil;
 var
-  {$ifdef ADepr}
-  UI_Control_SetFont1: AUiControl_SetFontW1_Proc = nil;
-  UI_Control_SetFont2: AUiControl_SetFontW2_Proc = nil;
-  {$endif}
   UI_Dialog_About_New: AUi_Dialog_About_New_Proc = nil;
   UI_Dialog_AddButton: AUI_Dialog_AddButton02 = nil;
 

@@ -2,7 +2,7 @@
 Abstract AUiControl functions
 Author Prof1983 <prof1983@ya.ru>
 Created 16.11.2012
-LastMod 20.11.2012
+LastMod 22.11.2012
 }
 unit AUiControls;
 
@@ -26,6 +26,11 @@ function AUiControl_SetClientSize(Control: AControl; ClientWidth, ClientHeight: 
 
 function AUiControl_SetColor(Control: AControl; Color: AColor): AError; {$ifdef AStdCall}stdcall;{$endif}
 
+{** Set font
+    @param FontName - (const) }
+function AUiControl_SetFont1A(Control: AControl; FontName: AStr;
+    FontSize: AInt): AError; {$ifdef AStdCall}stdcall;{$endif}
+
 function AUiControl_SetPosition(Control: AControl; Left, Top: AInt): AError; {$ifdef AStdCall}stdcall;{$endif}
 
 function AUiControl_SetSize(Control: AControl; Width, Height: AInt): AError; {$ifdef AStdCall}stdcall;{$endif}
@@ -33,6 +38,8 @@ function AUiControl_SetSize(Control: AControl; Width, Height: AInt): AError; {$i
 function AUiControl_SetText(Control: AControl; const Value: AString_Type): AError; {$ifdef AStdCall}stdcall;{$endif}
 
 function AUiControl_SetTextP(Control: AControl; const Value: APascalString): AError; {$ifdef AStdCall}stdcall;{$endif}
+
+function AUiControl_SetVisible(Control: AControl; Value: ABoolean): AError; {$ifdef AStdCall}stdcall;{$endif}
 
 implementation
 
@@ -128,6 +135,25 @@ begin
   Result := -1;
 end;
 
+function AUiControl_SetFont1A(Control: AControl; FontName: AStr; FontSize: AInt): AError;
+var
+  S: AString_Type;
+begin
+  if Assigned(AUiProcVars.AUiControl_SetFont1A) then
+  begin
+    Result := AUiProcVars.AUiControl_SetFont1A(Control, FontName, FontSize);
+    Exit;
+  end;
+  if Assigned(AUiProcVars.AUiControl_SetFont1) then
+  begin
+    AString_AssignA(S, FontName);
+    AUiProcVars.AUiControl_SetFont1(Control, S, FontSize);
+    Result := 0;
+    Exit;
+  end;
+  Result := -1;
+end;
+
 function AUiControl_SetPosition(Control: AControl; Left, Top: AInt): AError;
 begin
   if not(Assigned(AUiProcVars.AUiControl_SetPosition)) then
@@ -162,8 +188,29 @@ function AUiControl_SetTextP(Control: AControl; const Value: APascalString): AEr
 var
   S: AString_Type;
 begin
-  AString_AssignP(S, Value);
-  Result := AUiControl_SetText(Control, S);
+  if Assigned(AUiProcVars.AUiControl_SetText) then
+  begin
+    AString_AssignP(S, Value);
+    Result := AUiControl_SetText(Control, S);
+    Exit;
+  end;
+  if Assigned(AUiProcVars.UI_Control_SetTextWS) then
+  begin
+    AUiProcVars.UI_Control_SetTextWS(Control, Value);
+    Result := 0;
+    Exit;
+  end;
+  Result := -1;
+end;
+
+function AUiControl_SetVisible(Control: AControl; Value: ABoolean): AError;
+begin
+  if Assigned(AUiProcVars.UI_Control_SetVisible) then
+  begin
+    AUiProcVars.UI_Control_SetVisible(Control, Value);
+    Result := 0;
+  end;
+  Result := -1;
 end;
 
 end.

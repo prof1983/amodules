@@ -2,7 +2,7 @@
 @Abstract User interface proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 20.11.2012
+@LastMod 22.11.2012
 }
 unit AUiProcTypes;
 
@@ -56,64 +56,59 @@ type
   AUi_Calendar_SetMonth = procedure(Calendar: AControl; Value: AInteger); stdcall;
 
 type
-  AUiControl_Free02_Proc = procedure(Control: AControl); stdcall;
   AUiControl_Free04_Proc = function(Control: AControl): AError; stdcall;
-  AUiControl_FreeAndNil_Proc = procedure(var Control: AControl); stdcall;
+  AUiControl_FreeAndNil04_Proc = function(var Control: AControl): AError; stdcall;
   AUiControl_GetEnabled_Proc = function(Control: AControl): ABoolean; stdcall;
   AUiControl_GetHeight_Proc = function(Control: AControl): AInteger; stdcall;
   AUiControl_GetHint_Proc = function(Control: AControl; out Value: AString_Type): AInteger; stdcall;
-  {$ifdef ADepr}
-  AUiControl_GetHintWS_Proc = function(Control: AControl): AWideString; stdcall;
-  {$endif}
   AUiControl_GetName_Proc = function(Control: AControl; out Value: AString_Type): AInteger; stdcall;
-  {$ifdef ADepr}
-  AUiControl_GetNameWS_Proc = function(Control: AControl): AWideString; stdcall;
-  {$endif}
   AUiControl_GetText_Proc = function(Control: AControl; out Value: AString_Type): AInteger; stdcall;
-  {$ifdef ADepr}
-  AUiControl_GetTextWS_Proc = function(Control: AControl): AWideString; stdcall;
-  {$endif}
   AUiControl_GetVisible_Proc = function(Control: AControl): ABoolean; stdcall;
   AUiControl_GetWidth_Proc = function(Control: AControl): AInteger; stdcall;
-  AUiControl_SetAlign02_Proc = procedure(Control: AControl; Align: TUiAlign); stdcall;
   AUiControl_SetAlign04_Proc = function(Control: AControl; Align: TUiAlign): AError; stdcall;
-  AUiControl_SetClientSize02_Proc = procedure(Control: AControl; ClientWidth, ClientHeight: AInteger); stdcall;
   AUiControl_SetClientSize04_Proc = function(Control: AControl; ClientWidth, ClientHeight: AInt): AError; stdcall;
-  AUiControl_SetColor02_Proc = procedure(Control: AControl; Color: AColor); stdcall;
   AUiControl_SetColor04_Proc = function(Control: AControl; Color: AColor): AError; stdcall;
-  AUiControl_SetEnabled_Proc = procedure(Control: AControl; Value: ABoolean); stdcall;
+  AUiControl_SetEnabled04_Proc = function(Control: AControl; Value: ABoolean): AError; stdcall;
   AUiControl_SetFocus_Proc = function(Control: AControl): ABoolean; stdcall;
-  AUiControl_SetFont1_Proc = procedure(Control: AControl; const FontName: AString_Type; FontSize: AInteger); stdcall;
+  AUiControl_SetFont1_Proc = function(Control: AControl; const FontName: AString_Type; FontSize: AInt): AError; stdcall;
   AUiControl_SetFont1A_Proc = function(Control: AControl; FontName: AStr; FontSize: AInt): AError; stdcall;
-  AUiControl_SetFont2_Proc = procedure(Control: AControl; const FontName: AString_Type; FontSize: AInteger; Color: AColor); stdcall;
+  AUiControl_SetHint04_Proc = function(Control: AControl; const Value: AString_Type): AError; stdcall;
+  AUiControl_SetName04_Proc = function(Control: AControl; const Value: AString_Type): AError; stdcall;
+  AUiControl_SetOnChange_Proc = function(Control: AControl; OnChange: ACallbackProc03): AError; stdcall;
+  AUiControl_SetOnClick02_New_Proc = function(Control: AControl; Value: ACallbackProc02): AError; stdcall;
+  AUiControl_SetOnClick03_New_Proc = function(Control: AControl; Value: ACallbackProc03): AError; stdcall;
+  AUiControl_SetOnClick04_Proc = function(Control: AControl; Value: ACallbackProc): AError; stdcall;
+  AUiControl_SetPosition04_Proc = function(Control: AControl; Left, Top: AInt): AError; stdcall;
+  AUiControl_SetSize04_Proc = function(Control: AControl; Width, Height: AInt): AError; stdcall;
+  AUiControl_SetText04_Proc = function(Control: AControl; const Value: AString_Type): AError; stdcall;
+  AUiControl_SetVisible04_Proc = function(Control: AControl; Value: ABoolean): AError; stdcall;
+  AUiControl_SetWidth_Proc = function(Control: AControl; Value: AInteger): AInteger; stdcall;
   {$ifdef ADepr}
+  AUiControl_Free02_Proc = procedure(Control: AControl); stdcall;
+  AUiControl_FreeAndNil02_Proc = procedure(var Control: AControl); stdcall;
+  AUiControl_GetHintWS_Proc = function(Control: AControl): AWideString; stdcall;
+  AUiControl_GetNameWS_Proc = function(Control: AControl): AWideString; stdcall;
+  AUiControl_GetTextWS_Proc = function(Control: AControl): AWideString; stdcall;
+  AUiControl_SetAlign02_Proc = procedure(Control: AControl; Align: TUiAlign); stdcall;
+  AUiControl_SetClientSize02_Proc = procedure(Control: AControl; ClientWidth, ClientHeight: AInteger); stdcall;
+  AUiControl_SetColor02_Proc = procedure(Control: AControl; Color: AColor); stdcall;
+  AUiControl_SetEnabled02_Proc = procedure(Control: AControl; Value: ABoolean); stdcall;
+  AUiControl_SetFont2_Old_Proc = procedure(Control: AControl; const FontName: AString_Type; FontSize: AInteger; Color: AColor); stdcall;
   AUiControl_SetFontW1_Proc = procedure(Control: AControl; const FontName: AWideString; FontSize: AInteger); stdcall;
   AUiControl_SetFontW2_Proc = procedure(Control: AControl; const FontName: AWideString; FontSize: AInteger; Color: AColor); stdcall;
-  {$endif}
-  AUiControl_SetHint_Proc = procedure(Control: AControl; const Value: AString_Type); stdcall;
-  {$ifdef ADepr}
+  AUiControl_SetHint02_Proc = procedure(Control: AControl; const Value: AString_Type); stdcall;
   AUiControl_SetHintWS_Proc = procedure(Control: AControl; const Value: AWideString); stdcall;
-  {$endif}
-  AUiControl_SetName_Proc = procedure(Control: AControl; const Value: AString_Type); stdcall;
-  {$ifdef ADepr}
+  AUiControl_SetName02_Proc = procedure(Control: AControl; const Value: AString_Type); stdcall;
   AUiControl_SetNameWS_Proc = procedure(Control: AControl; const Value: AWideString); stdcall;
-  {$endif}
-  AUiControl_SetOnChange_Proc = function(Control: AControl; OnChange: ACallbackProc03): AError; stdcall;
   AUiControl_SetOnChange02_Proc = procedure(Control: AControl; OnChange: ACallbackProc02); stdcall;
-  AUiControl_SetOnClick_Proc = procedure(Control: AControl; Value: ACallbackProc03); stdcall;
-  AUiControl_SetOnClick02_Proc = procedure(Control: AControl; Value: ACallbackProc02); stdcall;
-  //AUi_Control_SetOnClick03 = procedure(Control: AControl; Value: ACallbackProc03); stdcall;
+  AUiControl_SetOnClick02_Old_Proc = procedure(Control: AControl; Value: ACallbackProc02); stdcall;
+  AUiControl_SetOnClick03_Old_Proc = procedure(Control: AControl; Value: ACallbackProc03); stdcall;
   AUiControl_SetPosition02_Proc = procedure(Control: AControl; Left, Top: AInt); stdcall;
-  AUiControl_SetPosition04_Proc = function(Control: AControl; Left, Top: AInt): AError; stdcall;
   AUiControl_SetSize02_Proc = procedure(Control: AControl; Width, Height: AInteger); stdcall;
-  AUiControl_SetSize04_Proc = function(Control: AControl; Width, Height: AInt): AError; stdcall;
   AUiControl_SetText02_Proc = procedure(Control: AControl; const Value: AString_Type); stdcall;
-  AUiControl_SetText04_Proc = function(Control: AControl; const Value: AString_Type): AError; stdcall;
-  {$ifdef ADepr}
   AUiControl_SetTextWS_Proc = procedure(Control: AControl; const Value: AWideString); stdcall;
+  AUiControl_SetVisible02_Proc = procedure(Control: AControl; Value: ABoolean); stdcall;
   {$endif}
-  AUiControl_SetVisible_Proc = procedure(Control: AControl; Value: ABoolean); stdcall;
-  AUiControl_SetWidth_Proc = function(Control: AControl; Value: AInteger): AInteger; stdcall;
 
 type
   AUi_DataSource_New_Proc = function(): PADataSource; stdcall;
@@ -192,42 +187,43 @@ type
   AUi_Edit_New02_Proc = function(Parent: AControl; EditType: AInteger; OnClick: ACallbackProc02; Left, Top, Width: AInteger): AControl; stdcall;
   AUi_Edit_NewEx_Proc = function(Parent: AControl; EditType: AInteger; OnClick: ACallbackProc03; Left, Top, Width: AInteger): AControl; stdcall;
 
-type // --- V02 ---
-  AUi_Grid_AddColumn = procedure(Grid: AControl; const FieldName, Title: AWideString; Width: Integer); stdcall;
-  { GridType
-    0 - StringGrid
-    1 - DBGrid }
-  AUi_Grid_New = function(Parent: AControl; GridType: AInteger): AControl; stdcall;
-  // Восстанавливает колоноки DBGrid
-  AUi_Grid_RestoreColPropsWS_Proc = procedure(Grid: AControl; Config: AConfig; const Key: AWideString; Delimer: AWideChar = '\'); stdcall;
-  // Сохраняет колоноки DBGrid или StringGrid.
-  AUi_Grid_SaveColPropsWS02_Proc = procedure(Grid: AControl; Config: AConfig; const Key: AWideString; Delimer: AWideChar = '\'); stdcall;
-  // Изменяет ширину колонки в DBGrid
-  AUi_Grid_SetColumnWidth = procedure(Grid: AControl; ColumnIndex, Width, Persent, MinWidth: AInteger); stdcall;
-  AUi_Grid_SetColumnWidthA = procedure(Grid: AControl; ColumnIndex, Width, Persent, MinWidth, MaxWidth: AInteger); stdcall;
-  AUi_Grid_SetDataSource = procedure(Grid: AControl; Value: PADataSource); stdcall;
-type // --- V03 ---
-  AUi_Grid_AddColumn_Proc = procedure(Grid: AControl; const FieldName, Title: AString_Type; Width: Integer); stdcall;
+type
+  AUiGrid_AddColumn04_Proc = function(Grid: AControl; const FieldName, Title: AString_Type;
+      Width: AInteger): AError; stdcall;
     // Производит очистку таблицы. Пока работает только для TStringGrid.
-  AUi_Grid_Clear_Proc = function(Grid: AControl): AError; stdcall;
+  AUiGrid_Clear_Proc = function(Grid: AControl): AError; stdcall;
     // Производит очистку таблицы. Пока работает только для TStringGrid.
-  AUi_Grid_ClearA_Proc = function(Grid: AControl; FixedRows: AInteger): AError; stdcall;
+  AUiGrid_ClearA_Proc = function(Grid: AControl; FixedRows: AInteger): AError; stdcall;
+  AUiGrid_DeleteRow_Proc = function(Grid: AControl): AError; stdcall;
     // Удаляет указанную строку.
-  AUi_Grid_DeleteRow2_Proc = function(Grid: AControl; Row: AInteger): AError; stdcall;
+  AUiGrid_DeleteRow2_Proc = function(Grid: AControl; Row: AInteger): AError; stdcall;
     // Производит поиск значения в заданной колонке. Работает пока только для TStringGrid.
-  AUi_Grid_FindInt_Proc = function(Grid: AControl; Col, Value: AInteger): AInteger; stdcall;
+  AUiGrid_FindInt_Proc = function(Grid: AControl; Col, Value: AInteger): AInteger; stdcall;
   { GridType
     0 - StringGrid
     1 - DBGrid }
-  AUi_Grid_New_Proc = function(Parent: AControl; GridType: AInteger): AControl; stdcall;
-  { Восстанавливает колоноки DBGrid }
-  AUi_Grid_RestoreColProps_Proc = procedure(Grid: AControl; Config: AConfig; const Key: AString_Type; Delimer: AChar = '\'); stdcall;
-  { Сохраняет колоноки DBGrid }
-  AUi_Grid_SaveColProps_Proc = procedure(Grid: AControl; Config: AConfig; const Key: AString_Type; Delimer: AChar = '\'); stdcall;
-  { Изменяет ширину колонки в DBGrid }
-  AUi_Grid_SetColumnWidth_Proc = procedure(Grid: AControl; ColumnIndex, Width, Persent, MinWidth: AInteger); stdcall;
-  AUi_Grid_SetColumnWidthA_Proc = procedure(Grid: AControl; ColumnIndex, Width, Persent, MinWidth, MaxWidth: AInteger); stdcall;
-  AUi_Grid_SetDataSource_Proc = procedure(Grid: AControl; Value: PADataSource); stdcall;
+  AUiGrid_New_Proc = function(Parent: AControl; GridType: AInteger): AControl; stdcall;
+  AUiGrid_RestoreColProps04_Proc = function(Grid: AControl; Config: AConfig;
+      const Key: AString_Type; Delimer: AChar = '\'): AError; stdcall;
+  AUiGrid_SaveColProps04_Proc = function(Grid: AControl; Config: AConfig;
+      const Key: AString_Type; Delimer: AChar = '\'): AError; stdcall;
+  AUiGrid_SetColumnWidth04_Proc = function(Grid: AControl; ColumnIndex, Width, Persent, MinWidth: AInteger): AError; stdcall;
+  AUiGrid_SetDataSource04_Proc = function(Grid: AControl; Value: PADataSource): AError; stdcall;
+  {$ifdef ADepr}
+  AUiGrid_AddColumn02_Proc = procedure(Grid: AControl; const FieldName, Title: AString_Type; Width: Integer); stdcall;
+  AUiGrid_AddColumnWS_Proc = procedure(Grid: AControl; const FieldName, Title: AWideString; Width: AInteger); stdcall;
+  AUiGrid_RestoreColProps02_Proc = procedure(Grid: AControl; Config: AConfig;
+      const Key: AString_Type; Delimer: AChar = '\'); stdcall;
+  AUiGrid_RestoreColPropsWS_Proc = procedure(Grid: AControl; Config: AConfig;
+      const Key: AWideString; Delimer: AWideChar = '\'); stdcall;
+  AUiGrid_SaveColProps02_Proc = procedure(Grid: AControl; Config: AConfig;
+      const Key: AString_Type; Delimer: AChar = '\'); stdcall;
+  AUiGrid_SaveColPropsWS02_Proc = procedure(Grid: AControl; Config: AConfig;
+      const Key: AWideString; Delimer: AWideChar = '\'); stdcall;
+  AUiGrid_SetColumnWidth02_Proc = procedure(Grid: AControl; ColumnIndex, Width, Persent, MinWidth: AInteger); stdcall;
+  AUiGrid_SetColumnWidthA_Proc = procedure(Grid: AControl; ColumnIndex, Width, Persent, MinWidth, MaxWidth: AInteger); stdcall;
+  AUiGrid_SetDataSource02_Proc = procedure(Grid: AControl; Value: PADataSource); stdcall;
+  {$endif}
 
 type
   AUiImage_LoadFromFile_Proc = function(Image: AControl; const FileName: AString_Type): AError; stdcall;
@@ -238,7 +234,7 @@ type
   {$endif}
   AUiImage_New_Proc = function(Parent: AControl): AControl; stdcall;
 type
-  AUi_Label_New = function(Parent: AControl): AControl; stdcall;
+  AUiLabel_New_Proc = function(Parent: AControl): AControl; stdcall;
 type
   AUiListBox_Add_Proc = function(ListBox: AControl; const Text: AString_Type): AInt; stdcall;
   AUiListBox_Clear_Proc = function(ListBox: AControl): AError; stdcall;
@@ -303,8 +299,8 @@ type
   AUiPageControl_New_Proc = function(Parent: AControl): AControl; stdcall;
 
 type
-  AUi_ProgressBar_New_Proc = function(Parent: AControl; Max: AInteger): AControl; stdcall;
-  AUi_ProgressBar_StepIt_Proc = function(ProgressBar: AControl): AInteger; stdcall;
+  AUiProgressBar_New_Proc = function(Parent: AControl; Max: AInteger): AControl; stdcall;
+  AUiProgressBar_StepIt_Proc = function(ProgressBar: AControl): AInteger; stdcall;
 
 type
   AUi_PropertyBox_Add = function(PropertyBox: AControl; const Caption: AWideString): Integer; stdcall;
