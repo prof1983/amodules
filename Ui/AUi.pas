@@ -2,7 +2,7 @@
 @Abstract User Interface client
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 22.11.2012
+@LastMod 23.11.2012
 }
 unit AUi;
 
@@ -13,7 +13,7 @@ interface
 uses
   ABase, ABaseTypes,
   AStrings,
-  AUiBase, AUiBox, AUiControls, AUiControlsA, AUiDialogs, AUiGrids, AUiImages, AUiLabels,
+  AUiBase, AUiBox, AUiControls, AUiControlsA, AUiDialogs, AUiEvents, AUiGrids, AUiImages, AUiLabels,
   AUiListBox, AUiMain, AUiMainWindow, AUiMenus, AUiPageControl, AUiProgressBar, {AUiProcVars,}
   AUiSplitter, AUiTextView, AUiTreeView, AUiWindows;
 
@@ -448,19 +448,17 @@ end;
 
 function Window_SetFormStyle(Window: AWindow; FormStyle: AInteger): AError; stdcall;
 begin
-  AUiProcVars.UI_Window_SetFormStyle(Window, FormStyle);
-  Result := 0;
+  Result := AUiWindow_SetFormStyle(Window, FormStyle);
 end;
 
 function Window_SetPosition(Window: AWindow; Position: AInteger): AError; stdcall;
 begin
-  AUiProcVars.UI_Window_SetPosition(Window, Position);
-  Result := 0;
+  Result := AUiWindow_SetPosition(Window, Position);
 end;
 
 function Window_ShowModal(Window: AWindow): ABoolean; stdcall;
 begin
-  Result := AUiProcVars.AUiWindow_ShowModal(Window);
+  Result := AUiWindow_ShowModal(Window);
 end;
 
 { Public }
@@ -472,22 +470,12 @@ end;
 
 function OnDone_Connect(Proc: ACallbackProc): AInteger; stdcall;
 begin
-  if not(Assigned(AUiProcVars.AUi_OnDone_Connect)) then
-  begin
-    Result := 0;
-    Exit;
-  end;
-  Result := AUiProcVars.AUi_OnDone_Connect(Proc);
+  Result := AUi_OnDone_Connect(Proc);
 end;
 
 function OnDone_Disconnect(Proc: ACallbackProc): AInteger; stdcall;
 begin
-  if not(Assigned(AUiProcVars.AUi_OnDone_Disconnect)) then
-  begin
-    Result := 0;
-    Exit;
-  end;
-  Result := AUiProcVars.AUi_OnDone_Disconnect(Proc);
+  Result := AUi_OnDone_Disconnect(Proc);
 end;
 
 function ShowHelp(): AError; stdcall;

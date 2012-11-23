@@ -2,7 +2,7 @@
 @Abstract User Interface window functions
 @Author Prof1983 <prof1983@ya.ru>
 @Created 21.08.2012
-@LastMod 22.11.2012
+@LastMod 23.11.2012
 }
 unit AUiWindows;
 
@@ -33,9 +33,9 @@ function AUiWindow_SetBorderStyle(Window: AWindow; BorderStyle: AInt): AError; {
 
 function AUiWindow_SetFormStyle(Window: AWindow; FormStyle: AInt): AError; {$ifdef AStdCall}stdcall;{$endif}
 
-{
-function AUi_Window_SetPosition(Window: AWindow; Position: AInt): AError;
+function AUiWindow_SetPosition(Window: AWindow; Position: AInt): AError; {$ifdef AStdCall}stdcall;{$endif}
 
+{
 function AUi_Window_SetState(Window: AWindow; State: AInt): AError;
 }
 
@@ -88,16 +88,28 @@ end;
 
 function AUiWindow_SetFormStyle(Window: AWindow; FormStyle: AInt): AError;
 begin
+  if Assigned(AUiProcVars.UI_Window_SetFormStyle) then
+  begin
+    AUiProcVars.UI_Window_SetFormStyle(Window, FormStyle);
+    Result := 0;
+    Exit;
+  end;
+  Result := -1;
+end;
+
+function AUiWindow_SetPosition(Window: AWindow; Position: AInt): AError;
+begin
+  if Assigned(AUiProcVars.UI_Window_SetPosition) then
+  begin
+    AUiProcVars.UI_Window_SetPosition(Window, Position);
+    Result := 0;
+    Exit;
+  end;
+  Result := -1;
 end;
 
 function AUiWindow_ShowModal(Window: AWindow): ABoolean;
 begin
-  if Assigned(AUiProcVars.AUiWindow_ShowModal) then
-  begin
-    Result := AUiProcVars.AUiWindow_ShowModal(Window);
-    Exit;
-  end;
-
   if Assigned(AUiProcVars.AUiWindow_ShowModal) then
   begin
     Result := AUiProcVars.AUiWindow_ShowModal(Window);
