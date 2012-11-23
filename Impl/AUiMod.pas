@@ -2,7 +2,7 @@
 @Abstract User Interface
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 22.11.2012
+@LastMod 23.11.2012
 }
 unit AUiMod;
 
@@ -17,7 +17,7 @@ interface
 uses
   ABase, ARuntime, ARuntimeBase,
   AUi, AUiBase, AUiCalendar, AUiControls, AUiDialogs, AUiGrids, AUiImages, AUiLabels, AUiListBox,
-  AUiMain, AUiMainWindow2, {$IFDEF ADepr}AUiProcRec,{$ENDIF} AUiPropertyBox,
+  AUiMain, AUiMainWindow2, {$IFDEF ADepr}AUiProcRec,{$ENDIF} AUiPropertyBox, AUiReports,
   AUiSplitter, AUiTextView, AUiWindows, AUiWindowSettings;
 
 // --- AUi ---

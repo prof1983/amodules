@@ -480,25 +480,12 @@ end;
 
 function ShowHelp(): AError; stdcall;
 begin
-  if not(Assigned(AUiProcVars.AUi_ShowHelp)) then
-  begin
-    Result := -1;
-    Exit;
-  end;
-  Result := AUiProcVars.AUi_ShowHelp();
+  Result := AUi_ShowHelp();
 end;
 
 function ShowHelp2WS(const FileName: AWideString): AError; stdcall;
-var
-  S: AString_Type;
 begin
-  if not(Assigned(AUiProcVars.AUi_ShowHelp2)) then
-  begin
-    Result := -1;
-    Exit;
-  end;
-  AString_AssignWS(S, FileName);
-  Result := AUiProcVars.AUi_ShowHelp2(S);
+  Result := AUi_ShowHelp2P(FileName);
 end;
 
 end.

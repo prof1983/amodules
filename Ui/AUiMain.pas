@@ -11,9 +11,15 @@ unit AUiMain;
 interface
 
 uses
-  ABase, AUiProcVars;
+  ABase, AStrings, AUiProcVars;
 
 function AUi_Init(): AError; {$ifdef AStdCall}stdcall;{$endif}
+
+function AUi_ShowHelp(): AError; {$ifdef AStdCall}stdcall;{$endif}
+
+function AUi_ShowHelp2(const FileName: AString_Type): AError; {$ifdef AStdCall}stdcall;{$endif}
+
+function AUi_ShowHelp2P(const FileName: APascalString): AError; {$ifdef AStdCall}stdcall;{$endif}
 
 implementation
 
@@ -25,6 +31,50 @@ begin
     Exit;
   end;
   Result := AUiProcVars.AUi_Init();
+end;
+
+function AUi_ShowHelp(): AError;
+begin
+  if Assigned(AUiProcVars.AUi_ShowHelp) then
+  begin
+    Result := AUiProcVars.AUi_ShowHelp();
+    Exit;
+  end;
+  if Assigned(AUiProcVars.AUi_ShowHelp02) then
+  begin
+    AUiProcVars.AUi_ShowHelp02();
+    Result := 0;
+    Exit;
+  end;
+  Result := -1;
+end;
+
+function AUi_ShowHelp2(const FileName: AString_Type): AError;
+begin
+  if Assigned(AUiProcVars.AUi_ShowHelp2) then
+  begin
+    Result := AUiProcVars.AUi_ShowHelp2(FileName);
+    Exit;
+  end;
+  Result := -1;
+end;
+
+function AUi_ShowHelp2P(const FileName: APascalString): AError;
+var
+  S: AString_Type;
+begin
+  if Assigned(AUiProcVars.AUi_ShowHelp2) then
+  begin
+    AString_AssignP(S, FileName);
+    Result := AUi_ShowHelp2(S);
+    Exit;
+  end;
+  if Assigned(AUiProcVars.AUi_ShowHelp2WS) then
+  begin
+    Result := AUiProcVars.AUi_ShowHelp2WS(FileName);
+    Exit;
+  end;
+  Result := -1;
 end;
 
 end.
