@@ -2,7 +2,7 @@
 Abstract AUiControl functions
 Author Prof1983 <prof1983@ya.ru>
 Created 16.11.2012
-LastMod 22.11.2012
+LastMod 06.12.2012
 }
 unit AUiControls;
 
@@ -209,6 +209,7 @@ begin
   begin
     AUiProcVars.UI_Control_SetVisible(Control, Value);
     Result := 0;
+    Exit;
   end;
   Result := -1;
 end;
