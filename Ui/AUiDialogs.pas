@@ -2,7 +2,7 @@
 @Abstract AUi dialogs
 @Author Prof1983 <prof1983@ya.ru>
 @Created 27.08.2012
-@LastMod 22.11.2012
+@LastMod 11.12.2012
 }
 unit AUiDialogs;
 
@@ -39,7 +39,7 @@ end;
 function AUiDialog_AddButtonP(Win: AWindow; Left, Width: AInt; const Text: APascalString;
     OnClick: ACallbackProc): AControl;
 begin
-  AUiDialog_AddButton02(Win, Left, Width, Text, nil);
+  Result := AUiDialog_AddButton02(Win, Left, Width, Text, nil);
 end;
 
 function AUiDialog_GetWindow(Dialog: ADialog): AWindow;
