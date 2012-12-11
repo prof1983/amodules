@@ -2,7 +2,7 @@
 @Abstract ASettings proc vars
 @Author Prof1983 <prof1983@ya.ru>
 @Created 03.08.2012
-@LastMod 16.08.2012
+@LastMod 11.12.2012
 }
 unit ASettingsProcVars;
 
@@ -14,6 +14,7 @@ uses
   ASettingsProcTypes;
 
 var
+  ASettings_Close: ASettings_Close_Proc;
   ASettings_DeleteKey: ASettings_DeleteKey_Proc;
   ASettings_DeleteSection: ASettings_DeleteSection_Proc;
   ASettings_Fin: ASettings_Fin_Proc;

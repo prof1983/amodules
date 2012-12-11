@@ -11,8 +11,8 @@ unit AModuleManagerMod;
 interface
 
 uses
-  ABase, AModuleManagerMain, {$IFDEF ADepr}AModuleManagerProcTypes,{$ENDIF} ARuntime, ARuntimeBase,
-  ASettingsModClient, ASystemModClient, AUiMain, AUiModClient, AUiWorkbenchModClient;
+  ABase, AModuleManagerMain, {IFDEF ADepr}AModuleManagerProcTypes,{ENDIF} ARuntime, ARuntimeBase,
+  {ASettingsModClient, ASystemModClient,} AUiMain; {AUiModClient, AUiWorkbenchModClient;}
 
 { Module }
 
