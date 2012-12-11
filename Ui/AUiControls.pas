@@ -2,7 +2,7 @@
 Abstract AUiControl functions
 Author Prof1983 <prof1983@ya.ru>
 Created 16.11.2012
-LastMod 06.12.2012
+LastMod 11.12.2012
 }
 unit AUiControls;
 
@@ -50,12 +50,14 @@ begin
     Result := AUiProcVars.AUiControl_Free(Control);
     Exit;
   end;
+  {$ifdef ADepr}
   if Assigned(AUiProcVars.UI_Control_Free) then
   begin
     AUiProcVars.UI_Control_Free(Control);
     Result := 0;
     Exit;
   end;
+  {$endif}
   Result := -1;
 end;
 
@@ -88,14 +90,14 @@ begin
     Result := AUiProcVars.AUiControl_SetAlign(Control, Align);
     Exit;
   end;
-
+  {$ifdef ADepr}
   if Assigned(AUiProcVars.UI_Control_SetAlign) then
   begin
     AUiProcVars.UI_Control_SetAlign(Control, Align);
     Result := 0;
     Exit;
   end;
-
+  {$endif}
   Result := -1;
 end;
 
@@ -106,14 +108,14 @@ begin
     Result := AUiProcVars.AUiControl_SetClientSize(Control, ClientWidth, ClientHeight);
     Exit;
   end;
-
+  {$ifdef ADepr}
   if Assigned(AUiProcVars.UI_Control_SetClientSize) then
   begin
     AUiProcVars.UI_Control_SetClientSize(Control, ClientWidth, ClientHeight);
     Result := 0;
     Exit;
   end;
-
+  {$endif}
   Result := -1;
 end;
 
@@ -124,14 +126,14 @@ begin
     Result := AUiProcVars.AUiControl_SetColor(Control, Color);
     Exit;
   end;
-
+  {$ifdef ADepr}
   if Assigned(AUiProcVars.UI_Control_SetColor) then
   begin
     AUiProcVars.UI_Control_SetColor(Control, Color);
     Result := 0;
     Exit;
   end;
-
+  {$endif}
   Result := -1;
 end;
 
@@ -194,23 +196,33 @@ begin
     Result := AUiControl_SetText(Control, S);
     Exit;
   end;
+  {$ifdef ADepr}
   if Assigned(AUiProcVars.UI_Control_SetTextWS) then
   begin
     AUiProcVars.UI_Control_SetTextWS(Control, Value);
     Result := 0;
     Exit;
   end;
+  {$endif}
   Result := -1;
 end;
 
 function AUiControl_SetVisible(Control: AControl; Value: ABoolean): AError;
 begin
+  if Assigned(AUiProcVars.AUiControl_SetVisible) then
+  begin
+    AUiProcVars.AUiControl_SetVisible(Control, Value);
+    Result := 0;
+    Exit;
+  end;
+  {$ifdef ADepr}
   if Assigned(AUiProcVars.UI_Control_SetVisible) then
   begin
     AUiProcVars.UI_Control_SetVisible(Control, Value);
     Result := 0;
     Exit;
   end;
+  {$endif}
   Result := -1;
 end;
 

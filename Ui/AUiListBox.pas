@@ -2,7 +2,7 @@
 @Abstract AUiListBox
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 21.11.2012
+@LastMod 11.12.2012
 }
 unit AUiListBox;
 
@@ -31,11 +31,13 @@ begin
     Result := AUiProcVars.AUiListBox_Add(ListBox, Text);
     Exit;
   end;
+  {$ifdef ADepr}
   if Assigned(AUiProcVars.UI_ListBox_Add) then
   begin
     Result := AUiProcVars.UI_ListBox_Add(ListBox, AString_ToWideString(Text));
     Exit;
   end;
+  {$endif}
   Result := -1;
 end;
 
@@ -49,11 +51,13 @@ begin
     Result := AUiListBox_Add(ListBox, S);
     Exit;
   end;
+  {$ifdef ADepr}
   if Assigned(AUiProcVars.UI_ListBox_Add) then
   begin
     Result := AUiProcVars.UI_ListBox_Add(ListBox, Text);
     Exit;
   end;
+  {$endif}
   Result := -1;
 end;
 

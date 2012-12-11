@@ -2,7 +2,7 @@
 @Abstract AUi common functions
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 20.11.2012
+@LastMod 11.12.2012
 }
 unit AUiMain;
 
@@ -40,12 +40,14 @@ begin
     Result := AUiProcVars.AUi_ShowHelp();
     Exit;
   end;
+  {$ifdef ADepr}
   if Assigned(AUiProcVars.AUi_ShowHelp02) then
   begin
     AUiProcVars.AUi_ShowHelp02();
     Result := 0;
     Exit;
   end;
+  {$endif}
   Result := -1;
 end;
 
@@ -69,11 +71,13 @@ begin
     Result := AUi_ShowHelp2(S);
     Exit;
   end;
+  {$ifdef ADepr}
   if Assigned(AUiProcVars.AUi_ShowHelp2WS) then
   begin
     Result := AUiProcVars.AUi_ShowHelp2WS(FileName);
     Exit;
   end;
+  {$endif}
   Result := -1;
 end;
 

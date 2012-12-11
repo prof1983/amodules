@@ -2,7 +2,7 @@
 @Abstract User Interface procs var
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 22.11.2012
+@LastMod 11.12.2012
 }
 unit AUiProcVars;
 
@@ -25,12 +25,12 @@ var
   AUi_OnDone_Connect: AUi_OnDone_Connect_Proc = nil;
   AUi_OnDone_Disconnect: AUi_OnDone_Disconnect03_Proc = nil;
   AUi_ProcessMessages: AUi_ProcessMessages_Proc = nil;
-  AUi_SetIsShowApp: AUi_SetIsShowApp_Proc = nil;
   AUi_ShowHelp: AUi_ShowHelp_Proc = nil;
   AUi_ShowHelp2: AUi_ShowHelp2_Proc = nil;
   {$ifdef ADepr}
   AUi_InitMenus02: AUi_InitMenus02_Proc = nil;
   AUi_ProcessMessages02: AUi_ProcessMessages02_Proc = nil;
+  AUi_SetIsShowApp: AUi_SetIsShowApp_Proc = nil;
   AUi_SetOnMainFormCreate02: AUi_SetOnMainFormCreate02_Proc = nil;
   AUi_ShowHelp02: AUi_ShowHelp02_Proc = nil;
   AUi_ShowHelp2WS: AUi_ShowHelp2WS_Proc = nil;
@@ -65,6 +65,7 @@ var
   AUiControl_SetPosition: AUiControl_SetPosition04_Proc = nil;
   AUiControl_SetSize: AUiControl_SetSize04_Proc = nil;
   AUiControl_SetText: AUiControl_SetText04_Proc = nil;
+  AUiControl_SetVisible: AUiControl_SetVisible04_Proc = nil;
   AUiControl_SetWidth: AUiControl_SetWidth_Proc = nil;
   {$ifdef ADepr}
   UI_Control_Free: AUiControl_Free02_Proc = nil;
@@ -219,12 +220,14 @@ var
   AUiSplitter_New: AUiSplitter_New_Proc = nil;
 var
   AUiTextView_AddLine: AUiTextView_AddLine04_Proc = nil;
-  UI_TextView_AddLine: AUiTextView_AddLineWS_Proc = nil;
   UI_TextView_New: AUiTextView_New_Proc = nil;
+  {$ifdef ADepr}
+  UI_TextView_AddLine: AUiTextView_AddLineWS_Proc = nil;
   UI_TextView_SetFont: AUiTextView_SetFont02_Proc = nil;
   UI_TextView_SetReadOnly: AUiTextView_SetReadOnly02_Proc = nil;
   UI_TextView_SetScrollBars: AUiTextView_SetScrollBars02_Proc = nil;
   UI_TextView_SetWordWrap: AUiTextView_SetWordWrap02_Proc = nil;
+  {$endif}
 var
   AUi_ToolBar_AddButton: AUi_ToolBar_AddButton03_Proc = nil;
   {$ifdef ADepr}
@@ -241,12 +244,14 @@ var
   {$endif}
 var
   AUiWindow_Free: AUiWindow_Free_Proc = nil;
+  AUiWindow_GetMenu: AUiWindow_GetMenu_Proc = nil;
   AUiWindow_New: AUiWindow_New_Proc = nil;
   AUiWindow_SetBorderStyle: AUiWindow_SetBorderStyle03_Proc = nil;
+  AUiWindow_SetFormStyle: AUiWindow_SetFormStyle04_Proc = nil;
+  AUiWindow_SetPosition: AUiWindow_SetPosition04_Proc = nil;
   AUiWindow_ShowModal: AUiWindow_ShowModal_Proc = nil;
   {$ifdef ADepr}
   UI_Window_Free: AUiWindow_Free02_Proc = nil;
-  {$endif}
   UI_Window_GetMenu: AUiWindow_GetMenu_Proc = nil;
   UI_Window_LoadConfig: AUiWindow_LoadConfig_02_Proc = nil;
   UI_Window_LoadConfig2: AUiWindow_LoadConfig2_WS_Proc = nil;
@@ -256,6 +261,7 @@ var
   UI_Window_SetBorderStyle: AUiWindow_SetBorderStyle02_Proc = nil;
   UI_Window_SetFormStyle: AUiWindow_SetFormStyle02_Proc = nil;
   UI_Window_SetPosition: AUiWindow_SetPosition02_Proc = nil;
+  {$endif}
 var
   UI_WaitWin_New: AUi_WaitWin_NewWS_Proc = nil;
   UI_WaitWin_StepBy: AUI_WaitWin_StepBy = nil;

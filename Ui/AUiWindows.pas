@@ -2,7 +2,7 @@
 @Abstract User Interface window functions
 @Author Prof1983 <prof1983@ya.ru>
 @Created 21.08.2012
-@LastMod 23.11.2012
+@LastMod 11.12.2012
 }
 unit AUiWindows;
 
@@ -62,49 +62,69 @@ begin
     Result := AUiProcVars.AUiWindow_New();
     Exit;
   end;
+  {$ifdef ADepr}
   if Assigned(AUiProcVars.UI_Window_New) then
   begin
     Result := AUiProcVars.UI_Window_New();
     Exit;
   end;
+  {$endif}
   Result := 0;
 end;
 
 function AUiWindow_SetBorderStyle(Window: AWindow; BorderStyle: AInt): AError;
 begin
+  if Assigned(AUiProcVars.AUiWindow_SetBorderStyle) then
+  begin
+    Result := AUiProcVars.AUiWindow_SetBorderStyle(Window, BorderStyle);
+    Exit;
+  end;
+  {$ifdef ADepr}
   if Assigned(AUiProcVars.UI_Window_SetBorderStyle) then
   begin
     AUiProcVars.UI_Window_SetBorderStyle(Window, BorderStyle);
     Result := 0;
     Exit;
   end;
-  if Assigned(AUiProcVars.AUiWindow_SetBorderStyle) then
-  begin
-    Result := AUiProcVars.AUiWindow_SetBorderStyle(Window, BorderStyle);
-    Exit;
-  end;
+  {$endif}
   Result := -1;
 end;
 
 function AUiWindow_SetFormStyle(Window: AWindow; FormStyle: AInt): AError;
 begin
+  if Assigned(AUiProcVars.AUiWindow_SetFormStyle) then
+  begin
+    AUiProcVars.AUiWindow_SetFormStyle(Window, FormStyle);
+    Result := 0;
+    Exit;
+  end;
+  {$ifdef ADepr}
   if Assigned(AUiProcVars.UI_Window_SetFormStyle) then
   begin
     AUiProcVars.UI_Window_SetFormStyle(Window, FormStyle);
     Result := 0;
     Exit;
   end;
+  {$endif}
   Result := -1;
 end;
 
 function AUiWindow_SetPosition(Window: AWindow; Position: AInt): AError;
 begin
+  if Assigned(AUiProcVars.AUiWindow_SetPosition) then
+  begin
+    AUiProcVars.AUiWindow_SetPosition(Window, Position);
+    Result := 0;
+    Exit;
+  end;
+  {$ifdef ADepr}
   if Assigned(AUiProcVars.UI_Window_SetPosition) then
   begin
     AUiProcVars.UI_Window_SetPosition(Window, Position);
     Result := 0;
     Exit;
   end;
+  {$endif}
   Result := -1;
 end;
 
