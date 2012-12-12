@@ -2,7 +2,7 @@
 @Abstract APlugins
 @Author Prof1983 <prof1983@ya.ru>
 @Created 10.04.2009
-@LastMod 15.11.2012
+@LastMod 12.12.2012
 }
 unit APluginsMod;
 
@@ -13,7 +13,7 @@ interface
 uses
   ABase, ALibraries,
   APlugins, APluginsBase, APluginsMain, {$IFDEF ADepr}APluginsProcRec,{$ENDIF}
-  ARuntimeMod, ARuntimeBase, ARuntimeMain, ARuntimeProcRec,
+  {$ifdef ADepr}ARuntimeMod,{$endif} ARuntimeBase, ARuntimeMain, {$ifdef ADepr}ARuntimeProcRec,{$endif}
   ASystem, ASystemBase;
 
 function APluginsMod_Boot(): AError; stdcall;
@@ -80,11 +80,14 @@ const
     Procs: {$IFDEF ADepr}Addr(PluginsProcs){$ELSE}nil{$ENDIF};
     );
 
+{$ifdef ADepr}
 type
   APluginBootProc = function(const Runtime: ARuntimeProcs_Type): Integer; stdcall;
+{$endif}
 
 { Events }
 
+{$ifdef ADepr}
 function DoCheckPlugin(Lib: ALibrary): ABoolean; stdcall;
 var
   PluginBootProc: APluginBootProc;
@@ -100,24 +103,15 @@ begin
     Result := False;
   end;
 end;
+{$endif}
 
 // --- APluginsMod ---
 
 function APluginsMod_Boot(): AError;
 begin
-  if (ARuntime_FindModuleByName(APlugins_Name) > 0) then
-  begin
-    Result := -2;
-    Exit;
-  end;
-
-  if (ARuntime_FindModuleByUid(APlugins_Uid) > 0) then
-  begin
-    Result := -3;
-    Exit;
-  end;
-
+  {$ifdef ADepr}
   APlugins_SetOnCheckPlugin(DoCheckPlugin);
+  {$endif}
   Result := ARuntime_RegisterModule(PluginsModule);
 end;
 
@@ -128,7 +122,24 @@ end;
 
 function APluginsMod_GetProc(ProcName: AStr): Pointer;
 begin
-  Result := nil;
+  if (ProcName = 'APlugins_AddPluginA') then
+    Result := Addr(APlugins_AddPluginA)
+  else if (ProcName = 'APlugins_Clear') then
+    Result := Addr(APlugins_Clear)
+  else if (ProcName = 'APlugins_Delete') then
+    Result := Addr(APlugins_Delete)
+  else if (ProcName = 'APlugins_Fin') then
+    Result := Addr(APlugins_Fin)
+  else if (ProcName = 'APlugins_FindA') then
+    Result := Addr(APlugins_FindA)
+  else if (ProcName = 'APlugins_GetCount') then
+    Result := Addr(APlugins_GetCount)
+  else if (ProcName = 'APlugins_Init') then
+    Result := Addr(APlugins_Init)
+  else if (ProcName = 'APlugins_SetOnCheckPlugin') then
+    Result := Addr(APlugins_SetOnCheckPlugin)
+  else
+    Result := nil;
 end;
 
 function APluginsMod_Init(): AError;

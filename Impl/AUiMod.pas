@@ -2,7 +2,7 @@
 @Abstract User Interface
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 23.11.2012
+@LastMod 12.12.2012
 }
 unit AUiMod;
 
@@ -350,12 +350,357 @@ end;
 
 function AUiMod_Fin(): AError;
 begin
-  Result := AUI.Done();
+  Result := AUi_Fin();
 end;
 
 function AUiMod_GetProc(ProcName: AStr): Pointer;
 begin
-  Result := nil;
+  // --- Main ---
+  if (ProcName = 'AUi_CreateMainForm') then
+    Result := Addr(AUi_CreateMainForm)
+  else if (ProcName = 'AUi_Fin') then
+    Result := Addr(AUi_Fin)
+  else if (ProcName = 'AUi_GetMainMenuItem') then
+    Result := Addr(AUi_GetMainMenuItem)
+  else if (ProcName = 'AUi_GetMainToolBar') then
+    Result := Addr(AUi_GetMainToolBar)
+  else if (ProcName = 'AUi_GetMainTrayIcon') then
+    Result := Addr(AUi_GetMainTrayIcon)
+  else if (ProcName = 'AUi_GetMainWindow') then
+    Result := Addr(AUi_GetMainWindow)
+  else if (ProcName = 'AUi_Init') then
+    Result := Addr(AUi_Init)
+  else if (ProcName = 'AUi_Run') then
+    Result := Addr(AUi_Run)
+  else if (ProcName = 'AUi_SetHideOnClose') then
+    Result := Addr(AUi_SetHideOnClose)
+  else if (ProcName = 'AUi_SetMainToolBar') then
+    Result := Addr(AUi_SetMainToolBar)
+  else if (ProcName = 'AUi_SetProgramState') then
+    Result := Addr(AUi_SetProgramState)
+  else if (ProcName = 'AUi_ShellExecute') then
+    Result := Addr(AUi_ShellExecute)
+  else if (ProcName = 'AUi_ShellExecuteA') then
+    Result := Addr(AUi_ShellExecuteA)
+  else if (ProcName = 'AUi_ShowHelp') then
+    Result := Addr(AUi_ShowHelp)
+  else if (ProcName = 'AUi_ShowHelp2') then
+    Result := Addr(AUi_ShowHelp2)
+  else if (ProcName = 'AUi_Shutdown') then
+    Result := Addr(AUi_Shutdown)
+  // --- Dialogs ---
+  else if (ProcName = 'AUi_ExecuteAboutDialog') then
+    Result := Addr(AUi_ExecuteAboutDialog)
+  else if (ProcName = 'AUi_ExecuteCalendarDialog') then
+    Result := Addr(AUi_ExecuteCalendarDialog)
+  else if (ProcName = 'AUi_ExecuteColorDialog') then
+    Result := Addr(AUi_ExecuteColorDialog)
+  else if (ProcName = 'AUi_ExecuteDateFilterDialog') then
+    Result := Addr(AUi_ExecuteDateFilterDialog)
+  else if (ProcName = 'AUi_ExecuteErrorDialog') then
+    Result := Addr(AUi_ExecuteErrorDialog)
+  else if (ProcName = 'AUi_ExecuteErrorDialogA') then
+    Result := Addr(AUi_ExecuteErrorDialogA)
+  else if (ProcName = 'AUi_ExecuteFontDialog') then
+    Result := Addr(AUi_ExecuteFontDialog)
+  else if (ProcName = 'AUi_ExecuteFontDialogA') then
+    Result := Addr(AUi_ExecuteFontDialogA)
+  else if (ProcName = 'AUi_ExecuteInputBox1') then
+    Result := Addr(AUi_ExecuteInputBox1)
+  else if (ProcName = 'AUi_ExecuteInputBox1A') then
+    Result := Addr(AUi_ExecuteInputBox1A)
+  else if (ProcName = 'AUi_ExecuteInputBox2') then
+    Result := Addr(AUi_ExecuteInputBox2)
+  else if (ProcName = 'AUi_ExecuteInputBox2A') then
+    Result := Addr(AUi_ExecuteInputBox2A)
+  else if (ProcName = 'AUi_ExecuteMessageDialog1A') then
+    Result := Addr(AUi_ExecuteMessageDialog1A)
+  else if (ProcName = 'AUi_ExecutePrinterSetupDialog') then
+    Result := Addr(AUi_ExecutePrinterSetupDialog)
+  else if (ProcName = 'AUi_InitAboutDialog1') then
+    Result := Addr(AUi_InitAboutDialog1)
+  else if (ProcName = 'AUi_InitAboutDialog2') then
+    Result := Addr(AUi_InitAboutDialog2)
+  else if (ProcName = 'AUi_NewAboutDialog') then
+    Result := Addr(AUi_NewAboutDialog)
+  else if (ProcName = 'AUi_NewDialog') then
+    Result := Addr(AUi_NewDialog)
+  // --- Box ---
+  else if (ProcName = 'AUiBox_New') then
+    Result := Addr(AUiBox_New)
+  // --- Button ---
+  else if (ProcName = 'AUiButton_New') then
+    Result := Addr(AUiButton_New)
+  else if (ProcName = 'AUiButton_SetKind') then
+    Result := Addr(AUiButton_SetKind)
+  // --- Calendar ---
+  else if (ProcName = 'AUiCalendar_GetDate') then
+    Result := Addr(AUiCalendar_GetDate)
+  else if (ProcName = 'AUiCalendar_New') then
+    Result := Addr(AUiCalendar_New)
+  else if (ProcName = 'AUiCalendar_SetMonth') then
+    Result := Addr(AUiCalendar_SetMonth)
+  // --- ComboBox ---
+  else if (ProcName = 'AUiComboBox_Add') then
+    Result := Addr(AUiComboBox_Add)
+  else if (ProcName = 'AUiComboBox_AddA') then
+    Result := Addr(AUiComboBox_AddA)
+  else if (ProcName = 'AUiComboBox_GetItemIndex') then
+    Result := Addr(AUiComboBox_GetItemIndex)
+  else if (ProcName = 'AUiComboBox_New') then
+    Result := Addr(AUiComboBox_New)
+  else if (ProcName = 'AUiComboBox_New2') then
+    Result := Addr(AUiComboBox_New2)
+  else if (ProcName = 'AUiComboBox_SetItemIndex') then
+    Result := Addr(AUiComboBox_SetItemIndex)
+  // --- Control ---
+  else if (ProcName = 'AUiControl_Free') then
+    Result := Addr(AUiControl_Free)
+  else if (ProcName = 'AUiControl_FreeAndNil') then
+    Result := Addr(AUiControl_FreeAndNil)
+  else if (ProcName = 'AUiControl_GetColor') then
+    Result := Addr(AUiControl_GetColor)
+  else if (ProcName = 'AUiControl_GetEnabled') then
+    Result := Addr(AUiControl_GetEnabled)
+  else if (ProcName = 'AUiControl_GetHeight') then
+    Result := Addr(AUiControl_GetHeight)
+  else if (ProcName = 'AUiControl_GetHint') then
+    Result := Addr(AUiControl_GetHint)
+  else if (ProcName = 'AUiControl_GetHintA') then
+    Result := Addr(AUiControl_GetHintA)
+  else if (ProcName = 'AUiControl_GetMenu') then
+    Result := Addr(AUiControl_GetMenu)
+  else if (ProcName = 'AUiControl_GetName') then
+    Result := Addr(AUiControl_GetName)
+  else if (ProcName = 'AUiControl_GetNameA') then
+    Result := Addr(AUiControl_GetNameA)
+  else if (ProcName = 'AUiControl_GetPosition') then
+    Result := Addr(AUiControl_GetPosition)
+  else if (ProcName = 'AUiControl_GetText') then
+    Result := Addr(AUiControl_GetText)
+  else if (ProcName = 'AUiControl_GetVisible') then
+    Result := Addr(AUiControl_GetVisible)
+  else if (ProcName = 'AUiControl_GetWidth') then
+    Result := Addr(AUiControl_GetWidth)
+  else if (ProcName = 'AUiControl_SetAlign') then
+    Result := Addr(AUiControl_SetAlign)
+  else if (ProcName = 'AUiControl_SetAnchors') then
+    Result := Addr(AUiControl_SetAnchors)
+  else if (ProcName = 'AUiControl_SetClientSize') then
+    Result := Addr(AUiControl_SetClientSize)
+  else if (ProcName = 'AUiControl_SetColor') then
+    Result := Addr(AUiControl_SetColor)
+  else if (ProcName = 'AUiControl_SetEnabled') then
+    Result := Addr(AUiControl_SetEnabled)
+  else if (ProcName = 'AUiControl_SetFocus') then
+    Result := Addr(AUiControl_SetFocus)
+  else if (ProcName = 'AUiControl_SetFont1A') then
+    Result := Addr(AUiControl_SetFont1A)
+  else if (ProcName = 'AUiControl_SetHeight') then
+    Result := Addr(AUiControl_SetHeight)
+  else if (ProcName = 'AUiControl_SetHint') then
+    Result := Addr(AUiControl_SetHint)
+  else if (ProcName = 'AUiControl_SetHintA') then
+    Result := Addr(AUiControl_SetHintA)
+  else if (ProcName = 'AUiControl_SetName') then
+    Result := Addr(AUiControl_SetName)
+  else if (ProcName = 'AUiControl_SetNameA') then
+    Result := Addr(AUiControl_SetNameA)
+  else if (ProcName = 'AUiControl_SetOnClick') then
+    Result := Addr(AUiControl_SetOnClick)
+  else if (ProcName = 'AUiControl_SetPosition') then
+    Result := Addr(AUiControl_SetPosition)
+  else if (ProcName = 'AUiControl_SetSize') then
+    Result := Addr(AUiControl_SetSize)
+  else if (ProcName = 'AUiControl_SetTabStop') then
+    Result := Addr(AUiControl_SetTabStop)
+  else if (ProcName = 'AUiControl_SetText') then
+    Result := Addr(AUiControl_SetText)
+  else if (ProcName = 'AUiControl_SetTextA') then
+    Result := Addr(AUiControl_SetTextA)
+  else if (ProcName = 'AUiControl_SetVisible') then
+    Result := Addr(AUiControl_SetVisible)
+  else if (ProcName = 'AUiControl_SetWidth') then
+    Result := Addr(AUiControl_SetWidth)
+  else if (ProcName = 'AUiControl_SetOnChange') then
+    Result := Addr(AUiControl_SetOnChange)
+  // --- Edit ---
+  else if (ProcName = 'AUiEdit_CheckDate') then
+    Result := Addr(AUiEdit_CheckDate)
+  else if (ProcName = 'AUiEdit_CheckFloat') then
+    Result := Addr(AUiEdit_CheckFloat)
+  else if (ProcName = 'AUiEdit_CheckFloat32') then
+    Result := Addr(AUiEdit_CheckFloat32)
+  else if (ProcName = 'AUiEdit_CheckFloat64') then
+    Result := Addr(AUiEdit_CheckFloat64)
+  else if (ProcName = 'AUiEdit_CheckInt') then
+    Result := Addr(AUiEdit_CheckInt)
+  else if (ProcName = 'AUiEdit_New') then
+    Result := Addr(AUiEdit_New)
+  else if (ProcName = 'AUiEdit_NewEx') then
+    Result := Addr(AUiEdit_NewEx)
+  // --- Grid ---
+  else if (ProcName = 'AUiGrid_Clear') then
+    Result := Addr(AUiGrid_Clear)
+  else if (ProcName = 'AUiGrid_Clear2') then
+    Result := Addr(AUiGrid_Clear2)
+  else if (ProcName = 'AUiGrid_DeleteRow') then
+    Result := Addr(AUiGrid_DeleteRow)
+  else if (ProcName = 'AUiGrid_DeleteRow2') then
+    Result := Addr(AUiGrid_DeleteRow2)
+  else if (ProcName = 'AUiGrid_FindInt') then
+    Result := Addr(AUiGrid_FindInt)
+  else if (ProcName = 'AUiGrid_New') then
+    Result := Addr(AUiGrid_New)
+  else if (ProcName = 'AUiGrid_RestoreColProps') then
+    Result := Addr(AUiGrid_RestoreColProps)
+  else if (ProcName = 'AUiGrid_RestoreColPropsA') then
+    Result := Addr(AUiGrid_RestoreColPropsA)
+  else if (ProcName = 'AUiGrid_RowDown') then
+    Result := Addr(AUiGrid_RowDown)
+  else if (ProcName = 'AUiGrid_RowUp') then
+    Result := Addr(AUiGrid_RowUp)
+  else if (ProcName = 'AUiGrid_SaveColProps') then
+    Result := Addr(AUiGrid_SaveColProps)
+  else if (ProcName = 'AUiGrid_SaveColPropsA') then
+    Result := Addr(AUiGrid_SaveColPropsA)
+  else if (ProcName = 'AUiGrid_SetColumnWidth') then
+    Result := Addr(AUiGrid_SetColumnWidth)
+  else if (ProcName = 'AUiGrid_SetColumnWidth2') then
+    Result := Addr(AUiGrid_SetColumnWidth2)
+  else if (ProcName = 'AUiGrid_SetDataSource') then
+    Result := Addr(AUiGrid_SetDataSource)
+  else if (ProcName = 'AUiGrid_SetRowCount') then
+    Result := Addr(AUiGrid_SetRowCount)
+  // --- Image ---
+  else if (ProcName = 'AUiImage_LoadFromFile') then
+    Result := Addr(AUiImage_LoadFromFile)
+  else if (ProcName = 'AUiImage_LoadFromFileA') then
+    Result := Addr(AUiImage_LoadFromFileA)
+  else if (ProcName = 'AUiImage_New') then
+    Result := Addr(AUiImage_New)
+  // --- Label ---
+  else if (ProcName = 'AUiLabel_New') then
+    Result := Addr(AUiLabel_New)
+  else if (ProcName = 'AUiLabel_SetAlignment') then
+    Result := Addr(AUiLabel_SetAlignment)
+  else if (ProcName = 'AUiLabel_SetAutoSize') then
+    Result := Addr(AUiLabel_SetAutoSize)
+  else if (ProcName = 'AUiLabel_SetWordWrap') then
+    Result := Addr(AUiLabel_SetWordWrap)
+  else if (ProcName = 'AUiLabel_New2') then
+    Result := Addr(AUiLabel_New2)
+  // --- ListBox ---
+  else if (ProcName = 'AUiListBox_Add') then
+    Result := Addr(AUiListBox_Add)
+  else if (ProcName = 'AUiListBox_Clear') then
+    Result := Addr(AUiListBox_Clear)
+  else if (ProcName = 'AUiListBox_DeleteItem') then
+    Result := Addr(AUiListBox_DeleteItem)
+  else if (ProcName = 'AUiListBox_GetCount') then
+    Result := Addr(AUiListBox_GetCount)
+  else if (ProcName = 'AUiListBox_GetItem') then
+    Result := Addr(AUiListBox_GetItem)
+  else if (ProcName = 'AUiListBox_GetItemIndex') then
+    Result := Addr(AUiListBox_GetItemIndex)
+  else if (ProcName = 'AUiListBox_New') then
+    Result := Addr(AUiListBox_New)
+  else if (ProcName = 'AUiListBox_New2') then
+    Result := Addr(AUiListBox_New2)
+  else if (ProcName = 'AUiListBox_SetItem') then
+    Result := Addr(AUiListBox_SetItem)
+  else if (ProcName = 'AUiListBox_SetItemHeight') then
+    Result := Addr(AUiListBox_SetItemHeight)
+  else if (ProcName = 'AUiListBox_SetItemIndex') then
+    Result := Addr(AUiListBox_SetItemIndex)
+  else if (ProcName = 'AUiListBox_SetOnDblClick') then
+    Result := Addr(AUiListBox_SetOnDblClick)
+  // --- MainWindow ---
+  else if (ProcName = 'AUiMainWindow_AddMenuItem') then
+    Result := Addr(AUiMainWindow_AddMenuItem)
+  else if (ProcName = 'AUiMainWindow_AddMenuItemA') then
+    Result := Addr(AUiMainWindow_AddMenuItemA)
+  // --- Menu ---
+  else if (ProcName = 'AUiMenu_AddItem0') then
+    Result := Addr(AUiMenu_AddItem0)
+  else if (ProcName = 'AUiMenu_AddItem1') then
+    Result := Addr(AUiMenu_AddItem1)
+  else if (ProcName = 'AUiMenu_AddItem2') then
+    Result := Addr(AUiMenu_AddItem2)
+  else if (ProcName = 'AUiMenu_AddItem3') then
+    Result := Addr(AUiMenu_AddItem3)
+  else if (ProcName = 'AUiMenu_GetItems') then
+    Result := Addr(AUiMenu_GetItems)
+  else if (ProcName = 'AUiMenu_New') then
+    Result := Addr(AUiMenu_New)
+  // --- PageControl ---
+  else if (ProcName = 'AUiPageControl_AddPage') then
+    Result := Addr(AUiPageControl_AddPage)
+  else if (ProcName = 'AUiPageControl_AddPageA') then
+    Result := Addr(AUiPageControl_AddPageA)
+  else if (ProcName = 'AUiPageControl_New') then
+    Result := Addr(AUiPageControl_New)
+  // --- ProgressBar ---
+  else if (ProcName = 'AUiProgressBar_New') then
+    Result := Addr(AUiProgressBar_New)
+  else if (ProcName = 'AUiProgressBar_StepIt') then
+    Result := Addr(AUiProgressBar_StepIt)
+  // --- PropertyBox ---
+  else if (ProcName = 'AUiPropertyBox_Add') then
+    Result := Addr(AUiPropertyBox_Add)
+  else if (ProcName = 'AUiPropertyBox_Add2') then
+    Result := Addr(AUiPropertyBox_Add2)
+  else if (ProcName = 'AUiPropertyBox_Item_GetValue') then
+    Result := Addr(AUiPropertyBox_Item_GetValue)
+  else if (ProcName = 'AUiPropertyBox_Item_SetValue') then
+    Result := Addr(AUiPropertyBox_Item_SetValue)
+  else if (ProcName = 'AUiPropertyBox_New') then
+    Result := Addr(AUiPropertyBox_New)
+  // --- Report ---
+  else if (ProcName = 'AUiReport_New') then
+    Result := Addr(AUiReport_New)
+  else if (ProcName = 'AUiReport_SetText') then
+    Result := Addr(AUiReport_SetText)
+  // --- SpinEdit ---
+  else if (ProcName = 'AUiSpinEdit_New') then
+    Result := Addr(AUiSpinEdit_New)
+  else if (ProcName = 'AUiSpinEdit_NewEx') then
+    Result := Addr(AUiSpinEdit_NewEx)
+  // --- Splitter ---
+  else if (ProcName = 'AUiSplitter_New') then
+    Result := Addr(AUiSplitter_New)
+  // --- TextView ---
+  else if (ProcName = 'AUiTextView_AddLine') then
+    Result := Addr(AUiTextView_AddLine)
+  else if (ProcName = 'AUiTextView_New') then
+    Result := Addr(AUiTextView_New)
+  else if (ProcName = 'AUiTextView_SetFont') then
+    Result := Addr(AUiTextView_SetFont)
+  else if (ProcName = 'AUiTextView_SetReadOnly') then
+    Result := Addr(AUiTextView_SetReadOnly)
+  else if (ProcName = 'AUiTextView_SetScrollBars') then
+    Result := Addr(AUiTextView_SetScrollBars)
+  else if (ProcName = 'AUiTextView_SetWordWrap') then
+    Result := Addr(AUiTextView_SetWordWrap)
+  // --- ToolBar ---
+  else if (ProcName = 'AUiToolBar_AddButton') then
+    Result := Addr(AUiToolBar_AddButton)
+  else if (ProcName = 'AUiToolBar_AddButton1') then
+    Result := Addr(AUiToolBar_AddButton1)
+  else if (ProcName = 'AUiToolBar_New') then
+    Result := Addr(AUiToolBar_New)
+  // --- ToolMenu ---
+  else if (ProcName = 'AUiToolMenu_AddNewItem') then
+    Result := Addr(AUiToolMenu_AddNewItem)
+  else if (ProcName = 'AUiToolMenu_AddNewSubMenu') then
+    Result := Addr(AUiToolMenu_AddNewSubMenu)
+  else if (ProcName = 'AUiToolMenu_GetSubMenu') then
+    Result := Addr(AUiToolMenu_GetSubMenu)
+  else if (ProcName = 'AUiToolMenu_New') then
+    Result := Addr(AUiToolMenu_New)
+xxx
+  else
+    Result := nil;
 end;
 
 function AUiMod_Init(): AError;

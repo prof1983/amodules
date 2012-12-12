@@ -1,8 +1,8 @@
 {**
-@Abstract AModuleManager module v0.3
+@Abstract AModuleManager module
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.08.2009
-@LastMod 20.11.2012
+@LastMod 12.12.2012
 }
 unit AModuleManagerMod;
 
@@ -19,6 +19,8 @@ uses
 function AModuleManagerMod_Boot(): AError; stdcall;
 
 function AModuleManagerMod_Fin(): AError; stdcall;
+
+function AModuleManagerMod_GetProc(ProcName: AStr): Pointer; stdcall;
 
 function AModuleManagerMod_Init(): AError; stdcall;
 
@@ -57,7 +59,7 @@ const
     Description: nil;
     Init: AModuleManagerMod_Init;
     Fin: AModuleManagerMod_Fin;
-    GetProc: nil;
+    GetProc: AModuleManagerMod_GetProc;
     Procs: {$IFDEF ADepr}Addr(ModuleManagerProcs){$ELSE}nil{$ENDIF};
     );
 
@@ -89,6 +91,11 @@ begin
   ARuntime.Modules_DeleteByUid(AModuleManager_Uid);
   FInitialized := False;
   Result := 0;
+end;
+
+function AModuleManagerMod_GetProc(ProcName: AStr): Pointer;
+begin
+  Result := nil;
 end;
 
 function AModuleManagerMod_Init(): AError;
