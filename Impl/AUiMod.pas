@@ -16,9 +16,11 @@ interface
 
 uses
   ABase, ARuntime, ARuntimeBase,
-  AUi, AUiBase, AUiCalendar, AUiControls, AUiDialogs, AUiGrids, AUiImages, AUiLabels, AUiListBox,
-  AUiMain, AUiMainWindow2, {$IFDEF ADepr}AUiProcRec,{$ENDIF} AUiPropertyBox, AUiReports,
-  AUiSplitter, AUiTextView, AUiWindows, AUiWindowSettings;
+  AUi, AUiBase, AUiBox, AUiButtons, AUiCalendar, AUiComboBox, AUiControls, AUiControlsA,
+  AUiDialogs, AUiEdit, AUiGrids, AUiImages, AUiLabels, AUiLabelsEx, AUiListBox,
+  AUiMain, AUiMainWindow2, AUiMenus, AUiPageControl, {$IFDEF ADepr}AUiProcRec,{$ENDIF}
+  AUiProgressBar, AUiPropertyBox, AUiReports, AUiSpinEdit, AUiSplitter,
+  AUiTextView, AUiToolBar, AUiToolMenu, AUiWindows, AUiWindowSettings;
 
 // --- AUi ---
 
