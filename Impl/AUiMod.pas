@@ -17,7 +17,7 @@ interface
 uses
   ABase, ARuntime, ARuntimeBase,
   AUi, AUiBase, AUiBox, AUiButtons, AUiCalendar, AUiComboBox, AUiControls, AUiControlsA,
-  AUiDialogs, AUiEdit, AUiGrids, AUiImages, AUiLabels, AUiLabelsEx, AUiListBox,
+  AUiDataSource, AUiDialogs, AUiEdit, AUiGrids, AUiImages, AUiInit, AUiLabels, AUiLabelsEx, AUiListBox,
   AUiMain, AUiMainWindow2, AUiMenus, AUiPageControl, {$IFDEF ADepr}AUiProcRec,{$ENDIF}
   AUiProgressBar, AUiPropertyBox, AUiReports, AUiSpin, AUiSpinEdit, AUiSplitter,
   AUiTextView, AUiToolBar, AUiToolMenu, AUiTrayIcon, AUiTreeView,
@@ -37,7 +37,7 @@ function AUiMod_Init(): AError; stdcall;
 const
   UIProcs: AUIProcs_Type = (
     IsShowApp: UI_GetIsShowApp;                                     // 00
-    InitMainTrayIcon: UI_InitMainTrayIcon;                          // 01
+    InitMainTrayIcon: AUi_InitMainTrayIcon;                         // 01
     InitMenus02: AUI.InitMenus02;                                   // 02
     ProcessMessages02: AUI.ProcessMessages02;                       // 03
     IsShowApp_Set: UI_SetIsShowApp;                                 // 04
@@ -783,7 +783,7 @@ begin
 
   //ARuntime.Modules_InitByUid(ASystem_Uid);
 
-  Result := AUi.Ui_Init();
+  Result := AUi_Init();
 end;
 
 { Menu }

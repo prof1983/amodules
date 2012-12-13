@@ -2,7 +2,7 @@
 @Abstract User interface proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 22.11.2012
+@LastMod 13.12.2012
 }
 unit AUiProcTypes;
 
@@ -21,7 +21,7 @@ type
   AUi_Fin_Proc = function(): AError; stdcall;
 type
   AUi_InitMainMenu_Proc = function: AInteger; stdcall;
-  AUi_InitMainTrayIcon_Proc = function: AInteger; stdcall;
+  AUi_InitMainTrayIcon_Proc = function(): AError; stdcall;
   AUi_InitMenus_Proc = function(): AError; stdcall;
   AUi_GetIsShowApp_Proc = function(): ABoolean; stdcall;
   AUi_ProcessMessages_Proc = function(): AError; stdcall;
