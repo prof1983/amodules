@@ -2,7 +2,7 @@
 @Abstract User Interface
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 12.12.2012
+@LastMod 13.12.2012
 }
 unit AUiMod;
 
@@ -19,8 +19,9 @@ uses
   AUi, AUiBase, AUiBox, AUiButtons, AUiCalendar, AUiComboBox, AUiControls, AUiControlsA,
   AUiDialogs, AUiEdit, AUiGrids, AUiImages, AUiLabels, AUiLabelsEx, AUiListBox,
   AUiMain, AUiMainWindow2, AUiMenus, AUiPageControl, {$IFDEF ADepr}AUiProcRec,{$ENDIF}
-  AUiProgressBar, AUiPropertyBox, AUiReports, AUiSpinEdit, AUiSplitter,
-  AUiTextView, AUiToolBar, AUiToolMenu, AUiWindows, AUiWindowSettings;
+  AUiProgressBar, AUiPropertyBox, AUiReports, AUiSpin, AUiSpinEdit, AUiSplitter,
+  AUiTextView, AUiToolBar, AUiToolMenu, AUiTrayIcon, AUiTreeView,
+  AUiWaitWin, AUiWindows, AUiWindowSettings;
 
 // --- AUi ---
 
@@ -663,6 +664,9 @@ begin
     Result := Addr(AUiReport_New)
   else if (ProcName = 'AUiReport_SetText') then
     Result := Addr(AUiReport_SetText)
+  // --- SpinButton ---
+  else if (ProcName = 'AUiSpinButton_New') then
+    Result := Addr(AUiSpinButton_New)
   // --- SpinEdit ---
   else if (ProcName = 'AUiSpinEdit_New') then
     Result := Addr(AUiSpinEdit_New)
@@ -700,7 +704,69 @@ begin
     Result := Addr(AUiToolMenu_GetSubMenu)
   else if (ProcName = 'AUiToolMenu_New') then
     Result := Addr(AUiToolMenu_New)
-xxx
+  // --- TrayIcon ---
+  else if (ProcName = 'AUiTrayIcon_Free') then
+    Result := Addr(AUiTrayIcon_Free)
+  else if (ProcName = 'AUiTrayIcon_GetHint') then
+    Result := Addr(AUiTrayIcon_GetHint)
+  else if (ProcName = 'AUiTrayIcon_GetMenuItems') then
+    Result := Addr(AUiTrayIcon_GetMenuItems)
+  else if (ProcName = 'AUiTrayIcon_GetPopupMenu') then
+    Result := Addr(AUiTrayIcon_GetPopupMenu)
+  else if (ProcName = 'AUiTrayIcon_SetHint') then
+    Result := Addr(AUiTrayIcon_SetHint)
+  else if (ProcName = 'AUiTrayIcon_SetOnLeftClick') then
+    Result := Addr(AUiTrayIcon_SetOnLeftClick)
+  else if (ProcName = 'AUiTrayIcon_SetOnRightClick') then
+    Result := Addr(AUiTrayIcon_SetOnRightClick)
+  else if (ProcName = 'AUiTrayIcon_SetPopupMenu') then
+    Result := Addr(AUiTrayIcon_SetPopupMenu)
+  // --- TreeView ---
+  else if (ProcName = 'AUiTreeView_AddItem') then
+    Result := Addr(AUiTreeView_AddItem)
+  else if (ProcName = 'AUiTreeView_New') then
+    Result := Addr(AUiTreeView_New)
+  // --- WaitWin ---
+  else if (ProcName = 'AUiWaitWin_New') then
+    Result := Addr(AUiWaitWin_New)
+  else if (ProcName = 'AUiWaitWin_SetMaxPosition') then
+    Result := Addr(AUiWaitWin_SetMaxPosition)
+  else if (ProcName = 'AUiWaitWin_SetPosition') then
+    Result := Addr(AUiWaitWin_SetPosition)
+  else if (ProcName = 'AUiWaitWin_SetText') then
+    Result := Addr(AUiWaitWin_SetText)
+  else if (ProcName = 'AUiWaitWin_StepBy') then
+    Result := Addr(AUiWaitWin_StepBy)
+  // --- Window ---
+  else if (ProcName = 'AUiWindow_Add') then
+    Result := Addr(AUiWindow_Add)
+  else if (ProcName = 'AUiWindow_Free') then
+    Result := Addr(AUiWindow_Free)
+  else if (ProcName = 'AUiWindow_FreeAndNil') then
+    Result := Addr(AUiWindow_FreeAndNil)
+  else if (ProcName = 'AUiWindow_GetMenu') then
+    Result := Addr(AUiWindow_GetMenu)
+  else if (ProcName = 'AUiWindow_New') then
+    Result := Addr(AUiWindow_New)
+  else if (ProcName = 'AUiWindow_SetBorderStyle') then
+    Result := Addr(AUiWindow_SetBorderStyle)
+  else if (ProcName = 'AUiWindow_SetFormStyle') then
+    Result := Addr(AUiWindow_SetFormStyle)
+  else if (ProcName = 'AUiWindow_SetPosition') then
+    Result := Addr(AUiWindow_SetPosition)
+  else if (ProcName = 'AUiWindow_SetState') then
+    Result := Addr(AUiWindow_SetState)
+  else if (ProcName = 'AUiWindow_ShowModal') then
+    Result := Addr(AUiWindow_ShowModal)
+  // --- WindowSettings ---
+  else if (ProcName = 'AUiWindow_LoadConfig') then
+    Result := Addr(AUiWindow_LoadConfig)
+  else if (ProcName = 'AUiWindow_LoadConfig2') then
+    Result := Addr(AUiWindow_LoadConfig2)
+  else if (ProcName = 'AUiWindow_SaveConfig') then
+    Result := Addr(AUiWindow_SaveConfig)
+  else if (ProcName = 'AUiWindow_SaveConfig2') then
+    Result := Addr(AUiWindow_SaveConfig2)
   else
     Result := nil;
 end;
