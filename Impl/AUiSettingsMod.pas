@@ -2,7 +2,7 @@
 @Abstract AUiSettings
 @Author Prof1983 <prof1983@ya.ru>
 @Created 13.03.2009
-@LastMod 20.11.2012
+@LastMod 13.12.2012
 }
 unit AUiSettingsMod;
 
@@ -11,8 +11,8 @@ unit AUiSettingsMod;
 interface
 
 uses
-  ABase, ARuntime, ARuntimeBase, AUiModClient,
-  AUiSettings, AUiSettingsBase{$IFDEF ADepr}, AUiSettingsProcRec{$ENDIF};
+  ABase, ARuntimeBase, ARuntimeMain, {AUiModClient,}
+  AUiSettingsBase, AUiSettingsMain{$IFDEF ADepr}, AUiSettingsProcRec{$ENDIF};
 
 function AUiSettingsMod_Boot(): AError; stdcall;
 
@@ -76,7 +76,7 @@ begin
     Exit;
   end;}
 
-  ARuntime.Module_Register(Module);
+  ARuntime_AddModule(Module);
   Result := 0;
 end;
 
@@ -84,23 +84,36 @@ end;
 
 function AUiSettingsMod_Fin(): AError;
 begin
-  Result := AUISettings.Done03();
-  ARuntime.Modules_DeleteByUid(AUiSettings_Uid);
+  Result := AUiSettings_Fin();
+  ARuntime_DeleteModuleByUid(AUiSettings_Uid);
 end;
 
 function AUiSettingsMod_GetProc(ProcName: AStr): Pointer;
 begin
-  Result := nil;
+  if (ProcName = 'AUiSettings_Fin') then
+    Result := Addr(AUiSettings_Fin)
+  else if (ProcName = 'AUiSettings_GetMainSettingsWin') then
+    Result := Addr(AUiSettings_GetMainSettingsWin)
+  else if (ProcName = 'AUiSettings_Init') then
+    Result := Addr(AUiSettings_Init)
+  else if (ProcName = 'AUiSettings_NewItem') then
+    Result := Addr(AUiSettings_NewItem)
+  else if (ProcName = 'AUiSettings_NewSettingsWin') then
+    Result := Addr(AUiSettings_NewSettingsWin)
+  else if (ProcName = 'AUiSettings_ShowSettingsWin') then
+    Result := Addr(AUiSettings_ShowSettingsWin)
+  else
+    Result := nil;
 end;
 
 function AUiSettingsMod_Init(): AError;
 begin
-  if (AUi_Boot() < 0) then
+  {if (AUi_Boot() < 0) then
   begin
     Result := -2;
     Exit;
-  end;
-  Result := AUiSettings.Init03();
+  end;}
+  Result := AUiSettings_Init();
 end;
 
 end.
