@@ -20,17 +20,28 @@ type
   AUi_Init_Proc = function(): AError; stdcall;
   AUi_Fin_Proc = function(): AError; stdcall;
 type
+  AUi_CreateMainForm_Proc = function(): AError; stdcall;
   AUi_InitMainMenu_Proc = function: AInteger; stdcall;
   AUi_InitMainTrayIcon_Proc = function(): AError; stdcall;
   AUi_InitMenus_Proc = function(): AError; stdcall;
   AUi_GetIsShowApp_Proc = function(): ABoolean; stdcall;
+  AUi_GetMainMenuItem_Proc = function(): AMenuItem; stdcall;
+  AUi_GetMainToolBar_Proc = function(): AControl; stdcall;
+  AUi_GetMainTrayIcon_Proc = function(): ATrayIcon; stdcall;
+  AUi_GetMainWindow_Proc = function(): AWindow; stdcall;
+  AUi_OnDone_Connect_Proc = function(Proc: ACallbackProc): AInteger; stdcall;
+  AUi_OnDone_Disconnect_Proc = function(Proc: ACallbackProc): AInteger; stdcall;
   AUi_ProcessMessages_Proc = function(): AError; stdcall;
+  AUi_Run_Proc = function(): AInteger; stdcall;
+  AUi_SetProgramState_Proc = function(State: AInteger): AError; stdcall;
+  AUi_SetHideOnClose_Proc = function(Value: ABoolean): AError; stdcall;
+  AUi_SetMainToolBar_Proc = function(ToolBar: AControl): AError; stdcall;
+  AUi_ShellExecute_Proc = function(const Operation, FileName, Parameters, Directory: AString_Type): AInt; stdcall;
+  AUi_ShellExecuteA_Proc = function(Operation, FileName, Parameters, Directory: AStr): AInt; stdcall;
   AUi_ShowHelp_Proc = function(): AError; stdcall;
   AUi_ShowHelp2_Proc = function(const FileName: AString_Type): AError; stdcall;
   AUi_Shutdown_Proc = function(): AError; stdcall;
   AUi_Shutdown02_Proc = procedure(); stdcall;
-  AUi_OnDone_Connect_Proc = function(Proc: ACallbackProc): AInteger; stdcall;
-  AUi_OnDone_Disconnect03_Proc = function(Proc: ACallbackProc03): AInteger; stdcall;
   {$ifdef ADepr}
   AUi_InitMenus02_Proc = procedure(); stdcall;
   AUi_ProcessMessages02_Proc = procedure(); stdcall;
@@ -161,7 +172,8 @@ type
   AUi_Dialog_InputBox2_Proc = function(const Caption, Text1, Text2: AString_Type; var Value1, Value2: AString_Type): ABoolean; stdcall;
   AUi_Dialog_InputBoxA_Proc = function(const Caption, Text: AString_Type; var Value: AString_Type): ABoolean; stdcall;
   AUi_Dialog_Login_Proc = AUi_ExecuteLoginDialog_Proc;
-  AUi_Dialog_Message_Proc = AUi_ExecuteMessageDialog_Proc;
+  AUi_Dialog_Message_Proc = function(const Text, Caption: APascalString;
+      Flags: AMessageBoxFlags): ADialogBoxCommands; stdcall;
   AUi_Dialog_New_Proc = AUi_NewDialog_Proc;
   AUi_Dialog_OpenFile_Proc = AUi_ExecuteOpenFileDialog_Proc;
   AUi_Dialog_OpenFileA_Proc = function(const InitialDir, Filter, DefaultExt, Title: AString_Type;
@@ -253,19 +265,22 @@ type
   AUi_ListBox_AddWS_Proc = function(ListBox: AControl; const Text: AWideString): AInt; stdcall;
   AUi_ListBox_Clear = procedure(ListBox: AControl); stdcall;
   {$endif}
+{$ifdef ADepr}
 type
-  AUi_MainToolBar = function: AControl; stdcall;
+  AUi_MainToolBar = AUi_GetMainToolBar_Proc;
   {$IFDEF A01}AUi_MainToolBar_Set = procedure(ToolBar: AControl); stdcall;{$ENDIF}
   {$IFDEF A02}AUi_MainToolBar_Set = procedure(ToolBar: AControl); stdcall;{$ENDIF}
 type
-  AUi_MainTrayIcon_Proc = function(): ATrayIcon; stdcall;
+  AUi_MainTrayIcon_Proc = AUi_GetMainTrayIcon_Proc
+{$endif}
 type
   AUiMainWindow_AddMenuItem_Proc = function(const ParentItemName, Name, Text: AString_Type;
       OnClick: ACallbackProc; ImageId, Weight: AInteger): AMenuItem; stdcall;
   AUiMainWindow_AddMenuItemA_Proc = function(ParentItemName, Name, Text: AStr;
       OnClick: ACallbackProc; ImageId, Weight: AInteger): AMenuItem; stdcall;
+{$ifdef ADepr}
 type
-  AUi_MainWindow = function: AWindow; stdcall;
+  AUi_MainWindow = AUi_MainWindow_Proc;
   AUi_MainWindow_AddMenuItem02WS_Proc = function(const ParentItemName, Name, Text: AWideString;
       OnClick: ACallbackProc02; ImageId, Weight: AInteger): AMenuItem; stdcall;
   AUi_MainWindow_AddMenuItem03WS_Proc = function(const ParentItemName, Name, Text: AWideString;
@@ -274,6 +289,7 @@ type
   AUi_MainWindow_AddMenuItemWS2_Proc = AUi_MainWindow_AddMenuItem02WS_Proc;
   AUi_MainWindow_Set = procedure(Value: AWindow); stdcall;
   AUi_MainWindow_SetA = procedure(Value: AWindow; ToolBar, StatusBar: AControl; Config: AConfig); stdcall;
+{$endif}
 type
   AUi_MainWindow_GetLeftContainer = function: AControl; stdcall;
   AUi_MainWindow_GetMainContainer = function: AControl; stdcall;

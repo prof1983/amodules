@@ -2,7 +2,7 @@
 @Abstract User Interface procs var
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 13.12.2012
+@LastMod 14.12.2012
 }
 unit AUiProcVars;
 
@@ -17,16 +17,28 @@ uses
 // --- Procs var ---
 
 var
+  AUi_CreateMainForm: AUi_CreateMainForm_Proc = nil;
   AUi_GetIsShowApp: AUi_GetIsShowApp_Proc = nil;
+  AUi_GetMainMenuItem: AUi_GetMainMenuItem_Proc = nil;
+  AUi_GetMainToolBar: AUi_GetMainToolBar_Proc = nil; {UI_MainToolBar}
+  AUi_GetMainTrayIcon: AUi_GetMainTrayIcon_Proc = nil; {UI_MainTrayIcon}
+  AUi_GetMainWindow: AUi_GetMainWindow_Proc = nil; {MainWindow}
   AUi_Fin: AUi_Fin_Proc = nil;
   AUi_Init: AUi_Init_Proc = nil;
   AUi_InitMainTrayIcon: AUi_InitMainTrayIcon_Proc = nil;
   AUi_InitMenus: AUi_InitMenus_Proc = nil;
   AUi_OnDone_Connect: AUi_OnDone_Connect_Proc = nil;
-  AUi_OnDone_Disconnect: AUi_OnDone_Disconnect03_Proc = nil;
+  AUi_OnDone_Disconnect: AUi_OnDone_Disconnect_Proc = nil;
   AUi_ProcessMessages: AUi_ProcessMessages_Proc = nil;
+  AUi_Run: AUi_Run_Proc = nil;
+  AUi_SetHideOnClose: AUi_SetHideOnClose_Proc = nil;
+  AUi_SetMainToolBar: AUi_SetMainToolBar_Proc = nil;
+  AUi_SetProgramState: AUi_SetProgramState_Proc = nil;
+  AUi_ShellExecute: AUi_ShellExecute_Proc = nil;
+  AUi_ShellExecuteA: AUi_ShellExecuteA_Proc = nil;
   AUi_ShowHelp: AUi_ShowHelp_Proc = nil;
   AUi_ShowHelp2: AUi_ShowHelp2_Proc = nil;
+  AUi_Shutdown: AUi_Shutdown_Proc = nil;
   {$ifdef ADepr}
   AUi_InitMenus02: AUi_InitMenus02_Proc = nil;
   AUi_ProcessMessages02: AUi_ProcessMessages02_Proc = nil;
@@ -175,20 +187,18 @@ var
   UI_ListBox_Add: AUi_ListBox_AddWS_Proc = nil;
   UI_ListBox_Clear: AUi_ListBox_Clear = nil;
   {$endif}
+{$ifdef ADepr}
 var
-  UI_MainToolBar: AUI_MainToolBar = nil;
   {$IFDEF A02}
   UI_MainToolBar_Set: AUI_MainToolBar_Set = nil;
   {$ELSE}
   UI_Reserved1: AInteger = 0;
   {$ENDIF}
-var
-  UI_MainTrayIcon: AUi_MainTrayIcon_Proc = nil;
-
+{$endif}
 var
   AUiMainWindow_AddMenuItem: AUiMainWindow_AddMenuItem_Proc = nil;
   AUiMainWindow_AddMenuItemA: AUiMainWindow_AddMenuItemA_Proc = nil;
-  MainWindow: AUI_MainWindow = nil;
+  {$ifdef ADepr}
   MainWindow_AddMenuItem: AUi_MainWindow_AddMenuItem03WS_Proc = nil;
   MainWindow_AddMenuItem2: AUi_MainWindow_AddMenuItemWS2_Proc = nil;
   MainWindow_GetLeftContainer: AUI_MainWindow_GetLeftContainer = nil;
@@ -196,17 +206,17 @@ var
   MainWindow_GetRightContainer: AUI_MainWindow_GetRightContainer = nil;
   MainWindow_Set: AUI_MainWindow_Set = nil;
   MainWindow_SetA: AUI_MainWindow_SetA = nil;
-
+  {$endif}
 var
   AUiMenu_AddItem0: AUiMenu_AddItem0_Proc = nil;
   AUiMenu_AddItem1: AUiMenu_AddItem1_Proc = nil;
   AUiMenu_AddItem2: AUiMenu_AddItem2_Proc = nil;
+  {$ifdef ADepr}
   Menu_AddItem2WS: AUi_Menu_AddItem2WS03_Proc = nil;
   Menu_AddItem2WS02: AUi_Menu_AddItem2WS02_Proc = nil;
   Menu_AddItem3: AUi_Menu_AddItem3_Proc = nil;
   Menu_GetItems: AUI_Menu_GetItems = nil;
   Menu_New: AUI_Menu_New = nil;
-  {$ifdef ADepr}
   //UI_MenuItem_Add: AUI_MenuItem_Add = nil;
   //UI_MenuItem_Add2: AUI_MenuItem_Add2 = nil;
   UI_MenuItem_FindByName: AUI_MenuItem_FindByName = nil;
