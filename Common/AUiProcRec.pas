@@ -2,7 +2,7 @@
 @Abstract User interface proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 22.11.2012
+@LastMod 14.12.2012
 }
 unit AUiProcRec;
 
@@ -226,7 +226,7 @@ type
     ShowHelp2WS: AUi_ShowHelp2WS_Proc;                              // 146
     Window_SetBorderStyle: AUiWindow_SetBorderStyle03_Proc;         // 147
     MainWindow_AddMenuItem03WS: AUi_MainWindow_AddMenuItem03WS_Proc;// 148
-    OnDone_Disconnect03: AUi_OnDone_Disconnect03_Proc;              // 149
+    OnDone_Disconnect03: AUi_OnDone_Disconnect_Proc;                // 149
     MainWindow_AddMenuItem: AUiMainWindow_AddMenuItem_Proc;         // 150
     MainWindow_AddMenuItemA: AUiMainWindow_AddMenuItemA_Proc;       // 151
       Reserved152: Integer;

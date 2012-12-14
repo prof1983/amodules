@@ -52,6 +52,7 @@ var
   AUiBox_New: AUiBox_New_Proc = nil;
 var
   AUiButton_New: AUiButton_New_Proc = nil;
+  AUiButton_SetKind: AUiButton_SetKind_Proc = nil;
 var
   AUiCalendar_GetDate: AUiCalendar_GetDate_Proc = nil;
   AUiCalendar_New: AUiCalendar_New_Proc = nil;
@@ -60,24 +61,47 @@ var
   UI_Calendar_SetMonth: AUiCalendar_SetMonth02_Proc = nil;
   {$endif}
 var
+  AUiComboBox_Add: AUiComboBox_Add_Proc = nil;
+  AUiComboBox_AddA: AUiComboBox_AddA_Proc = nil;
+  AUiComboBox_GetItemIndex: AUiComboBox_GetItemIndex_Proc = nil;
+  AUiComboBox_New: AUiComboBox_New_Proc = nil;
+  AUiComboBox_New2: AUiComboBox_New2_Proc = nil;
+  AUiComboBox_SetItemIndex: AUiComboBox_SetItemIndex_Proc = nil;
+var
   AUiControl_Free: AUiControl_Free04_Proc = nil;
   AUiControl_FreeAndNil: AUiControl_FreeAndNil04_Proc = nil;
+  AUiControl_GetColor: AUiControl_GetColor_Proc = nil;
   AUiControl_GetEnabled: AUiControl_GetEnabled_Proc = nil;
   AUiControl_GetHeight: AUiControl_GetHeight_Proc = nil;
+  AUiControl_GetHint: AUiControl_GetHint_Proc = nil;
+  AUiControl_GetHintA: AUiControl_GetHintA_Proc = nil;
+  AUiControl_GetMenu: AUiControl_GetMenu_Proc = nil;
+  AUiControl_GetName: AUiControl_GetName_Proc = nil;
+  AUiControl_GetNameA: AUiControl_GetNameA_Proc = nil;
+  AUiControl_GetPosition: AUiControl_GetPosition_Proc = nil;
   AUiControl_GetText: AUiControl_GetText_Proc = nil;
   AUiControl_GetVisible: AUiControl_GetVisible_Proc = nil;
   AUiControl_GetWidth: AUiControl_GetWidth_Proc = nil;
   AUiControl_SetAlign: AUiControl_SetAlign04_Proc = nil;
+  AUiControl_SetAnchors: AUiControl_SetAnchors_Proc = nil;
   AUiControl_SetClientSize: AUiControl_SetClientSize04_Proc = nil;
   AUiControl_SetColor: AUiControl_SetColor04_Proc = nil;
   AUiControl_SetEnabled: AUiControl_SetEnabled04_Proc = nil;
   AUiControl_SetFocus: AUiControl_SetFocus_Proc = nil;
   AUiControl_SetFont1: AUiControl_SetFont1_Proc = nil;
   AUiControl_SetFont1A: AUiControl_SetFont1A_Proc = nil;
+  AUiControl_SetHeight: AUiControl_SetHeight_Proc = nil;
+  AUiControl_SetHint: AUiControl_SetHint04_Proc = nil;
+  AUiControl_SetHintA: AUiControl_SetHintA_Proc = nil;
+  AUiControl_SetName: AUiControl_SetName04_Proc = nil;
+  AUiControl_SetNameA: AUiControl_SetNameA_Proc = nil;
   AUiControl_SetOnChange: AUiControl_SetOnChange_Proc = nil;
+  AUiControl_SetOnClick: AUiControl_SetOnClick04_Proc = nil;
   AUiControl_SetPosition: AUiControl_SetPosition04_Proc = nil;
   AUiControl_SetSize: AUiControl_SetSize04_Proc = nil;
+  AUiControl_SetTabStop: AUiControl_SetTabStop_Proc = nil;
   AUiControl_SetText: AUiControl_SetText04_Proc = nil;
+  AUiControl_SetTextA: AUiControl_SetTextA_Proc = nil;
   AUiControl_SetVisible: AUiControl_SetVisible04_Proc = nil;
   AUiControl_SetWidth: AUiControl_SetWidth_Proc = nil;
   {$ifdef ADepr}

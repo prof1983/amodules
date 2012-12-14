@@ -2,7 +2,7 @@
 @Abstract User Interface
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 13.12.2012
+@LastMod 14.12.2012
 }
 unit AUiMod;
 
@@ -330,7 +330,11 @@ const
 implementation
 
 const
+  {$ifdef ADepr}
   AUi_Version = $00040000;
+  {$else}
+  AUi_Version = $00050000;
+  {$endif}
 
 const
   Module: AModule_Type = (
@@ -363,6 +367,8 @@ begin
     Result := Addr(AUi_CreateMainForm)
   else if (ProcName = 'AUi_Fin') then
     Result := Addr(AUi_Fin)
+  else if (ProcName = 'AUi_GetIsShowApp') then
+    Result := Addr(AUi_GetIsShowApp)
   else if (ProcName = 'AUi_GetMainMenuItem') then
     Result := Addr(AUi_GetMainMenuItem)
   else if (ProcName = 'AUi_GetMainToolBar') then
@@ -373,6 +379,16 @@ begin
     Result := Addr(AUi_GetMainWindow)
   else if (ProcName = 'AUi_Init') then
     Result := Addr(AUi_Init)
+  else if (ProcName = 'AUi_InitMainTrayIcon') then
+    Result := Addr(AUi_InitMainTrayIcon)
+  else if (ProcName = 'AUi_InitMenus') then
+    Result := Addr(AUi_InitMenus)
+  else if (ProcName = 'AUi_OnDone_Connect') then
+    Result := Addr(AUi_OnDone_Connect)
+  else if (ProcName = 'AUi_OnDone_Disconnect') then
+    Result := Addr(AUi_OnDone_Disconnect)
+  else if (ProcName = 'AUi_ProcessMessages') then
+    Result := Addr(AUi_ProcessMessages)
   else if (ProcName = 'AUi_Run') then
     Result := Addr(AUi_Run)
   else if (ProcName = 'AUi_SetHideOnClose') then
@@ -418,6 +434,8 @@ begin
     Result := Addr(AUi_ExecuteInputBox2A)
   else if (ProcName = 'AUi_ExecuteMessageDialog1A') then
     Result := Addr(AUi_ExecuteMessageDialog1A)
+  else if (ProcName = 'AUi_EcecuteOpenFileDialog_Proc') then
+    Result := Addr(AUi_EcecuteOpenFileDialog_Proc)
   else if (ProcName = 'AUi_ExecutePrinterSetupDialog') then
     Result := Addr(AUi_ExecutePrinterSetupDialog)
   else if (ProcName = 'AUi_InitAboutDialog1') then

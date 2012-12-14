@@ -42,10 +42,16 @@ begin
   begin
     // --- Main ---
     AUiProcVars.AUi_CreateMainForm := Module.GetProc('AUi_CreateMainForm');
+    AUiProcVars.AUi_GetIsShowApp := Module.GetProc('AUi_GetIsShowApp');
     AUiProcVars.AUi_GetMainMenuItem := Module.GetProc('AUi_GetMainMenuItem');
     AUiProcVars.AUi_GetMainToolBar := Module.GetProc('AUi_GetMainToolBar');
     AUiProcVars.AUi_GetMainTrayIcon := Module.GetProc('AUi_GetMainTrayIcon');
     AUiProcVars.AUi_GetMainWindow := Module.GetProc('AUi_GetMainWindow');
+    AUiProcVars.AUi_InitMainTrayIcon := Module.GetProc('AUi_InitMainTrayIcon');
+    AUiProcVars.AUi_InitMenus := Module.GetProc('AUi_InitMenus');
+    AUiProcVars.AUi_OnDone_Connect := Module.GetProc('AUi_OnDone_Connect');
+    AUiProcVars.AUi_OnDone_Disconnect := Module.GetProc('AUi_OnDone_Disconnect');
+    AUiProcVars.AUi_ProcessMessages := Module.GetProc('AUi_ProcessMessages');
     AUiProcVars.AUi_Run := Module.GetProc('AUi_Run');
     AUiProcVars.AUi_SetHideOnClose := Module.GetProc('AUi_SetHideOnClose');
     AUiProcVars.AUi_SetMainToolBar := Module.GetProc('AUi_SetMainToolBar');
@@ -55,13 +61,6 @@ begin
     AUiProcVars.AUi_ShowHelp := Module.GetProc('AUi_ShowHelp');
     AUiProcVars.AUi_ShowHelp2 := Module.GetProc('AUi_ShowHelp2');
     AUiProcVars.AUi_Shutdown := Module.GetProc('AUi_Shutdown');
-
-  AUi_GetIsShowApp: AUi_GetIsShowApp_Proc = nil;
-  AUi_InitMainTrayIcon: AUi_InitMainTrayIcon_Proc = nil;
-  AUi_InitMenus: AUi_InitMenus_Proc = nil;
-  AUi_OnDone_Connect: AUi_OnDone_Connect_Proc = nil;
-  AUi_OnDone_Disconnect: AUi_OnDone_Disconnect03_Proc = nil;
-  AUi_ProcessMessages: AUi_ProcessMessages_Proc = nil;
 
     // --- Dialogs ---
     AUiProcVars.AUi_ExecuteAboutDialog := Module.GetProc('AUi_ExecuteAboutDialog');
@@ -77,15 +76,12 @@ begin
     AUiProcVars.AUi_ExecuteInputBox2 := Module.GetProc('AUi_ExecuteInputBox2');
     AUiProcVars.AUi_ExecuteInputBox2A := Module.GetProc('AUi_ExecuteInputBox2A');
     AUiProcVars.AUi_ExecuteMessageDialog1A := Module.GetProc('AUi_ExecuteMessageDialog1A');
+    AUiProcVars.AUi_ExecuteOpenFileDialog := Module.GetProc('AUi_ExecuteOpenFileDialog');
     AUiProcVars.AUi_ExecutePrinterSetupDialog := Module.GetProc('AUi_ExecutePrinterSetupDialog');
     AUiProcVars.AUi_InitAboutDialog1 := Module.GetProc('AUi_InitAboutDialog1');
     AUiProcVars.AUi_InitAboutDialog2 := Module.GetProc('AUi_InitAboutDialog2');
     AUiProcVars.AUi_NewAboutDialog := Module.GetProc('AUi_NewAboutDialog');
     AUiProcVars.AUi_NewDialog := Module.GetProc('AUi_NewDialog');
-
-  AUi_EcecuteOpenFileDialog_Proc
-  xxx
-
     // --- Box ---
     AUiProcVars.AUiBox_New := Module.GetProc('AUiBox_New');
     // --- Button ---

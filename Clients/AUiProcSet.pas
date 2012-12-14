@@ -2,7 +2,7 @@
 @Abstract User Interface
 @Author Prof1983 <prof1983@ya.ru>
 @Created 24.09.2012
-@LastMod 22.11.2012
+@LastMod 14.12.2012
 }
 unit AUiProcSet;
 
@@ -112,16 +112,16 @@ begin
   UI_ListBox_Clear := UiProcs.ListBox_Clear;
   AUiListBox_New := UiProcs.ListBox_New;
 
-  UI_MainTrayIcon := UiProcs.MainTrayIcon;
+  AUi_GetMainTrayIcon := UiProcs.MainTrayIcon;
 
-  UI_MainToolBar := UiProcs.MainToolBar;
+  AUi_GetMainToolBar := UiProcs.MainToolBar;
   {$IFDEF A02}
   UI_MainToolBar_Set := UiProcs.MainToolBar_Set;
   {$ELSE}
   Reserved := UiProcs.Reserved71;
   {$ENDIF}
 
-  MainWindow := UIProcs.MainWindow;
+  AUi_GetMainWindow := UiProcs.MainWindow;
   MainWindow_AddMenuItem := UiProcs.MainWindow_AddMenuItem03WS;
   MainWindow_AddMenuItem2 := UIProcs.MainWindow_AddMenuItem2;
   MainWindow_GetLeftContainer := UIProcs.MainWindow_GetLeftContainer;

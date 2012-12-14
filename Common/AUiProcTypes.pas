@@ -56,38 +56,56 @@ type
   AUiBox_New_Proc = function(Parent: AControl; BoxType: AInteger): AControl; stdcall;
 type
   AUiButton_New_Proc = function(Parent: AControl): AButton; stdcall;
+  AUiButton_SetKind_Proc = function(Button: AButton; Kind: TAUiButtonKind): AError; stdcall;
 type
   AUiCalendar_GetDate_Proc = function(Calendar: AControl): TDateTime; stdcall;
   AUiCalendar_New_Proc = function(Parent: AControl): AControl; stdcall;
   AUiCalendar_SetMonth02_Proc = procedure(Calendar: AControl; Value: AInt); stdcall;
   AUiCalendar_SetMonth04_Proc = function(Calendar: AControl; Value: AInt): AError; stdcall;
-
+type
+  AUiComboBox_Add_Proc = function(ComboBox: AControl; const Value: AString_Type): AInteger; stdcall;
+  AUiComboBox_AddA_Proc = function(ComboBox: AControl; Value: AStr): AInteger; stdcall;
+  AUiComboBox_GetItemIndex_Proc = function(ComboBox: AControl): AInteger; stdcall;
+  AUiComboBox_New_Proc = function(Parent: AControl): AControl; stdcall;
+  AUiComboBox_New2_Proc = function(Parent: AControl; Left, Top, Width: AInteger): AControl; stdcall;
+  AUiComboBox_SetItemIndex_Proc = function(ComboBox: AControl; Value: AInteger): AError; stdcall;
 type
   AUiControl_Free04_Proc = function(Control: AControl): AError; stdcall;
   AUiControl_FreeAndNil04_Proc = function(var Control: AControl): AError; stdcall;
+  AUiControl_GetColor_Proc = function(Control: AControl): AColor; stdcall;
   AUiControl_GetEnabled_Proc = function(Control: AControl): ABoolean; stdcall;
   AUiControl_GetHeight_Proc = function(Control: AControl): AInteger; stdcall;
   AUiControl_GetHint_Proc = function(Control: AControl; out Value: AString_Type): AInteger; stdcall;
+  AUiControl_GetHintA_Proc = function(Control: AControl; Value: AStr; MaxLen: AInt): AError; stdcall;
+  AUiControl_GetMenu_Proc = function(Control: AControl): AMenu; stdcall;
   AUiControl_GetName_Proc = function(Control: AControl; out Value: AString_Type): AInteger; stdcall;
+  AUiControl_GetNameA_Proc = function(Control: AControl; Value: AStr; MaxLen: AInt): AError; stdcall;
+  AUiControl_GetPosition_Proc = function(Control: AControl; out Left, Top: AInteger): AError; stdcall;
   AUiControl_GetText_Proc = function(Control: AControl; out Value: AString_Type): AInteger; stdcall;
   AUiControl_GetVisible_Proc = function(Control: AControl): ABoolean; stdcall;
   AUiControl_GetWidth_Proc = function(Control: AControl): AInteger; stdcall;
   AUiControl_SetAlign04_Proc = function(Control: AControl; Align: TUiAlign): AError; stdcall;
+  AUiControl_SetAnchors_Proc = function(Control: AControl; Anchors: TUiAnchors): AError; stdcall;
   AUiControl_SetClientSize04_Proc = function(Control: AControl; ClientWidth, ClientHeight: AInt): AError; stdcall;
   AUiControl_SetColor04_Proc = function(Control: AControl; Color: AColor): AError; stdcall;
   AUiControl_SetEnabled04_Proc = function(Control: AControl; Value: ABoolean): AError; stdcall;
   AUiControl_SetFocus_Proc = function(Control: AControl): ABoolean; stdcall;
   AUiControl_SetFont1_Proc = function(Control: AControl; const FontName: AString_Type; FontSize: AInt): AError; stdcall;
   AUiControl_SetFont1A_Proc = function(Control: AControl; FontName: AStr; FontSize: AInt): AError; stdcall;
+  AUiControl_SetHeight_Proc = function(Control: AControl; Value: AInt): AInt; stdcall;
   AUiControl_SetHint04_Proc = function(Control: AControl; const Value: AString_Type): AError; stdcall;
+  AUiControl_SetHintA_Proc = function(Control: AControl; Value: AStr): AError; stdcall;
   AUiControl_SetName04_Proc = function(Control: AControl; const Value: AString_Type): AError; stdcall;
+  AUiControl_SetNameA_Proc = function(Control: AControl; Value: AStr): AError; stdcall;
   AUiControl_SetOnChange_Proc = function(Control: AControl; OnChange: ACallbackProc03): AError; stdcall;
   AUiControl_SetOnClick02_New_Proc = function(Control: AControl; Value: ACallbackProc02): AError; stdcall;
   AUiControl_SetOnClick03_New_Proc = function(Control: AControl; Value: ACallbackProc03): AError; stdcall;
   AUiControl_SetOnClick04_Proc = function(Control: AControl; Value: ACallbackProc): AError; stdcall;
   AUiControl_SetPosition04_Proc = function(Control: AControl; Left, Top: AInt): AError; stdcall;
   AUiControl_SetSize04_Proc = function(Control: AControl; Width, Height: AInt): AError; stdcall;
+  AUiControl_SetTabStop_Proc = function(Control: AControl; Value: ABoolean): AError; stdcall;
   AUiControl_SetText04_Proc = function(Control: AControl; const Value: AString_Type): AError; stdcall;
+  AUiControl_SetTextA_Proc = function(Control: AControl; Value: AStr): AError; stdcall;
   AUiControl_SetVisible04_Proc = function(Control: AControl; Value: ABoolean): AError; stdcall;
   AUiControl_SetWidth_Proc = function(Control: AControl; Value: AInteger): AInteger; stdcall;
   {$ifdef ADepr}
@@ -271,7 +289,7 @@ type
   {$IFDEF A01}AUi_MainToolBar_Set = procedure(ToolBar: AControl); stdcall;{$ENDIF}
   {$IFDEF A02}AUi_MainToolBar_Set = procedure(ToolBar: AControl); stdcall;{$ENDIF}
 type
-  AUi_MainTrayIcon_Proc = AUi_GetMainTrayIcon_Proc
+  AUi_MainTrayIcon_Proc = AUi_GetMainTrayIcon_Proc;
 {$endif}
 type
   AUiMainWindow_AddMenuItem_Proc = function(const ParentItemName, Name, Text: AString_Type;
@@ -280,7 +298,7 @@ type
       OnClick: ACallbackProc; ImageId, Weight: AInteger): AMenuItem; stdcall;
 {$ifdef ADepr}
 type
-  AUi_MainWindow = AUi_MainWindow_Proc;
+  AUi_MainWindow = AUi_GetMainWindow_Proc;
   AUi_MainWindow_AddMenuItem02WS_Proc = function(const ParentItemName, Name, Text: AWideString;
       OnClick: ACallbackProc02; ImageId, Weight: AInteger): AMenuItem; stdcall;
   AUi_MainWindow_AddMenuItem03WS_Proc = function(const ParentItemName, Name, Text: AWideString;
