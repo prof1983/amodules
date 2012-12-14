@@ -2,7 +2,7 @@
 @Abstract AUiSplash
 @Author Prof1983 <prof1983@ya.ru>
 @Created 08.12.2009
-@LastMod 13.12.2012
+@LastMod 14.12.2012
 }
 unit AUiSplashMod;
 
@@ -11,7 +11,7 @@ unit AUiSplashMod;
 interface
 
 uses
-  ABase, ARuntime, ARuntimeBase, ASettings, ASettingsBase, ASystem,
+  ABase, ARuntimeBase, ARuntimeMain, ASettings, ASettingsBase, ASystem,
   AUi, AUiBase, AUiSplash, AUiSplashBase, AUtils, AUtilsBase;
 
 function AUiSplashMod_Boot(): AError; stdcall;
