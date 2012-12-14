@@ -2,7 +2,7 @@
 @Abstract AUtils04
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.09.2009
-@LastMod 15.11.2012
+@LastMod 13.12.2012
 }
 unit AUtilsMod;
 
@@ -11,8 +11,8 @@ unit AUtilsMod;
 interface
 
 uses
-  ABase, ABaseUtils, ARuntime, ARuntimeBase,
-  AUtils, AUtilsBase, AUtilsMain{$IFDEF ADepr}, AUtilsProcRec{$ENDIF};
+  ABase, ABaseUtils, ARuntimeBase, ARuntimeMain,
+  {$ifdef ADepr}AUtils,{$endif} AUtilsBase, AUtilsMain{$IFDEF ADepr}, AUtilsProcRec{$ENDIF};
 
 // --- AUtilsMod ---
 
@@ -105,7 +105,11 @@ const
 implementation
 
 const
+  {$ifdef A04}
   AUtils_Version = $00040000;
+  {$else}
+  AUtils_Version = $00050000;
+  {$endif}
 
 const
   Module: AModule_Type = (
@@ -133,7 +137,58 @@ end;
 
 function AUtilsMod_GetProc(ProcName: AStr): Pointer;
 begin
-  Result := nil;
+  if (ProcName = 'AUtils_ChangeFileExt') then
+    Result := Addr(AUtils_ChangeFileExt)
+  else if (ProcName = 'AUtils_DateToStr') then
+    Result := Addr(AUtils_DateToStr)
+  else if (ProcName = 'AUtils_DeleteFile') then
+    Result := Addr(AUtils_DeleteFile)
+  else if (ProcName = 'AUtils_DirectoryExists') then
+    Result := Addr(AUtils_DirectoryExists)
+  else if (ProcName = 'AUtils_ExpandFileName') then
+    Result := Addr(AUtils_ExpandFileName)
+  else if (ProcName = 'AUtils_ExtractFileExt') then
+    Result := Addr(AUtils_ExtractFileExt)
+  else if (ProcName = 'AUtils_ExtractFileName') then
+    Result := Addr(AUtils_ExtractFileName)
+  else if (ProcName = 'AUtils_ExtractFilePath') then
+    Result := Addr(AUtils_ExtractFilePath)
+  else if (ProcName = 'AUtils_FileExists') then
+    Result := Addr(AUtils_FileExists)
+  else if (ProcName = 'AUtils_Fin') then
+    Result := Addr(AUtils_Fin)
+  else if (ProcName = 'AUtils_FloatToStr') then
+    Result := Addr(AUtils_FloatToStr)
+  else if (ProcName = 'AUtils_FloatToStr2') then
+    Result := Addr(AUtils_FloatToStr2)
+  else if (ProcName = 'AUtils_FormatFloat') then
+    Result := Addr(AUtils_FormatFloat)
+  else if (ProcName = 'AUtils_FormatInt') then
+    Result := Addr(AUtils_FormatInt)
+  else if (ProcName = 'AUtils_FormatStr') then
+    Result := Addr(AUtils_FormatStr)
+  else if (ProcName = 'AUtils_Init') then
+    Result := Addr(AUtils_Init)
+  else if (ProcName = 'AUtils_IntToStr') then
+    Result := Addr(AUtils_IntToStr)
+  else if (ProcName = 'AUtils_NormalizeFloat') then
+    Result := Addr(AUtils_NormalizeFloat)
+  else if (ProcName = 'AUtils_NormalizeStr') then
+    Result := Addr(AUtils_NormalizeStr)
+  else if (ProcName = 'AUtils_NormalizeStrSpace') then
+    Result := Addr(AUtils_NormalizeStrSpace)
+  else if (ProcName = 'AUtils_Power') then
+    Result := Addr(AUtils_Power)
+  else if (ProcName = 'AUtils_ReplaceComma') then
+    Result := Addr(AUtils_ReplaceComma)
+  else if (ProcName = 'AUtils_Round2') then
+    Result := Addr(AUtils_Round2)
+  else if (ProcName = 'AUtils_Sleep') then
+    Result := Addr(AUtils_Sleep)
+  else if (ProcName = 'AUtils_StrToFloatP') then
+    Result := Addr(AUtils_StrToFloatP)
+  else
+    Result := nil;
 end;
 
 function AUtilsMod_Init(): AError;
@@ -143,7 +198,7 @@ end;
 
 function AUtilsMod_Register(): AError;
 begin
-  Result := AModule_Register(Module);
+  Result := ARuntime_RegisterModule(Module);
 end;
 
 end.
