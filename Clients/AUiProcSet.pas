@@ -124,19 +124,17 @@ begin
   AUi_GetMainWindow := UiProcs.MainWindow;
   MainWindow_AddMenuItem := UiProcs.MainWindow_AddMenuItem03WS;
   MainWindow_AddMenuItem2 := UIProcs.MainWindow_AddMenuItem2;
-  MainWindow_GetLeftContainer := UIProcs.MainWindow_GetLeftContainer;
-  MainWindow_GetMainContainer := UIProcs.MainWindow_GetMainContainer;
-  MainWindow_GetRightContainer := UIProcs.MainWindow_GetRightContainer;
+  AUiMainWindow_GetLeftContainer := UiProcs.MainWindow_GetLeftContainer;
+  AUiMainWindow_GetMainContainer := UiProcs.MainWindow_GetMainContainer;
+  AUiMainWindow_GetRightContainer := UiProcs.MainWindow_GetRightContainer;
   MainWindow_Set := UIProcs.MainWindow_Set;
 
   Menu_AddItem2WS := UIProcs.Menu_AddItem2WS;                           // 142
   Menu_AddItem2WS02 := UIProcs.Menu_AddItem2WS02;                       // 82
-  Menu_AddItem3 := UIProcs.Menu_AddItem3;                               // 83
-  Menu_GetItems := UIProcs.Menu_GetItems;                               // 80
-  Menu_New := UIProcs.Menu_New;                                         // 81
+  AUiMenu_AddItem3 := UiProcs.Menu_AddItem3;
+  AUiMenu_GetItems := UiProcs.Menu_GetItems;
+  AUiMenu_New := UiProcs.Menu_New;
 
-  Menu_AddItem2WS02 := UiProcs.Menu_AddItem2WS02;
-  Menu_AddItem3 := UiProcs.Menu_AddItem3;
   UI_MenuItem_FindByName := UiProcs.MenuItem_FindByName;
   AUiPageControl_AddPageWS := UiProcs.PageControl_AddPageWS;
   AUiPageControl_New := UiProcs.PageControl_New;
@@ -233,7 +231,7 @@ begin
     {$ENDIF A02}
   {$ENDIF A01}
 
-  AUiProcVars.AUiGrid_ClearA := UiProcs.Grid_ClearA;
+  AUiProcVars.AUiGrid_Clear2 := UiProcs.Grid_ClearA;
   AUiProcVars.AUiGrid_Clear := UiProcs.Grid_Clear;
   AUiProcVars.AUiGrid_FindInt := UiProcs.Grid_FindInt;
 

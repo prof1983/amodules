@@ -172,20 +172,37 @@ var
   AUi_Dialog_SaveFileAWS: AUi_Dialog_SaveFileAWS_Proc = nil;
   {$endif}
 var
+  AUiEdit_CheckDate: AUiEdit_CheckDate_Proc = nil;
+  AUiEdit_CheckFloat: AUiEdit_CheckFloat_Proc = nil;
+  AUiEdit_CheckFloat32: AUiEdit_CheckFloat32_Proc = nil;
+  AUiEdit_CheckFloat64: AUiEdit_CheckFloat64_Proc = nil;
+  AUiEdit_CheckInt: AUiEdit_CheckInt_Proc = nil;
+  AUiEdit_New: AUiEdit_New_Proc = nil;
+  AUiEdit_NewEx: AUiEdit_NewEx_Proc = nil;
+  {$ifdef ADepr}
   UI_Edit_CheckDate: AUI_Edit_CheckDate = nil;
   UI_Edit_CheckFloat: AUI_Edit_CheckFloat = nil;
   UI_Edit_CheckInt: AUI_Edit_CheckInt = nil;
   UI_Edit_New: AUI_Edit_New = nil;
-  {$ifdef ADepr}
   UI_Edit_NewA: AUI_Edit_New02_Proc = nil;
   {$endif}
 var
   AUiGrid_Clear: AUiGrid_Clear_Proc = nil;
-  AUiGrid_ClearA: AUiGrid_ClearA_Proc = nil;
+  AUiGrid_Clear2: AUiGrid_Clear2_Proc = nil;
   AUiGrid_DeleteRow: AUiGrid_DeleteRow_Proc = nil;
   AUiGrid_DeleteRow2: AUiGrid_DeleteRow2_Proc = nil;
   AUiGrid_FindInt: AUiGrid_FindInt_Proc = nil;
   AUiGrid_New: AUiGrid_New_Proc = nil;
+  AUiGrid_RestoreColProps: AUiGrid_RestoreColProps04_Proc = nil;
+  AUiGrid_RestoreColPropsA: AUiGrid_RestoreColPropsA_Proc = nil;
+  AUiGrid_RowDown: AUiGrid_RowDown_Proc = nil;
+  AUiGrid_RowUp: AUiGrid_RowUp_Proc = nil;
+  AUiGrid_SaveColProps: AUiGrid_SaveColProps04_Proc = nil;
+  AUiGrid_SaveColPropsA: AUiGrid_SaveColPropsA_Proc = nil;
+  AUiGrid_SetColumnWidth: AUiGrid_SetColumnWidth04_Proc = nil;
+  AUiGrid_SetColumnWidth2: AUiGrid_SetColumnWidth2_Proc = nil;
+  AUiGrid_SetDataSource: AUiGrid_SetDataSource04_Proc = nil;
+  AUiGrid_SetRowCount: AUiGrid_SetRowCount_Proc = nil;
   {$ifdef ADepr}
   UI_Grid_AddColumn: AUiGrid_AddColumnWS_Proc = nil;
   UI_Grid_RestoreColProps: AUiGrid_RestoreColPropsWS_Proc = nil;
@@ -203,10 +220,23 @@ var
   {$endif}
 var
   AUiLabel_New: AUiLabel_New_Proc = nil;
+  AUiLabel_New2: AUiLabel_New2_Proc = nil;
+  AUiLabel_SetAlignment: AUiLabel_SetAlignment_Proc = nil;
+  AUiLabel_SetAutoSize: AUiLabel_SetAutoSize_Proc = nil;
+  AUiLabel_SetWordWrap: AUiLabel_SetWordWrap_Proc = nil;
 var
   AUiListBox_Add: AUiListBox_Add_Proc = nil;
   AUiListBox_Clear: AUiListBox_Clear_Proc = nil;
+  AUiListBox_DeleteItem: AUiListBox_DeleteItem_Proc = nil;
+  AUiListBox_GetCount: AUiListBox_GetCount_Proc = nil;
+  AUiListBox_GetItem: AUiListBox_GetItem_Proc = nil;
+  AUiListBox_GetItemIndex: AUiListBox_GetItemIndex_Proc = nil;
   AUiListBox_New: AUiListBox_New_Proc = nil;
+  AUiListBox_New2: AUiListBox_New2_Proc = nil;
+  AUiListBox_SetItem: AUiListBox_SetItem_Proc = nil;
+  AUiListBox_SetItemHeight: AUiListBox_SetItemHeight_Proc = nil;
+  AUiListBox_SetItemIndex: AUiListBox_SetItemIndex_Proc = nil;
+  AUiListBox_SetOnDblClick: AUiListBox_SetOnDblClick_Proc = nil;
   {$ifdef ADepr}
   UI_ListBox_Add: AUi_ListBox_AddWS_Proc = nil;
   UI_ListBox_Clear: AUi_ListBox_Clear = nil;
@@ -222,12 +252,12 @@ var
 var
   AUiMainWindow_AddMenuItem: AUiMainWindow_AddMenuItem_Proc = nil;
   AUiMainWindow_AddMenuItemA: AUiMainWindow_AddMenuItemA_Proc = nil;
+  AUiMainWindow_GetLeftContainer: AUiMainWindow_GetLeftContainer_Proc = nil; {MainWindow_GetLeftContainer}
+  AUiMainWindow_GetMainContainer: AUiMainWindow_GetMainContainer_Proc = nil; {MainWindow_GetMainContainer}
+  AUiMainWindow_GetRightContainer: AUiMainWindow_GetRightContainer_Proc = nil; {MainWindow_GetRightContainer}
   {$ifdef ADepr}
   MainWindow_AddMenuItem: AUi_MainWindow_AddMenuItem03WS_Proc = nil;
   MainWindow_AddMenuItem2: AUi_MainWindow_AddMenuItemWS2_Proc = nil;
-  MainWindow_GetLeftContainer: AUI_MainWindow_GetLeftContainer = nil;
-  MainWindow_GetMainContainer: AUI_MainWindow_GetMainContainer = nil;
-  MainWindow_GetRightContainer: AUI_MainWindow_GetRightContainer = nil;
   MainWindow_Set: AUI_MainWindow_Set = nil;
   MainWindow_SetA: AUI_MainWindow_SetA = nil;
   {$endif}
@@ -235,12 +265,15 @@ var
   AUiMenu_AddItem0: AUiMenu_AddItem0_Proc = nil;
   AUiMenu_AddItem1: AUiMenu_AddItem1_Proc = nil;
   AUiMenu_AddItem2: AUiMenu_AddItem2_Proc = nil;
+  AUiMenu_AddItem3: AUi_Menu_AddItem3_Proc = nil; {Menu_AddItem3}
+  AUiMenu_Clear: AUiMenu_Clear_Proc = nil;
+  AUiMenu_FindItemByName: AUiMenu_FindItemByName_Proc = nil;
+  AUiMenu_GetItems: AUiMenu_GetItems_Proc = nil; {Menu_GetItems}
+  AUiMenu_New: AUiMenu_New_Proc = nil; {Menu_New}
+  AUiMenu_SetChecked: AUiMenu_SetChecked_Proc = nil;
   {$ifdef ADepr}
   Menu_AddItem2WS: AUi_Menu_AddItem2WS03_Proc = nil;
   Menu_AddItem2WS02: AUi_Menu_AddItem2WS02_Proc = nil;
-  Menu_AddItem3: AUi_Menu_AddItem3_Proc = nil;
-  Menu_GetItems: AUI_Menu_GetItems = nil;
-  Menu_New: AUI_Menu_New = nil;
   //UI_MenuItem_Add: AUI_MenuItem_Add = nil;
   //UI_MenuItem_Add2: AUI_MenuItem_Add2 = nil;
   UI_MenuItem_FindByName: AUI_MenuItem_FindByName = nil;

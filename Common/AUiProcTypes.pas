@@ -214,18 +214,29 @@ type
   {$endif}
 
 type
+  AUiEdit_CheckDate_Proc = function(Edit: AControl; out Value: TDateTime): AError; stdcall;
+  AUiEdit_CheckFloat_Proc = function(Edit: AControl; out Value: AFloat): AError; stdcall;
+  AUiEdit_CheckFloat32_Proc = function(Edit: AControl; out Value: AFloat32): AError; stdcall;
+  AUiEdit_CheckFloat64_Proc = function(Edit: AControl; out Value: AFloat64): AError; stdcall;
+  AUiEdit_CheckInt_Proc = function(Edit: AControl; out Value: AInteger): AError; stdcall;
+  AUiEdit_New_Proc = function(Parent: AControl): AControl; stdcall;
+  {** Create new edit
+      @param EditType: 0 - TEdit; 1 - TEdit + Button; 2 - TComboBox }
+  AUiEdit_NewEx_Proc = function(Parent: AControl; EditType: AInteger; OnClick: ACallbackProc03; Left, Top, Width: AInteger): AControl; stdcall;
+  {$ifdef ADepr}
   AUi_Edit_CheckDate = function(Edit: AControl; out Value: TDateTime): ABoolean; stdcall;
   AUi_Edit_CheckFloat = function(Edit: AControl; out Value: Double): ABoolean; stdcall;
   // Переводит текст в Int. Если ошибка, то переходит на этот компонент и возвращает false.
   AUi_Edit_CheckInt = function(Edit: AControl; out Value: AInteger): ABoolean; stdcall;
   // Создает новый элемент TEdit
-  AUi_Edit_New = function(Parent: AControl): AControl; stdcall;
+  AUi_Edit_New = AUiEdit_New_Proc;
   { EditType
     0 - TEdit
     1 - TEdit + Button
     2 - TComboBox }
   AUi_Edit_New02_Proc = function(Parent: AControl; EditType: AInteger; OnClick: ACallbackProc02; Left, Top, Width: AInteger): AControl; stdcall;
-  AUi_Edit_NewEx_Proc = function(Parent: AControl; EditType: AInteger; OnClick: ACallbackProc03; Left, Top, Width: AInteger): AControl; stdcall;
+  AUi_Edit_NewEx_Proc = AUiEdit_NewEx_Proc;
+  {$endif}
 
 type
   AUiGrid_AddColumn04_Proc = function(Grid: AControl; const FieldName, Title: AString_Type;
@@ -233,7 +244,7 @@ type
     // Производит очистку таблицы. Пока работает только для TStringGrid.
   AUiGrid_Clear_Proc = function(Grid: AControl): AError; stdcall;
     // Производит очистку таблицы. Пока работает только для TStringGrid.
-  AUiGrid_ClearA_Proc = function(Grid: AControl; FixedRows: AInteger): AError; stdcall;
+  AUiGrid_Clear2_Proc = function(Grid: AControl; FixedRows: AInteger): AError; stdcall;
   AUiGrid_DeleteRow_Proc = function(Grid: AControl): AError; stdcall;
     // Удаляет указанную строку.
   AUiGrid_DeleteRow2_Proc = function(Grid: AControl; Row: AInteger): AError; stdcall;
@@ -245,10 +256,18 @@ type
   AUiGrid_New_Proc = function(Parent: AControl; GridType: AInteger): AControl; stdcall;
   AUiGrid_RestoreColProps04_Proc = function(Grid: AControl; Config: AConfig;
       const Key: AString_Type; Delimer: AChar = '\'): AError; stdcall;
+  AUiGrid_RestoreColPropsA_Proc = function(Grid: AControl; Config: AConfig; Key: AStr;
+      Delimer: AChar = '\'): AError; stdcall;
+  AUiGrid_RowDown_Proc = function(Grid: AControl): AError; stdcall;
+  AUiGrid_RowUp_Proc = function(Grid: AControl): AError; stdcall;
   AUiGrid_SaveColProps04_Proc = function(Grid: AControl; Config: AConfig;
       const Key: AString_Type; Delimer: AChar = '\'): AError; stdcall;
+  AUiGrid_SaveColPropsA_Proc = function(Grid: AControl; Config: AConfig; Key: AStr;
+      Delimer: AChar = '\'): AError; stdcall;
   AUiGrid_SetColumnWidth04_Proc = function(Grid: AControl; ColumnIndex, Width, Persent, MinWidth: AInteger): AError; stdcall;
+  AUiGrid_SetColumnWidth2_Proc = function(Grid: AControl; ColumnIndex, Width, Persent, MinWidth, MaxWidth: AInteger): AError; stdcall;
   AUiGrid_SetDataSource04_Proc = function(Grid: AControl; Value: PADataSource): AError; stdcall;
+  AUiGrid_SetRowCount_Proc = function(Grid: AControl; Count: AInteger): AError; stdcall;
   {$ifdef ADepr}
   AUiGrid_AddColumn02_Proc = procedure(Grid: AControl; const FieldName, Title: AString_Type; Width: Integer); stdcall;
   AUiGrid_AddColumnWS_Proc = procedure(Grid: AControl; const FieldName, Title: AWideString; Width: AInteger); stdcall;
@@ -275,10 +294,23 @@ type
   AUiImage_New_Proc = function(Parent: AControl): AControl; stdcall;
 type
   AUiLabel_New_Proc = function(Parent: AControl): AControl; stdcall;
+  AUiLabel_New2_Proc = function(Parent: AControl; Typ: AInt): AControl; stdcall;
+  AUiLabel_SetAlignment_Proc = function(Control: AControl; Value: AUiAlignment): AError; stdcall;
+  AUiLabel_SetAutoSize_Proc = function(Control: AControl; Value: ABoolean): AError; stdcall;
+  AUiLabel_SetWordWrap_Proc = function(Control: AControl; Value: ABoolean): AError; stdcall;
 type
   AUiListBox_Add_Proc = function(ListBox: AControl; const Text: AString_Type): AInt; stdcall;
   AUiListBox_Clear_Proc = function(ListBox: AControl): AError; stdcall;
+  AUiListBox_DeleteItem_Proc = function(ListBox: AControl; Index: AInteger): AError; stdcall;
+  AUiListBox_GetCount_Proc = function(ListBox: AControl): AInteger; stdcall;
+  AUiListBox_GetItem_Proc = function(ListBox: AControl; Index: AInteger; out Value: AString_Type): AInteger; stdcall;
+  AUiListBox_GetItemIndex_Proc = function(ListBox: AControl): AInteger; stdcall;
   AUiListBox_New_Proc = function(Parent: AControl): AControl; stdcall;
+  AUiListBox_New2_Proc = function(Parent: AControl; Typ: AInteger): AControl; stdcall;
+  AUiListBox_SetItem_Proc = function(ListBox: AControl; Index: AInteger; const Value: AString_Type): AError; stdcall;
+  AUiListBox_SetItemHeight_Proc = function(ListBox: AControl; Value: AInt): AError; stdcall;
+  AUiListBox_SetItemIndex_Proc = function(ListBox: AControl; Index: AInteger): AError; stdcall;
+  AUiListBox_SetOnDblClick_Proc = function(ListBox: AControl; Value: ACallbackProc): AError; stdcall;
   {$ifdef ADepr}
   AUi_ListBox_AddWS_Proc = function(ListBox: AControl; const Text: AWideString): AInt; stdcall;
   AUi_ListBox_Clear = procedure(ListBox: AControl); stdcall;
@@ -296,8 +328,10 @@ type
       OnClick: ACallbackProc; ImageId, Weight: AInteger): AMenuItem; stdcall;
   AUiMainWindow_AddMenuItemA_Proc = function(ParentItemName, Name, Text: AStr;
       OnClick: ACallbackProc; ImageId, Weight: AInteger): AMenuItem; stdcall;
-{$ifdef ADepr}
-type
+  AUiMainWindow_GetLeftContainer_Proc = function(): AControl; stdcall;
+  AUiMainWindow_GetMainContainer_Proc = function(): AControl; stdcall;
+  AUiMainWindow_GetRightContainer_Proc = function(): AControl; stdcall;
+  {$ifdef ADepr}
   AUi_MainWindow = AUi_GetMainWindow_Proc;
   AUi_MainWindow_AddMenuItem02WS_Proc = function(const ParentItemName, Name, Text: AWideString;
       OnClick: ACallbackProc02; ImageId, Weight: AInteger): AMenuItem; stdcall;
@@ -305,31 +339,36 @@ type
       OnClick: ACallbackProc03; ImageId, Weight: AInteger): AMenuItem; stdcall;
   AUi_MainWindow_AddMenuItemWS_Proc = AUi_MainWindow_AddMenuItem02WS_Proc;
   AUi_MainWindow_AddMenuItemWS2_Proc = AUi_MainWindow_AddMenuItem02WS_Proc;
+  AUi_MainWindow_GetLeftContainer = AUiMainWindow_GetLeftContainer_Proc;
+  AUi_MainWindow_GetMainContainer = AUiMainWindow_GetMainContainer_Proc;
+  AUi_MainWindow_GetRightContainer = AUiMainWindow_GetRightContainer_Proc;
   AUi_MainWindow_Set = procedure(Value: AWindow); stdcall;
   AUi_MainWindow_SetA = procedure(Value: AWindow; ToolBar, StatusBar: AControl; Config: AConfig); stdcall;
-{$endif}
-type
-  AUi_MainWindow_GetLeftContainer = function: AControl; stdcall;
-  AUi_MainWindow_GetMainContainer = function: AControl; stdcall;
-  AUi_MainWindow_GetRightContainer = function: AControl; stdcall;
-type
-  AUi_Menu_GetItems = function(Menu: AMenu): AMenuItem; stdcall;
-  AUi_Menu_New = function(MenuType: AInteger): AMenu; stdcall;
-
+  {$endif}
 type
   AUiMenu_AddItem0_Proc = function(Parent: AMenuItem; MenuItem: AMenuItem; Weight: AInteger): AMenuItem; stdcall;
   AUiMenu_AddItem1_Proc = function(Menu: AMenu; const Name, Text: AString_Type;
       OnClick: ACallbackProc; ImageId, Weight: AInteger): AMenuItem; stdcall;
   AUiMenu_AddItem2_Proc = function(Parent: AMenuItem; const Name, Text: AString_Type;
       OnClick: ACallbackProc; ImageId, Weight: AInteger): AMenuItem; stdcall;
+  AUiMenu_AddItem3_Proc = function(Parent: AMenuItem; MenuItem: AMenuItem; Weight: AInteger): AMenuItem; stdcall;
+  AUiMenu_Clear_Proc = function(MenuItem: AMenuItem): AError; stdcall;
+  AUiMenu_FindItemByName_Proc = function(MenuItem: AMenuItem; const Name: AString_Type): AMenuItem; stdcall;
+  AUiMenu_GetItems_Proc = function(Menu: AMenu): AMenuItem; stdcall;
+  AUiMenu_New_Proc = function(MenuType: AInteger): AMenu; stdcall;
+  AUiMenu_SetChecked_Proc = function(MenuItem: AMenuItem; Checked: ABoolean): AError; stdcall;
+  {$ifdef ADepr}
   AUi_Menu_AddItem2WS02_Proc = function(Parent: AMenuItem; const Name, Text: AWideString; OnClick: ACallbackProc02; ImageId, Weight: AInteger): AMenuItem; stdcall;
   AUi_Menu_AddItem2WS03_Proc = function(Parent: AMenuItem; const Name, Text: AWideString; OnClick: ACallbackProc03; ImageId, Weight: AInteger): AMenuItem; stdcall;
-  AUi_Menu_AddItem3_Proc = function(Parent: AMenuItem; MenuItem: AMenuItem; Weight: AInteger): AMenuItem; stdcall;
-  AUi_MenuItem_FindByName = function(MenuItem: AMenuItem; const Name: AWideString): AMenuItem; stdcall;
-type
+  AUi_Menu_AddItem3_Proc = AUiMenu_AddItem3_Proc;
+  AUi_Menu_GetItems = AUiMenu_GetItems_Proc;
+  AUi_Menu_New = AUiMenu_New_Proc;
   AUi_MenuItem_Add_Proc = function(MenuItem: AMenuItem; const Name, Text: AString_Type; OnClick: ACallbackProc; ImageID, Weight: Integer): AMenuItem; stdcall;
   AUi_MenuItem_Add2_Proc = function(Parent: AMenuItem; MenuItem: AMenuItem; Weight: AInteger): AMenuItem; stdcall;
   AUi_MenuItem_FindByName_Proc = function(MenuItem: AMenuItem; const Name: AString_Type): AMenuItem; stdcall;
+  AUi_MenuItem_FindByNameWS_Proc = function(MenuItem: AMenuItem; const Name: AWideString): AMenuItem; stdcall;
+  AUi_MenuItem_FindByName = AUi_MenuItem_FindByNameWS_Proc;
+  {$endif}
 
 type
   { Создает новую вкладку. Возврашает:

@@ -17,7 +17,8 @@ interface
 uses
   ABase, ARuntime, ARuntimeBase,
   AUi, AUiBase, AUiBox, AUiButtons, AUiCalendar, AUiComboBox, AUiControls, AUiControlsA,
-  AUiDataSource, AUiDialogs, AUiEdit, AUiGrids, AUiImages, AUiInit, AUiLabels, AUiLabelsEx, AUiListBox,
+  AUiDataSource, AUiDialogs, AUiEdit, AUiEvents1, AUiGrids, AUiImages, AUiInit,
+  AUiLabels, AUiLabelsEx, AUiListBox,
   AUiMain, AUiMainWindow2, AUiMenus, AUiPageControl, {$IFDEF ADepr}AUiProcRec,{$ENDIF}
   AUiProgressBar, AUiPropertyBox, AUiReports, AUiSpin, AUiSpinEdit, AUiSplitter,
   AUiTextView, AUiToolBar, AUiToolMenu, AUiTrayIcon, AUiTreeView,
@@ -434,8 +435,8 @@ begin
     Result := Addr(AUi_ExecuteInputBox2A)
   else if (ProcName = 'AUi_ExecuteMessageDialog1A') then
     Result := Addr(AUi_ExecuteMessageDialog1A)
-  else if (ProcName = 'AUi_EcecuteOpenFileDialog_Proc') then
-    Result := Addr(AUi_EcecuteOpenFileDialog_Proc)
+  else if (ProcName = 'AUi_ExecuteOpenFileDialog') then
+    Result := Addr(AUi_ExecuteOpenFileDialog)
   else if (ProcName = 'AUi_ExecutePrinterSetupDialog') then
     Result := Addr(AUi_ExecutePrinterSetupDialog)
   else if (ProcName = 'AUi_InitAboutDialog1') then
@@ -641,6 +642,12 @@ begin
     Result := Addr(AUiMainWindow_AddMenuItem)
   else if (ProcName = 'AUiMainWindow_AddMenuItemA') then
     Result := Addr(AUiMainWindow_AddMenuItemA)
+  else if (ProcName = 'AUiMainWindow_GetLeftContainer') then
+    Result := Addr(AUiMainWindow_GetLeftContainer)
+  else if (ProcName = 'AUiMainWindow_GetMainContainer') then
+    Result := Addr(AUiMainWindow_GetMainContainer)
+  else if (ProcName = 'AUiMainWindow_GetRightContainer') then
+    Result := Addr(AUiMainWindow_GetRightContainer)
   // --- Menu ---
   else if (ProcName = 'AUiMenu_AddItem0') then
     Result := Addr(AUiMenu_AddItem0)
@@ -650,10 +657,16 @@ begin
     Result := Addr(AUiMenu_AddItem2)
   else if (ProcName = 'AUiMenu_AddItem3') then
     Result := Addr(AUiMenu_AddItem3)
+  else if (ProcName = 'AUiMenu_Clear') then
+    Result := Addr(AUiMenu_Clear)
+  else if (ProcName = 'AUiMenu_FindItemByName') then
+    Result := Addr(AUiMenu_FindItemByName)
   else if (ProcName = 'AUiMenu_GetItems') then
     Result := Addr(AUiMenu_GetItems)
   else if (ProcName = 'AUiMenu_New') then
     Result := Addr(AUiMenu_New)
+  else if (ProcName = 'AUiMenu_SetChecked') then
+    Result := Addr(AUiMenu_SetChecked)
   // --- PageControl ---
   else if (ProcName = 'AUiPageControl_AddPage') then
     Result := Addr(AUiPageControl_AddPage)

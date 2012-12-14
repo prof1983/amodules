@@ -214,7 +214,7 @@ type
       ProcessMessages: AUi_ProcessMessages_Proc;                    // 137
       ShowHelp: AUi_ShowHelp_Proc;                                  // 138
       Shutdown: AUi_Shutdown_Proc;                                  // 139
-      Grid_ClearA: AUiGrid_ClearA_Proc;                             // 140
+      Grid_ClearA: AUiGrid_Clear2_Proc;                             // 140
       Grid_Clear: AUiGrid_Clear_Proc;                               // 141
       Menu_AddItem2WS: AUi_Menu_AddItem2WS03_Proc;                  // 142
       Grid_FindInt: AUiGrid_FindInt_Proc;                           // 143

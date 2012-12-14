@@ -134,9 +134,6 @@ begin
     AUiProcVars.AUiControl_SetVisible := Module.GetProc('AUiControl_SetVisible');
     AUiProcVars.AUiControl_SetWidth := Module.GetProc('AUiControl_SetWidth');
     AUiProcVars.AUiControl_SetOnChange := Module.GetProc('AUiControl_SetOnChange');
-
-  AUiControl_SetOnChange: AUiControl_SetOnChange_Proc = nil;
-
     // --- Edit ---
     AUiProcVars.AUiEdit_CheckDate := Module.GetProc('AUiEdit_CheckDate');
     AUiProcVars.AUiEdit_CheckFloat := Module.GetProc('AUiEdit_CheckFloat');
@@ -168,10 +165,10 @@ begin
     AUiProcVars.AUiImage_New := Module.GetProc('AUiImage_New');
     // --- Label ---
     AUiProcVars.AUiLabel_New := Module.GetProc('AUiLabel_New');
+    AUiProcVars.AUiLabel_New2 := Module.GetProc('AUiLabel_New2');
     AUiProcVars.AUiLabel_SetAlignment := Module.GetProc('AUiLabel_SetAlignment');
     AUiProcVars.AUiLabel_SetAutoSize := Module.GetProc('AUiLabel_SetAutoSize');
     AUiProcVars.AUiLabel_SetWordWrap := Module.GetProc('AUiLabel_SetWordWrap');
-    AUiProcVars.AUiLabel_New2 := Module.GetProc('AUiLabel_New2');
     // --- ListBox ---
     AUiProcVars.AUiListBox_Add := Module.GetProc('AUiListBox_Add');
     AUiProcVars.AUiListBox_Clear := Module.GetProc('AUiListBox_Clear');
@@ -188,13 +185,19 @@ begin
     // --- MainWindow ---
     AUiProcVars.AUiMainWindow_AddMenuItem := Module.GetProc('AUiMainWindow_AddMenuItem');
     AUiProcVars.AUiMainWindow_AddMenuItemA := Module.GetProc('AUiMainWindow_AddMenuItemA');
+    AUiProcVars.AUiMainWindow_GetLeftContainer := Module.GetProc('AUiMainWindow_GetLeftContainer');
+    AUiProcVars.AUiMainWindow_GetMainContainer := Module.GetProc('AUiMainWindow_GetMainContainer');
+    AUiProcVars.AUiMainWindow_GetRightContainer := Module.GetProc('AUiMainWindow_GetRightContainer');
     // --- Menu ---
     AUiProcVars.AUiMenu_AddItem0 := Module.GetProc('AUiMenu_AddItem0');
     AUiProcVars.AUiMenu_AddItem1 := Module.GetProc('AUiMenu_AddItem1');
     AUiProcVars.AUiMenu_AddItem2 := Module.GetProc('AUiMenu_AddItem2');
     AUiProcVars.AUiMenu_AddItem3 := Module.GetProc('AUiMenu_AddItem3');
+    AUiProcVars.AUiMenu_Clear := Module.GetProc('AUiMenu_Clear');
+    AUiProcVars.AUiMenu_FindItemByName := Module.GetProc('AUiMenu_FindItemByName');
     AUiProcVars.AUiMenu_GetItems := Module.GetProc('AUiMenu_GetItems');
     AUiProcVars.AUiMenu_New := Module.GetProc('AUiMenu_New');
+    AUiProcVars.AUiMenu_SetChecked := Module.GetProc('AUiMenu_SetChecked');
     // --- PageControl ---
     AUiProcVars.AUiPageControl_AddPage := Module.GetProc('AUiPageControl_AddPage');
     AUiProcVars.AUiPageControl_AddPageA := Module.GetProc('AUiPageControl_AddPageA');
