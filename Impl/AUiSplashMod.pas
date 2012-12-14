@@ -2,7 +2,7 @@
 @Abstract AUiSplash
 @Author Prof1983 <prof1983@ya.ru>
 @Created 08.12.2009
-@LastMod 19.11.2012
+@LastMod 13.12.2012
 }
 unit AUiSplashMod;
 
@@ -65,7 +65,7 @@ const
 {$ENDIF ADepr}
 
 const
-  AUiSplash_Version = $00030500;
+  AUiSplash_Version = $00050000;
 
 const
   UiSplashModule: AModule_Type = (
@@ -83,26 +83,26 @@ const
 
 function AUiSplashMod_Boot(): AError;
 begin
-  Result := ARuntime.Module_Register(UISplashModule);
+  Result := ARuntime_AddModule(UiSplashModule);
 end;
 
 function AUiSplashMod_Fin(): AError;
 begin
   Result := AUiSplash_Fin();
-  ARuntime.Modules_DeleteByUid(AUiSplash_Uid);
+  ARuntime_DeleteModuleByUid(AUiSplash_Uid);
 end;
 
 function AUiSplashMod_Init(): AError;
 begin
   // --- Init request modules ---
 
-  if (ARuntime.Modules_InitByUid(AUI_Uid) < 0) then
+  if (ARuntime_InitModuleByUid(AUi_Uid) < 0) then
   begin
     Result := -6;
     Exit;
   end;
 
-  if (ARuntime.Modules_InitByUid(AUtils_Uid) < 0) then
+  if (ARuntime_InitModuleByUid(AUtils_Uid) < 0) then
   begin
     Result := -7;
     Exit;
@@ -110,7 +110,7 @@ begin
 
   // --- Init recomended modules ---
 
-  ARuntime.Modules_InitByUid(ASettings_Uid);
+  ARuntime_InitModuleByUid(ASettings_Uid);
 
   // --- Run ---
 
