@@ -2,7 +2,7 @@
 @Abstract User Interface client
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 13.12.2012
+@LastMod 14.12.2012
 }
 unit AUiModClient;
 
@@ -214,6 +214,10 @@ begin
     // --- Report ---
     AUiProcVars.AUiReport_New := Module.GetProc('AUiReport_New');
     AUiProcVars.AUiReport_SetText := Module.GetProc('AUiReport_SetText');
+    // --- ReportWin ---
+    AUiProcVars.AUiReportWin_New := Module.GetProc('AUiReportWin_New');
+    AUiProcVars.AUiReportWin_New2 := Module.GetProc('AUiReportWin_New2');
+    AUiProcVars.AUiReportWin_ShowReport := Module.GetProc('AUiReportWin_ShowReport');
     // --- SpinButton ---
     AUiProcVars.AUiSpinButton_New := Module.GetProc('AUiSpinButton_New');
     // --- SpinEdit ---

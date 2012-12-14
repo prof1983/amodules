@@ -57,7 +57,7 @@ type
     Control_SetVisible: AUiControl_SetVisible02_Proc;               // 30
     Control_SetWidth: AUiControl_SetWidth_Proc;                     // 31
 
-    DataSource_New: AUi_DataSource_New_Proc;                        // 32
+    DataSource_New: AUiDataSource_New_Proc;                         // 32
     DataSource_SetOnDataChange02: AUi_DataSource_SetOnDataChange02_Proc; // 33
 
     Dialog_About: AUi_Dialog_About_Proc;                            // 34

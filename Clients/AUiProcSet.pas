@@ -146,7 +146,7 @@ begin
   UI_PropertyBox_AddA := UiProcs.PropertyBox_AddA;
   UI_PropertyBox_Item_GetValue := UiProcs.PropertyBox_Item_GetValue;
   UI_PropertyBox_Item_SetValue := UiProcs.PropertyBox_Item_SetValue;
-  UI_PropertyBox_New := UiProcs.PropertyBox_New;
+  AUiPropertyBox_New := UiProcs.PropertyBox_New;
 
   AUiSplitter_New := UiProcs.Splitter_New;
 
@@ -177,7 +177,7 @@ begin
   UI_Window_SetPosition := UiProcs.Window_SetPosition;
   AUiWindow_ShowModal := UiProcs.Window_ShowModal;
 
-  UI_ReportWin_New := UiProcs.ReportWin_New;
+  AUiReportWin_New := UiProcs.ReportWin_New;
 
   UI_WaitWin_New := UiProcs.WaitWin_NewWS;
   UI_WaitWin_StepBy := UiProcs.WaitWin_StepBy;

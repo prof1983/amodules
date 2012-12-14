@@ -136,7 +136,7 @@ type
   {$endif}
 
 type
-  AUi_DataSource_New_Proc = function(): PADataSource; stdcall;
+  AUiDataSource_New_Proc = function(): PADataSource; stdcall;
   {$ifdef ADepr}
   AUi_DataSource_SetOnDataChange02_Proc = procedure(DataSource: PADataSource; OnDataChange: ACallbackProc02); stdcall;
   AUi_DataSource_SetOnDataChange03_Proc = procedure(DataSource: PADataSource; OnDataChange: ACallbackProc03); stdcall;
@@ -374,40 +374,52 @@ type
   { Создает новую вкладку. Возврашает:
     0 - если произошла ошибка, иначе идентификатор новой вкладки (если операция прошла успешно) }
   AUiPageControl_AddPage_Proc = function(PageControl: AControl; const Name, Text: AString_Type): AControl; stdcall;
+  AUiPageControl_AddPageA_Proc = function(PageControl: AControl; Name, Text: AStr): AControl; stdcall;
+  AUiPageControl_New_Proc = function(Parent: AControl): AControl; stdcall;
   {$ifdef ADepr}
   { Создает новую вкладку. Возврашает:
     0 - если произошла ошибка, иначе идентификатор новой вкладки (если операция прошла успешно) }
   AUi_PageControl_AddPageWS_Proc = function(PageControl: AControl; const Name, Text: AWideString): AControl; stdcall;
   {$endif}
-  AUiPageControl_New_Proc = function(Parent: AControl): AControl; stdcall;
 
 type
   AUiProgressBar_New_Proc = function(Parent: AControl; Max: AInteger): AControl; stdcall;
   AUiProgressBar_StepIt_Proc = function(ProgressBar: AControl): AInteger; stdcall;
 
 type
+  AUiPropertyBox_Add_Proc = function(PropertyBox: AControl; const Caption: AString_Type): AInt; stdcall;
+  AUiPropertyBox_Add2_Proc = function(PropertyBox: AControl; const Caption, Text, Hint: AString_Type; EditWidth: AInt): AInt; stdcall;
+  AUiPropertyBox_Item_GetValue_Proc = function(PropertyBox: AControl; Index: AInt; out Value: AString_Type): AInt; stdcall;
+  AUiPropertyBox_Item_SetValue_Proc = function(PropertyBox: AControl; Index: AInt; const Value: AString_Type): AError; stdcall;
+  AUiPropertyBox_New_Proc = function(Parent: AControl): AControl; stdcall;
+  {$ifdef ADepr}
   AUi_PropertyBox_Add = function(PropertyBox: AControl; const Caption: AWideString): Integer; stdcall;
   AUi_PropertyBox_AddA = function(PropertyBox: AControl; const Caption, Text, Hint: AWideString; EditWidth: AInteger): AInteger; stdcall;
   AUi_PropertyBox_Item_GetValue = function(PropertyBox: AControl; Index: Integer): AWideString; stdcall;
   AUi_PropertyBox_Item_SetValue = procedure(PropertyBox: AControl; Index: Integer; const Value: AWideString); stdcall;
-  AUi_PropertyBox_New = function(Parent: AControl): AControl; stdcall;
-  //A_UI_PropertyBox_Add = function(PropertyBox: AControl; const Caption: AString_Type): Integer; stdcall;
-  //A_UI_PropertyBox_AddA = function(PropertyBox: AControl; const Caption, Text, Hint: AString_Type; EditWidth: AInteger): AInteger; stdcall;
-  //A_UI_PropertyBox_Item_GetValue = function(PropertyBox: AControl; Index: Integer; out Value: AString_Type): AInteger; stdcall;
-  //A_UI_PropertyBox_Item_SetValue = procedure(PropertyBox: AControl; Index: Integer; const Value: AString_Type); stdcall;
-  //A_UI_PropertyBox_New = function(Parent: AControl): AControl; stdcall;
+  AUi_PropertyBox_New = AUiPropertyBox_New_Proc;
+  {$endif}
 
 type
-  AUi_Report_New = function(Parent: AControl): AReport; stdcall;
+  AUiReport_New_Proc = function(Parent: AControl): AReport; stdcall;
+  AUiReport_SetText_Proc = function(Report: AReport; const Value: AString_Type): AError; stdcall;
+  {$ifdef ADepr}
+  AUi_Report_New = AUiReport_New_Proc;
   AUi_Report_SetText = procedure(Report: AReport; const Value: AWideString); stdcall;
   A_UI_Report_SetText = procedure(Report: AReport; const Value: AString_Type); stdcall;
+  {$endif}
 
 type
-  AUi_ReportWin_New = function: AWindow; stdcall;
+  AUiReportWin_New_Proc = function(): AWindow; stdcall;
+  AUiReportWin_New2_Proc = function(ReportWinType: AInt; const Text: AString_Type): AWindow; stdcall;
+  AUiReportWin_ShowReport_Proc = function(const Text: AString_Type; Font: AFont): AError; stdcall;
+  {$ifdef ADepr}
+  AUi_ReportWin_New = AUiReportWin_New_Proc;
   // ReportWinType - Тип окна отчета: 0-TReportForm; 1-SimpleReport
-  AUi_ReportWin_NewA = function(ReportWinType: AInteger; const Text: AString_Type): AWindow; stdcall;
+  AUi_ReportWin_NewA = AUiReportWin_New2_Proc;
   // ReportWinType - Тип окна отчета: 0-TReportForm; 1-SimpleReport
   AUi_ReportWin_NewWS_Proc = function(ReportWinType: AInteger; const Text: AWideString): AWindow; stdcall;
+  {$endif}
 
 type
   AUiSplitter_New_Proc = function(Parent: AControl; SplitterType: AUISplitterType): AControl; stdcall;

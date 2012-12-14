@@ -695,6 +695,13 @@ begin
     Result := Addr(AUiReport_New)
   else if (ProcName = 'AUiReport_SetText') then
     Result := Addr(AUiReport_SetText)
+  // --- ReportWin ---
+  else if (ProcName = 'AUiReportWin_New') then
+    Result := Addr(AUiReportWin_New)
+  else if (ProcName = 'AUiReportWin_New2') then
+    Result := Addr(AUiReportWin_New2)
+  else if (ProcName = 'AUiReportWin_ShowReport') then
+    Result := Addr(AUiReportWin_ShowReport)
   // --- SpinButton ---
   else if (ProcName = 'AUiSpinButton_New') then
     Result := Addr(AUiSpinButton_New)

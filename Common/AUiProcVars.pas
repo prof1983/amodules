@@ -280,6 +280,7 @@ var
   {$endif}
 var
   AUiPageControl_AddPage: AUiPageControl_AddPage_Proc = nil;
+  AUiPageControl_AddPageA: AUiPageControl_AddPageA_Proc = nil;
   AUiPageControl_New: AUiPageControl_New_Proc = nil;
   {$ifdef ADepr}
   AUiPageControl_AddPageWS: AUi_PageControl_AddPageWS_Proc = nil;
@@ -288,13 +289,24 @@ var
   AUiProgressBar_New: AUiProgressBar_New_Proc = nil;
   AUiProgressBar_StepIt: AUiProgressBar_StepIt_Proc = nil;
 var
+  AUiPropertyBox_Add: AUiPropertyBox_Add_Proc = nil;
+  AUiPropertyBox_Add2: AUiPropertyBox_Add2_Proc = nil;
+  AUiPropertyBox_Item_GetValue: AUiPropertyBox_Item_GetValue_Proc = nil;
+  AUiPropertyBox_Item_SetValue: AUiPropertyBox_Item_SetValue_Proc = nil;
+  AUiPropertyBox_New: AUiPropertyBox_New_Proc = nil; {UI_PropertyBox_New}
+  {$ifdef ADepr}
   UI_PropertyBox_Add: AUI_PropertyBox_Add = nil;
   UI_PropertyBox_AddA: AUI_PropertyBox_AddA = nil;
   UI_PropertyBox_Item_GetValue: AUI_PropertyBox_Item_GetValue = nil;
   UI_PropertyBox_Item_SetValue: AUI_PropertyBox_Item_SetValue = nil;
-  UI_PropertyBox_New: AUI_PropertyBox_New = nil;
+  {$endif}
 var
-  UI_ReportWin_New: AUI_ReportWin_New = nil;
+  AUiReport_New: AUiReport_New_Proc = nil;
+  AUiReport_SetText: AUiReport_SetText_Proc = nil;
+var
+  AUiReportWin_New: AUiReportWin_New_Proc = nil; {UI_ReportWin_New}
+  AUiReportWin_New2: AUiReportWin_New2_Proc = nil;
+  AUiReportWin_ShowReport: AUiReportWin_ShowReport_Proc = nil;
   {$ifdef ADepr}
   UI_ReportWin_NewA: AUi_ReportWin_NewWS_Proc = nil;
   {$endif}
