@@ -2,7 +2,7 @@
 @Abstract User interface proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 13.12.2012
+@LastMod 14.12.2012
 }
 unit AUiProcTypes;
 
@@ -114,29 +114,62 @@ type
   {$endif}
 
 type
+  AUi_ExecuteAboutDialog_Proc = function(): AError; stdcall;
+  AUi_ExecuteCalendarDialog_Proc = function(var Date: TDateTime; CenterX, CenterY: AInteger): ABoolean; stdcall;
+  AUi_ExecuteColorDialog_Proc = function(var Color: AColor): ABoolean; stdcall;
+  AUi_ExecuteDateFilterDialog_Proc = function(var Group: AInt; var DateBegin, DateEnd: TDateTime): ABoolean; stdcall;
+  AUi_ExecuteErrorDialog_Proc = function(const Caption, UserMessage, ExceptMessage: AString_Type): AError; stdcall;
+  AUi_ExecuteErrorDialogA_Proc = function(Caption, UserMessage, ExceptMessage: AStr): AError; stdcall;
+  AUi_ExecuteFontDialog_Proc = function(var FontName: AString_Type; var FontSize: AInt; FontColor: AColor): ABoolean; stdcall;
+  AUi_ExecuteFontDialogA_Proc = function(FontName: AStr; MaxLen: AInt; var FontSize: AInt;
+      var FontColor: AColor): ABoolean; stdcall;
+  AUi_ExecuteInputBox1_Proc = function(const Text: AString_Type; var Value: AString_Type): AError; stdcall;
+  AUi_ExecuteInputBox1A_Proc = function(Text: AStr; Value: AStr; ValueMaxLen: AInt): AError; stdcall;
+  AUi_ExecuteInputBox2_Proc = function(const Caption, Text1, Text2: AString_Type;
+      var Value1, Value2: AString_Type): AError; stdcall;
+  AUi_ExecuteInputBox2A_Proc = function(Caption, Text1, Text2: AStr;
+      Value1: AStr; MaxLenValue1: AInt; Value2: AStr; MaxLenValue2: AInt): AError; stdcall;
+  AUi_ExecuteLoginDialog_Proc = function(var UserName, Password: AString_Type; IsSave: ABoolean): ABoolean; stdcall;
+  AUi_ExecuteMessageDialog1_Proc = function(const Text, Caption: AString_Type; Flags: AMessageBoxFlags): ADialogBoxCommands; stdcall;
+  AUi_ExecuteMessageDialog1A_Proc = function(Text, Caption: AStr; Flags: AMessageBoxFlags): ADialogBoxCommands; stdcall;
+  AUi_ExecuteOpenFileDialog_Proc = function(const InitialDir, Filter, Title: AString_Type;
+      var FileName: AString_Type): ABoolean; stdcall;
+  AUi_ExecutePrinterSetupDialog_Proc = function(): AError; stdcall;
+  AUi_ExecuteSaveFileDialog_Proc = function(const Dir, Ext, DefFileName: AString_Type;
+      out Value: AString_Type): AInteger; stdcall;
+  AUi_InitAboutDialog1_Proc = function(AboutDialog: AWindow): AError; stdcall;
+  AUi_InitAboutDialog2_Proc = function(AboutDialog: AWindow): AError; stdcall;
+  AUi_NewAboutDialog_Proc = function(): AWindow; stdcall;
+  AUi_NewDialog_Proc = function(Buttons: AUiWindowButtons): ADialog; stdcall;
+  // --- AUiDialog ---
+  AUiDialog_AddButton_Proc = function(Win: AWindow; Left, Width: AInt;
+      const Text: AString_Type; OnClick: ACallbackProc): AControl; stdcall;
+  AUiDialog_GetWindow_Proc = function(Dialog: ADialog): AWindow; stdcall;
+  {$ifdef ADepr}
   AUi_Dialog_About_Proc = procedure(); stdcall;
-  AUi_Dialog_About_New_Proc = function: AWindow; stdcall;
-  AUi_Dialog_AddButton_Proc = function(Win: AWindow; Left, Width: AInteger;
-      const Text: AString_Type; OnClick: ACallbackProc03): AControl; stdcall;
+  AUi_Dialog_About_New_Proc = AUi_NewAboutDialog_Proc;
+  AUi_Dialog_AddButton_Proc = AUiDialog_AddButton_Proc;
   AUi_Dialog_AddButton02 = function(Win: AWindow; Left, Width: AInteger;
       const Text: AWideString; OnClick: ACallbackProc02): AControl; stdcall;
-  AUi_Dialog_Calendar_Proc = function(var Date: TDateTime; CenterX, CenterY: AInteger): ABoolean; stdcall;
-  AUi_Dialog_Color_Proc = function(var Color: AColor): ABoolean; stdcall;
-  AUi_Dialog_DateFilter_Proc = function(var Group: Integer; var DateBegin, DateEnd: TDateTime): Boolean; stdcall;
+  AUi_Dialog_Calendar_Proc = AUi_ExecuteCalendarDialog_Proc;
+  AUi_Dialog_Color_Proc = AUi_ExecuteColorDialog_Proc;
+  AUi_Dialog_DateFilter_Proc = AUi_ExecuteDateFilterDialog_Proc;
   AUi_Dialog_Error_Proc = procedure(const Caption, UserMessage, ExceptMessage: AString_Type); stdcall;
-  AUi_Dialog_Font_Proc = function(var FontName: AString_Type; var FontSize: AInteger; FontColor: AColor): ABoolean; stdcall;
-  AUi_Dialog_GetWindow_Proc = function(Dialog: ADialog): AWindow; stdcall;
+  AUi_Dialog_Font_Proc = AUi_ExecuteFontDialog_Proc;
+  AUi_Dialog_GetWindow_Proc = AUiDialog_GetWindow_Proc;
   AUi_Dialog_InputBox_Proc = function(const Text: AString_Type; var Value: AString_Type): ABoolean; stdcall;
   AUi_Dialog_InputBox2_Proc = function(const Caption, Text1, Text2: AString_Type; var Value1, Value2: AString_Type): ABoolean; stdcall;
   AUi_Dialog_InputBoxA_Proc = function(const Caption, Text: AString_Type; var Value: AString_Type): ABoolean; stdcall;
-  AUi_Dialog_Login_Proc = function(var UserName, Password: AString_Type; IsSave: ABoolean): ABoolean; stdcall;
-  AUi_Dialog_Message_Proc = function(const Text, Caption: AString_Type; Flags: AMessageBoxFlags): ADialogBoxCommands; stdcall;
-  AUi_Dialog_New_Proc = function(Buttons: AUIWindowButtons): ADialog; stdcall;
-  AUi_Dialog_OpenFile_Proc = function(const InitialDir, Filter, Title: AString_Type; var FileName: AString_Type): ABoolean; stdcall;
-  AUi_Dialog_OpenFileA_Proc = function(const InitialDir, Filter, DefaultExt, Title: AString_Type; var FileName: AString_Type; var FilterIndex: AInteger): ABoolean; stdcall;
-  AUi_Dialog_SaveFile_Proc = function(const Dir, Ext, DefFileName: AString_Type; out Value: AString_Type): AInteger; stdcall;
-  AUi_Dialog_SaveFileA_Proc = function(const InitialDir, DefExt, DefFileName, Filter: AString_Type; var FilterIndex: AInteger; out Value: AString_Type): AInteger; stdcall;
-  {$ifdef ADepr}
+  AUi_Dialog_Login_Proc = AUi_ExecuteLoginDialog_Proc;
+  AUi_Dialog_Message_Proc = AUi_ExecuteMessageDialog_Proc;
+  AUi_Dialog_New_Proc = AUi_NewDialog_Proc;
+  AUi_Dialog_OpenFile_Proc = AUi_ExecuteOpenFileDialog_Proc;
+  AUi_Dialog_OpenFileA_Proc = function(const InitialDir, Filter, DefaultExt, Title: AString_Type;
+      var FileName: AString_Type; var FilterIndex: AInteger): ABoolean; stdcall;
+  AUi_Dialog_SaveFile_Proc = AUi_ExecuteSaveFileDialog_Proc;
+  AUi_Dialog_SaveFileA_Proc = function(const InitialDir, DefExt, DefFileName, Filter: AString_Type;
+      var FilterIndex: AInteger; out Value: AString_Type): AInteger; stdcall;
+
   AUi_Dialog_ErrorWS_Proc = procedure(const Caption, UserMessage, ExceptMessage: AWideString); stdcall;
   AUi_Dialog_FontWS_Proc = function(var FontName: AWideString; var FontSize: AInteger; FontColor: AColor): ABoolean; stdcall;
   AUi_Dialog_InputBoxWS_Proc = function(const Text: AWideString; var Value: AWideString): ABoolean; stdcall;

@@ -2,7 +2,7 @@
 @Abstract User Interface procs var
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 11.12.2012
+@LastMod 13.12.2012
 }
 unit AUiProcVars;
 
@@ -38,7 +38,8 @@ var
   {$endif}
 var
   AUiBox_New: AUiBox_New_Proc = nil;
-  AUi_Button_New: AUiButton_New_Proc = nil;
+var
+  AUiButton_New: AUiButton_New_Proc = nil;
 var
   AUiCalendar_GetDate: AUiCalendar_GetDate_Proc = nil;
   AUiCalendar_New: AUiCalendar_New_Proc = nil;
@@ -90,24 +91,38 @@ var
   UI_Control_SetVisible: AUiControl_SetVisible02_Proc = nil;
   {$endif}
 var
+  AUi_ExecuteAboutDialog: AUi_ExecuteAboutDialog_Proc = nil;
+  AUi_ExecuteCalendarDialog: AUi_ExecuteCalendarDialog_Proc = nil; {UI_Dialog_Calendar}
+  AUi_ExecuteColorDialog: AUi_ExecuteColorDialog_Proc = nil; {UI_Dialog_Color}
+  AUi_ExecuteDateFilterDialog: AUi_ExecuteDateFilterDialog_Proc = nil; {UI_Dialog_DateFilter}
+  AUi_ExecuteErrorDialog: AUi_ExecuteErrorDialog_Proc = nil;
+  AUi_ExecuteErrorDialogA: AUi_ExecuteErrorDialogA_Proc = nil;
+  AUi_ExecuteFontDialog: AUi_ExecuteFontDialog_Proc = nil; {UI_Dialog_Font}
+  AUi_ExecuteFontDialogA: AUi_ExecuteFontDialogA_Proc = nil;
+  AUi_ExecuteInputBox1: AUi_ExecuteInputBox1_Proc = nil;
+  AUi_ExecuteInputBox1A: AUi_ExecuteInputBox1A_Proc = nil;
+  AUi_ExecuteInputBox2: AUi_ExecuteInputBox2_Proc = nil;
+  AUi_ExecuteInputBox2A: AUi_ExecuteInputBox2A_Proc = nil;
+  AUi_ExecuteMessageDialog1: AUi_ExecuteMessageDialog1_Proc = nil; {UI_Dialog_Message}
+  AUi_ExecuteMessageDialog1A: AUi_ExecuteMessageDialog1A_Proc = nil;
+  AUi_ExecuteOpenFileDialog: AUi_ExecuteOpenFileDialog_Proc = nil; {UI_Dialog_OpenFile}
+  AUi_ExecutePrinterSetupDialog: AUi_ExecutePrinterSetupDialog_Proc = nil;
+  AUi_ExecuteSaveFileDialog: AUi_ExecuteSaveFileDialog_Proc = nil; {UI_Dialog_SaveFile}
+  AUi_InitAboutDialog1: AUi_InitAboutDialog1_Proc = nil;
+  AUi_InitAboutDialog2: AUi_InitAboutDialog2_Proc = nil;
+  AUi_NewAboutDialog: AUi_NewAboutDialog_Proc = nil;
+  AUi_NewDialog: AUi_NewDialog_Proc = nil; {UI_Dialog_New}
+  AUiDialog_AddButton: AUiDialog_AddButton_Proc = nil;
+  AUiDialog_GetWindow: AUiDialog_GetWindow_Proc = nil; {UI_Dialog_GetWindow}
+  {$ifdef ADepr}
   UI_Dialog_About: AUi_Dialog_About_Proc = nil;
-  UI_Dialog_Calendar: AUi_Dialog_Calendar_Proc = nil;
-  UI_Dialog_Color: AUi_Dialog_Color_Proc = nil;
-  UI_Dialog_DateFilter: AUi_Dialog_DateFilter_Proc = nil;
   UI_Dialog_Error: AUi_Dialog_Error_Proc = nil;
-  UI_Dialog_Font: AUi_Dialog_Font_Proc = nil;
-  UI_Dialog_GetWindow: AUi_Dialog_GetWindow_Proc = nil;
   UI_Dialog_InputBox: AUi_Dialog_InputBox_Proc = nil;
   UI_Dialog_InputBox2: AUi_Dialog_InputBox2_Proc = nil;
   UI_Dialog_InputBoxA: AUi_Dialog_InputBoxA_Proc = nil;
   UI_Dialog_Login: AUi_Dialog_Login_Proc = nil;
-  UI_Dialog_Message: AUi_Dialog_Message_Proc = nil;
-  UI_Dialog_New: AUi_Dialog_New_Proc = nil;
-  UI_Dialog_OpenFile: AUi_Dialog_OpenFile_Proc = nil;
   UI_Dialog_OpenFileA: AUi_Dialog_OpenFileA_Proc = nil;
-  UI_Dialog_SaveFile: AUi_Dialog_SaveFile_Proc = nil;
   UI_Dialog_SaveFileA: AUi_Dialog_SaveFileA_Proc = nil;
-  {$ifdef ADepr}
   AUi_Dialog_ErrorWS: AUi_Dialog_ErrorWS_Proc = nil;
   AUi_Dialog_FontWS: AUi_Dialog_FontWS_Proc = nil;
   AUi_Dialog_InputBoxWS: AUi_Dialog_InputBoxWS_Proc = nil;

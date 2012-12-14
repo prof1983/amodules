@@ -30,7 +30,7 @@ begin
   AUi_Shutdown02 := UiProcs.Shutdown02;
 
   AUiBox_New := UiProcs.Box_New;
-  AUi_Button_New := UiProcs.Button_New;
+  AUiButton_New := UiProcs.Button_New;
 
   UI_Control_Free := UiProcs.Control_Free;
   UI_Control_FreeAndNil := UiProcs.Control_FreeAndNil;
@@ -60,18 +60,18 @@ begin
   //UI_DataSource_SetOnDataChange := UI.DataSource_SetOnDataChange;
 
   UI_Dialog_About := UiProcs.Dialog_About;
-  UI_Dialog_Calendar := UiProcs.Dialog_Calendar;
-  UI_Dialog_Color := UiProcs.Dialog_Color;
-  UI_Dialog_DateFilter := UiProcs.Dialog_DateFilter;
+  AUi_ExecuteCalendarDialog := UiProcs.Dialog_Calendar;
+  AUi_ExecuteColorDialog := UiProcs.Dialog_Color;
+  AUi_ExecuteDateFilterDialog := UiProcs.Dialog_DateFilter;
   AUi_Dialog_ErrorWS := UiProcs.Dialog_Error;
   AUi_Dialog_FontWS := UiProcs.Dialog_Font;
-  UI_Dialog_GetWindow := UiProcs.Dialog_GetWindow;
+  AUiDialog_GetWindow := UiProcs.Dialog_GetWindow;
   AUi_Dialog_InputBoxWS := UiProcs.Dialog_InputBox;
   AUi_Dialog_InputBox2WS := UiProcs.Dialog_InputBox2;
   AUi_Dialog_InputBoxAWS := UiProcs.Dialog_InputBoxA;
   AUi_Dialog_LoginWS := UiProcs.Dialog_Login;
   AUi_Dialog_MessageWS := UiProcs.Dialog_Message;
-  UI_Dialog_New := UiProcs.Dialog_New;
+  AUi_NewDialog := UiProcs.Dialog_New;
   AUi_Dialog_OpenFileWS := UiProcs.Dialog_OpenFile;
   AUi_Dialog_OpenFileAWS := UiProcs.Dialog_OpenFileA;
   AUi_Dialog_SaveFileWS := UiProcs.Dialog_SaveFile;
