@@ -2,7 +2,7 @@
 @Abstract AUi text view
 @Author Prof1983 <prof1983@ya.ru>
 @Created 22.11.2012
-@LastMod 22.11.2012
+@LastMod 14.12.2012
 }
 unit AUiTextView;
 
@@ -49,9 +49,9 @@ end;
 
 function AUiTextView_New(Parent: AControl; ViewType: AInt): AControl;
 begin
-  if Assigned(AUiProcVars.UI_TextView_New) then
+  if Assigned(AUiProcVars.AUiTextView_New) then
   begin
-    Result := AUiProcVars.UI_TextView_New(Parent, ViewType);
+    Result := AUiProcVars.AUiTextView_New(Parent, ViewType);
     Exit;
   end;
   Result := 0;

@@ -19,7 +19,7 @@ uses
   AUi, AUiBase, AUiBox, AUiButtons, AUiCalendar, AUiComboBox, AUiControls, AUiControlsA,
   AUiDataSource, AUiDialogs, AUiEdit, AUiEvents1, AUiGrids, AUiImages, AUiInit,
   AUiLabels, AUiLabelsEx, AUiListBox,
-  AUiMain, AUiMainWindow2, AUiMenus, AUiPageControl, {$IFDEF ADepr}AUiProcRec,{$ENDIF}
+  AUiMain, AUiMainWindow, AUiMainWindow2, AUiMenus, AUiPageControl, {$IFDEF ADepr}AUiProcRec,{$ENDIF}
   AUiProgressBar, AUiPropertyBox, AUiReports, AUiSpin, AUiSpinEdit, AUiSplitter,
   AUiTextView, AUiToolBar, AUiToolMenu, AUiTrayIcon, AUiTreeView,
   AUiWaitWin, AUiWindows, AUiWindowSettings;
@@ -445,8 +445,8 @@ begin
     Result := Addr(AUi_InitAboutDialog2)
   else if (ProcName = 'AUi_NewAboutDialog') then
     Result := Addr(AUi_NewAboutDialog)
-  else if (ProcName = 'AUi_NewDialog') then
-    Result := Addr(AUi_NewDialog)
+  else if (ProcName = 'AUi_NewDialog') then // deprecated
+    Result := Addr(AUiDialog_New)
   // --- Box ---
   else if (ProcName = 'AUiBox_New') then
     Result := Addr(AUiBox_New)
@@ -546,6 +546,13 @@ begin
     Result := Addr(AUiControl_SetWidth)
   else if (ProcName = 'AUiControl_SetOnChange') then
     Result := Addr(AUiControl_SetOnChange)
+  // --- AUiDialog ---
+  else if (ProcName = 'AUiDialog_New') then
+    Result := Addr(AUiDialog_New)
+  else if (ProcName = 'AUiDialog_AddButton') then
+    Result := Addr(AUiDialog_AddButton)
+  else if (ProcName = 'AUiDialog_GetWindow') then
+    Result := Addr(AUiDialog_GetWindow)
   // --- Edit ---
   else if (ProcName = 'AUiEdit_CheckDate') then
     Result := Addr(AUiEdit_CheckDate)

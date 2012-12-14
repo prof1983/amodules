@@ -71,7 +71,7 @@ begin
   AUi_Dialog_InputBoxAWS := UiProcs.Dialog_InputBoxA;
   AUi_Dialog_LoginWS := UiProcs.Dialog_Login;
   AUi_Dialog_MessageWS := UiProcs.Dialog_Message;
-  AUi_NewDialog := UiProcs.Dialog_New;
+  AUiDialog_New := UiProcs.Dialog_New;
   AUi_Dialog_OpenFileWS := UiProcs.Dialog_OpenFile;
   AUi_Dialog_OpenFileAWS := UiProcs.Dialog_OpenFileA;
   AUi_Dialog_SaveFileWS := UiProcs.Dialog_SaveFile;
@@ -151,16 +151,16 @@ begin
   AUiSplitter_New := UiProcs.Splitter_New;
 
   UI_TextView_AddLine := UiProcs.TextView_AddLine;
-  UI_TextView_New := UiProcs.TextView_New;
+  AUiTextView_New := UiProcs.TextView_New;
   UI_TextView_SetFont := UiProcs.TextView_SetFont;
   UI_TextView_SetReadOnly := UiProcs.TextView_SetReadOnly;
   UI_TextView_SetScrollBars := UiProcs.TextView_SetScrollBars;
   UI_TextView_SetWordWrap := UiProcs.TextView_SetWordWrap;
 
   UI_ToolBar_AddButton := UiProcs.ToolBar_AddButton;
-  UI_ToolBar_New := UiProcs.ToolBar_New;
+  AUiToolBar_New := UiProcs.ToolBar_New;
 
-  UI_TrayIcon_GetMenuItems := UiProcs.TrayIcon_GetMenuItems;
+  AUiTrayIcon_GetMenuItems := UiProcs.TrayIcon_GetMenuItems;
 
   UI_TreeView_AddItem := UiProcs.TreeView_AddItemWS;
   AUiTreeView_New := UiProcs.TreeView_New;
@@ -180,7 +180,7 @@ begin
   AUiReportWin_New := UiProcs.ReportWin_New;
 
   UI_WaitWin_New := UiProcs.WaitWin_NewWS;
-  UI_WaitWin_StepBy := UiProcs.WaitWin_StepBy;
+  AUiWaitWin_StepBy := UiProcs.WaitWin_StepBy;
 
   AUi_SetOnMainFormCreate02 := UiProcs.SetOnMainFormCreate02;
   MainWindow_SetA := UiProcs.MainWindow_SetA;
@@ -196,7 +196,7 @@ begin
   AUiCalendar_GetDate := UiProcs.Calendar_GetDate;
   AUiCalendar_New := UiProcs.Calendar_New;
   UI_Calendar_SetMonth := UiProcs.Calendar_SetMonth;
-  UI_Report_New := UiProcs.Report_New;
+  AUiReport_New := UiProcs.Report_New;
   UI_Report_SetText := UiProcs.Report_SetText;
   {$ENDIF}
 
@@ -225,7 +225,7 @@ begin
     {$ELSE}
     UI_Control_SetFontW1 := UiProcs.Control_SetFont1;
     UI_Control_SetFontW2 := UiProcs.Control_SetFont2;
-    UI_Dialog_About_New := UiProcs.Dialog_About_New;
+    AUi_NewAboutDialog := UiProcs.Dialog_About_New;
     UI_Dialog_AddButton := UiProcs.Dialog_AddButton;
     //UI_InitMenus := UI.InitMenus;
     {$ENDIF A02}

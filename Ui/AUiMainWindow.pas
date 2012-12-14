@@ -2,7 +2,7 @@
 @Abstract AUiMainWindow
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 20.11.2012
+@LastMod 14.12.2012
 }
 unit AUiMainWindow;
 
@@ -75,12 +75,12 @@ end;
 
 function AUiMainWindow_GetMainContainer(): AControl;
 begin
-  if not(Assigned(AUiProcVars.MainWindow_GetMainContainer)) then
+  if not(Assigned(AUiProcVars.AUiMainWindow_GetMainContainer)) then
   begin
     Result := 0;
     Exit;
   end;
-  Result := AUiProcVars.MainWindow_GetMainContainer();
+  Result := AUiProcVars.AUiMainWindow_GetMainContainer();
 end;
 
 end.

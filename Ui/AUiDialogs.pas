@@ -2,7 +2,7 @@
 @Abstract AUi dialogs
 @Author Prof1983 <prof1983@ya.ru>
 @Created 27.08.2012
-@LastMod 11.12.2012
+@LastMod 14.12.2012
 }
 unit AUiDialogs;
 
@@ -44,9 +44,9 @@ end;
 
 function AUiDialog_GetWindow(Dialog: ADialog): AWindow;
 begin
-  if Assigned(AUiProcVars.UI_Dialog_GetWindow) then
+  if Assigned(AUiProcVars.AUiDialog_GetWindow) then
   begin
-    Result := AUiProcVars.UI_Dialog_GetWindow(Dialog);
+    Result := AUiProcVars.AUiDialog_GetWindow(Dialog);
     Exit;
   end;
   Result := 0;
@@ -54,9 +54,9 @@ end;
 
 function AUiDialog_New(Buttons: AUiWindowButtons): ADialog;
 begin
-  if Assigned(AUiProcVars.UI_Dialog_New) then
+  if Assigned(AUiProcVars.AUiDialog_New) then
   begin
-    Result := AUiProcVars.UI_Dialog_New(Buttons);
+    Result := AUiProcVars.AUiDialog_New(Buttons);
     Exit;
   end;
   Result := 0;

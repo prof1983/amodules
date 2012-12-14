@@ -61,7 +61,6 @@ begin
     AUiProcVars.AUi_ShowHelp := Module.GetProc('AUi_ShowHelp');
     AUiProcVars.AUi_ShowHelp2 := Module.GetProc('AUi_ShowHelp2');
     AUiProcVars.AUi_Shutdown := Module.GetProc('AUi_Shutdown');
-
     // --- Dialogs ---
     AUiProcVars.AUi_ExecuteAboutDialog := Module.GetProc('AUi_ExecuteAboutDialog');
     AUiProcVars.AUi_ExecuteCalendarDialog := Module.GetProc('AUi_ExecuteCalendarDialog');
@@ -81,7 +80,10 @@ begin
     AUiProcVars.AUi_InitAboutDialog1 := Module.GetProc('AUi_InitAboutDialog1');
     AUiProcVars.AUi_InitAboutDialog2 := Module.GetProc('AUi_InitAboutDialog2');
     AUiProcVars.AUi_NewAboutDialog := Module.GetProc('AUi_NewAboutDialog');
-    AUiProcVars.AUi_NewDialog := Module.GetProc('AUi_NewDialog');
+    // --- Dialog ---
+    AUiProcVars.AUiDialog_New := Module.GetProc('AUiDialog_New');
+    AUiProcVars.AUiDialog_AddButton := Module.GetProc('AUiDialog_AddButton');
+    AUiProcVars.AUiDialog_GetWindow := Module.GetProc('AUiDialog_GetWindow');
     // --- Box ---
     AUiProcVars.AUiBox_New := Module.GetProc('AUiBox_New');
     // --- Button ---

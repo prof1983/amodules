@@ -169,12 +169,13 @@ type
   AUi_InitAboutDialog1_Proc = function(AboutDialog: AWindow): AError; stdcall;
   AUi_InitAboutDialog2_Proc = function(AboutDialog: AWindow): AError; stdcall;
   AUi_NewAboutDialog_Proc = function(): AWindow; stdcall;
-  AUi_NewDialog_Proc = function(Buttons: AUiWindowButtons): ADialog; stdcall;
   // --- AUiDialog ---
   AUiDialog_AddButton_Proc = function(Win: AWindow; Left, Width: AInt;
       const Text: AString_Type; OnClick: ACallbackProc): AControl; stdcall;
   AUiDialog_GetWindow_Proc = function(Dialog: ADialog): AWindow; stdcall;
+  AUiDialog_New_Proc = function(Buttons: AUiWindowButtons): ADialog; stdcall;
   {$ifdef ADepr}
+  AUi_NewDialog_Proc = AUiDialog_New_Proc;
   AUi_Dialog_About_Proc = procedure(); stdcall;
   AUi_Dialog_About_New_Proc = AUi_NewAboutDialog_Proc;
   AUi_Dialog_AddButton_Proc = AUiDialog_AddButton_Proc;
@@ -422,42 +423,69 @@ type
   {$endif}
 
 type
+  AUiSpinButton_New_Proc = function(Parent: AControl): AControl; stdcall;
+
+type
+  AUiSpinEdit_New_Proc = function(Parent: AControl): AControl; stdcall;
+  AUiSpinEdit_NewEx_Proc = function(Parent: AControl; Value, MinValue, MaxValue: AInteger): AControl; stdcall;
+
+type
   AUiSplitter_New_Proc = function(Parent: AControl; SplitterType: AUISplitterType): AControl; stdcall;
 
-type // --- V02 ---
+type
   AUiTextView_AddLine04_Proc = function(TextView: AControl; const Text: AString_Type): AInteger; stdcall;
   { Создает новый элемент редактирования текста
     ViewType
       0 - TMemo
       1 - RichEdit }
   AUiTextView_New_Proc = function(Parent: AControl; ViewType: AInteger): AControl; stdcall;
-  AUiTextView_SetFont03_Proc = procedure(TextView: AControl; const FontName: AString_Type; FontSize: AInteger); stdcall;
   AUiTextView_SetFont04_Proc = function(TextView: AControl; const FontName: AString_Type; FontSize: AInteger): AError; stdcall;
   AUiTextView_SetReadOnly04_Proc = function(TextView: AControl; ReadOnly: ABoolean): AError; stdcall;
-  {** ScrollBars
-      0 - ssNone
-      1 - ssHorizontal
-      2 - ssVertical
-      3 - ssBoth }
-  AUiTextView_SetScrollBars04_Proc = function(TextView: AControl; ScrollBars: AInteger): AError; stdcall;
+  AUiTextView_SetScrollBars04_Proc = function(TextView: AControl; ScrollBars: AUiScrollStyle): AError; stdcall;
   AUiTextView_SetWordWrap04_Proc = function(TextView: AControl; Value: ABoolean): AError; stdcall;
   {$ifdef ADepr}
   AUiTextView_AddLineWS_Proc = function(TextView: AControl; const Text: AWideString): AInteger; stdcall;
   AUiTextView_SetFont02_Proc = procedure(TextView: AControl; const FontName: AWideString; FontSize: AInteger); stdcall;
+  AUiTextView_SetFont03_Proc = procedure(TextView: AControl; const FontName: AString_Type; FontSize: AInteger); stdcall;
   AUiTextView_SetReadOnly02_Proc = procedure(TextView: AControl; ReadOnly: ABoolean); stdcall;
   AUiTextView_SetScrollBars02_Proc = procedure(TextView: AControl; ScrollBars: AInteger); stdcall;
   AUiTextView_SetWordWrap02_Proc = procedure(TextView: AControl; Value: ABoolean); stdcall;
   {$endif}
 
 type
+  AUiToolBar_AddButton_Proc = function(ToolBar: AControl; const Name, Text, Hint: AString_Type;
+      OnClick: ACallbackProc; ImageId, Weight: AInteger): AButton; stdcall;
+  AUiToolBar_AddButton1_Proc = function(ToolBar: AControl; const Name, Text, Hint: AString_Type;
+      ImageId, Weight: AInteger): AButton; stdcall;
+  AUiToolBar_New_Proc = function(Parent: AControl): AControl; stdcall;
+  {$ifdef ADepr}
   AUi_ToolBar_AddButton02_Proc = function(ToolBar: AControl; const Name, Text, Hint: AWideString;
       OnClick: ACallbackProc02; ImageID, Weight: AInteger): AButton; stdcall;
-  AUi_ToolBar_AddButton03_Proc = function(ToolBar: AControl; const Name, Text, Hint: AString_Type;
-      OnClick: ACallbackProc03; ImageID, Weight: AInteger): AButton; stdcall;
-  AUi_ToolBar_New_Proc = function(Parent: AControl): AControl; stdcall;
+  AUi_ToolBar_AddButton03_Proc = AUiToolBar_AddButton_Proc;
+  AUi_ToolBar_New_Proc = AUiToolBar_New_Proc;
+  {$endif}
 
 type
-  AUi_TrayIcon_GetMenuItems = function(TrayIcon: ATrayIcon): AMenuItem; stdcall; // $IFNDEF UNIX
+  AUiToolMenu_AddNewItem_Proc = function(Parent: AToolMenu; const Name, Text: AString_Type;
+      OnClick: ACallbackProc; ImageId, Weight: AInteger): AToolMenu; stdcall;
+  AUiToolMenu_AddNewSubMenu_Proc = function(Parent: AToolMenu; const Name, Text: AString_Type;
+      ImageId, Weight: AInteger): AToolMenu; stdcall;
+  AUiToolMenu_GetSubMenu_Proc = function(Parent: AToolMenu; const Name, Text: AString_Type;
+      ImageId, Weight: AInteger): AToolMenu; stdcall;
+  AUiToolMenu_New_Proc = function(Parent: AControl): AToolMenu; stdcall;
+
+type
+  AUiTrayIcon_Free_Proc = function(TrayIcon: ATrayIcon): AError; stdcall;
+  AUiTrayIcon_GetHint_Proc = function(TrayIcon: ATrayIcon; out Value: AString_Type): AError; stdcall;
+  AUiTrayIcon_GetMenuItems_Proc = function(TrayIcon: ATrayIcon): AMenuItem; stdcall;
+  AUiTrayIcon_GetPopupMenu_Proc = function(TrayIcon: ATrayIcon): AInteger; stdcall;
+  AUiTrayIcon_SetHint_Proc = function(TrayIcon: ATrayIcon; const Value: AString_Type): AError; stdcall;
+  AUiTrayIcon_SetOnLeftClick_Proc = function(TrayIcon: ATrayIcon; Value: AProc): AError; stdcall;
+  AUiTrayIcon_SetOnRightClick_Proc = function(TrayIcon: ATrayIcon; Value: AProc): AError; stdcall;
+  AUiTrayIcon_SetPopupMenu_Proc = function(TrayIcon: ATrayIcon; Value: AInteger): AError; stdcall;
+  {$ifdef ADepr}
+  AUi_TrayIcon_GetMenuItems = AUiTrayIcon_GetMenuItems_Proc;
+  {$endif}
 
 type
   AUiTreeView_AddItem_Proc = function(TreeView: AControl; Parent: ATreeNode; Text: AString_Type): ATreeNode; stdcall;
@@ -467,21 +495,30 @@ type
   {$endif}
 
 type
+  AUiWaitWin_New_Proc = function(const Caption, Text: AString_Type; MaxPosition: AInteger): AWindow; stdcall;
+  AUiWaitWin_SetMaxPosition_Proc = function(WaitWin: AWindow; MaxPosition: AInteger): AError; stdcall;
+  AUiWaitWin_SetPosition_Proc = function(WaitWin: AWindow; Position: AInteger): AError; stdcall;
+  AUiWaitWin_SetText_Proc = function(Window: AWindow; const Text: AString_Type): AError; stdcall;
+  AUiWaitWin_StepBy_Proc = function(Window: AWindow; Step: AInteger): AInteger; stdcall;
+  {$ifdef ADepr}
   AUi_WaitWin_NewWS_Proc = function(const Caption, Text: AWideString; MaxPosition: Integer): AWindow; stdcall;
-  AUi_WaitWin_New_Proc = function(const Caption, Text: AString_Type; MaxPosition: Integer): AWindow; stdcall;
-  AUi_WaitWin_StepBy = function(Window: AWindow; Step: AInteger): AInteger; stdcall;
+  AUi_WaitWin_New_Proc = AUiWaitWin_New_Proc;
+  AUi_WaitWin_StepBy = AUiWaitWin_StepBy_Proc;
+  {$endif}
 
 type
+  AUiWindow_Add_Proc = function(Window: AWindow): AError; stdcall;
   AUiWindow_Free_Proc = function(Window: AWindow): AError; stdcall;
+  AUiWindow_FreeAndNil_Proc = function(var Window: AWindow): AError; stdcall;
   AUiWindow_GetMenu_Proc = function(Window: AWindow): AMenu; stdcall;
   AUiWindow_LoadConfig_04_Proc = function(Window: AWindow; Config: AConfig): AError; stdcall;
   AUiWindow_LoadConfig2_04_Proc = function(Window: AWindow; Config: AConfig; const ConfigKey: AString_Type): AError; stdcall;
   AUiWindow_New_Proc = function(): AControl; stdcall;
   AUiWindow_SaveConfig_04_Proc = function(Window: AWindow; Config: AConfig): AError; stdcall;
   AUiWindow_SaveConfig2_04_Proc = function(Window: AWindow; Config: AConfig; const ConfigKey: AString_Type): AError; stdcall;
-  AUiWindow_SetBorderStyle03_Proc = function(Window: AWindow; BorderStyle: AInt): AError; stdcall;
   AUiWindow_SetFormStyle04_Proc = function(Window: AWindow; FormStyle: AInt): AError; stdcall;
   AUiWindow_SetPosition04_Proc = function(Window: AWindow; Position: AInt): AError; stdcall;
+  AUiWindow_SetState_Proc = function(Window: AWindow; State: AInt): AError; stdcall;
   AUiWindow_ShowModal_Proc = function(Window: AWindow): ABoolean; stdcall;
   {$ifdef ADepr}
   AUiWindow_Free02_Proc = procedure(Window: AWindow); stdcall;
@@ -492,6 +529,7 @@ type
   AUiWindow_SaveConfig2_02_Proc = function(Window: AWindow; Config: AConfig; const ConfigKey: AString_Type): ABoolean; stdcall;
   AUiWindow_SaveConfig2_WS_Proc = function(Window: AWindow; Config: AConfig; const ConfigKey: AWideString): ABoolean; stdcall;
   AUiWindow_SetBorderStyle02_Proc = procedure(Window: AWindow; BorderStyle: AInt); stdcall;
+  AUiWindow_SetBorderStyle03_Proc = function(Window: AWindow; BorderStyle: AInt): AError; stdcall;
   AUiWindow_SetFormStyle02_Proc = procedure(Window: AWindow; FormStyle: AInt); stdcall;
   AUiWindow_SetPosition02_Proc = procedure(Window: AWindow; Position: AInt); stdcall;
   {$endif}
