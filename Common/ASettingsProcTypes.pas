@@ -2,7 +2,7 @@
 @Abstract ASettings proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 23.07.2010
-@LastMod 11.12.2012
+@LastMod 24.12.2012
 }
 unit ASettingsProcTypes;
 
@@ -13,7 +13,9 @@ interface
 // ACollectionsBase used for AStringList
 
 uses
-  ABase, ACollectionsBase;
+  ABase,
+  ABaseTypes,
+  ACollectionsBase;
 
 type
   ASettings_Close_Proc = function(Config: AConfig): AError; stdcall;

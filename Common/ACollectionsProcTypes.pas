@@ -2,14 +2,16 @@
 @Abstract ACollections
 @Author Prof1983 <prof1983@ya.ru>
 @Created 29.08.2011
-@LastMod 30.07.2012
+@LastMod 24.12.2012
 }
 unit ACollectionsProcTypes;
 
 interface
 
 uses
-  ABase, ACollectionsBase;
+  ABase,
+  ABaseTypes,
+  ACollectionsBase;
 
 { --- Procs --- }
 
