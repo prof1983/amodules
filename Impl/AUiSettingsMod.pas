@@ -2,7 +2,7 @@
 @Abstract AUiSettings
 @Author Prof1983 <prof1983@ya.ru>
 @Created 13.03.2009
-@LastMod 13.12.2012
+@LastMod 26.12.2012
 }
 unit AUiSettingsMod;
 
@@ -11,7 +11,9 @@ unit AUiSettingsMod;
 interface
 
 uses
-  ABase, ARuntimeBase, ARuntimeMain, {AUiModClient,}
+  ABase,
+  ARuntimeBase,
+  ARuntimeMain, 
   AUiSettingsBase, AUiSettingsMain{$IFDEF ADepr}, AUiSettingsProcRec{$ENDIF};
 
 function AUiSettingsMod_Boot(): AError; stdcall;
@@ -25,11 +27,11 @@ function AUiSettingsMod_Init(): AError; stdcall;
 {$IFDEF ADepr}
 const
   UiSettingsProcs: AUiSettingsProcs_Type = (
-    MainSettingsWin: AUISettings.UISettings_MainSettingsWin;    // 00
-    SettingsWin_New: AUISettings.UISettings_SettingsWin_New;    // 01
-    ShowSettingsWin: AUISettings.UISettings_ShowSettingsWin;    // 02
-    NewItem: AUISettings.UISettings_NewItem;                    // 03
-    Item_GetPage: AUISettings.UISettings_Item_GetPage;          // 04
+    MainSettingsWin: UiSettings_MainSettingsWin;                // 00
+    SettingsWin_New: UiSettings_SettingsWin_New;                // 01
+    ShowSettingsWin: UiSettings_ShowSettingsWin;                // 02
+    NewItem: UiSettings_NewItem;                                // 03
+    Item_GetPage: UiSettings_Item_GetPage;                      // 04
     Init: AUiSettingsMod_Init;                                  // 05
     Fin: AUiSettingsMod_Fin;                                    // 06
     Reserved07: 0;

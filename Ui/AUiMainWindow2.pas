@@ -2,9 +2,9 @@
 @Abstract AUiMainWindow
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 14.12.2012
+@LastMod 26.12.2012
 }
-unit AUiMainWindow;
+unit AUiMainWindow2;
 
 {$define AStdCall}
 

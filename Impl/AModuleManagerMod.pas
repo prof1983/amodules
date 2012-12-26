@@ -2,7 +2,7 @@
 @Abstract AModuleManager module
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.08.2009
-@LastMod 12.12.2012
+@LastMod 26.12.2012
 }
 unit AModuleManagerMod;
 
@@ -12,7 +12,11 @@ interface
 
 uses
   ABase, AModuleManagerMain, {IFDEF ADepr}AModuleManagerProcTypes,{ENDIF} ARuntime, ARuntimeBase,
-  {ASettingsModClient, ASystemModClient,} AUiMain; {AUiModClient, AUiWorkbenchModClient;}
+  ASettingsModClient,
+  ASystemModClient,
+  AUiMain,
+  AUiModClient,
+  AUiWorkbenchModClient;
 
 { Module }
 

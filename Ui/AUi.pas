@@ -2,7 +2,7 @@
 @Abstract User Interface client
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 23.11.2012
+@LastMod 26.12.2012
 }
 unit AUi;
 
@@ -14,7 +14,12 @@ uses
   ABase, ABaseTypes,
   AStrings,
   AUiBase, AUiBox, AUiControls, AUiControlsA, AUiDialogs, AUiEvents, AUiGrids, AUiImages, AUiLabels,
-  AUiListBox, AUiMain, AUiMainWindow, AUiMenus, AUiPageControl, AUiProgressBar, {AUiProcVars,}
+  AUiListBox,
+  AUiMain,
+  AUiMainWindow2,
+  AUiMenus,
+  AUiPageControl,
+  AUiProgressBar,
   AUiSplitter, AUiTextView, AUiTreeView, AUiWindows;
 
 // ----
