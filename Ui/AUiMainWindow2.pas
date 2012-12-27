@@ -22,8 +22,6 @@ function AUiMainWindow_AddMenuItemA(ParentItemName, Name, Text: AStr;
 function AUiMainWindow_AddMenuItemP(const ParentItemName, Name, Text: APascalString;
     OnClick: ACallbackProc; ImageId, Weight: AInteger): AMenuItem; {$ifdef AStdCall}stdcall;{$endif}
 
-function AUiMainWindow_GetMainContainer(): AControl; {$ifdef AStdCall}stdcall;{$endif}
-
 implementation
 
 function AUiMainWindow_AddMenuItem(const ParentItemName, Name, Text: AString_Type;
@@ -71,16 +69,6 @@ begin
   AString_AssignP(SName, Name);
   AString_AssignP(SText, Text);
   Result := AUiMainWindow_AddMenuItem(SParentName, SName, SText, OnClick, ImageId, Weight);
-end;
-
-function AUiMainWindow_GetMainContainer(): AControl;
-begin
-  if not(Assigned(AUiProcVars.AUiMainWindow_GetMainContainer)) then
-  begin
-    Result := 0;
-    Exit;
-  end;
-  Result := AUiProcVars.AUiMainWindow_GetMainContainer();
 end;
 
 end.
