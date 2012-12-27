@@ -2,7 +2,7 @@
 @Abstract ћодуль работы с базами и структурами данных
 @Author Prof1983 <prof1983@ya.ru>
 @Created 13.10.2008
-@LastMod 15.11.2012
+@LastMod 27.12.2012
 }
 unit ADataMod;
 
@@ -11,7 +11,13 @@ unit ADataMod;
 interface
 
 uses
-  ABase, AData, ADataBase, {$IFDEF ADepr}ADataProcRec,{$ENDIF} ARuntimeBase, ARuntimeMain;
+  ABase,
+  AData,
+  ADataBase,
+  ADataMain,
+  {$IFDEF ADepr}ADataProcRec,{$ENDIF}
+  ARuntimeBase,
+  ARuntimeMain;
 
 function ADataMod_Boot(): AError; stdcall;
 
@@ -33,12 +39,12 @@ const
     Database_CheckTableStructure: AData.Database_CheckTableStructure;   // 06
     Database_GetConnected: AData.Database_GetConnected;                 // 07
     Database_GetConnectionString: AData.Database_GetConnectionString;   // 08
-    Database_New: AData.Data_NewDatabase;                               // 09
+    Database_New: AData_NewDatabaseWS;                                  // 09
     Database_NewDataSet: AData.Database_NewDataSet;                     // 10
     Database_NewDataSetA: AData.Database_NewDataSetA;                   // 11
     Database_SetConnectionString: AData.Database_SetConnectionString;   // 12
-    DatabaseStructure_New: AData.Data_NewDatabaseStructure;             // 13
-    Drivers_RegisterDriver: AData.Data_RegisterDriver;                  // 14
+    DatabaseStructure_New: AData_NewDatabaseStructure;                  // 13
+    Drivers_RegisterDriver: AData_RegisterDriver;                       // 14
     Database_ChangeDataSet: AData.Database_ChangeDataSet;               // 15
     Init: ADataMod_Init;                                                // 16
     Fin: ADataMod_Fin;                                                  // 17
