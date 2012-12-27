@@ -2,7 +2,7 @@
 @Abstract User Interface client
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 26.12.2012
+@LastMod 27.12.2012
 }
 unit AUi;
 
@@ -16,6 +16,7 @@ uses
   AUiBase, AUiBox, AUiControls, AUiControlsA, AUiDialogs, AUiEvents, AUiGrids, AUiImages, AUiLabels,
   AUiListBox,
   AUiMain,
+  AUiMainWindow,
   AUiMainWindow2,
   AUiMenus,
   AUiPageControl,
