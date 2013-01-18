@@ -2,7 +2,7 @@
 @Abstract User Interface
 @Author Prof1983 <prof1983@ya.ru>
 @Created 24.09.2012
-@LastMod 14.12.2012
+@LastMod 18.01.2013
 }
 unit AUiProcSet;
 
@@ -18,8 +18,6 @@ function UI_SetProcsP(UiProcs: PUiProcs; Ui_Init: AUi_Init_Proc; Ui_Fin: AUi_Fin
 implementation
 
 procedure UI_SetProcs(const UiProcs: AUiProcs_Type);
-var
-  Reserved: AInteger;
 begin
   AUi_GetIsShowApp := UiProcs.IsShowApp;
   AUi_InitMainTrayIcon := UiProcs.InitMainTrayIcon;
@@ -97,15 +95,6 @@ begin
   AUiLabel_New := UiProcs.Label_New;
   {$IFDEF A02}
   UI_Label_SetFont := UiProcs.Label_SetFont;
-  {$ELSE}
-  Reserved := UiProcs.Reserved66;
-    (*{$IFDEF A02}
-    //UI_Control_SetFont1 := UI.Label_SetFont;
-    //UI_Control_SetFont2 := UI.Control_SetFont2;
-    UI_Label_SetFont := UI.Label_SetFont;
-    {$ELSE}
-    Label_SetFont := UI.Label_SetFont;
-    {$ENDIF}*)
   {$ENDIF}
 
   UI_ListBox_Add := UiProcs.ListBox_Add;
@@ -117,8 +106,6 @@ begin
   AUi_GetMainToolBar := UiProcs.MainToolBar;
   {$IFDEF A02}
   UI_MainToolBar_Set := UiProcs.MainToolBar_Set;
-  {$ELSE}
-  Reserved := UiProcs.Reserved71;
   {$ENDIF}
 
   AUi_GetMainWindow := UiProcs.MainWindow;
@@ -186,11 +173,6 @@ begin
   MainWindow_SetA := UiProcs.MainWindow_SetA;
 
   {$IFDEF A01}
-  Reserved := UiProcs.Reserved123;
-  Reserved := UiProcs.Reserved124;
-  Reserved := UiProcs.Reserved125;
-  Reserved := UiProcs.Reserved126;
-  Reserved := UiProcs.Reserved127;
   {$ELSE}
   UI_ReportWin_NewA := UiProcs.ReportWin_NewA;
   AUiCalendar_GetDate := UiProcs.Calendar_GetDate;
@@ -201,27 +183,8 @@ begin
   {$ENDIF}
 
   {$IFDEF A01}
-    Reserved := UiProcs.Reserved127;
-    Reserved := UiProcs.Reserved128;
-    Reserved := UiProcs.Reserved129;
-    Reserved := UiProcs.Reserved130;
-    Reserved := UiProcs.Reserved131;
-    Reserved := UiProcs.Reserved132;
-    Reserved := UiProcs.Reserved136;
-    Reserved := UiProcs.Reserved137;
-    Reserved := UiProcs.Reserved138;
-    Reserved := UiProcs.Reserved139;
   {$ELSE}
     {$IFDEF A02}
-    Reserved := UiProcs.Reserved128;
-    Reserved := UiProcs.Reserved129;
-    Reserved := UiProcs.Reserved130;
-    Reserved := UiProcs.Reserved131;
-    Reserved := UiProcs.Reserved132;
-    Reserved := UiProcs.Reserved136;
-    Reserved := UiProcs.Reserved137;
-    Reserved := UiProcs.Reserved138;
-    Reserved := UiProcs.Reserved139;
     {$ELSE}
     UI_Control_SetFontW1 := UiProcs.Control_SetFont1;
     UI_Control_SetFontW2 := UiProcs.Control_SetFont2;
