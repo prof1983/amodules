@@ -29,6 +29,9 @@ begin
     Result := -2;
     Exit;
   end;
+
+  TODO: Use Module.GetProc
+
   if not(AUiWorkbench_SetProcsP(Module.Procs)) then
   begin
     Result := -3;

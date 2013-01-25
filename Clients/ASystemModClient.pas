@@ -24,11 +24,21 @@ begin
     Result := -2;
     Exit;
   end;
-  if (System_SetProcsP(Module.Procs) < 0) then
+
+  if Assigned(Module.GetProc) then
+  begin
+    Result := ASystem_SetProcs(Module.GetProc);
+    Exit;
+  end;
+
+  {$ifdef ADepr}
+  if (ASystem_SetProcsP(Module.Procs) < 0) then
   begin
     Result := -3;
     Exit;
   end;
+  {$endif}
+
   Result := 0;
 end;
 

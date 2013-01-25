@@ -2,7 +2,7 @@
 @Abstract ASystem
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.08.2009
-@LastMod 21.11.2012
+@LastMod 25.01.2013
 }
 unit ASystemProcSet;
 
@@ -11,11 +11,14 @@ interface
 uses
   ABase, ASystemBase, ASystemProcRec, ASystemProcVars;
 
+{$ifdef ADepr}
 function System_SetProcs(const Procs: ASystemProcs_Type): AInteger;
 function System_SetProcsP(Procs: PSystemProcs): AInteger;
+{$endif}
 
 implementation
 
+{$ifdef ADepr}
 function System_SetProcs(const Procs: ASystemProcs_Type): AInteger;
 begin
   ASystemProcVars.ASystem_GetConfig := Procs.GetConfig;
@@ -54,10 +57,13 @@ begin
 
   Result := 0;
 end;
+{$endif}
 
+{$ifdef ADepr}
 function System_SetProcsP(Procs: PSystemProcs): AInteger;
 begin
   Result := System_SetProcs(Procs^);
 end;
+{$endif}
 
 end.

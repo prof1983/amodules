@@ -38,7 +38,7 @@ begin
     Exit;
   end;
 
-  // xxx
+  TODO: Use Module.GetProc
 
   Result := 0;
 end;

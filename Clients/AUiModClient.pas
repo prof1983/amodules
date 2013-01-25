@@ -2,7 +2,7 @@
 @Abstract User Interface client
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 14.12.2012
+@LastMod 25.01.2013
 }
 unit AUiModClient;
 
@@ -17,10 +17,6 @@ uses
 // --- AUi ---
 
 function AUi_Boot(): AError;
-
-// ---
-
-function Ui_Boot(): AError; deprecated; // Use AUi_Boot()
 
 implementation
 
@@ -287,11 +283,6 @@ begin
   end;
   {$endif}
   Result := 0;
-end;
-
-function Ui_Boot(): AError;
-begin
-  Result := AUi_Boot();
 end;
 
 end.

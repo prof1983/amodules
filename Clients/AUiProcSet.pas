@@ -2,7 +2,7 @@
 @Abstract User Interface
 @Author Prof1983 <prof1983@ya.ru>
 @Created 24.09.2012
-@LastMod 18.01.2013
+@LastMod 25.01.2013
 }
 unit AUiProcSet;
 
@@ -12,11 +12,14 @@ uses
   ABase,
   AUiProcRec, AUiProcTypes, AUiProcVars;
 
+{$ifdef ADepr}
 procedure UI_SetProcs(const UiProcs: AUiProcs_Type);
 function UI_SetProcsP(UiProcs: PUiProcs; Ui_Init: AUi_Init_Proc; Ui_Fin: AUi_Fin_Proc): Boolean;
+{$endif}
 
 implementation
 
+{$ifdef ADepr}
 procedure UI_SetProcs(const UiProcs: AUiProcs_Type);
 begin
   AUi_GetIsShowApp := UiProcs.IsShowApp;
@@ -220,6 +223,7 @@ begin
   AUi_Fin := Ui_Fin;
   Result := True;
 end;
+{$endif}
 
 end.
  

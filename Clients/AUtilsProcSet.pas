@@ -2,7 +2,7 @@
 @Abstract AUtils
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 21.11.2012
+@LastMod 25.01.2013
 }
 unit AUtilsProcSet;
 
@@ -11,12 +11,15 @@ interface
 uses
   ABase, AUtilsProcRec, AUtilsProcVars;
 
+{$ifdef ADepr}
 function AUtils_SetProcs(const Procs: AUtilsProcs_Type): AError;
 
 function AUtils_SetProcsP(Procs: PUtilsProcs): AError;
+{$endif}
 
 implementation
 
+{$ifdef ADepr}
 function AUtils_SetProcs(const Procs: AUtilsProcs_Type): AError;
 begin
   AUtilsProcVars.AUtils_NormalizeFloat := Procs.NormalizeFloat;
@@ -64,6 +67,7 @@ begin
   end;
   Result := AUtils_SetProcs(Procs^);
 end;
+{$endif}
 
 end.
  

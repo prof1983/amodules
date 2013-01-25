@@ -24,6 +24,9 @@ begin
     Result := -4;
     Exit;
   end;
+
+  TODO: Use Module.GetProc
+
   Result := AUtils_SetProcsP(PUtilsProcs(Module.Procs));
 end;
 
