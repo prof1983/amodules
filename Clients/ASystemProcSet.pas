@@ -2,68 +2,43 @@
 @Abstract ASystem
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.08.2009
-@LastMod 25.01.2013
+@LastMod 18.02.2013
 }
 unit ASystemProcSet;
 
 interface
 
 uses
-  ABase, ASystemBase, ASystemProcRec, ASystemProcVars;
+  ABase,
+  ARuntimeBase,
+  ASystemBase,
+  ASystemProcVars;
 
-{$ifdef ADepr}
-function System_SetProcs(const Procs: ASystemProcs_Type): AInteger;
-function System_SetProcsP(Procs: PSystemProcs): AInteger;
-{$endif}
+function ASystem_SetProcs(GetProc: AModuleGetProc): AError;
 
 implementation
 
-{$ifdef ADepr}
-function System_SetProcs(const Procs: ASystemProcs_Type): AInteger;
+function ASystem_SetProcs(GetProc: AModuleGetProc): AError;
 begin
-  ASystemProcVars.ASystem_GetConfig := Procs.GetConfig;
-  ASystemProcVars.ASystem_GetIsShutdown := Procs.GetIsShutdown;
-  ASystemProcVars.ASystem_GetResourceStringWS := Procs.GetResourceStringWS;
-  ASystemProcVars.ASystem_ProcessMessages02 := Procs.ProcessMessages02;
-  ASystemProcVars.ASystem_SetConfig := Procs.SetConfig;
-  ASystemProcVars.ASystem_ShowError02 := Procs.ShowError02;
-  ASystemProcVars.ASystem_ShowMessageWS := Procs.ShowMessageWS;
-  ASystemProcVars.ASystem_ShowMessageExWS := Procs.ShowMessageExWS;
-  ASystemProcVars.ASystem_Shutdown02 := Procs.Shutdown02;
-
-  ASystemProcVars.ASystem_SetOnProcessMessages02 := Procs.SetOnProcessMessages02;
-  ASystemProcVars.ASystem_SetOnRun02 := Procs.SetOnRun;
-  ASystemProcVars.ASystem_SetOnShutdown02 := Procs.SetOnShutdown;
-  ASystemProcVars.ASystem_SetOnShowError := Procs.SetOnShowError;
-  ASystemProcVars.ASystem_SetOnShowMessage := Procs.SetOnShowMessage;
-
-  ASystemProcVars.ASystem_OnAfterRun := Procs.OnAfterRun;
-  ASystemProcVars.ASystem_OnBeforeRun := Procs.OnBeforeRun;
-  ASystemProcVars.ASystem_OnAfterRun_Connect02 := Procs.OnAfterRun_Connect02;
-  ASystemProcVars.ASystem_OnAfterRun_Disconnect02 := Procs.OnAfterRun_Disconnect02;
-  ASystemProcVars.ASystem_OnBeforeRun_Connect02 := Procs.OnBeforeRun_Connect02;
-  ASystemProcVars.ASystem_OnBeforeRun_Disconnect02 := Procs.OnBeforeRun_Disconnect02;
-
-  {$IFDEF ARUNTIMEOLD}
-  Runtime_Module_Count := ASystem.Module_Count;
-  Runtime_Module_FindByName := ASystem.Module_FindByName;
-  Runtime_Module_GetByName := ASystem.Module_GetByName;
-  Runtime_Module_GetNameByIndex := ASystem.Module_GetNameByIndex;
-  Runtime_Module_Register := ASystem.Module_Register02;
-
-  Runtime_Module_InitByName := ASystem.Module_InitByName;
-  Runtime_Module_DeleteByName := ASystem.Module_DeleteByName;
-  {$ENDIF ARUNTIMEOLD}
-
+  ASystemProcVars.ASystem_GetConfig := GetProc('ASystem_GetConfig');
+  ASystemProcVars.ASystem_GetDataDirectoryPath := GetProc('ASystem_GetDataDirectoryPath');
+  ASystemProcVars.ASystem_GetExePath := GetProc('ASystem_GetExePath');
+  ASystemProcVars.ASystem_GetProgramName := GetProc('ASystem_GetProgramName');
+  ASystemProcVars.ASystem_GetResourceString := GetProc('ASystem_GetResourceString');
+  ASystemProcVars.ASystem_GetTitle := GetProc('ASystem_GetTitle');
+  ASystemProcVars.ASystem_Init := GetProc('ASystem_Init');
+  ASystemProcVars.ASystem_OnAfterRun_Connect := GetProc('ASystem_OnAfterRun_Connect');
+  ASystemProcVars.ASystem_OnAfterRun_Disconnect := GetProc('ASystem_OnAfterRun_Disconnect');
+  ASystemProcVars.ASystem_OnBeforeRun_Connect := GetProc('ASystem_OnBeforeRun_Connect');
+  ASystemProcVars.ASystem_OnBeforeRun_Disconnect := GetProc('ASystem_OnBeforeRun_Disconnect');
+  ASystemProcVars.ASystem_ParamStr := GetProc('ASystem_ParamStr');
+  ASystemProcVars.ASystem_Prepare := GetProc('ASystem_Prepare');
+  ASystemProcVars.ASystem_PrepareA := GetProc('ASystem_PrepareA');
+  ASystemProcVars.ASystem_ProcessMessages := GetProc('ASystem_ProcessMessages');
+  ASystemProcVars.ASystem_SetConfig := GetProc('ASystem_SetConfig');
+  ASystemProcVars.ASystem_ShowMessage := GetProc('ASystem_ShowMessage');
+  ASystemProcVars.ASystem_ShowMessageEx := GetProc('ASystem_ShowMessageEx');
   Result := 0;
 end;
-{$endif}
-
-{$ifdef ADepr}
-function System_SetProcsP(Procs: PSystemProcs): AInteger;
-begin
-  Result := System_SetProcs(Procs^);
-end;
-{$endif}
 
 end.
