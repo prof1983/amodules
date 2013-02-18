@@ -2,14 +2,15 @@
 @Abstract APlugins
 @Author Prof1983 <prof1983@ya.ru>
 @Created 27.08.2012
-@LastMod 27.08.2012
+@LastMod 18.02.2013
 }
 unit APlugins;
 
 interface
 
 uses
-  ABase, APluginsProcVars;
+  ABase,
+  APluginsMain;
 
 function FindA(Path: AStr): AError; stdcall;
 
@@ -19,22 +20,12 @@ implementation
 
 function FindA(Path: AStr): AError;
 begin
-  if not(Assigned(APluginsProcVars.APlugins_FindA)) then
-  begin
-    Result := -100;
-    Exit;
-  end;
-  Result := APluginsProcVars.APlugins_FindA(Path);
+  Result := APlugins_FindA(Path);
 end;
 
 function Init(): AError;
 begin
-  if not(Assigned(APluginsProcVars.APlugins_Init)) then
-  begin
-    Result := -100;
-    Exit;
-  end;
-  Result := APluginsProcVars.APlugins_Init();
+  Result := APlugins_Init();
 end;
 
 end.
