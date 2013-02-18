@@ -2,14 +2,17 @@
 @Abstract ARuntime
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.08.2007
-@LastMod 15.11.2012
+@LastMod 18.02.2013
 }
 unit ARuntimeMod;
 
 interface
 
 uses
-  ABase, ARuntimeBase, ARuntimeMain, ARuntimeProcRec;
+  ABase,
+  ARuntimeBase,
+  ARuntimeMain,
+  ARuntimeProcRec;
 
 // --- ARuntimeMod ---
 
@@ -27,7 +30,7 @@ const // 64x4
     SetOnAfterRun: ARuntime_SetOnAfterRun;                      // 00
     SetOnBeforeRun: ARuntime_SetOnBeforeRun;                    // 01
     SetOnRun: ARuntime_SetOnRun;                                // 02
-    Reserved03: 0; //SetOnShutdown: ARuntime.SetOnShutdown02;   // 03
+    Reserved03: 0;                                              // 03
     AddModule: ARuntime_AddModule;                              // 04
     GetModulesCount: ARuntime_GetModulesCount;                  // 05
     FindModuleByName: ARuntime_FindModuleByName;                // 06
@@ -47,13 +50,13 @@ const // 64x4
     GetModuleProcsByUid: ARuntime_GetModuleProcsByUid;          // 19
     Run: ARuntime_Run;                                          // 20
     SetOnShutdown: ARuntime_SetOnShutdown;                      // 21
-    Reserved22: 0;
-    Reserved23: 0;
-    Reserved24: 0;
-    Reserved25: 0;
-    Reserved26: 0;
-    Reserved27: 0;
-    Reserved28: 0;
+    DeleteModuleByIndex: ARuntime_DeleteModuleByIndex;          // 22
+    Fin: ARuntime_Fin;                                          // 23
+    GetModuleNameByUid: ARuntime_GetModuleNameByUid;            // 24
+    GetOnAfterRun: ARuntime_GetOnAfterRun;                      // 25
+    GetOnBeforeRun: ARuntime_GetOnBeforeRun;                    // 26
+    GetProcByName: ARuntime_GetProcByName;                      // 27
+    Init: ARuntime_Init;                                        // 28
     Reserved29: 0;
     Reserved30: 0;
     Reserved31: 0;

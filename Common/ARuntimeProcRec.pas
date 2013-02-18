@@ -2,7 +2,7 @@
 @Abstract ARuntime types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.08.2009
-@LastMod 01.08.2012
+@LastMod 18.02.2013
 }
 unit ARuntimeProcRec;
 
@@ -37,13 +37,13 @@ type
     GetModuleProcsByUid: ARuntime_GetModuleProcsByUid_Proc;     // 19
     Run: ARuntime_Run_Proc;                                     // 20
     SetOnShutdown: ARuntime_SetOnShutdown_Proc;                 // 21
-    Reserved22: AInteger;
-    Reserved23: AInteger;
-    Reserved24: AInteger;
-    Reserved25: AInteger;
-    Reserved26: AInteger;
-    Reserved27: AInteger;
-    Reserved28: AInteger;
+    DeleteModuleByIndex: ARuntime_DeleteModuleByIndex_Proc;     // 22
+    Fin: ARuntime_Fin_Proc;                                     // 23
+    GetModuleNameByUid: ARuntime_GetModuleNameByUid_Proc;       // 24
+    GetOnAfterRun: ARuntime_GetOnAfterRun_Proc;                 // 25
+    GetOnBeforeRun: ARuntime_GetOnBeforeRun_Proc;               // 26
+    GetProcByName: ARuntime_GetProcByName_Proc;                 // 27
+    Init: ARuntime_Init_Proc;                                   // 28
     Reserved29: AInteger;
     Reserved30: AInteger;
     Reserved31: AInteger;
