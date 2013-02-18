@@ -14,7 +14,9 @@ uses
   ARuntimeBase,
   ARuntimeMain,
   ASystemBase,
-  ASystemMain;
+  ASystemEvents,
+  ASystemMain,
+  ASystemResourceString;
 
 // --- Module ---
 
@@ -69,8 +71,6 @@ begin
     Result := Addr(ASystem_GetDirectoryPath)
   else if (ProcName = 'ASystem_GetExePath') then
     Result := Addr(ASystem_GetExePath)
-  else if (ProcName = 'ASystem_GetIsShutdown') then
-    Result := Addr(ASystem_GetIsShutdown)
   else if (ProcName = 'ASystem_GetProgramName') then
     Result := Addr(ASystem_GetProgramName)
   else if (ProcName = 'ASystem_GetResourceString') then
@@ -79,14 +79,10 @@ begin
     Result := Addr(ASystem_GetTitle)
   else if (ProcName = 'ASystem_Init') then
     Result := Addr(ASystem_Init)
-  else if (ProcName = 'ASystem_OnAfterRun') then
-    Result := Addr(ASystem_OnAfterRun)
   else if (ProcName = 'ASystem_OnAfterRun_Connect') then
     Result := Addr(ASystem_OnAfterRun_Connect)
   else if (ProcName = 'ASystem_OnAfterRun_Disconnect') then
     Result := Addr(ASystem_OnAfterRun_Disconnect)
-  else if (ProcName = 'ASystem_OnBeforeRun') then
-    Result := Addr(ASystem_OnBeforeRun)
   else if (ProcName = 'ASystem_OnBeforeRun_Connect') then
     Result := Addr(ASystem_OnBeforeRun_Connect)
   else if (ProcName = 'ASystem_OnBeforeRun_Disconnect') then

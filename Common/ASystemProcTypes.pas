@@ -26,7 +26,6 @@ type
   ASystem_GetDataDirectoryPath_Proc = function(out S: AString_Type): AError; stdcall;
   ASystem_GetExeName_Proc = function(out S: AString_Type): AError; stdcall;
   ASystem_GetExePath_Proc = function(out S: AString_Type): AError; stdcall;
-  ASystem_GetIsShutdown_Proc = function(): ABoolean; stdcall;
   ASystem_GetModuleByName_Proc = function(Name: AStr; out Module: AModule_Type): AInteger; stdcall;
   ASystem_GetModuleByUid_Proc = function(Uid: AModuleUid; out Module: AModule_Type): AInteger; stdcall;
   ASystem_GetModuleNameByIndex_Proc = function(Index: AInteger; Name: AStr; MaxLen: AInteger): AInteger; stdcall;
@@ -39,8 +38,6 @@ type
   ASystem_Init_Proc = function(): AError; stdcall;
   ASystem_InitModuleByName_Proc = function(Name: AStr): AInteger; stdcall;
   ASystem_InitModuleByUid_Proc = function(Uid: AModuleUid): AInteger; stdcall;
-  ASystem_OnAfterRun_Proc = function(): AEvent; stdcall;
-  ASystem_OnBeforeRun_Proc = function(): AEvent; stdcall;
   ASystem_OnAfterRun_Connect_Proc = function(Callback: ACallbackProc; Weight: AInt = High(AInt)): AInt; stdcall;
   ASystem_OnAfterRun_Disconnect_Proc = function(Callback: ACallbackProc): AInt; stdcall;
   ASystem_OnBeforeRun_Connect_Proc = function(Callback: ACallbackProc; Weight: AInt = High(AInt)): AInt; stdcall;
