@@ -2,73 +2,82 @@
 @Abstract AStringsModule
 @Author Prof1983 <prof1983@ya.ru>
 @Created 03.06.2011
-@LastMod 06.08.2012
+@LastMod 18.02.2013
 }
 unit AStringsMod;
-
-{$IFDEF A04}{$DEFINE ADepr}{$ENDIF}
 
 interface
 
 uses
-  ABase, AStrings{$IFDEF ADepr}, AStringsProcRec{$ENDIF};
+  ABase,
+  ARuntimeBase,
+  ARuntimeMain,
+  AStringMain,
+  AStringsMain;
+
+// --- AStringsMod ---
 
 function AStringsMod_Boot(): AError; stdcall;
 
 function AStringsMod_Fin(): AError; stdcall;
 
+function AStringsMod_GetProc(ProcName: AStr): Pointer; stdcall;
+
 function AStringsMod_Init(): AError; stdcall;
 
-{$IFDEF ADepr}
-const
-  StringsProcs: AStringsProcs_Type = (
-    String_Assign: AString_Assign;                              // 00
-    String_AssignA: AString_AssignA;                            // 01
-    String_Copy: AString_Copy;                                  // 02
-    String_Clear: AString_Clear;                                // 03
-    String_Length: AString_GetLength;                           // 04
-    String_AssignWS: AString_AssignWS;                          // 05
-    String_ToWideString: AString_ToWideString;                  // 06
-    String_AssignP: AString_AssignP;                            // 07
-    String_ToPascalString: AString_ToPascalString;              // 08
-    Init: AStringsMod_Init;                                     // 09
-    Reserved10: 0;
-    Reserved11: 0;
-    Reserved12: 0;
-    Reserved13: 0;
-    Reserved14: 0;
-    Reserved15: 0;
-    Reserved16: 0;
-    Reserved17: 0;
-    Reserved18: 0;
-    Reserved19: 0;
-    Reserved20: 0;
-    Reserved21: 0;
-    Reserved22: 0;
-    Reserved23: 0;
-    Reserved24: 0;
-    Reserved25: 0;
-    Reserved26: 0;
-    Reserved27: 0;
-    Reserved28: 0;
-    Reserved29: 0;
-    Reserved30: 0;
-    Reserved31: 0;
-    );
-{$ENDIF ADepr}
-
 implementation
+
+const
+  AStrings_Version = $00070000;
+  AStrings_Uid = $11060301;
+  AStrings_Name = 'AStrings';
+
+const
+  Module: AModule_Type = (
+    Version: AStrings_Version;
+    Uid: AStrings_Uid;
+    Name: AStrings_Name;
+    Description: nil;
+    Init: AStringsMod_Init;
+    Fin: AStringsMod_Fin;
+    GetProc: AStringsMod_GetProc;
+    Procs: nil;
+    );
 
 // --- AStringsMod ---
 
 function AStringsMod_Boot(): AError;
 begin
-  Result := 0;
+  Result := ARuntime_AddModule(Module);
 end;
 
 function AStringsMod_Fin(): AError;
 begin
   Result := 0;
+end;
+
+function AStringsMod_GetProc(ProcName: AStr): Pointer;
+begin
+  if (ProcName = 'AString_Assign') then
+    Result := Addr(AString_Assign)
+  else if (ProcName = 'AString_AssignA') then
+    Result := Addr(AString_AssignA)
+  else if (ProcName = 'AString_Clear') then
+    Result := Addr(AString_Clear)
+  else if (ProcName = 'AString_Copy') then
+    Result := Addr(AString_Copy)
+  else if (ProcName = 'AString_CopyA') then
+    Result := Addr(AString_CopyA)
+  else if (ProcName = 'AString_GetChar') then
+    Result := Addr(AString_GetChar)
+  else if (ProcName = 'AString_GetLength') then
+    Result := Addr(AString_GetLength)
+  else if (ProcName = 'AStrings_Fin') then
+    Result := Addr(AStrings_Fin)
+  else if (ProcName = 'AStrings_Init') then
+    Result := Addr(AStrings_Init)
+  else
+    Result := nil
 end;
 
 function AStringsMod_Init(): AError;
