@@ -2,16 +2,18 @@
 @Abstract ASystem resource
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 20.11.2012
+@LastMod 18.02.2013
 }
 unit ASystemResourceString;
 
-{$define AStdCall}
+{define AStdCall}
 
 interface
 
 uses
-  ABase, AStrings, ASystemProcVars;
+  ABase,
+  AStringMain,
+  ASystemProcVars;
 
 function ASystem_GetResourceString(const Section, Name, Default: AString_Type; out Value: AString_Type): AInteger; {$ifdef AStdCall}stdcall;{$endif}
 

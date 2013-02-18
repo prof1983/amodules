@@ -11,7 +11,10 @@ unit ASystemMain;
 interface
 
 uses
-  ABase, ABaseTypes, AStrings, ASystemProcVars;
+  ABase,
+  ABaseTypes,
+  AStringMain,
+  ASystemProcVars;
 
 // --- ASystem ---
 
