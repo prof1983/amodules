@@ -2,7 +2,7 @@
 @Abstract ACollections
 @Author Prof1983 <prof1983@ya.ru>
 @Created 31.05.2011
-@LastMod 15.11.2012
+@LastMod 18.02.2013
 
 Prototype:
 CS: System.Collection.ICollection
@@ -19,13 +19,15 @@ CS: Stack
 }
 unit ACollectionsMod;
 
-{$IFDEF A04}{$DEFINE ADepr}{$ENDIF}
-
 interface
 
 uses
-  ABase, ACollections, ACollectionsBase, {$IFDEF ADepr}ACollectionsProcRec,{$ENDIF} 
-  ARuntimeMain, ARuntimeBase;
+  ABase, ACollections, ACollectionsBase,
+  ARuntimeBase,
+  ARuntimeMain,
+  AStringLists;
+
+// --- ACollectionsMod ---
 
 function ACollectionsMod_Boot(): AError; stdcall;
 
@@ -35,48 +37,10 @@ function ACollectionMod_GetProc(ProcName: AStr): Pointer; stdcall;
 
 function ACollectionsMod_Init(): AError; stdcall;
 
-{$IFDEF ADepr}
-const
-  CollectionsProcs: ACollectionsProcs_Type = (
-    StringList_Add: ACollections.StringList_Add;                // 00
-    StringList_AddP: ACollections.StringList_AddP;              // 01
-    StringList_Clear: ACollections.StringList_Clear;            // 02
-    StringList_Count: ACollections.StringList_Count;            // 03
-    StringList_Delete: ACollections.StringList_Delete;          // 04
-    StringList_Insert: ACollections.StringList_Insert;          // 05
-    StringList_InsertP: ACollections.StringList_InsertP;        // 06
-    StringList_New: ACollections.StringList_New;                // 07
-    StringList_RemoveAt: ACollections.StringList_RemoveAt;      // 08
-    Init: ACollectionsMod_Init;                                 // 09
-    Fin: ACollectionsMod_Fin;                                   // 10
-    StringList_AddA: ACollections.StringList_AddA;              // 11
-    Reserved12: 0;
-    Reserved13: 0;
-    Reserved14: 0;
-    Reserved15: 0;
-    Reserved16: 0;
-    Reserved17: 0;
-    Reserved18: 0;
-    Reserved19: 0;
-    Reserved20: 0;
-    Reserved21: 0;
-    Reserved22: 0;
-    Reserved23: 0;
-    Reserved24: 0;
-    Reserved25: 0;
-    Reserved26: 0;
-    Reserved27: 0;
-    Reserved28: 0;
-    Reserved29: 0;
-    Reserved30: 0;
-    Reserved31: 0;
-    );
-{$ENDIF ADepr}
-
 implementation
 
 const
-  ACollections_Version = $00040000;
+  ACollections_Version = $00070000;
 
 const
   CollectionsModule: AModule_Type = (
@@ -87,7 +51,7 @@ const
     Init: ACollectionsMod_Init;         // Initialize proc
     Fin: ACollectionsMod_Fin;           // Finalize proc
     GetProc: ACollectionMod_GetProc;    // Get proc address
-    Procs: {$IFDEF ADepr}Addr(CollectionsProcs){$ELSE}nil{$ENDIF};
+    Procs: nil;
     );
 
 // --- ACollectionsMod ---
@@ -99,12 +63,33 @@ end;
 
 function ACollectionsMod_Fin(): AError;
 begin
-  Result := 0;
+  Result := ACollections.Fin();
 end;
 
 function ACollectionMod_GetProc(ProcName: AStr): Pointer;
 begin
-  Result := nil;
+  if (ProcName = 'ACollections_Fin') then
+    Result := Addr(ACollections.Fin)
+  else if (ProcName = 'ACollections_Init') then
+    Result := Addr(ACollections.Init)
+  else if (ProcName = 'AStringList_Add') then
+    Result := Addr(AStringList_Add)
+  else if (ProcName = 'AStringList_AddA') then
+    Result := Addr(AStringList_AddA)
+  else if (ProcName = 'AStringList_Clear') then
+    Result := Addr(AStringList_Clear)
+  else if (ProcName = 'AStringList_Delete') then
+    Result := Addr(AStringList_Delete)
+  else if (ProcName = 'AStringList_GetCount') then
+    Result := Addr(AStringList_GetCount)
+  else if (ProcName = 'AStringList_Free') then
+    Result := Addr(AStringList_Free)
+  else if (ProcName = 'AStringList_Insert') then
+    Result := Addr(AStringList_Insert)
+  else if (ProcName = 'AStringList_New') then
+    Result := Addr(AStringList_New)
+  else
+    Result := nil;
 end;
 
 function ACollectionsMod_Init(): AError;
@@ -121,8 +106,7 @@ begin
     Exit;
   end;
 
-  //Result := ACollections.Init();
-  Result := 0;
+  Result := ACollections.Init();
 end;
 
 end.
