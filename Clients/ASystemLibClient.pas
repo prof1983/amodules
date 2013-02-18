@@ -2,7 +2,7 @@
 @Abstract ASystem get proc address from lib
 @Author Prof1983 <prof1983@ya.ru>
 @Created 27.08.2012
-@LastMod 16.11.2012
+@LastMod 18.02.2013
 }
 unit ASystemLibClient;
 
@@ -29,9 +29,7 @@ begin
   ASystem_OnBeforeRun_Disconnect := ALibrary_GetProcAddressP(Lib, 'ASystem_OnBeforeRun_Disconnect');
   ASystem_ParamStr := ALibrary_GetProcAddressP(Lib, 'ASystem_ParamStr');
   ASystem_Prepare := ALibrary_GetProcAddressP(Lib, 'ASystem_Prepare');
-  ASystem_Prepare2 := ALibrary_GetProcAddressP(Lib, 'ASystem_Prepare2');
-  ASystem_Prepare2A := ALibrary_GetProcAddressP(Lib, 'ASystem_Prepare2A');
-  ASystem_Prepare4A := ALibrary_GetProcAddressP(Lib, 'ASystem_Prepare4A');
+  ASystem_PrepareA := ALibrary_GetProcAddressP(Lib, 'ASystem_PrepareA');
   ASystem_ProcessMessages := ALibrary_GetProcAddressP(Lib, 'ASystem_ProcessMessages');
   ASystem_ShowMessage := ALibrary_GetProcAddressP(Lib, 'ASystem_ShowMessage');
   ASystem_ShowMessageEx := ALibrary_GetProcAddressP(Lib, 'ASystem_ShowMessageEx');
