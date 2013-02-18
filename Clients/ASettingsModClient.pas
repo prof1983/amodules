@@ -2,16 +2,18 @@
 @Abstract ASettings
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 25.01.2013
+@LastMod 18.02.2013
 }
 unit ASettingsModClient;
-
-{$ifdef A04}{$define ADepr}{$endif}
 
 interface
 
 uses
-  ABase, ARuntimeBase, ARuntimeMain, ASettingsBase, ASettingsProcRec, ASettingsProcSet;
+  ABase,
+  ARuntimeBase,
+  ARuntimeMain,
+  ASettingsBase,
+  ASettingsProcSet;
 
 function ASettings_Boot(): AError; stdcall;
 
@@ -29,17 +31,9 @@ begin
 
   if Assigned(Module.GetProc) then
   begin
-    Result := ASettings_SetProcs(Module.GetProc);
+    Result := ASettings_SetProcs2(Module.GetProc);
     Exit;
   end;
-
-  {$ifdef ADepr}
-  if Assigned(Module.Procs) then
-  begin
-    Result := ASettings_SetProcs(ASettingsProcs_Type(Module.Procs^));
-    Exit;
-  end;
-  {$endif}
 
   Result := 0;
 end;
