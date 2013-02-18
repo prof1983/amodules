@@ -83,7 +83,7 @@ end;
 
 function Modules_GetNameByIndexWS(Index: AInteger): AWideString; stdcall;
 begin
-  Result := ARuntime_GetModuleNameByIndexWS(Index);
+  Result := ARuntime_GetModuleNameByIndexP(Index);
 end;
 
 function Modules_InitByName(Name: PAnsiChar): AInteger; stdcall;

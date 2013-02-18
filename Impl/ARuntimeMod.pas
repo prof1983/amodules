@@ -11,8 +11,10 @@ interface
 uses
   ABase,
   ARuntimeBase,
-  ARuntimeMain,
-  ARuntimeProcRec;
+  {$ifdef ADepr}
+  ARuntimeProcRec,
+  {$endif}
+  ARuntimeMain;
 
 // --- ARuntimeMod ---
 
@@ -25,6 +27,7 @@ function ARuntimeMod_Fin(): AError; stdcall;
 {** Initialize Runtime }
 function ARuntimeMod_Init(): AError; stdcall;
 
+{$ifdef ADepr}
 const // 64x4
   RuntimeProcs: ARuntimeProcs_Type = (
     SetOnAfterRun: ARuntime_SetOnAfterRun;                      // 00
@@ -94,6 +97,7 @@ const // 64x4
     Reserved62: 0;
     Reserved63: 0;
     );
+{$endif ADepr}
 
 implementation
 
