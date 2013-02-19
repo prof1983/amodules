@@ -2,16 +2,19 @@
 @Abstract AUi Menus
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 21.11.2012
+@LastMod 19.02.2013
 }
 unit AUiMenus;
 
-{$define AStdCall}
+{define AStdCall}
 
 interface
 
 uses
-  ABase, AStrings, AUiBase, AUiProcVars;
+  ABase,
+  AStringMain,
+  AUiBase,
+  AUiProcVars;
 
 // --- AUiMenu ---
 
@@ -88,11 +91,6 @@ begin
     AString_AssignP(SName, Name);
     AString_AssignP(SText, Text);
     Result := AUiMenu_AddItem2(ParentMenuItem, SName, SText, OnClick, ImageId, Weight);
-    Exit;
-  end;
-  if Assigned(AUiProcVars.Menu_AddItem2WS) then
-  begin
-    Result := AUiProcVars.Menu_AddItem2WS(ParentMenuItem, Name, Text, OnClick, ImageId, Weight);
     Exit;
   end;
   Result := 0;

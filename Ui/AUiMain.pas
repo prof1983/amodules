@@ -2,16 +2,20 @@
 @Abstract AUi common functions
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 11.12.2012
+@LastMod 19.02.2013
 }
 unit AUiMain;
 
-{$define AStdCall}
+{define AStdCall}
 
 interface
 
 uses
-  ABase, AStrings, AUiProcVars;
+  ABase,
+  AStringMain,
+  AUiProcVars;
+
+// --- AUi ---
 
 function AUi_Init(): AError; {$ifdef AStdCall}stdcall;{$endif}
 
@@ -22,6 +26,8 @@ function AUi_ShowHelp2(const FileName: AString_Type): AError; {$ifdef AStdCall}s
 function AUi_ShowHelp2P(const FileName: APascalString): AError; {$ifdef AStdCall}stdcall;{$endif}
 
 implementation
+
+// --- AUi ---
 
 function AUi_Init(): AError;
 begin
@@ -40,14 +46,6 @@ begin
     Result := AUiProcVars.AUi_ShowHelp();
     Exit;
   end;
-  {$ifdef ADepr}
-  if Assigned(AUiProcVars.AUi_ShowHelp02) then
-  begin
-    AUiProcVars.AUi_ShowHelp02();
-    Result := 0;
-    Exit;
-  end;
-  {$endif}
   Result := -1;
 end;
 
@@ -71,13 +69,6 @@ begin
     Result := AUi_ShowHelp2(S);
     Exit;
   end;
-  {$ifdef ADepr}
-  if Assigned(AUiProcVars.AUi_ShowHelp2WS) then
-  begin
-    Result := AUiProcVars.AUi_ShowHelp2WS(FileName);
-    Exit;
-  end;
-  {$endif}
   Result := -1;
 end;
 

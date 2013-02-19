@@ -128,8 +128,8 @@ type
   AUiControl_SetHintA_Proc = function(Control: AControl; Value: AStr): AError; stdcall;
   AUiControl_SetName_Proc = function(Control: AControl; const Value: AString_Type): AError; stdcall;
   AUiControl_SetNameA_Proc = function(Control: AControl; Value: AStr): AError; stdcall;
-  AUiControl_SetOnChangeEx_Proc = function(Control: AControl; OnChange: ACallbackProc; Obj: AInt): AError; stdcall;
   AUiControl_SetOnChange_Proc = function(Control: AControl; OnChange: ACallbackProc): AError; stdcall;
+  AUiControl_SetOnChangeEx_Proc = function(Control: AControl; OnChange: ACallbackProc; Obj: AInt): AError; stdcall;
   AUiControl_SetOnClick_Proc = function(Control: AControl; Value: ACallbackProc): AError; stdcall;
   AUiControl_SetPosition_Proc = function(Control: AControl; Left, Top: AInt): AError; stdcall;
   AUiControl_SetSize_Proc = function(Control: AControl; Width, Height: AInt): AError; stdcall;

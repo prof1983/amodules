@@ -2,16 +2,21 @@
 @Abstract AUiMainWindow
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 26.12.2012
+@LastMod 19.02.2013
 }
 unit AUiMainWindow2;
 
-{$define AStdCall}
+{define AStdCall}
 
 interface
 
 uses
-  ABase, AStrings, AUiBase, AUiProcVars;
+  ABase,
+  AStringMain,
+  AUiBase,
+  AUiProcVars;
+
+// --- AUiMainWindow ---
 
 function AUiMainWindow_AddMenuItem(const ParentItemName, Name, Text: AString_Type;
     OnClick: ACallbackProc; ImageId, Weight: AInteger): AMenuItem; {$ifdef AStdCall}stdcall;{$endif}
@@ -24,10 +29,12 @@ function AUiMainWindow_AddMenuItemP(const ParentItemName, Name, Text: APascalStr
 
 implementation
 
+// --- AUiMainWindow ---
+
 function AUiMainWindow_AddMenuItem(const ParentItemName, Name, Text: AString_Type;
     OnClick: ACallbackProc; ImageId, Weight: AInteger): AMenuItem;
 begin
-  if not(Assigned(AUiProcVars.MainWindow_AddMenuItem)) then
+  if not(Assigned(AUiProcVars.AUiMainWindow_AddMenuItem)) then
   begin
     Result := 0;
     Exit;
@@ -60,11 +67,6 @@ var
   SName: AString_Type;
   SText: AString_Type;
 begin
-  if Assigned(AUiProcVars.MainWindow_AddMenuItem) then
-  begin
-    Result := AUiProcVars.MainWindow_AddMenuItem(ParentItemName, Name, Text, OnClick, ImageId, Weight);
-    Exit;
-  end;
   AString_AssignP(SParentName, ParentItemName);
   AString_AssignP(SName, Name);
   AString_AssignP(SText, Text);

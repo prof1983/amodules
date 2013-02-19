@@ -2,17 +2,21 @@
 @Abstract AUi PageControl
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 22.11.2012
+@LastMod 19.02.2013
 }
 unit AUiPageControl;
 
-{$define AStdCall}
+{define AStdCall}
 
 interface
 
 uses
-  ABase, AStrings,
-  AUiBase, AUiProcVars;
+  ABase,
+  AStringMain,
+  AUiBase,
+  AUiProcVars;
+
+// --- AUiPageControl ---
 
 function AUiPageControl_AddPage(PageControl: AControl; const Name, Text: AString_Type): AControl; {$ifdef AStdCall}stdcall;{$endif}
 
@@ -23,6 +27,8 @@ function AUiPageControl_AddPageP(PageControl: AControl; const Name, Text: APasca
 function AUiPageControl_New(Parent: AControl): AControl; {$ifdef AStdCall}stdcall;{$endif}
 
 implementation
+
+// --- AUiPageControl ---
 
 function AUiPageControl_AddPage(PageControl: AControl; const Name, Text: AString_Type): AControl;
 begin
@@ -54,11 +60,6 @@ begin
     AString_AssignP(SName, Name);
     AString_AssignP(SText, Text);
     Result := AUiPageControl_AddPage(PageControl, SName, SText);
-    Exit;
-  end;
-  if Assigned(AUiProcVars.AUiPageControl_AddPageWS) then
-  begin
-    Result := AUiProcVars.AUiPageControl_AddPageWS(PageControl, Name, Text);
     Exit;
   end;
   Result := 0;
