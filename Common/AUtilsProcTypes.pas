@@ -2,7 +2,7 @@
 @Abstract AUtils proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.09.2009
-@LastMod 18.02.2013
+@LastMod 19.02.2013
 }
 unit AUtilsProcTypes;
 
@@ -26,7 +26,7 @@ type
   AUtils_Fin_Proc = function(): AError; stdcall;
   AUtils_FloatToStr_Proc = function(Value: AFloat; out Res: AString_Type): AInt; stdcall;
   AUtils_FloatToStr2_Proc = function(Value: AFloat; DigitsAfterComma: AInt; ReplaceComma, Delimer: ABool; out Res: AString_Type): AError; stdcall;
-  AUtils_FormatFloat_Proc = function(Value: AFloat; Count, Digits: AInt; out Res: AString_Type): AError; stdcall;
+  AUtils_FormatFloat_Proc = function(Value: AFloat; DigitsBeforeComma, DigitsAfterComma: AInt; out Res: AString_Type): AError; stdcall;
   AUtils_FormatInt_Proc = function(Value, Count: AInt; out Res: AString_Type): AError; stdcall;
   AUtils_FormatStr_Proc = function(const Value: AString_Type; Len: AInt; out Res: AString_Type): AError; stdcall;
   AUtils_FormatStrAnsi_Proc = function(const Value: AnsiString; Len: AInt): AnsiString; stdcall;

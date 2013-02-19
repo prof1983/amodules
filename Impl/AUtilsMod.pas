@@ -2,7 +2,7 @@
 @Abstract AUtils04
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.09.2009
-@LastMod 18.02.2013
+@LastMod 19.02.2013
 }
 unit AUtilsMod;
 
@@ -86,6 +86,10 @@ begin
     Result := Addr(AUtils_FormatInt)
   else if (ProcName = 'AUtils_FormatStr') then
     Result := Addr(AUtils_FormatStr)
+  else if (ProcName = 'AUtils_FormatStrAnsi') then
+    Result := Addr(AUtils_FormatStrAnsi)
+  else if (ProcName = 'AUtils_GetNowDateTime') then
+    Result := Addr(AUtils_GetNowDateTime)
   else if (ProcName = 'AUtils_Init') then
     Result := Addr(AUtils_Init)
   else if (ProcName = 'AUtils_IntToStr') then
@@ -104,12 +108,28 @@ begin
     Result := Addr(AUtils_Round2)
   else if (ProcName = 'AUtils_Sleep') then
     Result := Addr(AUtils_Sleep)
-  else if (ProcName = 'AUtils_StrToFloatP') then
-    Result := Addr(AUtils_StrToFloatP)
+  else if (ProcName = 'AUtils_StrToDate') then
+    Result := Addr(AUtils_StrToDate)
+  else if (ProcName = 'AUtils_StrToFloat') then
+    Result := Addr(AUtils_StrToFloat)
+  else if (ProcName = 'AUtils_StrToFloatDef') then
+    Result := Addr(AUtils_StrToFloatDef)
+  else if (ProcName = 'AUtils_StrToInt') then
+    Result := Addr(AUtils_StrToInt)
+  else if (ProcName = 'AUtils_StrToIntDef') then
+    Result := Addr(AUtils_StrToIntDef)
+  else if (ProcName = 'AUtils_Trim') then
+    Result := Addr(AUtils_Trim)
+  else if (ProcName = 'AUtils_TryStrToDate') then
+    Result := Addr(AUtils_TryStrToDate)
+  else if (ProcName = 'AUtils_TryStrToFloat32') then
+    Result := Addr(AUtils_TryStrToFloat32)
+  else if (ProcName = 'AUtils_TryStrToFloat64') then
+    Result := Addr(AUtils_TryStrToFloat64)
+  else if (ProcName = 'AUtils_TryStrToInt') then
+    Result := Addr(AUtils_TryStrToInt)
   else
     Result := nil;
-
-  xxx
 end;
 
 function AUtilsMod_Init(): AError;

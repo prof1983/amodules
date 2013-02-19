@@ -2,7 +2,7 @@
 @Abstract AUtils - Main
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 18.02.2013
+@LastMod 19.02.2013
 }
 unit AUtilsMain;
 
@@ -36,7 +36,7 @@ function AUtils_ExpandFileName(const FileName: AString_Type; out Res: AString_Ty
 
 function AUtils_ExpandFileNameP(const FileName: APascalString): APascalString;
 
-function AUtils_ExtractFileExt(const FileName: AString_Type; out Res: AString_Type): AInt; {$ifdef AStdCall}stdcall;{$endif}
+function AUtils_ExtractFileExt(const FileName: AString_Type; out Res: AString_Type): AError; {$ifdef AStdCall}stdcall;{$endif}
 
 function AUtils_ExtractFileExtP(const FileName: APascalString): APascalString;
 
@@ -74,12 +74,12 @@ function AUtils_FloatToStrP(Value: AFloat): APascalString;
 
 function AUtils_ForceDirectoriesP(const Dir: APascalString): AError;
 
-function AUtils_FormatFloat(Value: AFloat; Count, Digits: AInt;
-    out Res: AString_Type): AInt; {$ifdef AStdCall}stdcall;{$endif}
+function AUtils_FormatFloat(Value: AFloat; DigitsBeforeComma, DigitsAfterComma: AInt;
+    out Res: AString_Type): AError; {$ifdef AStdCall}stdcall;{$endif}
 
 function AUtils_FormatFloatP(Value: AFloat; DigitsBeforeComma, DigitsAfterComma: AInt): APascalString;
 
-function AUtils_FormatInt(Value, Count: AInt; out Res: AString_Type): AInt; {$ifdef AStdCall}stdcall;{$endif}
+function AUtils_FormatInt(Value, Count: AInt; out Res: AString_Type): AError; {$ifdef AStdCall}stdcall;{$endif}
 
 function AUtils_FormatIntP(Value, Count: AInt): APascalString;
 
@@ -178,57 +178,137 @@ implementation
 function AUtils_ChangeFileExt(const FileName, Extension: AString_Type;
     out Res: AString_Type): AError;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_ChangeFileExt)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_ChangeFileExt(FileName, Extension, Res);
 end;
 
 function AUtils_ChangeFileExtP(const FileName, Extension: APascalString): APascalString;
+var
+  SFileName: AString_Type;
+  SExtension: AString_Type;
+  SRes: AString_Type;
 begin
-  xxx
+  try
+    AString_AssignP(SFileName, FileName);
+    AString_AssignP(SExtension, Extension);
+    AString_Clear(SRes);
+    if AUtils_ChangeFileExt(SFileName, SExtension, SRes) >= 0) then
+      Result := AString_ToPascalString(SRes)
+    else
+      Result := '';
+  except
+    Result := '';
+  end;
 end;
 
 function AUtils_DateToStr(Value: TDateTime; out Res: AString_Type): AError;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_DateToStr)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_DateToStr(Value, Res);
 end;
 
 function AUtils_DateToStrP(Value: TDateTime): APascalString;
+var
+  SRes: AString_Type;
 begin
-  xxx
+  try
+    AString_Clear(SRes);
+    if (AUtils_DateToStr(Value, SRes) >= 0) then
+      Result := AString_ToPascalString(SRes)
+    else
+      Result := '';
+  except
+    Result := '';
+  end;
 end;
 
 function AUtils_DeleteFile(const FileName: AString_Type): AError;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_DeleteFile)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_DeleteFile(FileName);
 end;
 
 function AUtils_DeleteFileP(const FileName: APascalString): AError;
+var
+  SFileName: AString_Type;
 begin
-  xxx
+  try
+    AString_AssignP(SFileName, FileName);
+    Result := AUtils_DeleteFile(SFileName);
+  except
+    Result := -1;
+  end;
 end;
 
 function AUtils_DirectoryExists(const Directory: AString_Type): ABool;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_DirectoryExists)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_DirectoryExists(Directory);
 end;
 
 function AUtils_DirectoryExistsP(const Directory: APascalString): ABool;
+var
+  SDirectory: AString_Type;
 begin
-  xxx
+  try
+    AString_AssignP(SDirectory, Directory);
+    Result := AUtils_DirectoryExists(SDirectory)
+  except
+    Result := False;
+  end;
 end;
 
 function AUtils_ExpandFileName(const FileName: AString_Type; out Res: AString_Type): AError;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_ExpandFileName)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_ExpandFileName(FileName, Res);
 end;
 
 function AUtils_ExpandFileNameP(const FileName: APascalString): APascalString;
+var
+  SFileName: AString_Type;
+  SRes: AString_Type;
 begin
-  xxx
+  try
+    AString_AssignP(SFileName, FileName);
+    AString_Clear(SRes);
+    if (AUtils_ExpandFileName(SFileName, SRes) >= 0) then
+      Result := AString_ToPascalString(SRes)
+    else
+      Result := '';
+  except
+    Result := '';
+  end;
 end;
 
-function AUtils_ExtractFileExt(const FileName: AString_Type; out Res: AString_Type): AInt;
+function AUtils_ExtractFileExt(const FileName: AString_Type; out Res: AString_Type): AError;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_ExtractFileExt)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_ExtractFileExt(FileName, Res);
 end;
 
 function AUtils_ExtractFileExtP(const FileName: APascalString): APascalString;
@@ -236,8 +316,12 @@ var
   FN: AString_Type;
   Res: AString_Type;
 begin
-  if Assigned(AUtilsProcVars.AUtils_ExtractFileExt) then
+  if not(Assigned(AUtilsProcVars.AUtils_ExtractFileExt)) then
   begin
+    Result := '';
+    Exit;
+  end;
+  try
     if (AString_AssignP(FN, FileName) < 0) then
     begin
       Result := '';
@@ -254,24 +338,46 @@ begin
       Exit;
     end;
     Result := AString_ToPascalString(Res);
-    Exit;
+  except
+    Result := '';
   end;
-  Result := '';
 end;
 
 function AUtils_ExtractFileName(const FileName: AString_Type; out Res: AString_Type): AError;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_ExtractFileName)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_ExtractFileName(FileName, Res);
 end;
 
 function AUtils_ExtractFileNameP(const FileName: APascalString): APascalString;
+var
+  SFileName: AString_Type;
+  SRes: AString_Type;
 begin
-  xxx
+  try
+    AString_AssignP(SFileName, FileName);
+    AString_Clear(SRes);
+    if (AUtils_ExtractFileName(SFileName, SRes) >= 0) then
+      Result := AString_ToPascalString(SRes)
+    else
+      Result := '';
+  except
+    Result := '';
+  end;
 end;
 
 function AUtils_ExtractFilePath(const FileName: AString_Type; out Res: AString_Type): AInt;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_ExtractFilePath)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_ExtractFilePath(FileName, Res);
 end;
 
 function AUtils_ExtractFilePathP(const FileName: APascalString): APascalString;
@@ -281,6 +387,10 @@ var
 begin
   if Assigned(AUtilsProcVars.AUtils_ExtractFilePath) then
   begin
+    Result := '';
+    Exit;
+  end;
+  try
     if (AString_AssignP(FN, FileName) < 0) then
     begin
       Result := '';
@@ -291,64 +401,90 @@ begin
       Result := '';
       Exit;
     end;
-    if (AUtilsProcVars.AUtils_ExtractFilePath(FN, Res) >= 0) then
+    if (AUtils_ExtractFilePath(FN, Res) >= 0) then
     begin
       Result := '';
       Exit;
     end;
     Result := AString_ToPascalString(Res);
-    Exit;
+  except
+    Result := '';
   end;
-  Result := '';
 end;
 
 function AUtils_FileExists(const FileName: AString_Type): ABool;
 begin
-  if Assigned(AUtilsProcVars.AUtils_FileExists) then
+  if not(Assigned(AUtilsProcVars.AUtils_FileExists)) then
   begin
-    Result := AUtilsProcVars.AUtils_FileExists(FileName);
+    Result := False;
     Exit;
   end;
-  Result := False;
+  Result := AUtilsProcVars.AUtils_FileExists(FileName);
 end;
 
 function AUtils_FileExistsP(const FileName: APascalString): ABool;
 var
   S: AString_Type;
 begin
-  if Assigned(AUtilsProcVars.AUtils_FileExists) then
+  if not(Assigned(AUtilsProcVars.AUtils_FileExists)) then
   begin
+    Result := False;
+  end;
+  try
     if (AString_AssignP(S, FileName) < 0) then
     begin
       Result := False;
       Exit;
     end;
-    Result := AUtilsProcVars.AUtils_FileExists(S);
-    Exit;
+    Result := AUtils_FileExists(S);
+  except
+    Result := False;
   end;
-  Result := False;
 end;
 
 function AUtils_Fin(): AError;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_Fin)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_Fin();
 end;
 
 function AUtils_FloatToStr(Value: AFloat; out Res: AString_Type): AInt;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_FloatToStr)) then
+  begin
+    Result := 0;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_FloatToStr(Value, Res);
 end;
 
 function AUtils_FloatToStr2(Value: AFloat; DigitsAfterComma: AInt;
     ReplaceComma, Delimer: ABool; out Res: AString_Type): AError;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_FloatToStr2)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_FloatToStr2(Value, DigitsAfterComma, ReplaceComma, Delimer, Res);
 end;
 
 function AUtils_FloatToStr2P(Value: AFloat; DigitsAfterComma: AInt;
     ReplaceComma, Delimer: ABool): APascalString;
+var
+  Res: AString_Type;
 begin
-  xxx
+  AString_Clear(Res);
+  if (AUtils_FloatToStr2(Value, DigitsAfterComma, ReplaceComma, Delimer, Res) < 0) then
+  begin
+    Result := '';
+    Exit;
+  end;
+  Result := AString_ToPascalString(Res);
 end;
 
 function AUtils_FloatToStrAP(Value: AFloat; DigitsAfterComma: AInt): APascalString;
@@ -372,8 +508,20 @@ begin
 end;
 
 function AUtils_FloatToStrP(Value: AFloat): APascalString;
+var
+  Res: AString_Type;
 begin
-  xxx
+  try
+    AString_Clear(Res);
+    if (AUtils_FloatToStr(Value, Res) < 0) then
+    begin
+      Result := '';
+      Exit;
+    end;
+    Result := AString_ToPascalString(Res);
+  except
+    Result := '';
+  end;
 end;
 
 function AUtils_ForceDirectoriesP(const Dir: APascalString): AError;
@@ -381,25 +529,59 @@ begin
   xxx
 end;
 
-function AUtils_FormatFloat(Value: AFloat; Count, Digits: AInt;
-    out Res: AString_Type): AInt;
+function AUtils_FormatFloat(Value: AFloat; DigitsBeforeComma, DigitsAfterComma: AInt;
+    out Res: AString_Type): AError;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_FormatFloat)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_FormatFloat(Value, DigitsBeforeComma, DigitsAfterComma, Res);
 end;
 
 function AUtils_FormatFloatP(Value: AFloat; DigitsBeforeComma, DigitsAfterComma: AInt): APascalString;
+var
+  Res: AString_Type;
 begin
-  xxx
+  try
+    AString_Clear(Res);
+    if (AUtils_FormatFloat(Value, DigitsBeforeComma, DigitsAfterComma, Res) < 0) then
+    begin
+      Result := '';
+      Exit;
+    end;
+    Result := AString_ToPascalString(Res);
+  except
+    Result := '';
+  end;
 end;
 
-function AUtils_FormatInt(Value, Count: AInt; out Res: AString_Type): AInt;
+function AUtils_FormatInt(Value, Count: AInt; out Res: AString_Type): AError;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_FormatInt)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_FormatInt(Value, Count, Res);
 end;
 
 function AUtils_FormatIntP(Value, Count: AInt): APascalString;
+var
+  Res: AString_Type;
 begin
-  xxx
+  try
+    AString_Clear(Res);
+    if (AUtils_FormatInt(Value, Count, Res) < 0) then
+    begin
+      Result := '';
+      Exit;
+    end;
+    Result := AString_ToPascalString(Res);
+  except
+    Result := '';
+  end;
 end;
 
 function AUtils_FormatStr(const Value: AString_Type; Len: AInt; out Res: AString_Type): AInt;
