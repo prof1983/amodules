@@ -24,10 +24,14 @@ var
   AUtils_Fin: AUtils_Fin_Proc;
   AUtils_FloatToStr: AUtils_FloatToStr_Proc;
   AUtils_FloatToStr2: AUtils_FloatToStr2_Proc;
+  AUtils_ForceDirectories: AUtils_ForceDirectories_Proc;
+  AUtils_ForceDirectoriesA: AUtils_ForceDirectoriesA_Proc;
   AUtils_FormatFloat: AUtils_FormatFloat_Proc;
   AUtils_FormatInt: AUtils_FormatInt_Proc;
   AUtils_FormatStr: AUtils_FormatStr_Proc;
   AUtils_FormatStrAnsi: AUtils_FormatStrAnsi_Proc;
+  AUtils_FormatStrStr: AUtils_FormatStrStr_Proc;
+  AUtils_FormatStrStrA: AUtils_FormatStrStrA_Proc;
   AUtils_GetNowDateTime: AUtils_GetNowDateTime_Proc;
   AUtils_Init: AUtils_Init_Proc;
   AUtils_IntToStr: AUtils_IntToStr_Proc;

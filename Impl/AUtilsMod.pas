@@ -80,6 +80,10 @@ begin
     Result := Addr(AUtils_FloatToStr)
   else if (ProcName = 'AUtils_FloatToStr2') then
     Result := Addr(AUtils_FloatToStr2)
+  else if (ProcName = 'AUtils_ForceDirectories') then
+    Result := Addr(AUtils_ForceDirectories)
+  else if (ProcName = 'AUtils_ForceDirectoriesA') then
+    Result := Addr(AUtils_ForceDirectoriesA)
   else if (ProcName = 'AUtils_FormatFloat') then
     Result := Addr(AUtils_FormatFloat)
   else if (ProcName = 'AUtils_FormatInt') then
@@ -88,6 +92,10 @@ begin
     Result := Addr(AUtils_FormatStr)
   else if (ProcName = 'AUtils_FormatStrAnsi') then
     Result := Addr(AUtils_FormatStrAnsi)
+  else if (ProcName = 'AUtils_FormatStrStr') then
+    Result := Addr(AUtils_FormatStrStr)
+  else if (ProcName = 'AUtils_FormatStrStrA') then
+    Result := Addr(AUtils_FormatStrStrA)
   else if (ProcName = 'AUtils_GetNowDateTime') then
     Result := Addr(AUtils_GetNowDateTime)
   else if (ProcName = 'AUtils_Init') then

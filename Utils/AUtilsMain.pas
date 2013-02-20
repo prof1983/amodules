@@ -11,7 +11,9 @@ unit AUtilsMain;
 interface
 
 uses
-  ABase, AStrings, AUtilsProcVars;
+  ABase,
+  AStringMain,
+  AUtilsProcVars;
 
 // --- AUtils ---
 
@@ -62,15 +64,11 @@ function AUtils_FloatToStr2(Value: AFloat; DigitsAfterComma: AInt;
 function AUtils_FloatToStr2P(Value: AFloat; DigitsAfterComma: AInt;
     ReplaceComma, Delimer: ABool): APascalString;
 
-function AUtils_FloatToStrAP(Value: AFloat; DigitsAfterComma: AInt = 2): APascalString;
-
-function AUtils_FloatToStrBP(Value: AFloat; DigitsAfterComma: AInt = 2): APascalString;
-
-function AUtils_FloatToStrCP(Value: AFloat; DigitsAfterComma: AInt = 2): APascalString;
-
-function AUtils_FloatToStrDP(Value: AFloat): APascalString;
-
 function AUtils_FloatToStrP(Value: AFloat): APascalString;
+
+function AUtils_ForceDirectories(const Dir: AString_Type): AError; {$ifdef AStdCall}stdcall;{$endif}
+
+function AUtils_ForceDirectoriesA(Dir: AStr): AError; {$ifdef AStdCall}stdcall;{$endif}
 
 function AUtils_ForceDirectoriesP(const Dir: APascalString): AError;
 
@@ -89,13 +87,17 @@ function AUtils_FormatStrAnsi(const Value: AnsiString; Len: AInt): AnsiString; {
 
 function AUtils_FormatStrP(const Value: APascalString; Len: AInt): APascalString;
 
+function AUtils_FormatStrStr(const FormatStr, S: AString_Type; out Res: AString_Type): AError; {$ifdef AStdCall}stdcall;{$endif}
+
+function AUtils_FormatStrStrA(FormatStr, S: AStr; Res: AStr; MaxLen: AInt): AError; {$ifdef AStdCall}stdcall;{$endif}
+
 function AUtils_FormatStrStrP(const FormatStr, S: APascalString): APascalString;
 
 function AUtils_GetNowDateTime(): TDateTime; {$ifdef AStdCall}stdcall;{$endif}
 
 function AUtils_Init(): AError; {$ifdef AStdCall}stdcall;{$endif}
 
-function AUtils_IntToStr(Value: AInt; out Res: AString_Type): AInt; {$ifdef AStdCall}stdcall;{$endif}
+function AUtils_IntToStr(Value: AInt; out Res: AString_Type): AError; {$ifdef AStdCall}stdcall;{$endif}
 
 function AUtils_IntToStrP(Value: AInt): APascalString;
 
@@ -196,7 +198,7 @@ begin
     AString_AssignP(SFileName, FileName);
     AString_AssignP(SExtension, Extension);
     AString_Clear(SRes);
-    if AUtils_ChangeFileExt(SFileName, SExtension, SRes) >= 0) then
+    if (AUtils_ChangeFileExt(SFileName, SExtension, SRes) >= 0) then
       Result := AString_ToPascalString(SRes)
     else
       Result := '';
@@ -256,7 +258,7 @@ function AUtils_DirectoryExists(const Directory: AString_Type): ABool;
 begin
   if not(Assigned(AUtilsProcVars.AUtils_DirectoryExists)) then
   begin
-    Result := -100;
+    Result := False;
     Exit;
   end;
   Result := AUtilsProcVars.AUtils_DirectoryExists(Directory);
@@ -487,26 +489,6 @@ begin
   Result := AString_ToPascalString(Res);
 end;
 
-function AUtils_FloatToStrAP(Value: AFloat; DigitsAfterComma: AInt): APascalString;
-begin
-  xxx
-end;
-
-function AUtils_FloatToStrBP(Value: AFloat; DigitsAfterComma: AInt): APascalString;
-begin
-  xxx
-end;
-
-function AUtils_FloatToStrCP(Value: AFloat; DigitsAfterComma: AInt): APascalString;
-begin
-  xxx
-end;
-
-function AUtils_FloatToStrDP(Value: AFloat): APascalString;
-begin
-  xxx
-end;
-
 function AUtils_FloatToStrP(Value: AFloat): APascalString;
 var
   Res: AString_Type;
@@ -524,9 +506,36 @@ begin
   end;
 end;
 
-function AUtils_ForceDirectoriesP(const Dir: APascalString): AError;
+function AUtils_ForceDirectories(const Dir: AString_Type): AError;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_ForceDirectories)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_ForceDirectories(Dir);
+end;
+
+function AUtils_ForceDirectoriesA(Dir: AStr): AError;
+begin
+  if not(Assigned(AUtilsProcVars.AUtils_ForceDirectoriesA)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_ForceDirectoriesA(Dir);
+end;
+
+function AUtils_ForceDirectoriesP(const Dir: APascalString): AError;
+var
+  S: AString_Type;
+begin
+  try
+    AString_AssignP(S, Dir);
+    Result := AUtils_ForceDirectories(S);
+  except
+    Result := -1;
+  end;
 end;
 
 function AUtils_FormatFloat(Value: AFloat; DigitsBeforeComma, DigitsAfterComma: AInt;
@@ -586,22 +595,74 @@ end;
 
 function AUtils_FormatStr(const Value: AString_Type; Len: AInt; out Res: AString_Type): AInt;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_FormatStr)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_FormatStr(Value, Len, Res);
 end;
 
 function AUtils_FormatStrAnsi(const Value: AnsiString; Len: AInt): AnsiString;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_FormatStrAnsi)) then
+  begin
+    Result := '';
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_FormatStrAnsi(Value, Len);
 end;
 
 function AUtils_FormatStrP(const Value: APascalString; Len: AInt): APascalString;
+var
+  Res: AString_Type;
+  S: AString_Type;
 begin
-  xxx
+  AString_AssignP(S, Value);
+  AString_Clear(Res);
+  if (AUtils_FormatStr(S, Len, Res) < 0) then
+  begin
+    Result := '';
+    Exit;
+  end;
+  Result := AString_ToPascalString(Res);
+end;
+
+function AUtils_FormatStrStr(const FormatStr, S: AString_Type; out Res: AString_Type): AError;
+begin
+  if not(Assigned(AUtilsProcVars.AUtils_FormatStrStr)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_FormatStrStr(FormatStr, S, Res);
+end;
+
+function AUtils_FormatStrStrA(FormatStr, S: AStr; Res: AStr; MaxLen: AInt): AError;
+begin
+  if not(Assigned(AUtilsProcVars.AUtils_FormatStrStrA)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_FormatStrStrA(FormatStr, S, Res, MaxLen);
 end;
 
 function AUtils_FormatStrStrP(const FormatStr, S: APascalString): APascalString;
+var
+  SFormatStr: AString_Type;
+  SS: AString_Type;
+  SRes: AString_Type;
 begin
-  xxx
+  AString_AssignP(SFormatStr, FormatStr);
+  AString_AssignP(SS, S);
+  AString_Clear(SRes);
+  if (AUtils_FormatStrStr(SFormatStr, SS, SRes) < 0) then
+  begin
+    Result := '';
+    Exit;
+  end;
+  Result := AString_ToPascalString(SRes);
 end;
 
 function AUtils_GetNowDateTime(): TDateTime;
@@ -611,13 +672,6 @@ begin
     Result := AUtilsProcVars.AUtils_GetNowDateTime();
     Exit;
   end;
-
-  if Assigned(AUtilsProcVars.AUtils_Time_Now) then
-  begin
-    Result := AUtilsProcVars.AUtils_Time_Now();
-    Exit;
-  end;
-
   Result := 0;
 end;
 
@@ -625,7 +679,7 @@ function AUtils_Init(): AError;
 begin
   if not(Assigned(AUtilsProcVars.AUtils_Init)) then
   begin
-    Result := -1;
+    Result := -100;
     Exit;
   end;
   Result := AUtilsProcVars.AUtils_Init();
@@ -635,7 +689,7 @@ function AUtils_IntToStr(Value: AInt; out Res: AString_Type): AError;
 begin
   if not(Assigned(AUtilsProcVars.AUtils_IntToStr)) then
   begin
-    Result := -1;
+    Result := -100;
     Exit;
   end;
   Result := AUtilsProcVars.AUtils_IntToStr(Value, Res);
@@ -655,38 +709,83 @@ end;
 
 function AUtils_NormalizeFloat(Value: AFloat): AFloat;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_NormalizeFloat)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_NormalizeFloat(Value);
 end;
 
 function AUtils_NormalizeStr(const Value: AString_Type; out Res: AString_Type): AInt;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_NormalizeStr)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_NormalizeStr(Value, Res);
 end;
 
 function AUtils_NormalizeStrP(const Value: APascalString): APascalString;
+var
+  S: AString_Type;
+  Res: AString_Type;
 begin
-  xxx
+  AString_AssignP(S, Value);
+  AString_Clear(Res);
+  if (AUtils_NormalizeStr(S, Res) < 0) then
+  begin
+    Result := '';
+    Exit;
+  end;
+  Result := AString_ToPascalString(Res);
 end;
 
 function AUtils_NormalizeStrSpace(const Value: AString_Type; out Res: AString_Type): AInt;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_NormalizeStrSpace)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_NormalizeStrSpace(Value, Res);
 end;
 
 function AUtils_NormalizeStrSpaceP(const Value: APascalString): APascalString;
+var
+  S: AString_Type;
+  Res: AString_Type;
 begin
-  xxx
+  AString_AssignP(S, Value);
+  AString_Clear(Res);
+  if (AUtils_NormalizeStrSpace(S, Res) < 0) then
+  begin
+    Result := '';
+    Exit;
+  end;
+  Result := AString_ToPascalString(Res);
 end;
 
 function AUtils_Power(Base, Exponent: AFloat): AFloat;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_Power)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_Power(Base, Exponent);
 end;
 
 function AUtils_ReplaceComma(const S: AString_Type; DecimalSeparator: AChar;
     ClearSpace: ABool; out Res: AString_Type): AInt;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_ReplaceComma)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_ReplaceComma(S, DecimalSeparator, ClearSpace, Res);
 end;
 
 function AUtils_ReplaceCommaP(const S: APascalString; DecimalSeparator: AChar;
@@ -707,7 +806,7 @@ begin
       Result := S;
       Exit;
     end;
-    if (AUtilsProcVars.AUtils_ReplaceComma(S1, DecimalSeparator, ClearSpace, Res) >= 0) then
+    if (AUtils_ReplaceComma(S1, DecimalSeparator, ClearSpace, Res) >= 0) then
     begin
       Result := AString_ToWideString(Res);
       Exit;
@@ -718,32 +817,64 @@ end;
 
 function AUtils_Round2(Value: AFloat; Digits1, DigitsAfterComma: AInt): AFloat;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_Round2)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_Round2(Value, Digits1, DigitsAfterComma);
 end;
 
 function AUtils_Sleep(Milliseconds: AUInt): AError;
 begin
-  if Assigned(AUtilsProcVars.AUtils_Sleep) then
+  if not(Assigned(AUtilsProcVars.AUtils_Sleep)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
   try
     Result := AUtilsProcVars.AUtils_Sleep(Milliseconds);
-    Exit;
   except
+    Result := -1;
   end;
+end;
 
-  if Assigned(AUtilsProcVars.AUtils_Sleep02) then
-  try
-    AUtilsProcVars.AUtils_Sleep02(Milliseconds);
-    Result := 0;
+function AUtils_StrToDate(const Value: AString_Type): TDateTime;
+begin
+  if not(Assigned(AUtilsProcVars.AUtils_StrToDate)) then
+  begin
+    Result := -100;
     Exit;
-  except
   end;
-
-  Result := -1;
+  Result := AUtilsProcVars.AUtils_StrToDate(Value);
 end;
 
 function AUtils_StrToDateP(const Value: APascalString): TDateTime;
+var
+  S: AString_Type;
 begin
-  xxx
+  AString_AssignP(S, Value);
+  Result := AUtils_StrToDate(S);
+end;
+
+function AUtils_StrToFloat(const Value: AString_Type): AFloat;
+begin
+  if not(Assigned(AUtilsProcVars.AUtils_StrToFloat)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_StrToFloat(Value);
+end;
+
+function AUtils_StrToFloatDef(const S: AString_Type; DefValue: AFloat): AFloat;
+begin
+  if not(Assigned(AUtilsProcVars.AUtils_StrToFloatDef)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_StrToFloatDef(S, DefValue);
 end;
 
 function AUtils_StrToFloatDefP(const S: APascalString; DefValue: AFloat): AFloat;
@@ -778,6 +909,26 @@ begin
     Exit;
   end;
   Result := AUtils_StrToFloatDefP(Value, 0);
+end;
+
+function AUtils_StrToInt(const Value: AString_Type): AInt;
+begin
+  if not(Assigned(AUtilsProcVars.AUtils_StrToInt)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_StrToInt(Value);
+end;
+
+function AUtils_StrToIntDef(const S: AString_Type; DefValue: AInt): AInt;
+begin
+  if not(Assigned(AUtilsProcVars.AUtils_StrToIntDef)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_StrToIntDef(S, DefValue);
 end;
 
 function AUtils_StrToIntDefP(const S: APascalString; DefValue: AInt): AInt;
@@ -818,7 +969,7 @@ function AUtils_Trim(var S: AString_Type): AError;
 begin
   if not(Assigned(AUtilsProcVars.AUtils_Trim)) then
   begin
-    Result := -1;
+    Result := -100;
     Exit;
   end;
   Result := AUtilsProcVars.AUtils_Trim(S);
@@ -841,29 +992,85 @@ begin
   Result := AString_ToPascalString(Str);
 end;
 
-function AUtils_TryStrToDateP(const S: APascalString; var Value: TDateTime): ABool;
+function AUtils_TryStrToDate(const S: AString_Type; var Value: TDateTime): AError;
 begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_TryStrToDate)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_TryStrToDate(S, Value);
+end;
+
+function AUtils_TryStrToDateP(const S: APascalString; var Value: TDateTime): ABool;
+var
+  SS: AString_Type;
+begin
+  AString_AssignP(SS, S);
+  Result := (AUtils_TryStrToDate(SS, Value) >= 0);
+end;
+
+function AUtils_TryStrToFloat32(const S: AString_Type; var Value: AFloat32): AError;
+begin
+  if not(Assigned(AUtilsProcVars.AUtils_TryStrToFloat32)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_TryStrToFloat32(S, Value);
+end;
+
+function AUtils_TryStrToFloat32P(const S: APascalString; var Value: AFloat32): ABool;
+var
+  SS: AString_Type;
+begin
+  AString_AssignP(SS, S);
+  Result := (AUtils_TryStrToFloat32(SS, Value) >= 0);
+end;
+
+function AUtils_TryStrToFloat64(const S: AString_Type; var Value: AFloat64): AError;
+begin
+  if not(Assigned(AUtilsProcVars.AUtils_TryStrToFloat64)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_TryStrToFloat64(S, Value);
+end;
+
+function AUtils_TryStrToFloat64P(const S: APascalString; var Value: AFloat64): ABool;
+var
+  SS: AString_Type;
+begin
+  AString_AssignP(SS, S);
+  Result := (AUtils_TryStrToFloat64(SS, Value) >= 0);
 end;
 
 function AUtils_TryStrToFloatP(const S: APascalString; var Value: AFloat): ABool;
 begin
-  xxx
+  {$ifdef AFloat32}
+  Result := AUtils_TryStrToFloat32P(S, Value);
+  {$else}
+  Result := AUtils_TryStrToFloat64P(S, Value);
+  {$endif}
 end;
 
-function AUtils_TryStrToFloat32P(const S: APascalString; var Value: AFloat32): ABool;
+function AUtils_TryStrToInt(const S: AString_Type; var Value: AInt): AError;
 begin
-  xxx
-end;
-
-function AUtils_TryStrToFloat64P(const S: APascalString; var Value: AFloat64): ABool;
-begin
-  xxx
+  if not(Assigned(AUtilsProcVars.AUtils_TryStrToInt)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUtilsProcVars.AUtils_TryStrToInt(S, Value);
 end;
 
 function AUtils_TryStrToIntP(const S: APascalString; var Value: AInt): ABool;
+var
+  SS: AString_Type;
 begin
-  xxx
+  AString_AssignP(SS, S);
+  Result := (AUtils_TryStrToInt(SS, Value) >= 0);
 end;
 
 end.

@@ -31,10 +31,14 @@ begin
   AUtilsProcVars.AUtils_Fin := GetProc('AUtils_Fin');
   AUtilsProcVars.AUtils_FloatToStr := GetProc('AUtils_FloatToStr');
   AUtilsProcVars.AUtils_FloatToStr2 := GetProc('AUtils_FloatToStr2');
+  AUtilsProcVars.AUtils_ForceDirectories := GetProc('AUtils_ForceDirectories');
+  AUtilsProcVars.AUtils_ForceDirectoriesA := GetProc('AUtils_ForceDirectoriesA');
   AUtilsProcVars.AUtils_FormatFloat := GetProc('AUtils_FormatFloat');
   AUtilsProcVars.AUtils_FormatInt := GetProc('AUtils_FormatInt');
   AUtilsProcVars.AUtils_FormatStr := GetProc('AUtils_FormatStr');
   AUtilsProcVars.AUtils_FormatStrAnsi := GetProc('AUtils_FormatStrAnsi');
+  AUtilsProcVars.AUtils_FormatStrStr := GetProc('AUtils_FormatStrStr');
+  AUtilsProcVars.AUtils_FormatStrStrA := GetProc('AUtils_FormatStrStrA');
   AUtilsProcVars.AUtils_GetNowDateTime := GetProc('AUtils_GetNowDateTime');
   AUtilsProcVars.AUtils_Init := GetProc('AUtils_Init');
   AUtilsProcVars.AUtils_IntToStr := GetProc('AUtils_IntToStr');
