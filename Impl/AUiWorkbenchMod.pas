@@ -2,17 +2,22 @@
 @Abstract AUiWorkbench
 @Author Prof1983 <prof1983@ya.ru>
 @Created 26.08.2009
-@LastMod 22.11.2012
+@LastMod 20.02.2013
 }
 unit AUiWorkbenchMod;
-
-{$IFDEF A04}{$DEFINE ADepr}{$ENDIF}
 
 interface
 
 uses
-  ABase, ARuntimeBase, ARuntimeMain, AUiBase, AUiMain, AUiModClient,
-  AUiWorkbenchMain, AUiWorkbenchBase{$IFDEF ADepr}, AUiWorkbenchProcRec{$ENDIF};
+  ABase,
+  ARuntimeBase,
+  ARuntimeMain,
+  AUiBase,
+  AUiMain,
+  AUiWorkbenchBase,
+  AUiWorkbenchMain;
+
+// --- AUiWorkbenchMod ---
 
 function AUiWorkbenchMod_Boot(): AError; stdcall;
 
@@ -22,32 +27,10 @@ function AUiWorkbenchMod_GetProc(ProcName: AStr): Pointer; stdcall;
 
 function AUiWorkbenchMod_Init(): AError; stdcall;
 
-{$IFDEF ADepr}
-const
-  UiWorkbenchProcs: AUiWorkbenchProcs_Type = (
-    AddPageWS: AUiWorkbench_AddPageWS;                          // 00
-    Init: AUiWorkbenchMod_Init;                                 // 01
-    Fin: AUiWorkbenchMod_Fin;                                   // 02
-    Reserved03: 0;
-    Reserved04: 0;
-    Reserved05: 0;
-    Reserved06: 0;
-    Reserved07: 0;
-    Reserved08: 0;
-    Reserved09: 0;
-    Reserved10: 0;
-    Reserved11: 0;
-    Reserved12: 0;
-    Reserved13: 0;
-    Reserved14: 0;
-    Reserved15: 0;
-    );
-{$ENDIF}
-
 implementation
 
 const
-  AUiWorkbench_Version = $00040000;
+  AUiWorkbench_Version = $00070000;
 
 const
   Module: AModule_Type = (
@@ -58,13 +41,13 @@ const
     Init: AUiWorkbenchMod_Init;
     Fin: AUiWorkbenchMod_Fin;
     GetProc: AUiWorkbenchMod_GetProc;
-    Procs: {$IFDEF ADepr}Addr(UiWorkbenchProcs){$ELSE}nil{$ENDIF};
+    Procs: nil;
     );
 
 var
   FInitialized: Boolean;
 
-// --- AUiWorkbenchModule ---
+// --- AUiWorkbenchMod ---
 
 function AUiWorkbenchMod_Boot(): AError;
 begin
@@ -91,7 +74,16 @@ end;
 
 function AUiWorkbenchMod_GetProc(ProcName: AStr): Pointer;
 begin
-  Result := nil;
+  if (ProcName = 'AUiWorkbench_AddPage') then
+    Result := Addr(AUiWorkbench_AddPage)
+  else if (ProcName = 'AUiWorkbench_Fin') then
+    Result := Addr(AUiWorkbench_Fin)
+  else if (ProcName = 'AUiWorkbench_Init') then
+    Result := Addr(AUiWorkbench_Init)
+  else if (ProcName = 'AUiWorkbench_SetOnChange') then
+    Result := Addr(AUiWorkbench_SetOnChange)
+  else
+    Result := nil;
 end;
 
 function AUiWorkbenchMod_Init(): AError;
@@ -102,14 +94,13 @@ begin
     Exit;
   end;
 
-  if (AUi_Boot() < 0) then
+  // --- Init request modules ---
+
+  if (ARuntime_InitModuleByUid(AUi_Uid) < 0) then
   begin
     Result := -4;
     Exit;
   end;
-
-  // --- Init request modules ---
-  AUi_Init();
 
   Result := AUiWorkbench_Init();
 end;

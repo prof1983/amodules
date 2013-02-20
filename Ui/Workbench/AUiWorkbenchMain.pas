@@ -2,84 +2,73 @@
 @Abstract AUiWorkbench
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 22.11.2012
+@LastMod 20.02.2013
 }
 unit AUiWorkbenchMain;
 
-{$ifdef A04}{$define ADepr}{$endif}
+{define AStdCall}
 
 interface
 
 uses
-  ABase, AStrings, AUiBase, AUiWorkbenchProcVars;
+  ABase,
+  AStringMain,
+  AUiBase,
+  AUiWorkbenchProcVars;
 
-function AUiWorkbench_AddPage(const Name, Text: AString_Type): AControl; stdcall;
+// --- AUiWorkbench ---
 
 {** Creates a new tab in the main window of the program
     @return 0 - error, else identifier new page }
-function AUiWorkbench_AddPageP(const Name, Text: APascalString): AControl; stdcall;
+function AUiWorkbench_AddPage(const Name, Text: AString_Type): AControl; {$ifdef AStdCall}stdcall;{$endif}
 
 {** Creates a new tab in the main window of the program
     @return 0 - error, else identifier new page }
-function AUiWorkbench_AddPageWS(const Name, Text: AWideString): AControl; stdcall;
+function AUiWorkbench_AddPageP(const Name, Text: APascalString): AControl; {$ifdef AStdCall}stdcall;{$endif}
 
 {** Finalize workbench }
-function AUiWorkbench_Fin(): AError; stdcall;
+function AUiWorkbench_Fin(): AError; {$ifdef AStdCall}stdcall;{$endif}
 
 {** Initialize workbench }
-function AUiWorkbench_Init(): AError; stdcall;
+function AUiWorkbench_Init(): AError; {$ifdef AStdCall}stdcall;{$endif}
+
+{** Set OnChange event listener }
+function AUiWorkbench_SetOnChange(OnChange: ACallbackProc): AError; {$ifdef AStdCall}stdcall;{$endif}
 
 implementation
 
+// --- AUiWorkbench ---
+
 function AUiWorkbench_AddPage(const Name, Text: AString_Type): AControl;
 begin
-  if Assigned(AUiWorkbenchProcVars.AUiWorkbench_AddPage) then
+  if not(Assigned(AUiWorkbenchProcVars.AUiWorkbench_AddPage)) then
   begin
-    Result := AUiWorkbenchProcVars.AUiWorkbench_AddPage(Name, Text);
+    Result := -100;
     Exit;
   end;
-  {$ifdef ADepr}
-  if Assigned(AUiWorkbenchProcVars.AUiWorkbench_AddPageWS) then
-  begin
-    Result := AUiWorkbenchProcVars.AUiWorkbench_AddPageWS(AString_ToWideString(Name), AString_ToWideString(Text));
-    Exit;
-  end;
-  {$endif}
-  Result := -1;
+  Result := AUiWorkbenchProcVars.AUiWorkbench_AddPage(Name, Text);
 end;
 
 function AUiWorkbench_AddPageP(const Name, Text: APascalString): AControl;
-begin
-  Result := AUiWorkbench_AddPageWS(Name, Text);
-end;
-
-function AUiWorkbench_AddPageWS(const Name, Text: AWideString): AControl;
 var
   SName: AString_Type;
   SText: AString_Type;
 begin
-  if Assigned(AUiWorkbenchProcVars.AUiWorkbench_AddPage) then
+  if not(Assigned(AUiWorkbenchProcVars.AUiWorkbench_AddPage)) then
   begin
-    AString_AssignWS(SName, Name);
-    AString_AssignWS(SText, Text);
-    Result := AUiWorkbench_AddPage(SName, SText);
+    Result := 0;
     Exit;
   end;
-  {$ifdef ADepr}
-  if Assigned(AUiWorkbenchProcVars.AUiWorkbench_AddPageWS) then
-  begin
-    Result := AUiWorkbenchProcVars.AUiWorkbench_AddPageWS(Name, Text);
-    Exit;
-  end;
-  {$endif}
-  Result := 0;
+  AString_AssignP(SName, Name);
+  AString_AssignP(SText, Text);
+  Result := AUiWorkbench_AddPage(SName, SText);
 end;
 
 function AUiWorkbench_Fin(): AError;
 begin
   if not(Assigned(AUiWorkbenchProcVars.AUiWorkbench_Fin)) then
   begin
-    Result := -1;
+    Result := -100;
     Exit;
   end;
   Result := AUiWorkbenchProcVars.AUiWorkbench_Fin();
@@ -89,10 +78,20 @@ function AUiWorkbench_Init(): AError;
 begin
   if not(Assigned(AUiWorkbenchProcVars.AUiWorkbench_Init)) then
   begin
-    Result := -1;
+    Result := -100;
     Exit;
   end;
   Result := AUiWorkbenchProcVars.AUiWorkbench_Init();
+end;
+
+function AUiWorkbench_SetOnChange(OnChange: ACallbackProc): AError;
+begin
+  if not(Assigned(AUiWorkbenchProcVars.AUiWorkbench_SetOnChange)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := AUiWorkbenchProcVars.AUiWorkbench_SetOnChange(OnChange);
 end;
 
 end.
