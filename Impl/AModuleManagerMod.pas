@@ -2,16 +2,18 @@
 @Abstract AModuleManager module
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.08.2009
-@LastMod 26.12.2012
+@LastMod 20.02.2013
 }
 unit AModuleManagerMod;
-
-{$IFDEF A04}{$DEFINE ADepr}{$ENDIF}
 
 interface
 
 uses
-  ABase, AModuleManagerMain, {IFDEF ADepr}AModuleManagerProcTypes,{ENDIF} ARuntime, ARuntimeBase,
+  ABase,
+  AModuleManagerBase,
+  AModuleManagerMain,
+  ARuntimeBase,
+  ARuntimeMain,
   ASettingsModClient,
   ASystemModClient,
   AUiMain,
@@ -28,32 +30,10 @@ function AModuleManagerMod_GetProc(ProcName: AStr): Pointer; stdcall;
 
 function AModuleManagerMod_Init(): AError; stdcall;
 
-{$IFDEF ADepr}
-const
-  ModuleManagerProcs: AModuleManagerProcs_Type = (
-    Reserved00: 0;
-    Reserved01: 0;
-    Reserved02: 0;
-    Reserved03: 0;
-    Reserved04: 0;
-    Reserved05: 0;
-    Reserved06: 0;
-    Reserved07: 0;
-    Reserved08: 0;
-    Reserved09: 0;
-    Reserved10: 0;
-    Reserved11: 0;
-    Reserved12: 0;
-    Reserved13: 0;
-    Reserved14: 0;
-    Reserved15: 0;
-    );
-{$ENDIF}
-
 implementation
 
 const
-  AModuleManager_Version = $00040000;
+  AModuleManager_Version = $00070000;
 
 const
   Module: AModule_Type = (
@@ -64,7 +44,7 @@ const
     Init: AModuleManagerMod_Init;
     Fin: AModuleManagerMod_Fin;
     GetProc: AModuleManagerMod_GetProc;
-    Procs: {$IFDEF ADepr}Addr(ModuleManagerProcs){$ELSE}nil{$ENDIF};
+    Procs: nil;
     );
 
 var
@@ -74,32 +54,37 @@ var
 
 function AModuleManagerMod_Boot(): AError;
 begin
-  if (ARuntime.Modules_FindByUid(AModuleManager_Uid) >= 0) then
+  if (ARuntime_FindModuleByUid(AModuleManager_Uid) >= 0) then
   begin
     Result := -1;
     Exit;
   end;
 
-  if (ARuntime.Modules_FindByName(AModuleManager_Name) >= 0) then
+  if (ARuntime_FindModuleByName(AModuleManager_Name) >= 0) then
   begin
     Result := -2;
     Exit;
   end;
 
-  Result := ARuntime.Module_Register(Module);
+  Result := ARuntime_RegisterModule(Module);
 end;
 
 function AModuleManagerMod_Fin(): AError;
 begin
   AModuleManager_Fin();
-  ARuntime.Modules_DeleteByUid(AModuleManager_Uid);
+  ARuntime_DeleteModuleByUid(AModuleManager_Uid);
   FInitialized := False;
   Result := 0;
 end;
 
 function AModuleManagerMod_GetProc(ProcName: AStr): Pointer;
 begin
-  Result := nil;
+  if (ProcName = 'AModuleManager_Fin') then
+    Result := Addr(AModuleManager_Fin)
+  else if (ProcName = 'AModuleManager_Init') then
+    Result := Addr(AModuleManager_Init)
+  else
+    Result := nil;
 end;
 
 function AModuleManagerMod_Init(): AError;

@@ -4,16 +4,16 @@
 @Created 23.07.2010
 @LastMod 20.02.2013
 }
-unit AModuleManagerProcTypes;
+unit AModuleManagerProcVars;
 
 interface
 
 uses
-  ABase;
+  AModuleManagerProcTypes;
 
 type
-  AModuleManager_Fin_Proc = function(): AError; stdcall;
-  AModuleManager_Init_Proc = function(): AError; stdcall;
+  AModuleManager_Fin: AModuleManager_Fin_Proc;
+  AModuleManager_Init: AModuleManager_Init_Proc;
 
 implementation
 
