@@ -2,7 +2,7 @@
 @Abstract AUtils
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 19.02.2013
+@LastMod 20.02.2013
 }
 unit AUtilsProcSet;
 
@@ -59,6 +59,9 @@ begin
   AUtilsProcVars.AUtils_TryStrToFloat32 := GetProc('AUtils_TryStrToFloat32');
   AUtilsProcVars.AUtils_TryStrToFloat64 := GetProc('AUtils_TryStrToFloat64');
   AUtilsProcVars.AUtils_TryStrToInt := GetProc('AUtils_TryStrToInt');
+  AUtilsProcVars.AString_ToLower := GetProc('AString_ToLower');
+  AUtilsProcVars.AString_ToUpper := GetProc('AString_ToUpper');
+
   Result := 0;
 end;
 

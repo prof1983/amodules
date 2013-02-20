@@ -2,7 +2,7 @@
 @Abstract AUtils
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.07.2012
-@LastMod 19.02.2013
+@LastMod 20.02.2013
 }
 unit AUtilsProcVars;
 
@@ -52,6 +52,8 @@ var
   AUtils_TryStrToFloat32: AUtils_TryStrToFloat32_Proc;
   AUtils_TryStrToFloat64: AUtils_TryStrToFloat64_Proc;
   AUtils_TryStrToInt: AUtils_TryStrToInt_Proc;
+  AString_ToLower: AString_ToLower_Proc;
+  AString_ToUpper: AString_ToUpper_Proc;
 
 implementation
 

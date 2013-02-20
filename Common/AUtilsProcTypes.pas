@@ -2,7 +2,7 @@
 @Abstract AUtils proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.09.2009
-@LastMod 19.02.2013
+@LastMod 20.02.2013
 }
 unit AUtilsProcTypes;
 
@@ -54,7 +54,8 @@ type
   AUtils_TryStrToFloat32_Proc = function(const S: AString_Type; var Value: AFloat32): AError; stdcall;
   AUtils_TryStrToFloat64_Proc = function(const S: AString_Type; var Value: AFloat64): AError; stdcall;
   AUtils_TryStrToInt_Proc = function(const S: AString_Type; var Value: AInt): AError; stdcall;
-  AUtils_UpperString_Proc = function(var S: AString_Type): AError; stdcall;
+  AString_ToLower_Proc = function(const S: AString_Type; out Res: AString_Type): AInt; stdcall;
+  AString_ToUpper_Proc = function(const S: AString_Type; out Res: AString_Type): AInt; stdcall;
 
 implementation
 
