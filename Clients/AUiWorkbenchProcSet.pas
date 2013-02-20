@@ -2,41 +2,33 @@
 @Abstract AUiWorkbench
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 25.01.2013
+@LastMod 20.02.2013
 }
 unit AUiWorkbenchProcSet;
 
 interface
 
 uses
-  ABase, AUiWorkbenchProcRec, AUiWorkbenchProcVars;
+  ABase,
+  ARuntimeBase,
+  AUiWorkbenchProcVars;
 
-{$ifdef ADepr}
-procedure AUiWorkbench_SetProcs(const Procs: AUiWorkbenchProcs_Type);
-function AUiWorkbench_SetProcsP(Procs: PAUiWorkbenchProcs): Boolean;
-{$endif}
+// --- AUiWorkbench ---
+
+function AUiWorkbench_SetProcs(GetProc: AModuleGetProc): AError;
 
 implementation
 
-{$ifdef ADepr}
-procedure AUiWorkbench_SetProcs(const Procs: AUiWorkbenchProcs_Type);
-begin
-  AUiWorkbenchProcVars.AUiWorkbench_AddPageWS := Procs.AddPageWS;
-  AUiWorkbenchProcVars.AUiWorkbench_Fin := Procs.Fin;
-  AUiWorkbenchProcVars.AUiWorkbench_Init := Procs.Init;
-end;
+// --- AUiWorkbench ---
 
-function AUiWorkbench_SetProcsP(Procs: PAUiWorkbenchProcs): Boolean;
+function AUiWorkbench_SetProcs(GetProc: AModuleGetProc): AError;
 begin
-  if not(Assigned(Procs)) then
-  begin
-    Result := False;
-    Exit;
-  end;
-  AUiWorkbench_SetProcs(AUiWorkbenchProcs_Type(Procs^));
-  Result := True;
+  AUiWorkbenchProcVars.AUiWorkbench_AddPage := GetProc('AUiWorkbench_AddPage');
+  AUiWorkbenchProcVars.AUiWorkbench_Fin := GetProc('AUiWorkbench_Fin');
+  AUiWorkbenchProcVars.AUiWorkbench_Init := GetProc('AUiWorkbench_Init');
+  AUiWorkbenchProcVars.AUiWorkbench_SetOnChange := GetProc('AUiWorkbench_SetOnChange');
+  Result := 0;
 end;
-{$endif}
 
 end.
  
