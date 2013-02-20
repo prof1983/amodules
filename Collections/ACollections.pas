@@ -2,7 +2,7 @@
 @Abstract ACollections
 @Author Prof1983 <prof1983@ya.ru>
 @Created 01.08.2012
-@LastMod 26.12.2012
+@LastMod 20.02.2013
 }
 unit ACollections;
 
@@ -10,37 +10,36 @@ interface
 
 uses
   ABase,
-  ABaseTypes,
   ACollectionsProcVars;
 
-// --- StringList ---
+// --- Public ---
 
-function StringList_AddA(StringList: AStringList; Value: AStr): AInt; stdcall;
+function Fin(): AError; stdcall;
 
-function StringList_Clear(StringList: AStringList): AError; stdcall;
+function Init(): AError; stdcall;
 
 implementation
 
-// --- StringList ---
+// --- Public ---
 
-function StringList_AddA(StringList: AStringList; Value: AStr): AInt;
+function Fin(): AError;
 begin
-  if not(Assigned(ACollections_StringList_AddA)) then
+  if not(Assigned(ACollections_Fin)) then
   begin
-    Result := -1;
+    Result := -100;
     Exit;
   end;
-  Result := ACollections_StringList_AddA(StringList, Value);
+  Result := ACollections_Fin();
 end;
 
-function StringList_Clear(StringList: AStringList): AError;
+function Init(): AError;
 begin
-  if not(Assigned(ACollections_StringList_Clear)) then
+  if not(Assigned(ACollections_Init)) then
   begin
-    Result := -1;
+    Result := -100;
     Exit;
   end;
-  Result := ACollections_StringList_Clear(StringList);
+  Result := ACollections_Init();
 end;
 
 end.

@@ -2,18 +2,27 @@
 Abstract ACollections
 Author Prof1983 <prof1983@ya.ru>
 Created 19.11.2012
-LastMod 20.11.2012
+LastMod 20.02.2013
 }
 unit ACollectionsModClient;
 
 interface
 
 uses
-  ABase, ACollectionsBase, ARuntimeBase, ARuntimeMain;
+  ABase,
+  ACollectionsBase,
+  ACollectionsProcSet,
+  ACollectionsProcVars,
+  ARuntimeBase,
+  ARuntimeMain;
+
+// --- ACollections ---
 
 function ACollections_Boot(): AError;
 
 implementation
+
+// --- ACollections ---
 
 function ACollections_Boot(): AError;
 var
@@ -24,13 +33,6 @@ begin
     Result := -2;
     Exit;
   end;
-  {$IFDEF ADepr}
-  if Assigned(Module.Procs) then
-  begin
-    Result := ACollections_SetProcs(ASettingsProcs_Type(Module.Procs^));
-    Exit;
-  end;
-  {$ENDIF}
 
   if not(Assigned(Module.GetProc)) then
   begin
@@ -38,7 +40,9 @@ begin
     Exit;
   end;
 
-  TODO: Use Module.GetProc
+  ACollections_SetProcs(Module.GetProc);
+  ACollections_Fin := Module.Fin;
+  ACollections_Init := Module.Init;
 
   Result := 0;
 end;
