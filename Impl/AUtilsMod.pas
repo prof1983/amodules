@@ -2,7 +2,7 @@
 @Abstract AUtils04
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.09.2009
-@LastMod 19.02.2013
+@LastMod 20.02.2013
 }
 unit AUtilsMod;
 
@@ -10,6 +10,7 @@ interface
 
 uses
   ABase, ABaseUtils, ARuntimeBase, ARuntimeMain,
+  AStringUtils,
   AUtilsBase,
   AUtilsMain;
 
@@ -136,6 +137,10 @@ begin
     Result := Addr(AUtils_TryStrToFloat64)
   else if (ProcName = 'AUtils_TryStrToInt') then
     Result := Addr(AUtils_TryStrToInt)
+  else if (ProcName = 'AString_ToLower') then
+    Result := Addr(AString_ToLower)
+  else if (ProcName = 'AString_ToUpper') then
+    Result := Addr(AString_ToUpper)
   else
     Result := nil;
 end;
