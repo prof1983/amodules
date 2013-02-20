@@ -2,25 +2,34 @@
 @Abstract AUi TreeView
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 19.11.2012
+@LastMod 20.02.2013
 }
 unit AUiTreeView;
 
 interface
 
 uses
-  ABase, AStrings,
-  AUiBase, AUiProcVars;
+  ABase,
+  AStringMain,
+  AUiBase,
+  AUiProcVars;
 
-function AUiTreeView_AddItem(TreeView: AControl; Parent: ATreeNode; const Text: AString_Type): ATreeNode; {$ifdef AStdCall}stdcall;{$endif}
+// --- AUiTreeView ---
 
-function AUiTreeView_AddItemP(TreeView: AControl; Parent: ATreeNode; const Text: APascalString): ATreeNode; {$ifdef AStdCall}stdcall;{$endif}
+function AUiTreeView_AddItem(TreeView: AControl; Parent: ATreeNode;
+    const Text: AString_Type): ATreeNode; {$ifdef AStdCall}stdcall;{$endif}
+
+function AUiTreeView_AddItemP(TreeView: AControl; Parent: ATreeNode;
+    const Text: APascalString): ATreeNode;
 
 function AUiTreeView_New(Parent: AControl): AControl; {$ifdef AStdCall}stdcall;{$endif}
 
 implementation
 
-function AUiTreeView_AddItem(TreeView: AControl; Parent: ATreeNode; const Text: AString_Type): ATreeNode;
+// --- AUiTreeView ---
+
+function AUiTreeView_AddItem(TreeView: AControl; Parent: ATreeNode;
+    const Text: AString_Type): ATreeNode;
 begin
   if not(Assigned(AUiProcVars.AUiTreeView_AddItem)) then
   begin
@@ -30,7 +39,8 @@ begin
   Result := AUiProcVars.AUiTreeView_AddItem(TreeView, Parent, Text);
 end;
 
-function AUiTreeView_AddItemP(TreeView: AControl; Parent: ATreeNode; const Text: APascalString): ATreeNode;
+function AUiTreeView_AddItemP(TreeView: AControl; Parent: ATreeNode;
+    const Text: APascalString): ATreeNode;
 var
   S: AString_Type;
 begin
