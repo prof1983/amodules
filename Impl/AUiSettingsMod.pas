@@ -2,11 +2,9 @@
 @Abstract AUiSettings
 @Author Prof1983 <prof1983@ya.ru>
 @Created 13.03.2009
-@LastMod 26.12.2012
+@LastMod 20.02.2013
 }
 unit AUiSettingsMod;
-
-{$IFDEF A04}{$DEFINE ADepr}{$ENDIF}
 
 interface
 
@@ -14,7 +12,8 @@ uses
   ABase,
   ARuntimeBase,
   ARuntimeMain, 
-  AUiSettingsBase, AUiSettingsMain{$IFDEF ADepr}, AUiSettingsProcRec{$ENDIF};
+  AUiSettingsBase,
+  AUiSettingsMain;
 
 function AUiSettingsMod_Boot(): AError; stdcall;
 
@@ -23,28 +22,6 @@ function AUiSettingsMod_Fin(): AError; stdcall;
 function AUiSettingsMod_GetProc(ProcName: AStr): Pointer; stdcall;
 
 function AUiSettingsMod_Init(): AError; stdcall;
-
-{$IFDEF ADepr}
-const
-  UiSettingsProcs: AUiSettingsProcs_Type = (
-    MainSettingsWin: UiSettings_MainSettingsWin;                // 00
-    SettingsWin_New: UiSettings_SettingsWin_New;                // 01
-    ShowSettingsWin: UiSettings_ShowSettingsWin;                // 02
-    NewItem: UiSettings_NewItem;                                // 03
-    Item_GetPage: UiSettings_Item_GetPage;                      // 04
-    Init: AUiSettingsMod_Init;                                  // 05
-    Fin: AUiSettingsMod_Fin;                                    // 06
-    Reserved07: 0;
-    Reserved08: 0;
-    Reserved09: 0;
-    Reserved10: 0;
-    Reserved11: 0;
-    Reserved12: 0;
-    Reserved13: 0;
-    Reserved14: 0;
-    Reserved15: 0;
-    );
-{$ENDIF}
 
 implementation
 
@@ -55,7 +32,7 @@ implementation
 {$ENDIF}
 
 const
-  AUiSettings_Version = $00040000;
+  AUiSettings_Version = $00070000;
 
 const
   Module: AModule_Type = (
@@ -66,7 +43,7 @@ const
     Init: AUiSettingsMod_Init;
     Fin: AUiSettingsMod_Fin;
     GetProc: AUiSettingsMod_GetProc;
-    Procs: {$IFDEF ADepr}Addr(UiSettingsProcs){$ELSE}nil{$ENDIF};
+    Procs: nil;
     );
 
 function AUiSettingsMod_Boot(): AError;
@@ -104,6 +81,8 @@ begin
     Result := Addr(AUiSettings_NewSettingsWin)
   else if (ProcName = 'AUiSettings_ShowSettingsWin') then
     Result := Addr(AUiSettings_ShowSettingsWin)
+  else if (ProcName = 'AUiSettingsItem_GetPage') then
+    Result := Addr(AUiSettingsItem_GetPage)
   else
     Result := nil;
 end;

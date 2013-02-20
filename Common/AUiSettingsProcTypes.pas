@@ -2,7 +2,7 @@
 @Abstract AUiSettings procs
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2011
-@LastMod 30.07.2012
+@LastMod 20.02.2013
 }
 unit AUiSettingsProcTypes;
 
@@ -15,12 +15,12 @@ uses
 
 type
   AUiSettings_Fin_Proc = function(): AError; stdcall;
-  AUiSettings_Item_GetPage_Proc = function(Item: AUISettingsItem): AControl; stdcall;
+  AUiSettings_GetMainSettingsWin_Proc = function(): AWindow; stdcall;
   AUiSettings_Itit_Proc = function(): AError; stdcall;
-  AUiSettings_MainSettingsWin_Proc = function(): AWindow; stdcall;
-  AUiSettings_NewItemW_Proc = function(Parent: AUISettingsItem; const Text: AWideString): AUISettingsItem; stdcall;
-  AUiSettings_SettingsWin_New_Proc = function(): AWindow; stdcall;
-  AUiSettings_ShowSettingsWin_Proc = procedure(); stdcall;
+  AUiSettings_NewItem_Proc = function(Parent: AUiSettingsItem; const Text: AString_Type): AUiSettingsItem; stdcall;
+  AUiSettings_NewSettingsWin_Proc = function(): AWindow; stdcall;
+  AUiSettings_ShowSettingsWin_Proc = function(): AError; stdcall;
+  AUiSettingsItem_GetPage_Proc = function(Item: AUiSettingsItem): AControl; stdcall;
 
 implementation
 
