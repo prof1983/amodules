@@ -2,7 +2,7 @@
 @Abstract User Interface
 @Author Prof1983 <prof1983@ya.ru>
 @Created 24.09.2012
-@LastMod 19.02.2013
+@LastMod 20.02.2013
 }
 unit AUiProcSet;
 
@@ -38,7 +38,7 @@ begin
   AUiProcVars.AUi_ExecuteMessageDialog1A := GetProc('AUi_ExecuteMessageDialog1A');
   AUiProcVars.AUi_ExecuteOpenFileDialog := GetProc('AUi_ExecuteOpenFileDialog');
   AUiProcVars.AUi_ExecutePrinterSetupDialog := GetProc('AUi_ExecutePrinterSetupDialog');
-  AUiProcVars.AUi_ExecuteSaveFileDialog := GetProc('AUi_ExecuteSaveFileDialog');
+  AUiProcVars.AUi_ExecuteSaveFileDialog1 := GetProc('AUi_ExecuteSaveFileDialog1');
   AUiProcVars.AUi_Fin := GetProc('AUi_Fin');
   AUiProcVars.AUi_GetIsShowApp := GetProc('AUi_GetIsShowApp');
   AUiProcVars.AUi_GetMainMenuItem := GetProc('AUi_GetMainMenuItem');

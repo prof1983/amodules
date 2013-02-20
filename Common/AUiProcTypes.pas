@@ -2,7 +2,7 @@
 @Abstract User interface proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 19.12.2012
+@LastMod 20.12.2012
 }
 unit AUiProcTypes;
 
@@ -30,7 +30,7 @@ type
   AUi_ExecuteMessageDialog1A_Proc = function(Text, Caption: AStr; Flags: AMessageBoxFlags): ADialogBoxCommands; stdcall;
   AUi_ExecuteOpenFileDialog_Proc = function(const InitialDir, Filter, Title: AString_Type; var FileName: AString_Type): ABool; stdcall;
   AUi_ExecutePrinterSetupDialog_Proc = function(): AError; stdcall;
-  AUi_ExecuteSaveFileDialog_Proc = function(const Dir, Ext, DefFileName: AString_Type; out Value: AString_Type): AInt; stdcall;
+  AUi_ExecuteSaveFileDialog1_Proc = function(const InitialDir, DefExt, DefFileName: AString_Type; out Value: AString_Type): AInt; stdcall;
   AUi_Fin_Proc = function(): AError; stdcall;
   AUi_GetIsShowApp_Proc = function(): ABool; stdcall;
   AUi_GetMainMenuItem_Proc = function(): AMenuItem; stdcall;

@@ -2,7 +2,7 @@
 @Abstract User Interface procs var
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 19.02.2013
+@LastMod 20.02.2013
 }
 unit AUiProcVars;
 
@@ -33,7 +33,7 @@ var
   AUi_ExecuteMessageDialog1A: AUi_ExecuteMessageDialog1A_Proc = nil;
   AUi_ExecuteOpenFileDialog: AUi_ExecuteOpenFileDialog_Proc = nil;
   AUi_ExecutePrinterSetupDialog: AUi_ExecutePrinterSetupDialog_Proc = nil;
-  AUi_ExecuteSaveFileDialog: AUi_ExecuteSaveFileDialog_Proc = nil;
+  AUi_ExecuteSaveFileDialog1: AUi_ExecuteSaveFileDialog1_Proc = nil;
   AUi_Fin: AUi_Fin_Proc = nil;
   AUi_GetIsShowApp: AUi_GetIsShowApp_Proc = nil;
   AUi_GetMainMenuItem: AUi_GetMainMenuItem_Proc = nil;
