@@ -2,7 +2,7 @@
 @Abstract ASystem get proc address from lib
 @Author Prof1983 <prof1983@ya.ru>
 @Created 27.08.2012
-@LastMod 18.02.2013
+@LastMod 20.02.2013
 }
 unit ASystemLibClient;
 
@@ -11,9 +11,13 @@ interface
 uses
   ABase, ALibraries, ASystemProcVars;
 
+// --- ASystem ---
+
 function ASystem_LoadFromLib(Lib: ALibrary): AError;
 
 implementation
+
+// --- ASystem ---
 
 function ASystem_LoadFromLib(Lib: ALibrary): AError;
 begin
