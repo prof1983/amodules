@@ -2,7 +2,7 @@
 @Abstract AStringsModule
 @Author Prof1983 <prof1983@ya.ru>
 @Created 03.06.2011
-@LastMod 18.02.2013
+@LastMod 22.02.2013
 }
 unit AStringsMod;
 
@@ -13,6 +13,7 @@ uses
   ARuntimeBase,
   ARuntimeMain,
   AStringMain,
+  AStringsBase,
   AStringsMain;
 
 // --- AStringsMod ---
@@ -28,9 +29,7 @@ function AStringsMod_Init(): AError; stdcall;
 implementation
 
 const
-  AStrings_Version = $00070000;
-  AStrings_Uid = $11060301;
-  AStrings_Name = 'AStrings';
+  AStrings_Version = $00070100;
 
 const
   Module: AModule_Type = (
