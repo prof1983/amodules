@@ -2,7 +2,7 @@
 @Abstract ASystem resource
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 18.02.2013
+@LastMod 22.02.2013
 }
 unit ASystemResourceString;
 
@@ -15,13 +15,17 @@ uses
   AStringMain,
   ASystemProcVars;
 
-function ASystem_GetResourceString(const Section, Name, Default: AString_Type; out Value: AString_Type): AInteger; {$ifdef AStdCall}stdcall;{$endif}
+// --- ASystem ---
+
+function ASystem_GetResourceString(const Section, Name, Default: AString_Type; out Value: AString_Type): AInt; {$ifdef AStdCall}stdcall;{$endif}
 
 function ASystem_GetResourceStringP(const Section, Name, Default: APascalString): APascalString; {$ifdef AStdCall}stdcall;{$endif}
 
 implementation
 
-function ASystem_GetResourceString(const Section, Name, Default: AString_Type; out Value: AString_Type): AInteger;
+// --- ASystem ---
+
+function ASystem_GetResourceString(const Section, Name, Default: AString_Type; out Value: AString_Type): AInt;
 begin
   if not(Assigned(ASystemProcVars.ASystem_GetResourceString)) then
   begin

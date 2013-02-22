@@ -2,7 +2,7 @@
 @Abstract ASystem client
 @Author Prof1983 <prof1983@ya.ru>
 @Created 16.11.2012
-@LastMod 16.11.2012
+@LastMod 22.02.2013
 }
 unit ASystemEvents;
 
@@ -12,17 +12,21 @@ uses
   ABase,
   ASystemProcVars;
 
-function ASystem_OnAfterRun_Connect(Callback: ACallbackProc; Weight: AInt = High(AInt)): AInt; stdcall;
+// --- ASystem ---
 
-function ASystem_OnAfterRun_Disconnect(Callback: ACallbackProc): AInt; stdcall;
+function ASystem_OnAfterRun_Connect(Callback: ACallbackProc; Weight: AInt = High(AInt)): AInt; {$ifdef AStdCall}stdcall;{$endif}
 
-function ASystem_OnBeforeRun_Connect(Callback: ACallbackProc; Weight: AInt = High(AInt)): AInt; stdcall;
+function ASystem_OnAfterRun_Disconnect(Callback: ACallbackProc): AInt; {$ifdef AStdCall}stdcall;{$endif}
 
-function ASystem_OnBeforeRun_Disconnect(Callback: ACallbackProc): AInt; stdcall;
+function ASystem_OnBeforeRun_Connect(Callback: ACallbackProc; Weight: AInt = High(AInt)): AInt; {$ifdef AStdCall}stdcall;{$endif}
+
+function ASystem_OnBeforeRun_Disconnect(Callback: ACallbackProc): AInt; {$ifdef AStdCall}stdcall;{$endif}
 
 implementation
 
-function ASystem_OnAfterRun_Connect(Callback: ACallbackProc; Weight: AInt = High(AInt)): AInt;
+// --- ASystem ---
+
+function ASystem_OnAfterRun_Connect(Callback: ACallbackProc; Weight: AInt): AInt;
 begin
   if not(Assigned(ASystemProcVars.ASystem_OnAfterRun_Connect)) then
   begin
@@ -42,7 +46,7 @@ begin
   Result := ASystemProcVars.ASystem_OnAfterRun_Disconnect(Callback);
 end;
 
-function ASystem_OnBeforeRun_Connect(Callback: ACallbackProc; Weight: AInt = High(AInt)): AInt;
+function ASystem_OnBeforeRun_Connect(Callback: ACallbackProc; Weight: AInt): AInt;
 begin
   if not(Assigned(ASystemProcVars.ASystem_OnBeforeRun_Connect)) then
   begin
