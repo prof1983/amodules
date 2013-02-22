@@ -2,9 +2,11 @@
 @Abstract AModuleManager module
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.08.2009
-@LastMod 20.02.2013
+@LastMod 22.02.2013
 }
 unit AModuleManagerMod;
+
+{define Debug}
 
 interface
 
@@ -15,12 +17,16 @@ uses
   ARuntimeBase,
   ARuntimeMain,
   ASettingsModClient,
+  AStringsModClient,
+  {$ifdef Debug}
+  ASystemMain,
+  {$endif}
   ASystemModClient,
   AUiMain,
   AUiModClient,
   AUiWorkbenchModClient;
 
-{ Module }
+// --- AModuleManagerMod ---
 
 function AModuleManagerMod_Boot(): AError; stdcall;
 
@@ -33,7 +39,7 @@ function AModuleManagerMod_Init(): AError; stdcall;
 implementation
 
 const
-  AModuleManager_Version = $00070000;
+  AModuleManager_Version = $00070100;
 
 const
   Module: AModule_Type = (
@@ -97,6 +103,12 @@ begin
 
   // --- Boot reguest modules ---
 
+  if (AStrings_Boot() < 0) then
+  begin
+    Result := -3;
+    Exit;
+  end;
+
   if (ASettings_Boot() < 0) then
   begin
     Result := -3;
@@ -111,6 +123,9 @@ begin
 
   if (AUi_Boot() < 0) then
   begin
+    {$ifdef Debug}
+    ASystem_ShowMessageA('AUi_Boot() < 0 in AModuleManagerMod_Init()');
+    {$endif}
     Result := -5;
     Exit;
   end;
@@ -123,13 +138,31 @@ begin
 
   if (AUi_Init() < 0) then
   begin
+    {$ifdef Debug}
+    ASystem_ShowMessageA('AUi_Init() < 0 in AModuleManagerMod_Init()');
+    {$endif}
     Result := -6;
     Exit;
   end;
 
   // --- Init ---
 
-  AModuleManager_Init();
+  {$ifdef Debug}
+  ASystem_ShowMessageA('AModuleManager initializing...');
+  {$endif}
+
+  if (AModuleManager_Init() < 0) then
+  begin
+    {$ifdef Debug}
+    ASystem_ShowMessageA('AModuleManager_Init() < 0 in AModuleManagerMod_Init()');
+    {$endif}
+    Result := -7;
+    Exit;
+  end;
+
+  {$ifdef Debug}
+  ASystem_ShowMessageA('AModuleManagerMod is initialized ok');
+  {$endif}
 
   FInitialized := True;
   Result := 0;
