@@ -2,7 +2,7 @@
 @Abstract ASystem
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.08.2007
-@LastMod 18.02.2013
+@LastMod 22.02.2013
 }
 unit ASystemMod;
 
@@ -31,7 +31,7 @@ function ASystemMod_Init(): AError; stdcall
 implementation
 
 const
-  ASystem_Version = $00070000;
+  ASystem_Version = $00070100;
 
 const
   SystemModule: AModule_Type = (
@@ -61,22 +61,42 @@ function ASystemMod_GetProc(ProcName: AStr): Pointer;
 begin
   if (ProcName = 'ASystem_Fin') then
     Result := Addr(ASystem_Fin)
+  else if (ProcName = 'ASystem_GetComments') then
+    Result := Addr(ASystem_GetComments)
+  else if (ProcName = 'ASystem_GetCompanyName') then
+    Result := Addr(ASystem_GetCompanyName)
   else if (ProcName = 'ASystem_GetConfig') then
     Result := Addr(ASystem_GetConfig)
   else if (ProcName = 'ASystem_GetConfigDirectoryPath') then
     Result := Addr(ASystem_GetConfigDirectoryPath)
+  else if (ProcName = 'ASystem_GetCopyright') then
+    Result := Addr(ASystem_GetCopyright)
   else if (ProcName = 'ASystem_GetDataDirectoryPath') then
     Result := Addr(ASystem_GetDataDirectoryPath)
+  else if (ProcName = 'ASystem_GetDescription') then
+    Result := Addr(ASystem_GetDescription)
   else if (ProcName = 'ASystem_GetDirectoryPath') then
     Result := Addr(ASystem_GetDirectoryPath)
+  else if (ProcName = 'ASystem_GetExeName') then
+    Result := Addr(ASystem_GetExeName)
   else if (ProcName = 'ASystem_GetExePath') then
     Result := Addr(ASystem_GetExePath)
+  else if (ProcName = 'ASystem_GetParamStr') then
+    Result := Addr(ASystem_GetParamStr)
   else if (ProcName = 'ASystem_GetProgramName') then
     Result := Addr(ASystem_GetProgramName)
+  else if (ProcName = 'ASystem_GetProductVersionStr') then
+    Result := Addr(ASystem_GetProductVersionStr)
+  else if (ProcName = 'ASystem_GetProgramName') then
+    Result := Addr(ASystem_GetProgramName)
+  else if (ProcName = 'ASystem_GetProgramVersionStr') then
+    Result := Addr(ASystem_GetProgramVersionStr)
   else if (ProcName = 'ASystem_GetResourceString') then
     Result := Addr(ASystem_GetResourceString)
   else if (ProcName = 'ASystem_GetTitle') then
     Result := Addr(ASystem_GetTitle)
+  else if (ProcName = 'ASystem_GetUrl') then
+    Result := Addr(ASystem_GetUrl)
   else if (ProcName = 'ASystem_Init') then
     Result := Addr(ASystem_Init)
   else if (ProcName = 'ASystem_OnAfterRun_Connect') then
@@ -87,8 +107,6 @@ begin
     Result := Addr(ASystem_OnBeforeRun_Connect)
   else if (ProcName = 'ASystem_OnBeforeRun_Disconnect') then
     Result := Addr(ASystem_OnBeforeRun_Disconnect)
-  else if (ProcName = 'ASystem_ParamStr') then
-    Result := Addr(ASystem_ParamStr)
   else if (ProcName = 'ASystem_Prepare') then
     Result := Addr(ASystem_Prepare)
   else if (ProcName = 'ASystem_PrepareA') then
@@ -97,6 +115,8 @@ begin
     Result := Addr(ASystem_ProcessMessages)
   else if (ProcName = 'ASystem_SetConfig') then
     Result := Addr(ASystem_SetConfig)
+  else if (ProcName = 'ASystem_SetDataDirectoryPath') then
+    Result := Addr(ASystem_SetDataDirectoryPath)
   else if (ProcName = 'ASystem_SetOnProcessMessages') then
     Result := Addr(ASystem_SetOnProcessMessages)
   else if (ProcName = 'ASystem_SetOnShowErrorA') then
@@ -117,8 +137,6 @@ begin
     Result := Addr(ASystem_ShowMessageEx)
   else if (ProcName = 'ASystem_ShowMessageExA') then
     Result := Addr(ASystem_ShowMessageExA)
-  else if (ProcName = 'ASystem_Shutdown') then
-    Result := Addr(ASystem_Shutdown)
   else
     Result := nil;
 end;

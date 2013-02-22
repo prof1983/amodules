@@ -17,15 +17,17 @@ uses
 
 // --- ASystem ---
 
-function ASystem_GetResourceString(const Section, Name, Default: AString_Type; out Value: AString_Type): AInt; {$ifdef AStdCall}stdcall;{$endif}
+function ASystem_GetResourceString(const Section, Name, Default: AString_Type;
+    out Value: AString_Type): AError; {$ifdef AStdCall}stdcall;{$endif}
 
-function ASystem_GetResourceStringP(const Section, Name, Default: APascalString): APascalString; {$ifdef AStdCall}stdcall;{$endif}
+function ASystem_GetResourceStringP(const Section, Name, Default: APascalString): APascalString;
 
 implementation
 
 // --- ASystem ---
 
-function ASystem_GetResourceString(const Section, Name, Default: AString_Type; out Value: AString_Type): AInt;
+function ASystem_GetResourceString(const Section, Name, Default: AString_Type;
+    out Value: AString_Type): AError;
 begin
   if not(Assigned(ASystemProcVars.ASystem_GetResourceString)) then
   begin
@@ -46,7 +48,11 @@ begin
   AString_AssignP(SName, Name);
   AString_AssignP(SDefault, Default);
   AString_Clear(Res);
-  ASystem_GetResourceString(SSection, SName, SDefault, Res);
+  if (ASystem_GetResourceString(SSection, SName, SDefault, Res) < 0) then
+  begin
+    Result := '';
+    Exit;
+  end;
   Result := AString_ToPascalString(Res);
 end;
 

@@ -23,6 +23,7 @@ var
   ASystem_GetDirectoryPath: ASystem_GetDirectoryPath_Proc;
   ASystem_GetExeName: ASystem_GetExeName_Proc;
   ASystem_GetExePath: ASystem_GetExePath_Proc;
+  ASystem_GetParamStr: ASystem_GetParamStr_Proc;
   ASystem_GetProductName: ASystem_GetProductName_Proc;
   ASystem_GetProductVersionStr: ASystem_GetProductVersionStr_Proc;
   ASystem_GetProgramName: ASystem_GetProgramName_Proc;
@@ -35,19 +36,19 @@ var
   ASystem_OnAfterRun_Disconnect: ASystem_OnAfterRun_Disconnect_Proc;
   ASystem_OnBeforeRun_Connect: ASystem_OnBeforeRun_Connect_Proc;
   ASystem_OnBeforeRun_Disconnect: ASystem_OnBeforeRun_Disconnect_Proc;
-  ASystem_ParamStr: ASystem_ParamStr_Proc;
   ASystem_Prepare: ASystem_Prepare_Proc;
   ASystem_PrepareA: ASystem_PrepareA_Proc;
   ASystem_ProcessMessages: ASystem_ProcessMessages_Proc;
   ASystem_SetConfig: ASystem_SetConfig_Proc;
+  ASystem_SetDataDirectoryPath: ASystem_SetDataDirectoryPath_Proc;
   ASystem_SetOnProcessMessages: ASystem_SetOnProcessMessages_Proc;
   ASystem_SetOnShowErrorA: ASystem_SetOnShowErrorA_Proc;
   ASystem_SetOnShowMessageA: ASystem_SetOnShowMessageA_Proc;
   ASystem_ShellExecute: ASystem_ShellExecute_Proc;
   ASystem_ShowError: ASystem_ShowError_Proc;
   ASystem_ShowErrorA: ASystem_ShowErrorA_Proc;
-  ASystem_ShowMessageA: ASystem_ShowMessageA_Proc;
   ASystem_ShowMessage: ASystem_ShowMessage_Proc;
+  ASystem_ShowMessageA: ASystem_ShowMessageA_Proc;
   ASystem_ShowMessageEx: ASystem_ShowMessageEx_Proc;
   ASystem_ShowMessageExA: ASystem_ShowMessageExA_Proc;
 
