@@ -2,7 +2,7 @@
 @Abstract Модуль для работы с настройками
 @Author Prof1983 <prof1983@ya.ru>
 @Created 06.03.2008
-@LastMod 18.02.2013
+@LastMod 22.02.2013
 }
 unit ASettingsMod;
 
@@ -29,7 +29,7 @@ function ASettingsMod_Init(): AError; stdcall;
 implementation
 
 const
-  ASettings_Version = $00070000;
+  ASettings_Version = $00070100;
 
 const
   Module: AModule_Type = (

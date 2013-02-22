@@ -1,7 +1,7 @@
 {**
 @Author Prof1983 <prof1983@ya.ru>
 @Created 13.10.2008
-@LastMod 19.02.2013
+@LastMod 22.02.2013
 }
 unit ADataMod;
 
@@ -15,6 +15,8 @@ uses
   ARuntimeBase,
   ARuntimeMain;
 
+// --- ADataMod ---
+
 function ADataMod_Boot(): AError; stdcall;
 
 function ADataMod_Fin(): AError; stdcall;
@@ -26,7 +28,7 @@ function ADataMod_Init(): AError; stdcall;
 implementation
 
 const
-  AData_Version = $00070000;
+  AData_Version = $00070100;
 
 const
   Module: AModule_Type = (

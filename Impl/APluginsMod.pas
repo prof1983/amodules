@@ -2,7 +2,7 @@
 @Abstract APlugins
 @Author Prof1983 <prof1983@ya.ru>
 @Created 10.04.2009
-@LastMod 18.02.2013
+@LastMod 22.02.2013
 }
 unit APluginsMod;
 
@@ -28,7 +28,7 @@ function APluginsMod_Init(): AError; stdcall;
 implementation
 
 const
-  APlugins_Version = $00070000;
+  APlugins_Version = $00070100;
 
 const
   PluginsModule: AModule_Type = (

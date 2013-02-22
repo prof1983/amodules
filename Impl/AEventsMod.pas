@@ -2,7 +2,7 @@
 @Abstract AEvents
 @Author Prof1983 <prof1983@ya.ru>
 @Created 27.05.2011
-@LastMod 18.02.2013
+@LastMod 22.02.2013
 }
 unit AEventsMod;
 
@@ -16,6 +16,8 @@ uses
   ARuntimeBase,
   AStringMain;
 
+// --- AEventsMod ---
+
 function AEventsMod_Boot(): AError; stdcall;
 
 function AEventsMod_Fin(): AError; stdcall;
@@ -27,7 +29,7 @@ function AEventsMod_Init(): AError; stdcall;
 implementation
 
 const
-  AEvents_Version = $00070000;
+  AEvents_Version = $00070100;
 
 const
   EventsModule: AModule_Type = (

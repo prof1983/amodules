@@ -2,7 +2,7 @@
 @Abstract AUtils04
 @Author Prof1983 <prof1983@ya.ru>
 @Created 30.09.2009
-@LastMod 20.02.2013
+@LastMod 22.02.2013
 }
 unit AUtilsMod;
 
@@ -29,7 +29,7 @@ function AUtilsMod_Register(): AError; stdcall;
 implementation
 
 const
-  AUtils_Version = $00070000;
+  AUtils_Version = $00070100;
 
 const
   Module: AModule_Type = (

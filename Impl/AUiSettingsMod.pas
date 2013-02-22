@@ -2,7 +2,7 @@
 @Abstract AUiSettings
 @Author Prof1983 <prof1983@ya.ru>
 @Created 13.03.2009
-@LastMod 20.02.2013
+@LastMod 22.02.2013
 }
 unit AUiSettingsMod;
 
@@ -14,6 +14,8 @@ uses
   ARuntimeMain, 
   AUiSettingsBase,
   AUiSettingsMain;
+
+// --- AUiSettingsMod ---
 
 function AUiSettingsMod_Boot(): AError; stdcall;
 
@@ -32,7 +34,7 @@ implementation
 {$ENDIF}
 
 const
-  AUiSettings_Version = $00070000;
+  AUiSettings_Version = $00070100;
 
 const
   Module: AModule_Type = (
@@ -45,6 +47,8 @@ const
     GetProc: AUiSettingsMod_GetProc;
     Procs: nil;
     );
+
+// --- AUiSettingsMod ---
 
 function AUiSettingsMod_Boot(): AError;
 begin

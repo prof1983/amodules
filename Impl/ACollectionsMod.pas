@@ -2,7 +2,7 @@
 @Abstract ACollections
 @Author Prof1983 <prof1983@ya.ru>
 @Created 31.05.2011
-@LastMod 18.02.2013
+@LastMod 22.02.2013
 
 Prototype:
 CS: System.Collection.ICollection
@@ -40,7 +40,7 @@ function ACollectionsMod_Init(): AError; stdcall;
 implementation
 
 const
-  ACollections_Version = $00070000;
+  ACollections_Version = $00070100;
 
 const
   CollectionsModule: AModule_Type = (

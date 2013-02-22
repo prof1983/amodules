@@ -2,7 +2,7 @@
 @Abstract AUiSplash
 @Author Prof1983 <prof1983@ya.ru>
 @Created 08.12.2009
-@LastMod 18.02.2013
+@LastMod 22.02.2013
 }
 unit AUiSplashMod;
 
@@ -18,6 +18,8 @@ uses
   AUiSplashMain,
   AUtilsBase;
 
+// --- AUiSplashMod ---
+
 function AUiSplashMod_Boot(): AError; stdcall;
 
 function AUiSplashMod_Fin(): AError; stdcall;
@@ -29,7 +31,7 @@ function AUiSplashMod_Init(): AError; stdcall;
 implementation
 
 const
-  AUiSplash_Version = $00070000;
+  AUiSplash_Version = $00070100;
 
 const
   UiSplashModule: AModule_Type = (
