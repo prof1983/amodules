@@ -2,7 +2,7 @@
 @Abstract ACollections
 @Author Prof1983 <prof1983@ya.ru>
 @Created 01.08.2012
-@LastMod 20.02.2013
+@LastMod 22.02.2013
 }
 unit ACollections;
 
@@ -64,7 +64,7 @@ function AStringList_AddP(StringList: AStringList; const Value: APascalString): 
 var
   S: AString_Type;
 begin
-  AString_AssignP(S, Value);
+  AString_SetP(S, Value);
   Result := StringList_Add(StringList, S);
 end;
 
@@ -113,7 +113,7 @@ function AStringList_InsertP(StringList: AStringList; Index: AInt;
 var
   S: AString_Type;
 begin
-  AString_AssignP(S, Value);
+  AString_SetP(S, Value);
   Result := AStringList_Insert(StringList, Index, S);
 end;
 

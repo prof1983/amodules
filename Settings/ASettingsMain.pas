@@ -2,7 +2,7 @@
 @Abstract ASettings
 @Author Prof1983 <prof1983@ya.ru>
 @Created 26.12.2012
-@LastMod 20.02.2013
+@LastMod 22.02.2013
 }
 unit ASettingsMain;
 
@@ -202,8 +202,8 @@ var
   SSection: AString_Type;
   SName: AString_Type;
 begin
-  AString_AssignP(SSection, Section);
-  AString_AssignP(SName, Name);
+  AString_SetP(SSection, Section);
+  AString_SetP(SName, Name);
   Result := ASettings_DeleteKey(Config, SSection, SName);
 end;
 
@@ -231,7 +231,7 @@ function ASettings_DeleteSectionP(Config: AConfig; const Section: APascalString)
 var
   SSection: AString_Type;
 begin
-  AString_AssignP(SSection, Section);
+  AString_SetP(SSection, Section);
   Result := ASettings_DeleteSection(Config, SSection);
 end;
 
@@ -283,8 +283,8 @@ var
   SSection: AString_Type;
   SName: AString_Type;
 begin
-  AString_AssignP(SSection, Section);
-  AString_AssignP(SName, Name);
+  AString_SetP(SSection, Section);
+  AString_SetP(SName, Name);
   Result := ASettings_ReadBoolDef(Config, SSection, SName, DefValue);
 end;
 
@@ -316,8 +316,8 @@ var
   SSection: AString_Type;
   SName: AString_Type;
 begin
-  AString_AssignP(SSection, Section);
-  AString_AssignP(SName, Name);
+  AString_SetP(SSection, Section);
+  AString_SetP(SName, Name);
   Result := ASettings_ReadDateTimeDef(Config, SSection, SName, DefValue);
 end;
 
@@ -349,8 +349,8 @@ var
   SSection: AString_Type;
   SName: AString_Type;
 begin
-  AString_AssignP(SSection, Section);
-  AString_AssignP(SName, Name);
+  AString_SetP(SSection, Section);
+  AString_SetP(SName, Name);
   Result := ASettings_ReadFloatDef(Config, SSection, SName, DefValue);
 end;
 
@@ -382,8 +382,8 @@ var
   SSection: AString_Type;
   SName: AString_Type;
 begin
-  AString_AssignP(SSection, Section);
-  AString_AssignP(SName, Name);
+  AString_SetP(SSection, Section);
+  AString_SetP(SName, Name);
   Result := ASettings_ReadIntDef(Config, SSection, SName, DefValue);
 end;
 
@@ -420,7 +420,7 @@ function ASettings_ReadSectionP(Config: AConfig; const Section: APascalString;
 var
   SSection: AString_Type;
 begin
-  AString_AssignP(SSection, Section);
+  AString_SetP(SSection, Section);
   Result := ASettings_ReadSection(Config, SSection, Strings);
 end;
 
@@ -476,9 +476,9 @@ var
   SDefValue: AString_Type;
   Res: AString_Type;
 begin
-  AString_AssignP(SSection, Section);
-  AString_AssignP(SName, Name);
-  AString_AssignP(SDefValue, DefValue);
+  AString_SetP(SSection, Section);
+  AString_SetP(SName, Name);
+  AString_SetP(SDefValue, DefValue);
   AString_Clear(Res);
   if (ASettings_ReadStringDef(Config, SSection, SName, SDefValue, Res) < 0) then
   begin
@@ -496,9 +496,9 @@ var
   SDefValue: AString_Type;
   Res: AString_Type;
 begin
-  AString_AssignP(SSection, Section);
-  AString_AssignP(SName, Name);
-  AString_AssignP(SDefValue, '');
+  AString_SetP(SSection, Section);
+  AString_SetP(SName, Name);
+  AString_SetP(SDefValue, '');
   AString_Clear(Res);
   Result := ASettings_ReadStringDef(Config, SSection, SName, SDefValue, Res);
   Value := AString_ToPascalString(Res);
@@ -531,8 +531,8 @@ var
   SSection: AString_Type;
   SName: AString_Type;
 begin
-  AString_AssignP(SSection, Section);
-  AString_AssignP(SName, Name);
+  AString_SetP(SSection, Section);
+  AString_SetP(SName, Name);
   Result := ASettings_WriteBool(Config, SSection, SName, Value);
 end;
 
@@ -563,8 +563,8 @@ var
   SSection: AString_Type;
   SName: AString_Type;
 begin
-  AString_AssignP(SSection, Section);
-  AString_AssignP(SName, Name);
+  AString_SetP(SSection, Section);
+  AString_SetP(SName, Name);
   Result := ASettings_WriteDateTime(Config, SSection, SName, Value);
 end;
 
@@ -595,8 +595,8 @@ var
   SSection: AString_Type;
   SName: AString_Type;
 begin
-  AString_AssignP(SSection, Section);
-  AString_AssignP(SName, Name);
+  AString_SetP(SSection, Section);
+  AString_SetP(SName, Name);
   Result := ASettings_WriteFloat(Config, SSection, SName, Value);
 end;
 
@@ -627,8 +627,8 @@ var
   SSection: AString_Type;
   SName: AString_Type;
 begin
-  AString_AssignP(SSection, Section);
-  AString_AssignP(SName, Name);
+  AString_SetP(SSection, Section);
+  AString_SetP(SName, Name);
   Result := ASettings_WriteInt(Config, SSection, SName, Value);
 end;
 
@@ -664,9 +664,9 @@ var
   SName: AString_Type;
   SValue: AString_Type;
 begin
-  AString_AssignP(SSection, Section);
-  AString_AssignP(SName, Name);
-  AString_AssignP(SValue, Value);
+  AString_SetP(SSection, Section);
+  AString_SetP(SName, Name);
+  AString_SetP(SValue, Value);
   Result := ASettings_WriteString(Config, SSection, SName, SValue);
 end;
 

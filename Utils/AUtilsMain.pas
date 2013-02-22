@@ -2,7 +2,7 @@
 @Abstract AUtils - Main
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 19.02.2013
+@LastMod 22.02.2013
 }
 unit AUtilsMain;
 
@@ -195,8 +195,8 @@ var
   SRes: AString_Type;
 begin
   try
-    AString_AssignP(SFileName, FileName);
-    AString_AssignP(SExtension, Extension);
+    AString_SetP(SFileName, FileName);
+    AString_SetP(SExtension, Extension);
     AString_Clear(SRes);
     if (AUtils_ChangeFileExt(SFileName, SExtension, SRes) >= 0) then
       Result := AString_ToPascalString(SRes)
@@ -247,7 +247,7 @@ var
   SFileName: AString_Type;
 begin
   try
-    AString_AssignP(SFileName, FileName);
+    AString_SetP(SFileName, FileName);
     Result := AUtils_DeleteFile(SFileName);
   except
     Result := -1;
@@ -269,7 +269,7 @@ var
   SDirectory: AString_Type;
 begin
   try
-    AString_AssignP(SDirectory, Directory);
+    AString_SetP(SDirectory, Directory);
     Result := AUtils_DirectoryExists(SDirectory)
   except
     Result := False;
@@ -292,7 +292,7 @@ var
   SRes: AString_Type;
 begin
   try
-    AString_AssignP(SFileName, FileName);
+    AString_SetP(SFileName, FileName);
     AString_Clear(SRes);
     if (AUtils_ExpandFileName(SFileName, SRes) >= 0) then
       Result := AString_ToPascalString(SRes)
@@ -324,7 +324,7 @@ begin
     Exit;
   end;
   try
-    if (AString_AssignP(FN, FileName) < 0) then
+    if (AString_SetP(FN, FileName) < 0) then
     begin
       Result := '';
       Exit;
@@ -361,7 +361,7 @@ var
   SRes: AString_Type;
 begin
   try
-    AString_AssignP(SFileName, FileName);
+    AString_SetP(SFileName, FileName);
     AString_Clear(SRes);
     if (AUtils_ExtractFileName(SFileName, SRes) >= 0) then
       Result := AString_ToPascalString(SRes)
@@ -393,7 +393,7 @@ begin
     Exit;
   end;
   try
-    if (AString_AssignP(FN, FileName) < 0) then
+    if (AString_SetP(FN, FileName) < 0) then
     begin
       Result := '';
       Exit;
@@ -433,7 +433,7 @@ begin
     Result := False;
   end;
   try
-    if (AString_AssignP(S, FileName) < 0) then
+    if (AString_SetP(S, FileName) < 0) then
     begin
       Result := False;
       Exit;
@@ -531,7 +531,7 @@ var
   S: AString_Type;
 begin
   try
-    AString_AssignP(S, Dir);
+    AString_SetP(S, Dir);
     Result := AUtils_ForceDirectories(S);
   except
     Result := -1;
@@ -618,7 +618,7 @@ var
   Res: AString_Type;
   S: AString_Type;
 begin
-  AString_AssignP(S, Value);
+  AString_SetP(S, Value);
   AString_Clear(Res);
   if (AUtils_FormatStr(S, Len, Res) < 0) then
   begin
@@ -654,8 +654,8 @@ var
   SS: AString_Type;
   SRes: AString_Type;
 begin
-  AString_AssignP(SFormatStr, FormatStr);
-  AString_AssignP(SS, S);
+  AString_SetP(SFormatStr, FormatStr);
+  AString_SetP(SS, S);
   AString_Clear(SRes);
   if (AUtils_FormatStrStr(SFormatStr, SS, SRes) < 0) then
   begin
@@ -732,7 +732,7 @@ var
   S: AString_Type;
   Res: AString_Type;
 begin
-  AString_AssignP(S, Value);
+  AString_SetP(S, Value);
   AString_Clear(Res);
   if (AUtils_NormalizeStr(S, Res) < 0) then
   begin
@@ -757,7 +757,7 @@ var
   S: AString_Type;
   Res: AString_Type;
 begin
-  AString_AssignP(S, Value);
+  AString_SetP(S, Value);
   AString_Clear(Res);
   if (AUtils_NormalizeStrSpace(S, Res) < 0) then
   begin
@@ -796,7 +796,7 @@ var
 begin
   if Assigned(AUtilsProcVars.AUtils_ReplaceComma) then
   begin
-    if (AString_AssignP(S1, S) < 0) then
+    if (AString_SetP(S1, S) < 0) then
     begin
       Result := S;
       Exit;
@@ -853,7 +853,7 @@ function AUtils_StrToDateP(const Value: APascalString): TDateTime;
 var
   S: AString_Type;
 begin
-  AString_AssignP(S, Value);
+  AString_SetP(S, Value);
   Result := AUtils_StrToDate(S);
 end;
 
@@ -883,7 +883,7 @@ var
 begin
   if Assigned(AUtilsProcVars.AUtils_StrToFloatDef) then
   begin
-    if (AString_AssignP(S1, S) < 0) then
+    if (AString_SetP(S1, S) < 0) then
     begin
       Result := DefValue;
       Exit;
@@ -900,7 +900,7 @@ var
 begin
   if Assigned(AUtilsProcVars.AUtils_StrToFloat) then
   begin
-    if (AString_AssignP(S, Value) < 0) then
+    if (AString_SetP(S, Value) < 0) then
     begin
       Result := 0;
       Exit;
@@ -937,7 +937,7 @@ var
 begin
   if Assigned(AUtilsProcVars.AUtils_StrToIntDef) then
   begin
-    if (AString_AssignP(S1, S) < 0) then
+    if (AString_SetP(S1, S) < 0) then
     begin
       Result := DefValue;
       Exit;
@@ -954,7 +954,7 @@ var
 begin
   if Assigned(AUtilsProcVars.AUtils_StrToInt) then
   begin
-    if (AString_AssignP(S1, Value) < 0) then
+    if (AString_SetP(S1, Value) < 0) then
     begin
       Result := 0;
       Exit;
@@ -979,7 +979,7 @@ function AUtils_TrimP(const S: APascalString): APascalString;
 var
   Str: AString_Type;
 begin
-  if (AString_AssignP(Str, S) < 0) then
+  if (AString_SetP(Str, S) < 0) then
   begin
     Result := S;
     Exit;
@@ -1006,7 +1006,7 @@ function AUtils_TryStrToDateP(const S: APascalString; var Value: TDateTime): ABo
 var
   SS: AString_Type;
 begin
-  AString_AssignP(SS, S);
+  AString_SetP(SS, S);
   Result := (AUtils_TryStrToDate(SS, Value) >= 0);
 end;
 
@@ -1024,7 +1024,7 @@ function AUtils_TryStrToFloat32P(const S: APascalString; var Value: AFloat32): A
 var
   SS: AString_Type;
 begin
-  AString_AssignP(SS, S);
+  AString_SetP(SS, S);
   Result := (AUtils_TryStrToFloat32(SS, Value) >= 0);
 end;
 
@@ -1042,7 +1042,7 @@ function AUtils_TryStrToFloat64P(const S: APascalString; var Value: AFloat64): A
 var
   SS: AString_Type;
 begin
-  AString_AssignP(SS, S);
+  AString_SetP(SS, S);
   Result := (AUtils_TryStrToFloat64(SS, Value) >= 0);
 end;
 
@@ -1069,7 +1069,7 @@ function AUtils_TryStrToIntP(const S: APascalString; var Value: AInt): ABool;
 var
   SS: AString_Type;
 begin
-  AString_AssignP(SS, S);
+  AString_SetP(SS, S);
   Result := (AUtils_TryStrToInt(SS, Value) >= 0);
 end;
 

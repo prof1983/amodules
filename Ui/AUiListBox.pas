@@ -2,7 +2,7 @@
 @Abstract AUiListBox
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 19.02.2013
+@LastMod 22.02.2013
 }
 unit AUiListBox;
 
@@ -16,15 +16,19 @@ uses
   AUiBase,
   AUiProcVars;
 
+// --- AUiListBox ---  
+
 function AUiListBox_Add(ListBox: AControl; const Text: AString_Type): AInt; {$ifdef AStdCall}stdcall;{$endif}
 
-function AUiListBox_AddP(ListBox: AControl; const Text: APascalString): AInt; {$ifdef AStdCall}stdcall;{$endif}
+function AUiListBox_AddP(ListBox: AControl; const Text: APascalString): AInt;
 
 function AUiListBox_Clear(ListBox: AControl): AError; {$ifdef AStdCall}stdcall;{$endif}
 
 function AUiListBox_New(Parent: AControl): AControl; {$ifdef AStdCall}stdcall;{$endif}
 
 implementation
+
+// --- AUiListBox ---
 
 function AUiListBox_Add(ListBox: AControl; const Text: AString_Type): AInt;
 begin
@@ -42,7 +46,7 @@ var
 begin
   if Assigned(AUiProcVars.AUiListBox_Add) then
   begin
-    AString_AssignP(S, Text);
+    AString_SetP(S, Text);
     Result := AUiListBox_Add(ListBox, S);
     Exit;
   end;

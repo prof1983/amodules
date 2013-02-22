@@ -2,7 +2,7 @@
 @Abstract AStringUtils
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 20.02.2013
+@LastMod 22.02.2013
 }
 unit AStringUtils;
 
@@ -44,7 +44,7 @@ var
   SS: AString_Type;
   Res: AString_Type;
 begin
-  AString_AssignP(SS, S);
+  AString_SetP(SS, S);
   AString_Clear(Res);
   if (AString_ToLower(SS, Res) < 0) then
   begin
@@ -69,7 +69,7 @@ var
   Str: AString_Type;
   Res: AString_Type;
 begin
-  if (AString_AssignP(Str, S) < 0) then
+  if (AString_SetP(Str, S) < 0) then
   begin
     Result := S;
     Exit;

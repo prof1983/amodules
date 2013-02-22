@@ -2,7 +2,7 @@
 @Abstract User Interface procs var
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 20.02.2013
+@LastMod 22.02.2013
 }
 unit AUiImages;
 
@@ -25,7 +25,7 @@ function AUiImage_LoadFromFile(Image: AControl; const FileName: AString_Type): A
 function AUiImage_LoadFromFileA(Image: AControl; FileName: AStr): AError; {$ifdef AStdCall}stdcall;{$endif}
 
 {** Загружает изображение из файла }
-function AUiImage_LoadFromFileP(Image: AControl; const FileName: APascalString): AError; {$ifdef AStdCall}stdcall;{$endif}
+function AUiImage_LoadFromFileP(Image: AControl; const FileName: APascalString): AError;
 
 {** Создает новый элемент-изображение }
 function AUiImage_New(Parent: AControl): AControl; {$ifdef AStdCall}stdcall;{$endif}
@@ -56,7 +56,7 @@ begin
     Result := AUiProcVars.AUiImage_LoadFromFileA(Image, FileName)
   else
   begin
-    AString_AssignA(S, FileName);
+    AString_SetA(S, FileName);
     Result := AUiImage_LoadFromFile(Image, S);
   end;
 end;
@@ -65,7 +65,7 @@ function AUiImage_LoadFromFileP(Image: AControl; const FileName: APascalString):
 var
   S: AString_Type;
 begin
-  AString_AssignP(S, FileName);
+  AString_SetP(S, FileName);
   Result := AUiImage_LoadFromFile(Image, S);
 end;
 

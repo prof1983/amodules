@@ -582,15 +582,15 @@ var
   SDataPath: AString_Type;
   SConfigPath: AString_Type;
 begin
-  AString_AssignP(STitle, Title);
-  AString_AssignP(SProgramName, ProgramName);
-  AString_AssignP(SProductName, ProductName);
-  AString_AssignP(SCompanyName, CompanyName);
-  AString_AssignP(SCopyright, Copyright);
-  AString_AssignP(SUrl, Url);
-  AString_AssignP(SDescription, Description);
-  AString_AssignP(SDataPath, DataPath);
-  AString_AssignP(SConfigPath, ConfigPath);
+  AString_SetP(STitle, Title);
+  AString_SetP(SProgramName, ProgramName);
+  AString_SetP(SProductName, ProductName);
+  AString_SetP(SCompanyName, CompanyName);
+  AString_SetP(SCopyright, Copyright);
+  AString_SetP(SUrl, Url);
+  AString_SetP(SDescription, Description);
+  AString_SetP(SDataPath, DataPath);
+  AString_SetP(SConfigPath, ConfigPath);
   Result := ASystem_Prepare(STitle, SProgramName, ProgramVersion,
       SProductName, ProductVersion, SCompanyName, SCopyright,
       SUrl, SDescription, SDataPath, SConfigPath);
@@ -630,7 +630,7 @@ function ASystem_SetDataDirectoryPathP(const DataDir: APascalString): AError;
 var
   SDataDir: AString_Type;
 begin
-  AString_AssignP(SDataDir, DataDir);
+  AString_SetP(SDataDir, DataDir);
   Result := ASystem_SetDataDirectoryPath(SDataDir);
 end;
 
@@ -681,10 +681,10 @@ var
   SParameters: AString_Type;
   SDirectory: AString_Type;
 begin
-  AString_AssignP(SOperation, Operation);
-  AString_AssignP(SFileName, FileName);
-  AString_AssignP(SParameters, Parameters);
-  AString_AssignP(SDirectory, Directory);
+  AString_SetP(SOperation, Operation);
+  AString_SetP(SFileName, FileName);
+  AString_SetP(SParameters, Parameters);
+  AString_SetP(SDirectory, Directory);
   Result := ASystem_ShellExecute(SOperation, SFileName, SParameters, SDirectory);
 end;
 
@@ -713,8 +713,8 @@ var
   SUserMessage: AString_Type;
   SExceptMessage: AString_Type;
 begin
-  AString_AssignP(SUserMessage, UserMessage);
-  AString_AssignP(SExceptMessage, ExceptMessage);
+  AString_SetP(SUserMessage, UserMessage);
+  AString_SetP(SExceptMessage, ExceptMessage);
   Result := ASystem_ShowError(SUserMessage, SExceptMessage);
 end;
 
@@ -763,12 +763,12 @@ var
   SText: AString_Type;
   SCaption: AString_Type;
 begin
-  if (AString_AssignP(SText, Text) < 0) then
+  if (AString_SetP(SText, Text) < 0) then
   begin
     Result := -1;
     Exit;
   end;
-  if (AString_AssignP(SCaption, Caption) < 0) then
+  if (AString_SetP(SCaption, Caption) < 0) then
   begin
     Result := -1;
     Exit;
@@ -780,7 +780,7 @@ function ASystem_ShowMessageP(const Msg: APascalString): ADialogBoxCommands;
 var
   S: AString_Type;
 begin
-  if (AString_AssignP(S, Msg) < 0) then
+  if (AString_SetP(S, Msg) < 0) then
   begin
     Result := 0;
     Exit;

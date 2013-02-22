@@ -44,9 +44,9 @@ var
   SDefault: AString_Type;
   Res: AString_Type;
 begin
-  AString_AssignP(SSection, Section);
-  AString_AssignP(SName, Name);
-  AString_AssignP(SDefault, Default);
+  AString_SetP(SSection, Section);
+  AString_SetP(SName, Name);
+  AString_SetP(SDefault, Default);
   AString_Clear(Res);
   if (ASystem_GetResourceString(SSection, SName, SDefault, Res) < 0) then
   begin

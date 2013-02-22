@@ -2,7 +2,7 @@
 @Abstract AUi PageControl
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 19.02.2013
+@LastMod 22.02.2013
 }
 unit AUiPageControl;
 
@@ -22,7 +22,7 @@ function AUiPageControl_AddPage(PageControl: AControl; const Name, Text: AString
 
 function AUiPageControl_AddPageA(PageControl: AControl; Name, Text: AStr): AControl; {$ifdef AStdCall}stdcall;{$endif}
 
-function AUiPageControl_AddPageP(PageControl: AControl; const Name, Text: APascalString): AControl; {$ifdef AStdCall}stdcall;{$endif}
+function AUiPageControl_AddPageP(PageControl: AControl; const Name, Text: APascalString): AControl;
 
 function AUiPageControl_New(Parent: AControl): AControl; {$ifdef AStdCall}stdcall;{$endif}
 
@@ -45,8 +45,8 @@ var
   SName: AString_Type;
   SText: AString_Type;
 begin
-  AString_AssignA(SName, Name);
-  AString_AssignA(SText, Text);
+  AString_SetA(SName, Name);
+  AString_SetA(SText, Text);
   Result := AUiPageControl_AddPage(PageControl, SName, SText);
 end;
 
@@ -57,8 +57,8 @@ var
 begin
   if Assigned(AUiProcVars.AUiPageControl_AddPage) then
   begin
-    AString_AssignP(SName, Name);
-    AString_AssignP(SText, Text);
+    AString_SetP(SName, Name);
+    AString_SetP(SText, Text);
     Result := AUiPageControl_AddPage(PageControl, SName, SText);
     Exit;
   end;

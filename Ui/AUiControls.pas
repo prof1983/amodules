@@ -2,7 +2,7 @@
 Abstract AUiControl functions
 Author Prof1983 <prof1983@ya.ru>
 Created 16.11.2012
-LastMod 18.02.2013
+LastMod 22.02.2013
 }
 unit AUiControls;
 
@@ -21,7 +21,7 @@ function AUiControl_Free(Control: AControl): AError; {$ifdef AStdCall}stdcall;{$
 
 function AUiControl_GetText(Control: AControl; out Value: AString_Type): AError; {$ifdef AStdCall}stdcall;{$endif}
 
-function AUiControl_GetTextP(Control: AControl): APascalString; {$ifdef AStdCall}stdcall;{$endif}
+function AUiControl_GetTextP(Control: AControl): APascalString;
 
 function AUiControl_SetAlign(Control: AControl; Align: TUiAlign): AError; {$ifdef AStdCall}stdcall;{$endif}
 
@@ -40,7 +40,7 @@ function AUiControl_SetSize(Control: AControl; Width, Height: AInt): AError; {$i
 
 function AUiControl_SetText(Control: AControl; const Value: AString_Type): AError; {$ifdef AStdCall}stdcall;{$endif}
 
-function AUiControl_SetTextP(Control: AControl; const Value: APascalString): AError; {$ifdef AStdCall}stdcall;{$endif}
+function AUiControl_SetTextP(Control: AControl; const Value: APascalString): AError;
 
 function AUiControl_SetVisible(Control: AControl; Value: ABoolean): AError; {$ifdef AStdCall}stdcall;{$endif}
 
@@ -121,7 +121,7 @@ begin
   end;
   if Assigned(AUiProcVars.AUiControl_SetFont1) then
   begin
-    AString_AssignA(S, FontName);
+    AString_SetA(S, FontName);
     AUiProcVars.AUiControl_SetFont1(Control, S, FontSize);
     Result := 0;
     Exit;
@@ -165,7 +165,7 @@ var
 begin
   if Assigned(AUiProcVars.AUiControl_SetText) then
   begin
-    AString_AssignP(S, Value);
+    AString_SetP(S, Value);
     Result := AUiControl_SetText(Control, S);
     Exit;
   end;

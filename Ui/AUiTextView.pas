@@ -2,7 +2,7 @@
 @Abstract AUi text view
 @Author Prof1983 <prof1983@ya.ru>
 @Created 22.11.2012
-@LastMod 20.02.2013
+@LastMod 22.02.2013
 }
 unit AUiTextView;
 
@@ -20,13 +20,13 @@ uses
 
 function AUiTextView_AddLine(TextView: AControl; const Text: AString_Type): AInt; {$ifdef AStdCall}stdcall;{$endif}
 
-function AUiTextView_AddLineP(TextView: AControl; const Text: APascalString): AInt; {$ifdef AStdCall}stdcall;{$endif}
+function AUiTextView_AddLineP(TextView: AControl; const Text: APascalString): AInt;
 
 function AUiTextView_New(Parent: AControl; ViewType: AInt): AControl; {$ifdef AStdCall}stdcall;{$endif}
 
 function AUiTextView_SetFont(TextView: AControl; const FontName: AString_Type; FontSize: AInt): AError; {$ifdef AStdCall}stdcall;{$endif}
 
-function AUiTextView_SetFontP(TextView: AControl; const FontName: APascalString; FontSize: AInt): AError; {$ifdef AStdCall}stdcall;{$endif}
+function AUiTextView_SetFontP(TextView: AControl; const FontName: APascalString; FontSize: AInt): AError;
 
 function AUiTextView_SetReadOnly(TextView: AControl; ReadOnly: ABoolean): AError; {$ifdef AStdCall}stdcall;{$endif}
 
@@ -52,7 +52,7 @@ function AUiTextView_AddLineP(TextView: AControl; const Text: APascalString): AI
 var
   SText: AString_Type;
 begin
-  AString_AssignP(SText, Text);
+  AString_SetP(SText, Text);
   Result := AUiTextView_AddLine(TextView, SText);
 end;
 
@@ -80,7 +80,7 @@ function AUiTextView_SetFontP(TextView: AControl; const FontName: APascalString;
 var
   SFontName: AString_Type;
 begin
-  AString_AssignP(SFontName, FontName);
+  AString_SetP(SFontName, FontName);
   Result := AUiTextView_SetFont(TextView, SFontName, FontSize);
 end;
 

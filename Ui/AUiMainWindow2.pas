@@ -2,7 +2,7 @@
 @Abstract AUiMainWindow
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 19.02.2013
+@LastMod 22.02.2013
 }
 unit AUiMainWindow2;
 
@@ -25,7 +25,7 @@ function AUiMainWindow_AddMenuItemA(ParentItemName, Name, Text: AStr;
     OnClick: ACallbackProc; ImageId, Weight: AInteger): AMenuItem; {$ifdef AStdCall}stdcall;{$endif}
 
 function AUiMainWindow_AddMenuItemP(const ParentItemName, Name, Text: APascalString;
-    OnClick: ACallbackProc; ImageId, Weight: AInteger): AMenuItem; {$ifdef AStdCall}stdcall;{$endif}
+    OnClick: ACallbackProc; ImageId, Weight: AInteger): AMenuItem;
 
 implementation
 
@@ -54,9 +54,9 @@ begin
     Result := AUiProcVars.AUiMainWindow_AddMenuItemA(ParentItemName, Name, Text, OnClick, ImageId, Weight);
     Exit;
   end;
-  AString_AssignA(SParentName, ParentItemName);
-  AString_AssignA(SName, Name);
-  AString_AssignA(SText, Text);
+  AString_SetA(SParentName, ParentItemName);
+  AString_SetA(SName, Name);
+  AString_SetA(SText, Text);
   Result := AUiMainWindow_AddMenuItem(SParentName, SName, SText, OnClick, ImageId, Weight);
 end;
 
@@ -67,9 +67,9 @@ var
   SName: AString_Type;
   SText: AString_Type;
 begin
-  AString_AssignP(SParentName, ParentItemName);
-  AString_AssignP(SName, Name);
-  AString_AssignP(SText, Text);
+  AString_SetP(SParentName, ParentItemName);
+  AString_SetP(SName, Name);
+  AString_SetP(SText, Text);
   Result := AUiMainWindow_AddMenuItem(SParentName, SName, SText, OnClick, ImageId, Weight);
 end;
 
