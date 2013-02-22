@@ -2,7 +2,7 @@
 @Abstract ARuntime
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 18.02.2013
+@LastMod 22.02.2013
 }
 unit ARuntimeProcSet;
 
@@ -10,31 +10,28 @@ interface
 
 uses
   ABase,
-  {$ifdef ADepr}ARuntimeProcRec,{$endif}
   ARuntimeProcTypes,
   ARuntimeProcVars;
 
+// --- ARuntime ---
+
 function ARuntime_Boot(GetProcByName: ARuntime_GetProcByName_Proc): AError;
 
-function ARuntime_ProcSet05(GetProcByName: ARuntime_GetProcByName_Proc): AError;
-
-{$ifdef ADepr}
-function ARuntime_Boot_Depr(const Runtime: ARuntimeProcs_Type): AError;
-
-function ARuntime_ProcSet_Depr(const Runtime: ARuntimeProcs_Type): AError;
-{$endif}
+function ARuntime_ProcSet(GetProcByName: ARuntime_GetProcByName_Proc): AError;
 
 implementation
 
 const
   ARuntimeName = 'ARuntime';
 
+// --- ARuntime ---
+
 function ARuntime_Boot(GetProcByName: ARuntime_GetProcByName_Proc): AError;
 begin
-  Result := ARuntime_ProcSet05(GetProcByName);
+  Result := ARuntime_ProcSet(GetProcByName);
 end;
 
-function ARuntime_ProcSet05(GetProcByName: ARuntime_GetProcByName_Proc): AError;
+function ARuntime_ProcSet(GetProcByName: ARuntime_GetProcByName_Proc): AError;
 begin
   ARuntimeProcVars.ARuntime_AddModule := GetProcByName(ARuntimeName, 'ARuntime_AddModule');
   ARuntimeProcVars.ARuntime_DeleteModuleByIndex := GetProcByName(ARuntimeName, 'ARuntime_DeleteModuleByIndex');
@@ -67,47 +64,6 @@ begin
 
   Result := 0;
 end;
-
-{$ifdef ADepr}
-function ARuntime_Boot_Depr(const Runtime: ARuntimeProcs_Type): AError;
-begin
-  Result := ARuntime_ProcSet(Runtime);
-end;
-
-function ARuntime_ProcSet_Depr(const Runtime: ARuntimeProcs_Type): AError;
-begin
-  ARuntimeProcVars.ARuntime_AddModule := Runtime.AddModule;
-  ARuntimeProcVars.DeleteModuleByIndex := Runtime.DeleteModuleByIndex;
-  ARuntimeProcVars.ARuntime_DeleteModuleByName := Runtime.DeleteModuleByName;
-  ARuntimeProcVars.ARuntime_DeleteModuleByUid := Runtime.DeleteModuleByUid;
-  ARuntimeProcVars.ARuntime_Fin := Runtime.Fin;
-  ARuntimeProcVars.ARuntime_FindModuleByName := Runtime.FindModuleByName;
-  ARuntimeProcVars.ARuntime_FindModuleByUid := Runtime.FindModuleByUid;
-  ARuntimeProcVars.ARuntime_GetIsShutdown := Runtime.GetIsShutdown;
-  ARuntimeProcVars.ARuntime_GetModuleByName := Runtime.GetModuleByName;
-  ARuntimeProcVars.ARuntime_GetModuleByUid := Runtime.GetModuleByUid;
-  ARuntimeProcVars.ARuntime_GetModuleNameByIndex := Runtime.GetModuleNameByIndex;
-  ARuntimeProcVars.ARuntime_GetModuleNameByUid := Runtime.GetModuleNameByUid;
-  ARuntimeProcVars.ARuntime_GetModuleUidByIndex := Runtime.GetModuleUidByIndex;
-  ARuntimeProcVars.ARuntime_GetModuleProcsByUid := Runtime.GetModuleProcsByUid;
-  ARuntimeProcVars.ARuntime_GetModulesCount := Runtime.GetModulesCount;
-  ARuntimeProcVars.ARuntime_GetOnAfterRun := Runtime.GetOnAfterRun;
-  ARuntimeProcVars.ARuntime_GetOnBeforeRun := Runtime.GetOnBeforeRun;
-  ARuntimeProcVars.ARuntime_GetProcByName := Runtime.GetProcByName;
-  ARuntimeProcVars.ARuntime_Init := Runtime.Init;
-  ARuntimeProcVars.ARuntime_InitModuleByName := Runtime.InitModuleByName;
-  ARuntimeProcVars.ARuntime_InitModuleByUid := Runtime.InitModuleByUid;
-  ARuntimeProcVars.ARuntime_RegisterModule := Runtime.RegisterModule;
-  ARuntimeProcVars.ARuntime_Run := Runtime.Run;
-  ARuntimeProcVars.ARuntime_SetOnAfterRun := Runtime.SetOnAfterRun;
-  ARuntimeProcVars.ARuntime_SetOnBeforeRun := Runtime.SetOnBeforeRun;
-  ARuntimeProcVars.ARuntime_SetOnRun := Runtime.SetOnRun;
-  ARuntimeProcVars.ARuntime_SetOnShutdown := Runtime.SetOnShutdown;
-  ARuntimeProcVars.ARuntime_Shutdown := Runtime.Shutdown;
-
-  Result := 0;
-end;
-{$endif}
 
 end.
  
