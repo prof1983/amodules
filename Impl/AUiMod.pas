@@ -126,6 +126,8 @@ begin
     Result := Addr(AUi_ExecuteInputBox2A)
   else if (ProcName = 'AUi_ExecuteLoginDialog') then
     Result := Addr(AUi_ExecuteLoginDialog)
+  else if (ProcName = 'AUi_ExecuteMessageDialog1') then
+    Result := Addr(AUi_ExecuteMessageDialog1)
   else if (ProcName = 'AUi_ExecuteMessageDialog1A') then
     Result := Addr(AUi_ExecuteMessageDialog1A)
   else if (ProcName = 'AUi_ExecuteOpenFileDialog') then
