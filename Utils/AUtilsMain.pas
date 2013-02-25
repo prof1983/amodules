@@ -2,7 +2,7 @@
 @Abstract AUtils - Main
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 22.02.2013
+@LastMod 25.02.2013
 }
 unit AUtilsMain;
 
@@ -431,6 +431,7 @@ begin
   if not(Assigned(AUtilsProcVars.AUtils_FileExists)) then
   begin
     Result := False;
+    Exit;
   end;
   try
     if (AString_SetP(S, FileName) < 0) then
