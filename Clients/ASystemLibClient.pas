@@ -2,7 +2,7 @@
 @Abstract ASystem get proc address from lib
 @Author Prof1983 <prof1983@ya.ru>
 @Created 27.08.2012
-@LastMod 20.02.2013
+@LastMod 25.02.2013
 }
 unit ASystemLibClient;
 
@@ -24,6 +24,7 @@ begin
   ASystem_GetConfig := ALibrary_GetProcAddressP(Lib, 'ASystem_GetConfig');
   ASystem_GetDataDirectoryPath := ALibrary_GetProcAddressP(Lib, 'ASystem_GetDataDirectoryPath');
   ASystem_GetExePath := ALibrary_GetProcAddressP(Lib, 'ASystem_GetExePath');
+  ASystem_GetParamStr := ALibrary_GetProcAddressP(Lib, 'ASystem_GetParamStr');
   ASystem_GetProgramName := ALibrary_GetProcAddressP(Lib, 'ASystem_GetProgramName');
   ASystem_GetResourceString := ALibrary_GetProcAddressP(Lib, 'ASystem_GetResourceString');
   ASystem_GetTitle := ALibrary_GetProcAddressP(Lib, 'ASystem_GetTitle');
@@ -31,7 +32,6 @@ begin
   ASystem_OnAfterRun_Disconnect := ALibrary_GetProcAddressP(Lib, 'ASystem_OnAfterRun_Disconnect');
   ASystem_OnBeforeRun_Connect := ALibrary_GetProcAddressP(Lib, 'ASystem_OnBeforeRun_Connect');
   ASystem_OnBeforeRun_Disconnect := ALibrary_GetProcAddressP(Lib, 'ASystem_OnBeforeRun_Disconnect');
-  ASystem_ParamStr := ALibrary_GetProcAddressP(Lib, 'ASystem_ParamStr');
   ASystem_Prepare := ALibrary_GetProcAddressP(Lib, 'ASystem_Prepare');
   ASystem_PrepareA := ALibrary_GetProcAddressP(Lib, 'ASystem_PrepareA');
   ASystem_ProcessMessages := ALibrary_GetProcAddressP(Lib, 'ASystem_ProcessMessages');
