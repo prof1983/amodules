@@ -2,7 +2,7 @@
 @Abstract AUiSettings
 @Author Prof1983 <prof1983@ya.ru>
 @Created 13.03.2009
-@LastMod 22.02.2013
+@LastMod 25.02.2013
 }
 unit AUiSettingsMod;
 
@@ -11,9 +11,11 @@ interface
 uses
   ABase,
   ARuntimeBase,
-  ARuntimeMain, 
+  ARuntimeMain,
+  AUiModClient,
   AUiSettingsBase,
-  AUiSettingsMain;
+  AUiSettingsMain,
+  AStringsModClient;
 
 // --- AUiSettingsMod ---
 
@@ -53,11 +55,11 @@ const
 function AUiSettingsMod_Boot(): AError;
 begin
   // Check dublicate module
-  {if (Runtime_Modules_FindByName(AUISettings_Name) >= 0) then
+  if (ARuntime_FindModuleByName(AUiSettings_Name) >= 0) then
   begin
-    Result := -1;
+    Result := -10;
     Exit;
-  end;}
+  end;
 
   ARuntime_AddModule(Module);
   Result := 0;
@@ -93,11 +95,16 @@ end;
 
 function AUiSettingsMod_Init(): AError;
 begin
-  {if (AUi_Boot() < 0) then
+  if (AUi_Boot() < 0) then
   begin
     Result := -2;
     Exit;
-  end;}
+  end;
+  if (AStrings_Boot() < 0) then
+  begin
+    Result := -3;
+    Exit;
+  end;
   Result := AUiSettings_Init();
 end;
 
