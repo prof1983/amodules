@@ -2,7 +2,7 @@
 @Abstract ARuntime main function
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 18.02.2013
+@LastMod 04.03.2013
 }
 unit ARuntimeMain;
 
@@ -129,7 +129,7 @@ function ARuntime_FindModuleByName(Name: AStr): AInt;
 begin
   if not(Assigned(ARuntimeProcVars.ARuntime_FindModuleByName)) then
   begin
-    Result := -1;
+    Result := -100;
     Exit;
   end;
   Result := ARuntimeProcVars.ARuntime_FindModuleByName(Name);
@@ -139,7 +139,7 @@ function ARuntime_FindModuleByUid(Uid: AModuleUid): AInteger;
 begin
   if not(Assigned(ARuntimeProcVars.ARuntime_FindModuleByUid)) then
   begin
-    Result := -1;
+    Result := -100;
     Exit;
   end;
   Result := ARuntimeProcVars.ARuntime_FindModuleByUid(Uid);
