@@ -2,7 +2,7 @@
 Abstract AUiControl functions
 Author Prof1983 <prof1983@ya.ru>
 Created 16.11.2012
-LastMod 22.02.2013
+LastMod 20.03.2013
 }
 unit AUiControls;
 
@@ -23,7 +23,7 @@ function AUiControl_GetText(Control: AControl; out Value: AString_Type): AError;
 
 function AUiControl_GetTextP(Control: AControl): APascalString;
 
-function AUiControl_SetAlign(Control: AControl; Align: TUiAlign): AError; {$ifdef AStdCall}stdcall;{$endif}
+function AUiControl_SetAlign(Control: AControl; Align: AUiAlign): AError; {$ifdef AStdCall}stdcall;{$endif}
 
 function AUiControl_SetClientSize(Control: AControl; ClientWidth, ClientHeight: AInt): AError; {$ifdef AStdCall}stdcall;{$endif}
 
@@ -80,7 +80,7 @@ begin
   Result := AString_ToPascalString(S);
 end;
 
-function AUiControl_SetAlign(Control: AControl; Align: TUiAlign): AError;
+function AUiControl_SetAlign(Control: AControl; Align: AUiAlign): AError;
 begin
   if Assigned(AUiProcVars.AUiControl_SetAlign) then
   begin

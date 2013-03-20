@@ -2,7 +2,7 @@
 @Abstract User interface proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 20.12.2012
+@LastMod 20.03.2013
 }
 unit AUiProcTypes;
 
@@ -70,7 +70,7 @@ type
 
 type
   AUiButton_New_Proc = function(Parent: AControl): AButton; stdcall;
-  AUiButton_SetKind_Proc = function(Button: AButton; Kind: TAUiButtonKind): AError; stdcall;
+  AUiButton_SetKind_Proc = function(Button: AButton; Kind: AUiButtonKind): AError; stdcall;
 
 type
   AUiCalendar_GetDate_Proc = function(Calendar: AControl): TDateTime; stdcall;
@@ -110,8 +110,8 @@ type
   AUiControl_GetTop_Proc = function(Control: AControl): AInt; stdcall;
   AUiControl_GetVisible_Proc = function(Control: AControl): ABool; stdcall;
   AUiControl_GetWidth_Proc = function(Control: AControl): AInt; stdcall;
-  AUiControl_SetAlign_Proc = function(Control: AControl; Align: TUiAlign): AError; stdcall;
-  AUiControl_SetAnchors_Proc = function(Control: AControl; Anchors: TUiAnchors): AError; stdcall;
+  AUiControl_SetAlign_Proc = function(Control: AControl; Align: AUiAlign): AError; stdcall;
+  AUiControl_SetAnchors_Proc = function(Control: AControl; Anchors: AUiAnchors): AError; stdcall;
   AUiControl_SetBevel_Proc = function(Control: AControl; Value: AUiBevel; Width: AInt): AError; stdcall;
   AUiControl_SetClientSize_Proc = function(Control: AControl; ClientWidth, ClientHeight: AInt): AError; stdcall;
   AUiControl_SetColor_Proc = function(Control: AControl; Color: AColor): AError; stdcall;
