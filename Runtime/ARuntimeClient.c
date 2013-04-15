@@ -1,11 +1,10 @@
 /*
 Author Prof1983 <prof1983@ya.ru>
 Created 04.03.2013
-LastMod 04.03.2013
+LastMod 04.04.2013
 */
 
 #include "ARuntimeClientVars.c"
-#include "ARuntimeClient.h"
 
 // --- ARuntime ---
 

@@ -1,7 +1,7 @@
 /*
 Author Prof1983 <prof1983@ya.ru>
 Created 04.03.2013
-LastMod 04.03.2013
+LastMod 15.04.2013
 */
 
 #include "ABase.h"
@@ -55,6 +55,7 @@ typedef ADialogBoxCommands AFunction (*ASystem_ShowMessage_Proc)(AString Msg);
 typedef ADialogBoxCommands AFunction (*ASystem_ShowMessageA_Proc)(AStr Msg);
 typedef ADialogBoxCommands AFunction (*ASystem_ShowMessageEx_Proc)(AString Text, AString Caption, AMessageBoxFlags Flags);
 typedef ADialogBoxCommands AFunction (*ASystem_ShowMessageExA_Proc)(AStr Text, AStr Caption, AMessageBoxFlags Flags);
+typedef AError AFunction (*ASystem_Shutdown_Proc)();
 
 // --- Vars ----------------------------------------------------------------------------------------
 
@@ -97,4 +98,4 @@ ASystem_ShowMessage_Proc _ASystem_ShowMessage;
 ASystem_ShowMessageA_Proc _ASystem_ShowMessageA;
 ASystem_ShowMessageEx_Proc _ASystem_ShowMessageEx;
 ASystem_ShowMessageExA_Proc _ASystem_ShowMessageExA;
-
+ASystem_Shutdown_Proc _ASystem_Shutdown;

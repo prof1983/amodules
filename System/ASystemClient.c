@@ -1,11 +1,10 @@
 /*
 Author Prof1983 <prof1983@ya.ru>
 Created 04.03.2013
-LastMod 04.03.2013
+LastMod 15.04.2013
 */
 
-#include "ABase"
-#include "ARuntime"
+#include "ABase.h"
 #include "ASystemClientVars.c"
 
 // --- ASystem ---
@@ -17,6 +16,7 @@ afunc ASystem_LoadProcs(AModuleGetProc GetProc)
   _ASystem_GetComments = GetProc("ASystem_GetComments");
   _ASystem_GetCompanyName = GetProc("ASystem_GetCompanyName");
   _ASystem_GetConfig = GetProc("ASystem_GetConfig");
+  _ASystem_GetConfigDirectoryPath = GetProc("ASystem_GetConfigDirectoryPath");
   _ASystem_GetDataDirectoryPath = GetProc("ASystem_GetDataDirectoryPath");
   _ASystem_GetCopyright = GetProc("ASystem_GetCopyright");
   _ASystem_GetDataDirectoryPath = GetProc("ASystem_GetDataDirectoryPath");
@@ -52,6 +52,8 @@ afunc ASystem_LoadProcs(AModuleGetProc GetProc)
   _ASystem_ShowMessage = GetProc("ASystem_ShowMessage");
   _ASystem_ShowMessageEx = GetProc("ASystem_ShowMessageEx");
   _ASystem_ShowMessageExA = GetProc("ASystem_ShowMessageExA");
+  _ASystem_Shutdown = GetProc("ASystem_Shutdown");
+
 
   if (_ASystem_Fin = 0) {
     return 1;
@@ -64,6 +66,9 @@ afunc ASystem_LoadProcs(AModuleGetProc GetProc)
   }
   else if (_ASystem_GetConfig = 0) {
     return 4;
+  }
+  else if (_ASystem_GetConfigDirectoryPath = 0) {
+    return 40;
   }
   else if (_ASystem_GetDataDirectoryPath = 0) {
     return 5;
@@ -169,6 +174,9 @@ afunc ASystem_LoadProcs(AModuleGetProc GetProc)
   }
   else if (_ASystem_ShowMessageExA = 0) {
     return 39;
+  }
+  else if (_ASystem_Shutdown = 0) {
+    return 41;
   }
   else
     return 0;
