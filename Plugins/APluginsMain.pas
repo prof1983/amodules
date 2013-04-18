@@ -2,7 +2,7 @@
 @Abstract APlugins
 @Author Prof1983 <prof1983@ya.ru>
 @Created 18.02.2013
-@LastMod 18.02.2013
+@LastMod 18.04.2013
 }
 unit APluginsMain;
 
@@ -32,6 +32,10 @@ function APlugins_FinAll(): AError; {$ifdef AStdCall}stdcall;{$endif}
 function APlugins_Find2A(Path, Exclusion: AStr): AError; {$ifdef AStdCall}stdcall;{$endif}
 
 function APlugins_Find2P(const Path, Exclusion: APascalString): AError;
+
+function APlugins_Find3A(Path, Exclusion: AStr; SubDirsOnly: ABool): AError; {$ifdef AStdCall}stdcall;{$endif}
+
+function APlugins_Find3P(const Path, Exclusion: APascalString; SubDirsOnly: ABool): AError;
 
 function APlugins_FindA(Path: AStr): AError; {$ifdef AStdCall}stdcall;{$endif}
 
@@ -117,6 +121,21 @@ end;
 function APlugins_Find2P(const Path, Exclusion: APascalString): AError;
 begin
   Result := APlugins_Find2A(AStr(AnsiString(Path)), AStr(AnsiString(Exclusion)));
+end;
+
+function APlugins_Find3A(Path, Exclusion: AStr; SubDirsOnly: ABool): AError;
+begin
+  if not(Assigned(APluginsProcVars.APlugins_Find3A)) then
+  begin
+    Result := -100;
+    Exit;
+  end;
+  Result := APluginsProcVars.APlugins_Find3A(Path, Exclusion, SubDirsOnly);
+end;
+
+function APlugins_Find3P(const Path, Exclusion: APascalString; SubDirsOnly: ABool): AError;
+begin
+  Result := APlugins_Find3A(AStr(AnsiString(Path)), AStr(AnsiString(Exclusion)), SubDirsOnly);
 end;
 
 function APlugins_FindA(Path: AStr): AError;
