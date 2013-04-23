@@ -2,7 +2,7 @@
 @Abstract ASystem
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 19.11.2012
+@LastMod 23.04.2013
 }
 unit ASystemModClient;
 
@@ -24,12 +24,17 @@ begin
     Result := -2;
     Exit;
   end;
-  if (System_SetProcsP(Module.Procs) < 0) then
+  if Assigned(Module.GetProc) then
   begin
-    Result := -3;
+    Result := ASystem_SetProcs(Module.GetProc);
     Exit;
   end;
-  Result := 0;
+
+  {$ifdef ADepr}
+  Result := ASystem_SetProcsP(Module.Procs);
+  {$else}
+  Result := -3;
+  {$endif}
 end;
 
 end.

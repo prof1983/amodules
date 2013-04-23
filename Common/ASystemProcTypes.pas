@@ -2,7 +2,7 @@
 @Abstract ASystemProcs
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.08.2009
-@LastMod 21.11.2012
+@LastMod 23.04.2013
 }
 unit ASystemProcTypes;
 
@@ -16,33 +16,39 @@ uses
 // --- Proc types ----------------------------------------------------------------------------------
 
 type
-  {$IFDEF ADepr}ASystem_AddModule_Proc = function(const Module: AModule03_Type): AInteger; stdcall;{$ENDIF}
   ASystem_DeleteModuleByName_Proc = function(Name: AStr): AInteger; stdcall;
-  {$IFDEF ADepr}ASystem_DeleteModuleByNameWS_Proc = function(const Name: AWideString): AInteger; stdcall;{$ENDIF}
   ASystem_DeleteModuleByUid_Proc = function(Uid: AModuleUid): AInteger; stdcall;
+  ASystem_Fin_Proc = function(): AError; stdcall;
   ASystem_FindModuleByName_Proc = function(Name: AStr): AInteger; stdcall;
   ASystem_FindModuleByUid_Proc = function(Uid: AModuleUid): AInteger; stdcall;
-  {$IFDEF ADepr}ASystem_FindModuleByNameWS_Proc = function(const Name: AWideString): AInteger; stdcall;{$ENDIF}
+  ASystem_GetComments_Proc = function(out Value: AString_Type): AError; stdcall;
+  ASystem_GetCompanyName_Proc = function(out Value: AString_Type): AError; stdcall;
   ASystem_GetConfig_Proc = function(): AConfig; stdcall;
+  ASystem_GetConfigDirectoryPath_Proc = function(out Value: AString_Type): AError; stdcall;
+  ASystem_GetCopyright_Proc = function(out Value: AString_Type): AError; stdcall;
   ASystem_GetDataDirectoryPath_Proc = function(out S: AString_Type): AError; stdcall;
+  ASystem_GetDescription_Proc = function(out Value: AString_Type): AError; stdcall;
+  ASystem_GetDirectoryPath_Proc = function(out Value: AString_Type): AError; stdcall;
   ASystem_GetExeName_Proc = function(out S: AString_Type): AError; stdcall;
   ASystem_GetExePath_Proc = function(out S: AString_Type): AError; stdcall;
   ASystem_GetIsShutdown_Proc = function(): ABoolean; stdcall;
   ASystem_GetModuleByName_Proc = function(Name: AStr; out Module: AModule_Type): AInteger; stdcall;
-  {$IFDEF ADepr}ASystem_GetModuleByName02_Proc = function(const Name: AWideString; out Module: AModule02_Type): ABoolean; stdcall;{$ENDIF}
   ASystem_GetModuleByUid_Proc = function(Uid: AModuleUid; out Module: AModule_Type): AInteger; stdcall;
   ASystem_GetModuleNameByIndex_Proc = function(Index: AInteger; Name: AStr; MaxLen: AInteger): AInteger; stdcall;
   ASystem_GetModuleNameByIndexWS_Proc = function(Index: AInteger): AWideString; stdcall;
   ASystem_GetModuleProcsByUid_Proc = function(Uid: AModuleUid): Pointer; stdcall;
   ASystem_GetModulesCount_Proc = function(): AInteger; stdcall;
   ASystem_GetModuleUidByIndex_Proc = function(Index: AInteger): AModuleUid; stdcall;
+  ASystem_GetParamStr_Proc = function(Index: AInt; out Value: AString_Type): AError; stdcall;
+  ASystem_GetProductName_Proc = function(out Value: AString_Type): AError; stdcall;
+  ASystem_GetProductVersionStr_Proc = function(out Value: AString_Type): AError; stdcall;
   ASystem_GetProgramName_Proc = function(out S: AString_Type): AError; stdcall;
+  ASystem_GetProgramVersionStr_Proc = function(out Value: AString_Type): AError; stdcall;
   ASystem_GetResourceString_Proc = function(const Section, Name, Default: AString_Type; out Value: AString_Type): AInteger; stdcall;
-  {$IFDEF ADepr}ASystem_GetResourceStringWS_Proc = function(const Section, Name, Default: AWideString): AWideString; stdcall;{$ENDIF}
   ASystem_GetTitle_Proc = function(out S: AString_Type): AError; stdcall;
+  ASystem_GetUrl_Proc = function(out Value: AString_Type): AError; stdcall;
   ASystem_Init_Proc = function(): AError; stdcall;
   ASystem_InitModuleByName_Proc = function(Name: AStr): AInteger; stdcall;
-  {$IFDEF ADepr}ASystem_InitModuleByNameWS_Proc = function(const ModuleName: AWideString): AInteger; stdcall;{$ENDIF}
   ASystem_InitModuleByUid_Proc = function(Uid: AModuleUid): AInteger; stdcall;
   ASystem_OnAfterRun_Proc = function(): AEvent; stdcall;
   ASystem_OnBeforeRun_Proc = function(): AEvent; stdcall;
@@ -55,7 +61,6 @@ type
   ASystem_OnBeforeRun_Disconnect_Proc = function(Callback: ACallbackProc03): AInt; stdcall;
   ASystem_OnBeforeRunDisconnect02_Proc = function(Callback: ACallbackProc02): AInteger; stdcall;
   ASystem_ParamStr_Proc = function(Index: AInteger; out Value: AString_Type): AInteger; stdcall;
-  {$IFDEF ADepr}ASystem_ParamStrWS_Proc = function(Index: AInteger): AWideString; stdcall;{$ENDIF}
   ASystem_Prepare_Proc = function(): AError; stdcall;
   ASystem_Prepare2_Proc = function(const Title, ProgramName: AString_Type; ProgramVersion: AVersion;
     const ProductName: AString_Type; ProductVersion: AVersion;
@@ -63,42 +68,65 @@ type
   ASystem_Prepare2A_Proc = function(Title, ProgramName: AStr; ProgramVersion: AVersion;
     ProductName: AStr; ProductVersion: AVersion;
     CompanyName, Copyright, Url, Description, DataPath: AStr): AError; stdcall;
-  {$IFDEF ADepr}
-  ASystem_Prepare2WS_Proc = procedure(const Title, ProgramName: AWideString; ProgramVersion: AVersion;
-    const ProductName: AWideString; ProductVersion: AVersion;
-    const CompanyName, Copyright, Url, Description, DataPath: AWideString); stdcall;
-  {$ENDIF}
   ASystem_Prepare4A_Proc = function(Title, ProgramName: AStr; ProgramVersion: AVersion;
       ProductName: AStr; ProductVersion: AVersion;
       CompanyName, Copyright, Url, Description, Comments, DataPath, ConfigPath: AStr): AError; stdcall;
+  ASystem_PrepareA_Proc = function(Title, ProgramName: AStr; ProgramVersion: AVersion;
+      ProductName: AStr; ProductVersion: AVersion;
+      CompanyName, Copyright, Url, Description, DataPath, ConfigPath: AStr): AError; stdcall;
   ASystem_ProcessMessages_Proc = function(): AError; stdcall;
   ASystem_ProcessMessages02_Proc = procedure(); stdcall;
-  {$IFDEF ADepr}ASystem_RegisterModule02_Proc = function(const Module: AModule02_Type): AInteger; stdcall;{$ENDIF}
   ASystem_SetConfig_Proc = procedure(Value: AConfig); stdcall;
+  ASystem_SetDataDirectoryPath_Proc = function(const DataDir: AString_Type): AError; stdcall;
   ASystem_SetOnAfterRun_Proc = function(Value: AProc): AError; stdcall;
   ASystem_SetOnBeforeRun_Proc = function(Value: AProc): AError; stdcall;
   ASystem_SetOnProcessMessages_Proc = procedure(Value: AProc03); stdcall;
   ASystem_SetOnProcessMessages02_Proc = procedure(Value: AProc02); stdcall;
   ASystem_SetOnRun_Proc = function(Value: AProc): AError; stdcall;
   ASystem_SetOnRun02_Proc = procedure(Value: AProc02); stdcall;
-  {$IFDEF ADepr}ASystem_SetOnShowError_Proc = procedure(Value: TAShowErrorWSProc); stdcall;{$ENDIF}
-  {$IFDEF ADepr}ASystem_SetOnShowMessage_Proc = procedure(Value: TAShowMessageWSProc); stdcall;{$ENDIF}
+  ASystem_SetOnShowErrorA_Proc = function(Value: AShowErrorA_Proc): AError; stdcall;
+  ASystem_SetOnShowMessageA_Proc = function(Value: AShowMessageA_Proc): AError; stdcall;
   ASystem_SetOnShutdown_Proc = function(Value: AProc): AError; stdcall;
   ASystem_SetOnShutdown02_Proc = procedure(Value: AProc02); stdcall;
+  ASystem_ShellExecute_Proc = function(const Operation, FileName, Parameters, Directory: AString_Type): AInt; stdcall;
   ASystem_ShowError_Proc = function(const UserMessage, ExceptMessage: AString_Type): AError; stdcall;
   ASystem_ShowError02_Proc = procedure(const UserMessage, ExceptMessage: AWideString); stdcall;
-  {$IFDEF ADepr}ASystem_ShowErrorP_Proc = function(const UserMessage, ExceptMessage: APascalString): AError; stdcall;{$ENDIF}
+  ASystem_ShowErrorA_Proc = function(UserMessage, ExceptMessage: AStr): AError; stdcall;
   ASystem_ShowMessage_Proc = function(const Msg: AString_Type): ADialogBoxCommands; stdcall;
+  ASystem_ShowMessageA_Proc = function(Msg: AStr): ADialogBoxCommands; stdcall;
   ASystem_ShowMessageEx_Proc = function(const Text, Caption: AString_Type; Flags: AMessageBoxFlags): ADialogBoxCommands; stdcall;
-  {$IFDEF ADepr}ASystem_ShowMessageExP_Proc = function(const Text, Caption: APascalString; Flags: AMessageBoxFlags): ADialogBoxCommands; stdcall;{$ENDIF}
-  {$IFDEF ADepr}ASystem_ShowMessageExWS_Proc = function(const Text, Caption: AWideString; Flags: AMessageBoxFlags): ADialogBoxCommands; stdcall;{$ENDIF}
-  {$IFDEF ADepr}ASystem_ShowMessageWS_Proc = function(const Msg: AWideString): ADialogBoxCommands; stdcall;{$ENDIF}
+  ASystem_ShowMessageExA_Proc = function(Text, Caption: AStr; Flags: AMessageBoxFlags): ADialogBoxCommands; stdcall;
   ASystem_Shutdown_Proc = function(): AError; stdcall;
   ASystem_Shutdown02_Proc = procedure(); stdcall;
 
+  {$ifdef ADepr}
+  ASystem_AddModule_Proc = function(const Module: AModule03_Type): AInteger; stdcall;
+  ASystem_DeleteModuleByNameWS_Proc = function(const Name: AWideString): AInteger; stdcall;
+  ASystem_FindModuleByNameWS_Proc = function(const Name: AWideString): AInteger; stdcall;
+  ASystem_GetModuleByName02_Proc = function(const Name: AWideString; out Module: AModule02_Type): ABoolean; stdcall;
+  ASystem_GetResourceStringWS_Proc = function(const Section, Name, Default: AWideString): AWideString; stdcall;
+  ASystem_InitModuleByNameWS_Proc = function(const ModuleName: AWideString): AInteger; stdcall;
+  ASystem_ParamStrWS_Proc = function(Index: AInteger): AWideString; stdcall;
+  ASystem_Prepare2WS_Proc = procedure(const Title, ProgramName: AWideString; ProgramVersion: AVersion;
+    const ProductName: AWideString; ProductVersion: AVersion;
+    const CompanyName, Copyright, Url, Description, DataPath: AWideString); stdcall;
+  ASystem_RegisterModule02_Proc = function(const Module: AModule02_Type): AInteger; stdcall;
+  ASystem_SetOnShowError_Proc = procedure(Value: TAShowErrorWSProc); stdcall;
+  ASystem_SetOnShowMessage_Proc = procedure(Value: TAShowMessageWSProc); stdcall;
+  ASystem_ShowErrorP_Proc = function(const UserMessage, ExceptMessage: APascalString): AError; stdcall;
+  ASystem_ShowMessageExP_Proc = function(const Text, Caption: APascalString; Flags: AMessageBoxFlags): ADialogBoxCommands; stdcall;
+  ASystem_ShowMessageExWS_Proc = function(const Text, Caption: AWideString; Flags: AMessageBoxFlags): ADialogBoxCommands; stdcall;
+  ASystem_ShowMessageWS_Proc = function(const Msg: AWideString): ADialogBoxCommands; stdcall;
+  {$endif}
+
+type
+  ASystem_FileTextClose_Proc = function(FileId: AInt): AError; stdcall;
+  ASystem_FileTextEof_Proc = function(FileId: AInt): ABool; stdcall;
+  ASystem_FileTextGetIndex_Proc = function(FileId: AInt): AInt; stdcall;
+
 type
   {$IFDEF ADepr}A_System_ShellExecuteWS_Proc = function(const Operation, FileName, Parameters, Directory: AWideString): AInteger; stdcall;{$ENDIF}
-  A_System_FileTextEof_Proc = function(FileID: AInteger): ABoolean; stdcall;
+  A_System_FileTextEof_Proc = ASystem_FileTextEof_Proc;
   {$IFDEF ADepr}A_System_FileTextReadLnAnsi_Proc = function(FileID: AInteger; var Stroka: AnsiString): AError; stdcall;{$ENDIF}
 
   {$IFDEF ADepr}A_System_SetDataDirectoryPathWS_Proc = function(const DataDir: AWideString): AError; stdcall;{$ENDIF}
