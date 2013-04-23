@@ -2,7 +2,7 @@
 @Abstract AUtils - Main
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 22.04.2013
+@LastMod 23.04.2013
 }
 unit AUtilsMain;
 
@@ -113,11 +113,6 @@ var
   FN: AString_Type;
   Res: AString_Type;
 begin
-  if not(Assigned(AUtilsProcVars.AUtils_ExtractFileExt)) and not(Assigned(AUtilsProcVars.AUtils_ExtractFileExtWS)) then
-  begin
-    Result := '';
-    Exit;
-  end;
   if Assigned(AUtilsProcVars.AUtils_ExtractFileExt) then
   begin
     if (AString_AssignWS(FN, FileName) < 0) then
@@ -263,13 +258,6 @@ begin
     Result := AUtilsProcVars.AUtils_GetNowDateTime();
     Exit;
   end;
-
-  if Assigned(AUtilsProcVars.AUtils_Time_Now) then
-  begin
-    Result := AUtilsProcVars.AUtils_Time_Now();
-    Exit;
-  end;
-
   Result := 0;
 end;
 
@@ -399,7 +387,7 @@ begin
     Exit;
   except
   end;
-
+  {$ifdef ADepr}
   if Assigned(AUtilsProcVars.AUtils_Sleep02) then
   try
     AUtilsProcVars.AUtils_Sleep02(Milliseconds);
@@ -407,7 +395,7 @@ begin
     Exit;
   except
   end;
-
+  {$endif}
   Result := -1;
 end;
 

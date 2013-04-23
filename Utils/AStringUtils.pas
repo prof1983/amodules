@@ -2,7 +2,7 @@
 @Abstract AStringUtils
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 20.11.2012
+@LastMod 23.04.2013
 }
 unit AStringUtils;
 
@@ -29,17 +29,24 @@ implementation
 
 function AString_ToUpper(const S: AString_Type; out Res: AString_Type): AInteger;
 begin
-  if not(Assigned(AUtilsProcVars.AUtils_UpperString)) then
-  begin
-    Result := -1;
-    Exit;
-  end;
   if (AString_Assign(Res, S) < 0) then
   begin
     Result := -1;
     Exit;
   end;
-  Result := AUtilsProcVars.AUtils_UpperString(Res);
+  if Assigned(AUtilsProcVars.AString_ToUpper) then
+  begin
+    Result := AUtilsProcVars.AString_ToUpper(S, Res);
+    Exit;
+  end;
+  {$ifdef ADepr}
+  if Assigned(AUtilsProcVars.AUtils_UpperString) then
+  begin
+    Result := AUtilsProcVars.AUtils_UpperString(Res);
+    Exit;
+  end;
+  {$endif}
+  Result := -1;
 end;
 
 function AString_ToUpperP(const S: APascalString): APascalString;
