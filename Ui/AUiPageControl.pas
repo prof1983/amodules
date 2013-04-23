@@ -2,7 +2,7 @@
 @Abstract AUi PageControl
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 22.04.2013
+@LastMod 23.04.2013
 }
 unit AUiPageControl;
 
@@ -57,11 +57,13 @@ begin
     Result := AUiPageControl_AddPage(PageControl, SName, SText);
     Exit;
   end;
+  {$ifdef ADepr}
   if Assigned(AUiProcVars.AUiPageControl_AddPageWS) then
   begin
     Result := AUiProcVars.AUiPageControl_AddPageWS(PageControl, Name, Text);
     Exit;
   end;
+  {$endif}
   Result := 0;
 end;
 

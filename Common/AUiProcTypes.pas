@@ -2,7 +2,7 @@
 @Abstract User interface proc types
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 14.12.2012
+@LastMod 23.04.2013
 }
 unit AUiProcTypes;
 
@@ -516,6 +516,7 @@ type
   AUiWindow_New_Proc = function(): AControl; stdcall;
   AUiWindow_SaveConfig_04_Proc = function(Window: AWindow; Config: AConfig): AError; stdcall;
   AUiWindow_SaveConfig2_04_Proc = function(Window: AWindow; Config: AConfig; const ConfigKey: AString_Type): AError; stdcall;
+  AUiWindow_SetBorderStyle_Proc = function(Window: AWindow; BorderStyle: AInt): AError; stdcall;
   AUiWindow_SetFormStyle04_Proc = function(Window: AWindow; FormStyle: AInt): AError; stdcall;
   AUiWindow_SetPosition04_Proc = function(Window: AWindow; Position: AInt): AError; stdcall;
   AUiWindow_SetState_Proc = function(Window: AWindow; State: AInt): AError; stdcall;
@@ -529,7 +530,6 @@ type
   AUiWindow_SaveConfig2_02_Proc = function(Window: AWindow; Config: AConfig; const ConfigKey: AString_Type): ABoolean; stdcall;
   AUiWindow_SaveConfig2_WS_Proc = function(Window: AWindow; Config: AConfig; const ConfigKey: AWideString): ABoolean; stdcall;
   AUiWindow_SetBorderStyle02_Proc = procedure(Window: AWindow; BorderStyle: AInt); stdcall;
-  AUiWindow_SetBorderStyle03_Proc = function(Window: AWindow; BorderStyle: AInt): AError; stdcall;
   AUiWindow_SetFormStyle02_Proc = procedure(Window: AWindow; FormStyle: AInt); stdcall;
   AUiWindow_SetPosition02_Proc = procedure(Window: AWindow; Position: AInt); stdcall;
   {$endif}

@@ -2,7 +2,7 @@
 @Abstract AUi Menus
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 22.04.2013
+@LastMod 23.04.2013
 }
 unit AUiMenus;
 
@@ -93,11 +93,13 @@ begin
     Result := AUiMenu_AddItem2(ParentMenuItem, SName, SText, OnClick, ImageId, Weight);
     Exit;
   end;
+  {$ifdef ADepr}
   if Assigned(AUiProcVars.Menu_AddItem2WS) then
   begin
     Result := AUiProcVars.Menu_AddItem2WS(ParentMenuItem, Name, Text, OnClick, ImageId, Weight);
     Exit;
   end;
+  {$endif}
   Result := 0;
 end;
 

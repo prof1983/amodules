@@ -2,7 +2,7 @@
 @Abstract AUi dialogs
 @Author Prof1983 <prof1983@ya.ru>
 @Created 27.08.2012
-@LastMod 14.12.2012
+@LastMod 23.04.2013
 }
 unit AUiDialogs;
 
@@ -13,11 +13,13 @@ interface
 uses
   ABase, AUiBase, AUiProcVars;
 
+{$ifdef ADepr}
 function AUiDialog_AddButton02(Win: AWindow; Left, Width: AInteger; const Text: AWideString;
     OnClick: ACallbackProc02): AControl; {$ifdef AStdCall}stdcall;{$endif}
 
 function AUiDialog_AddButtonP(Win: AWindow; Left, Width: AInt; const Text: APascalString;
     OnClick: ACallbackProc): AControl; {$ifdef AStdCall}stdcall;{$endif}
+{$endif}
 
 function AUiDialog_GetWindow(Dialog: ADialog): AWindow; {$ifdef AStdCall}stdcall;{$endif}
 
@@ -25,6 +27,7 @@ function AUiDialog_New(Buttons: AUiWindowButtons): ADialog; {$ifdef AStdCall}std
 
 implementation
 
+{$ifdef ADepr}
 function AUiDialog_AddButton02(Win: AWindow; Left, Width: AInteger; const Text: AWideString;
     OnClick: ACallbackProc02): AControl;
 begin
@@ -35,12 +38,15 @@ begin
   end;
   Result := 0;
 end;
+{$endif}
 
+{$ifdef ADepr}
 function AUiDialog_AddButtonP(Win: AWindow; Left, Width: AInt; const Text: APascalString;
     OnClick: ACallbackProc): AControl;
 begin
   Result := AUiDialog_AddButton02(Win, Left, Width, Text, nil);
 end;
+{$endif}
 
 function AUiDialog_GetWindow(Dialog: ADialog): AWindow;
 begin

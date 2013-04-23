@@ -2,7 +2,7 @@
 @Abstract AUiMainWindow
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 22.04.2013
+@LastMod 23.04.2013
 }
 unit AUiMainWindow2;
 
@@ -30,7 +30,7 @@ implementation
 function AUiMainWindow_AddMenuItem(const ParentItemName, Name, Text: AString_Type;
     OnClick: ACallbackProc; ImageId, Weight: AInteger): AMenuItem;
 begin
-  if not(Assigned(AUiProcVars.MainWindow_AddMenuItem)) then
+  if not(Assigned(AUiProcVars.AUiMainWindow_AddMenuItem)) then
   begin
     Result := 0;
     Exit;
@@ -63,9 +63,15 @@ var
   SName: AString_Type;
   SText: AString_Type;
 begin
-  if Assigned(AUiProcVars.MainWindow_AddMenuItem) then
+  if Assigned(AUiProcVars.AUiMainWindow_AddMenuItemA) then
   begin
-    Result := AUiProcVars.MainWindow_AddMenuItem(ParentItemName, Name, Text, OnClick, ImageId, Weight);
+    Result := AUiProcVars.AUiMainWindow_AddMenuItemA(
+        AStr(AnsiString(ParentItemName)),
+        AStr(AnsiString(Name)),
+        AStr(AnsiString(Text)),
+        OnClick,
+        ImageId,
+        Weight);
     Exit;
   end;
   AString_AssignP(SParentName, ParentItemName);

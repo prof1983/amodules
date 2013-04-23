@@ -2,7 +2,7 @@
 @Abstract User Interface procs var
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 14.12.2012
+@LastMod 23.04.2013
 }
 unit AUiProcVars;
 
@@ -266,7 +266,7 @@ var
   AUiMenu_AddItem0: AUiMenu_AddItem0_Proc = nil;
   AUiMenu_AddItem1: AUiMenu_AddItem1_Proc = nil;
   AUiMenu_AddItem2: AUiMenu_AddItem2_Proc = nil;
-  AUiMenu_AddItem3: AUi_Menu_AddItem3_Proc = nil; {Menu_AddItem3}
+  AUiMenu_AddItem3: AUiMenu_AddItem3_Proc = nil;
   AUiMenu_Clear: AUiMenu_Clear_Proc = nil;
   AUiMenu_FindItemByName: AUiMenu_FindItemByName_Proc = nil;
   AUiMenu_GetItems: AUiMenu_GetItems_Proc = nil; {Menu_GetItems}
@@ -379,7 +379,7 @@ var
   AUiWindow_FreeAndNil: AUiWindow_FreeAndNil_Proc = nil;
   AUiWindow_GetMenu: AUiWindow_GetMenu_Proc = nil;
   AUiWindow_New: AUiWindow_New_Proc = nil;
-  AUiWindow_SetBorderStyle: AUiWindow_SetBorderStyle03_Proc = nil;
+  AUiWindow_SetBorderStyle: AUiWindow_SetBorderStyle_Proc = nil;
   AUiWindow_SetFormStyle: AUiWindow_SetFormStyle04_Proc = nil;
   AUiWindow_SetPosition: AUiWindow_SetPosition04_Proc = nil;
   AUiWindow_SetState: AUiWindow_SetState_Proc = nil;
