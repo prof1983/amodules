@@ -2,7 +2,7 @@
 Abstract AUiControl functions
 Author Prof1983 <prof1983@ya.ru>
 Created 16.11.2012
-LastMod 11.12.2012
+LastMod 22.04.2013
 }
 unit AUiControls;
 
@@ -11,7 +11,8 @@ unit AUiControls;
 interface
 
 uses
-  ABase, AStrings,
+  ABase,
+  AStringMain,
   AUiBase, AUiProcVars;
 
 function AUiControl_Free(Control: AControl): AError; {$ifdef AStdCall}stdcall;{$endif}

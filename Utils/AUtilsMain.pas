@@ -2,7 +2,7 @@
 @Abstract AUtils - Main
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 26.12.2012
+@LastMod 22.04.2013
 }
 unit AUtilsMain;
 
@@ -11,7 +11,9 @@ unit AUtilsMain;
 interface
 
 uses
-  ABase, AStrings, AUtilsProcVars;
+  ABase,
+  AStringMain,
+  AUtilsProcVars;
 
 // --- AUtils ---
 

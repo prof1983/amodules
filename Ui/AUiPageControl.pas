@@ -2,7 +2,7 @@
 @Abstract AUi PageControl
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 22.11.2012
+@LastMod 22.04.2013
 }
 unit AUiPageControl;
 
@@ -11,7 +11,8 @@ unit AUiPageControl;
 interface
 
 uses
-  ABase, AStrings,
+  ABase,
+  AStringMain,
   AUiBase, AUiProcVars;
 
 function AUiPageControl_AddPage(PageControl: AControl; const Name, Text: AString_Type): AControl; {$ifdef AStdCall}stdcall;{$endif}

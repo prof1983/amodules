@@ -2,14 +2,15 @@
 @Abstract AUi TreeView
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 19.11.2012
+@LastMod 22.04.2013
 }
 unit AUiTreeView;
 
 interface
 
 uses
-  ABase, AStrings,
+  ABase,
+  AStringMain,
   AUiBase, AUiProcVars;
 
 function AUiTreeView_AddItem(TreeView: AControl; Parent: ATreeNode; const Text: AString_Type): ATreeNode; {$ifdef AStdCall}stdcall;{$endif}

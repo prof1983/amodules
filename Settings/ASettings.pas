@@ -2,7 +2,7 @@
 @Abstract ASettings
 @Author Prof1983 <prof1983@ya.ru>
 @Created 01.08.2012
-@LastMod 20.11.2012
+@LastMod 22.04.2013
 }
 unit ASettings;
 
@@ -10,7 +10,8 @@ interface
 
 uses
   ABase, ARuntime, ARuntimeBase, ASettingsBase,
-  ASettingsProcVars, AStrings;
+  ASettingsProcVars,
+  AStringMain;
 
 // --- Public ---
 

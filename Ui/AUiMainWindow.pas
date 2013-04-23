@@ -2,7 +2,7 @@
 @Abstract AUiMainWindow
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 27.12.2012
+@LastMod 22.04.2013
 }
 unit AUiMainWindow;
 
@@ -11,7 +11,10 @@ unit AUiMainWindow;
 interface
 
 uses
-  ABase, AStrings, AUiBase, AUiProcVars;
+  ABase,
+  AStringMain,
+  AUiBase,
+  AUiProcVars;
 
 function AUiMainWindow_GetMainContainer(): AControl; {$ifdef AStdCall}stdcall;{$endif}
 

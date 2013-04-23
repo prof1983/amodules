@@ -2,7 +2,7 @@
 @Abstract AUi text view
 @Author Prof1983 <prof1983@ya.ru>
 @Created 22.11.2012
-@LastMod 14.12.2012
+@LastMod 22.04.2013
 }
 unit AUiTextView;
 
@@ -11,7 +11,10 @@ unit AUiTextView;
 interface
 
 uses
-  ABase, AStrings, AUiBase, AUiProcVars;
+  ABase,
+  AStringMain,
+  AUiBase,
+  AUiProcVars;
 
 function AUiTextView_AddLine(TextView: AControl; const Text: AString_Type): AInt; {$ifdef AStdCall}stdcall;{$endif}
 

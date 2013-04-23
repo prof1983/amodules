@@ -2,7 +2,7 @@
 @Abstract AUi common functions
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 11.12.2012
+@LastMod 22.04.2013
 }
 unit AUiMain;
 
@@ -11,7 +11,9 @@ unit AUiMain;
 interface
 
 uses
-  ABase, AStrings, AUiProcVars;
+  ABase,
+  AStringMain,
+  AUiProcVars;
 
 function AUi_Init(): AError; {$ifdef AStdCall}stdcall;{$endif}
 

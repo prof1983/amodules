@@ -2,7 +2,7 @@
 @Abstract User Interface client
 @Author Prof1983 <prof1983@ya.ru>
 @Created 25.10.2008
-@LastMod 27.12.2012
+@LastMod 22.04.2013
 }
 unit AUi;
 
@@ -12,7 +12,7 @@ interface
 
 uses
   ABase, ABaseTypes,
-  AStrings,
+  AStringMain,
   AUiBase, AUiBox, AUiControls, AUiControlsA, AUiDialogs, AUiEvents, AUiGrids, AUiImages, AUiLabels,
   AUiListBox,
   AUiMain,
