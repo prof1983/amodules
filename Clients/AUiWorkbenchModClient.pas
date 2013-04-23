@@ -2,7 +2,7 @@
 @Abstract AUiWorkbench
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 20.11.2012
+@LastMod 23.04.2013
 }
 unit AUiWorkbenchModClient;
 
@@ -29,13 +29,20 @@ begin
     Result := -2;
     Exit;
   end;
-  if not(AUiWorkbench_SetProcsP(Module.Procs)) then
+  if Assigned(Module.GetProc) then
   begin
-    Result := -3;
+    Result := AUiWorkbench_SetProcs(Module.GetProc);
+    if (Result = 0) then
+      IsBoot := True;
     Exit;
   end;
-  IsBoot := True;
-  Result := 0;
+  {$ifdef ADepr}
+  Result := AUiWorkbench_SetProcsP(Module.Procs);
+  if (Result = 0) then
+    IsBoot := True;
+  {$else}
+  Result := -3;
+  {$endif}
 end;
 
 function AUiWorkbench_IsBoot(): Boolean;
