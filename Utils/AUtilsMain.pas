@@ -2,7 +2,6 @@
 @Abstract AUtils - Main
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 23.04.2013
 }
 unit AUtilsMain;
 
@@ -76,7 +75,7 @@ var
 begin
   if Assigned(AUtilsProcVars.AUtils_ExtractFileExt) then
   begin
-    if (AString_AssignP(FN, FileName) < 0) then
+    if (AString_SetP(FN, FileName) < 0) then
     begin
       Result := '';
       Exit;
@@ -115,7 +114,7 @@ var
 begin
   if Assigned(AUtilsProcVars.AUtils_ExtractFileExt) then
   begin
-    if (AString_AssignWS(FN, FileName) < 0) then
+    if (AString_SetP(FN, FileName) < 0) then
     begin
       Result := '';
       Exit;
@@ -154,7 +153,7 @@ var
 begin
   if Assigned(AUtilsProcVars.AUtils_ExtractFilePath) then
   begin
-    if (AString_AssignP(FN, FileName) < 0) then
+    if (AString_SetP(FN, FileName) < 0) then
     begin
       Result := '';
       Exit;
@@ -209,7 +208,7 @@ var
 begin
   if Assigned(AUtilsProcVars.AUtils_FileExists) then
   begin
-    if (AString_AssignP(S, FileName) < 0) then
+    if (AString_SetP(S, FileName) < 0) then
     begin
       Result := False;
       Exit;
@@ -233,7 +232,7 @@ var
 begin
   if Assigned(AUtilsProcVars.AUtils_FileExists) then
   begin
-    if (AString_AssignWS(S, FileName) < 0) then
+    if (AString_SetP(S, FileName) < 0) then
     begin
       Result := False;
       Exit;
@@ -285,6 +284,7 @@ function AUtils_IntToStrP(Value: AInt): APascalString;
 var
   S: AString_Type;
 begin
+  AString_Clear(S);
   if (AUtils_IntToStr(Value, S) < 0) then
   begin
     Result := '';
@@ -297,6 +297,7 @@ function AUtils_IntToStrWS(Value: AInt): AWideString;
 var
   S: AString_Type;
 begin
+  AString_Clear(S);
   if (AUtils_IntToStr(Value, S) < 0) then
   begin
     Result := '';
@@ -313,7 +314,7 @@ var
 begin
   if Assigned(AUtilsProcVars.AUtils_ReplaceComma) then
   begin
-    if (AString_AssignP(S1, S) < 0) then
+    if (AString_SetP(S1, S) < 0) then
     begin
       Result := S;
       Exit;
@@ -350,7 +351,7 @@ var
 begin
   if Assigned(AUtilsProcVars.AUtils_ReplaceComma) then
   begin
-    if (AString_AssignWS(S1, S) < 0) then
+    if (AString_SetP(S1, S) < 0) then
     begin
       Result := S;
       Exit;
@@ -405,7 +406,7 @@ var
 begin
   if Assigned(AUtilsProcVars.AUtils_StrToFloatDef) then
   begin
-    if (AString_AssignP(S1, S) < 0) then
+    if (AString_SetP(S1, S) < 0) then
     begin
       Result := DefValue;
       Exit;
@@ -429,7 +430,7 @@ var
 begin
   if Assigned(AUtilsProcVars.AUtils_StrToFloatDef) then
   begin
-    if (AString_AssignWS(S1, S) < 0) then
+    if (AString_SetP(S1, S) < 0) then
     begin
       Result := DefValue;
       Exit;
@@ -453,7 +454,7 @@ var
 begin
   if Assigned(AUtilsProcVars.AUtils_StrToFloat) then
   begin
-    if (AString_AssignP(S, Value) < 0) then
+    if (AString_SetP(S, Value) < 0) then
     begin
       Result := 0;
       Exit;
@@ -477,7 +478,7 @@ var
 begin
   if Assigned(AUtilsProcVars.AUtils_StrToIntDef) then
   begin
-    if (AString_AssignP(S1, S) < 0) then
+    if (AString_SetP(S1, S) < 0) then
     begin
       Result := DefValue;
       Exit;
@@ -501,7 +502,7 @@ var
 begin
   if Assigned(AUtilsProcVars.AUtils_StrToIntDef) then
   begin
-    if (AString_AssignWS(S1, S) < 0) then
+    if (AString_SetP(S1, S) < 0) then
     begin
       Result := DefValue;
       Exit;
@@ -525,7 +526,7 @@ var
 begin
   if Assigned(AUtilsProcVars.AUtils_StrToInt) then
   begin
-    if (AString_AssignP(S1, Value) < 0) then
+    if (AString_SetP(S1, Value) < 0) then
     begin
       Result := 0;
       Exit;
@@ -557,7 +558,7 @@ function AUtils_TrimP(const S: APascalString): APascalString;
 var
   Str: AString_Type;
 begin
-  if (AString_AssignP(Str, S) < 0) then
+  if (AString_SetP(Str, S) < 0) then
   begin
     Result := S;
     Exit;
@@ -574,7 +575,7 @@ function AUtils_TrimWS(const S: AWideString): AWideString;
 var
   Str: AString_Type;
 begin
-  if (AString_AssignWS(Str, S) < 0) then
+  if (AString_SetP(Str, S) < 0) then
   begin
     Result := S;
     Exit;
