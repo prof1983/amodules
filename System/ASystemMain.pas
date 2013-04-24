@@ -2,7 +2,6 @@
 @Abstract ASystem client
 @Author Prof1983 <prof1983@ya.ru>
 @Created 27.08.2012
-@LastMod 24.04.2013
 }
 unit ASystemMain;
 
@@ -54,6 +53,8 @@ function ASystem_ProcessMessages(): AError; stdcall;
 
 function ASystem_ShowMessageExWS(const Text, Caption: AWideString; Flags: AMessageBoxFlags): ADialogBoxCommands; stdcall;
 
+function ASystem_ShowMessageA(Msg: AStr): ADialogBoxCommands; stdcall;
+
 function ASystem_ShowMessageP(const Msg: APascalString): ADialogBoxCommands; stdcall;
 
 implementation
@@ -79,6 +80,7 @@ begin
     Result := '';
     Exit;
   end;
+  AString_Clear(S);
   if (ASystemProcVars.ASystem_GetDataDirectoryPath(S) < 0) then
   begin
     Result := '';
@@ -122,6 +124,7 @@ begin
     Result := '';
     Exit;
   end;
+  AString_Clear(S);
   if (ASystemProcVars.ASystem_GetExePath(S) < 0) then
   begin
     Result := '';
@@ -139,6 +142,7 @@ begin
     Result := '';
     Exit;
   end;
+  AString_Clear(S);
   if (ASystemProcVars.ASystem_GetProgramName(S) < 0) then
   begin
     Result := '';
@@ -156,6 +160,7 @@ begin
     Result := '';
     Exit;
   end;
+  AString_Clear(S);
   if (ASystemProcVars.ASystem_GetTitle(S) < 0) then
   begin
     Result := '';
@@ -203,6 +208,7 @@ begin
     Result := '';
     Exit;
   end;
+  AString_Clear(Res);
   if (ASystemProcVars.ASystem_ParamStr(Index, Res) < 0) then
   begin
     Result := '';
@@ -220,6 +226,7 @@ begin
     Result := '';
     Exit;
   end;
+  AString_Clear(Res);
   if (ASystemProcVars.ASystem_ParamStr(Index, Res) < 0) then
   begin
     Result := '';
@@ -289,12 +296,12 @@ var
   SText: AString_Type;
   SCaption: AString_Type;
 begin
-  if (AString_AssignWS(SText, Text) < 0) then
+  if (AString_SetP(SText, Text) < 0) then
   begin
     Result := -1;
     Exit;
   end;
-  if (AString_AssignWS(SCaption, Caption) < 0) then
+  if (AString_SetP(SCaption, Caption) < 0) then
   begin
     Result := -1;
     Exit;
@@ -307,11 +314,21 @@ begin
   Result := ASystemProcVars.ASystem_ShowMessageEx(SText, SCaption, Flags)
 end;
 
+function ASystem_ShowMessageA(Msg: AStr): ADialogBoxCommands;
+begin
+  if not(Assigned(ASystemProcVars.ASystem_ShowMessageA)) then
+  begin
+    Result := 0;
+    Exit;
+  end;
+  Result := ASystemProcVars.ASystem_ShowMessageA(Msg)
+end;
+
 function ASystem_ShowMessageP(const Msg: APascalString): ADialogBoxCommands;
 var
   S: AString_Type;
 begin
-  if (AString_AssignP(S, Msg) < 0) then
+  if (AString_SetP(S, Msg) < 0) then
   begin
     Result := 0;
     Exit;
