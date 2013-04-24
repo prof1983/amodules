@@ -2,7 +2,6 @@
 Abstract AUiControl functions
 Author Prof1983 <prof1983@ya.ru>
 Created 16.11.2012
-LastMod 22.04.2013
 }
 unit AUiControls;
 
@@ -193,7 +192,7 @@ var
 begin
   if Assigned(AUiProcVars.AUiControl_SetText) then
   begin
-    AString_AssignP(S, Value);
+    AString_SetP(S, Value);
     Result := AUiControl_SetText(Control, S);
     Exit;
   end;
