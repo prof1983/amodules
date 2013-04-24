@@ -2,7 +2,6 @@
 @Abstract AUi TreeView
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 22.04.2013
 }
 unit AUiTreeView;
 
@@ -35,7 +34,7 @@ function AUiTreeView_AddItemP(TreeView: AControl; Parent: ATreeNode; const Text:
 var
   S: AString_Type;
 begin
-  AString_AssignP(S, Text);
+  AString_SetP(S, Text);
   Result := AUiTreeView_AddItem(TreeView, Parent, S);
 end;
 

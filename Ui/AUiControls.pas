@@ -148,7 +148,7 @@ begin
   end;
   if Assigned(AUiProcVars.AUiControl_SetFont1) then
   begin
-    AString_AssignA(S, FontName);
+    AString_SetA(S, FontName);
     AUiProcVars.AUiControl_SetFont1(Control, S, FontSize);
     Result := 0;
     Exit;

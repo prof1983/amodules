@@ -2,7 +2,6 @@
 @Abstract ASettings
 @Author Prof1983 <prof1983@ya.ru>
 @Created 01.08.2012
-@LastMod 22.04.2013
 }
 unit ASettings;
 
@@ -28,12 +27,12 @@ var
 begin
   if Assigned(ASettingsProcVars.ASettings_ReadBoolDef) then
   begin
-    if (AString_AssignP(SSection, Section) < 0) then
+    if (AString_SetP(SSection, Section) < 0) then
     begin
       Result := DefValue;
       Exit;
     end;
-    if (AString_AssignP(SName, Name) < 0) then
+    if (AString_SetP(SName, Name) < 0) then
     begin
       Result := DefValue;
       Exit;

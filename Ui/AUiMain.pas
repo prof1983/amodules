@@ -2,7 +2,6 @@
 @Abstract AUi common functions
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 22.04.2013
 }
 unit AUiMain;
 
@@ -69,7 +68,7 @@ var
 begin
   if Assigned(AUiProcVars.AUi_ShowHelp2) then
   begin
-    AString_AssignP(S, FileName);
+    AString_SetP(S, FileName);
     Result := AUi_ShowHelp2(S);
     Exit;
   end;

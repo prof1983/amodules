@@ -2,7 +2,6 @@
 @Abstract AUi PageControl
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 23.04.2013
 }
 unit AUiPageControl;
 
@@ -40,8 +39,8 @@ var
   SName: AString_Type;
   SText: AString_Type;
 begin
-  AString_AssignA(SName, Name);
-  AString_AssignA(SText, Text);
+  AString_SetA(SName, Name);
+  AString_SetA(SText, Text);
   Result := AUiPageControl_AddPage(PageControl, SName, SText);
 end;
 
@@ -52,8 +51,8 @@ var
 begin
   if Assigned(AUiProcVars.AUiPageControl_AddPage) then
   begin
-    AString_AssignP(SName, Name);
-    AString_AssignP(SText, Text);
+    AString_SetP(SName, Name);
+    AString_SetP(SText, Text);
     Result := AUiPageControl_AddPage(PageControl, SName, SText);
     Exit;
   end;

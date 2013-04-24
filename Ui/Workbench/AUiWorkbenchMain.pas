@@ -2,7 +2,6 @@
 @Abstract AUiWorkbench
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 22.11.2012
 }
 unit AUiWorkbenchMain;
 
@@ -11,7 +10,10 @@ unit AUiWorkbenchMain;
 interface
 
 uses
-  ABase, AStrings, AUiBase, AUiWorkbenchProcVars;
+  ABase,
+  AStringMain,
+  AUiBase,
+  AUiWorkbenchProcVars;
 
 function AUiWorkbench_AddPage(const Name, Text: AString_Type): AControl; stdcall;
 
@@ -60,8 +62,8 @@ var
 begin
   if Assigned(AUiWorkbenchProcVars.AUiWorkbench_AddPage) then
   begin
-    AString_AssignWS(SName, Name);
-    AString_AssignWS(SText, Text);
+    AString_SetP(SName, Name);
+    AString_SetP(SText, Text);
     Result := AUiWorkbench_AddPage(SName, SText);
     Exit;
   end;

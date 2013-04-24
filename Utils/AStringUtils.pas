@@ -2,14 +2,15 @@
 @Abstract AStringUtils
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 23.04.2013
 }
 unit AStringUtils;
 
 interface
 
 uses
-  ABase, AStrings, AUtilsProcVars;
+  ABase,
+  AStringMain,
+  AUtilsProcVars;
 
 // --- AString ---
 
@@ -54,11 +55,12 @@ var
   Str: AString_Type;
   Res: AString_Type;
 begin
-  if (AString_AssignP(Str, S) < 0) then
+  if (AString_SetP(Str, S) < 0) then
   begin
     Result := S;
     Exit;
   end;
+  AString_Clear(Res);
   if (AString_ToUpper(Str, Res) < 0) then
   begin
     Result := S;
@@ -72,11 +74,12 @@ var
   Str: AString_Type;
   Res: AString_Type;
 begin
-  if (AString_AssignWS(Str, S) < 0) then
+  if (AString_SetP(Str, S) < 0) then
   begin
     Result := S;
     Exit;
   end;
+  AString_Clear(Res);
   if (AString_ToUpper(Str, Res) < 0) then
   begin
     Result := S;

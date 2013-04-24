@@ -2,7 +2,6 @@
 @Abstract AUi Menus
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 23.04.2013
 }
 unit AUiMenus;
 
@@ -64,8 +63,8 @@ var
   SName: AString_Type;
   SText: AString_Type;
 begin
-  AString_AssignP(SName, Name);
-  AString_AssignP(SText, Text);
+  AString_SetP(SName, Name);
+  AString_SetP(SText, Text);
   Result := AUiMenu_AddItem1(Menu, SName, SText, OnClick, ImageId, Weight);
 end;
 
@@ -88,8 +87,8 @@ var
 begin
   if Assigned(AUiProcVars.AUiMenu_AddItem2) then
   begin
-    AString_AssignP(SName, Name);
-    AString_AssignP(SText, Text);
+    AString_SetP(SName, Name);
+    AString_SetP(SText, Text);
     Result := AUiMenu_AddItem2(ParentMenuItem, SName, SText, OnClick, ImageId, Weight);
     Exit;
   end;

@@ -2,7 +2,6 @@
 @Abstract AUiListBox
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 22.04.2013
 }
 unit AUiListBox;
 
@@ -48,7 +47,7 @@ var
 begin
   if Assigned(AUiProcVars.AUiListBox_Add) then
   begin
-    AString_AssignP(S, Text);
+    AString_SetP(S, Text);
     Result := AUiListBox_Add(ListBox, S);
     Exit;
   end;

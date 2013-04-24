@@ -2,7 +2,6 @@
 @Abstract User Interface procs var
 @Author Prof1983 <prof1983@ya.ru>
 @Created 19.11.2012
-@LastMod 22.04.2013
 }
 unit AUiImages;
 
@@ -50,7 +49,7 @@ begin
     Result := AUiProcVars.AUiImage_LoadFromFileA(Image, FileName)
   else
   begin
-    AString_AssignA(S, FileName);
+    AString_SetA(S, FileName);
     Result := AUiImage_LoadFromFile(Image, S);
   end;
 end;
@@ -59,7 +58,7 @@ function AUiImage_LoadFromFileP(Image: AControl; const FileName: APascalString):
 var
   S: AString_Type;
 begin
-  AString_AssignP(S, FileName);
+  AString_SetP(S, FileName);
   Result := AUiImage_LoadFromFile(Image, S);
 end;
 
@@ -67,7 +66,7 @@ function AUiImage_LoadFromFileWS(Image: AControl; const FileName: AWideString): 
 var
   S: AString_Type;
 begin
-  AString_AssignWS(S, FileName);
+  AString_SetP(S, FileName);
   Result := AUiImage_LoadFromFile(Image, S);
 end;
 

@@ -2,7 +2,6 @@
 @Abstract ASystem resource
 @Author Prof1983 <prof1983@ya.ru>
 @Created 20.11.2012
-@LastMod 22.04.2013
 }
 unit ASystemResourceString;
 
@@ -38,9 +37,9 @@ var
   SDefault: AString_Type;
   Res: AString_Type;
 begin
-  AString_AssignP(SSection, Section);
-  AString_AssignP(SName, Name);
-  AString_AssignP(SDefault, Default);
+  AString_SetP(SSection, Section);
+  AString_SetP(SName, Name);
+  AString_SetP(SDefault, Default);
   AString_Clear(Res);
   ASystem_GetResourceString(SSection, SName, SDefault, Res);
   Result := AString_ToPascalString(Res);
