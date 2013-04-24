@@ -115,12 +115,12 @@ end;
 
 function AString_Clear(var S: AString_Type): AError;
 begin
-  if not(Assigned(AStringsProcVars.AString_Clear)) then
-  begin
-    Result := -100;
-    Exit;
+  try
+    FillChar(S, SizeOf(S), 0);
+    Result := 0;
+  except
+    Result := -1;
   end;
-  Result := AStringsProcVars.AString_Clear(S);
 end;
 
 function AString_Copy(var S: AString_Type; const Value: AString_Type): ASize;
