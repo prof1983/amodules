@@ -2,7 +2,7 @@
 @Abstract ASystem client
 @Author Prof1983 <prof1983@ya.ru>
 @Created 27.08.2012
-@LastMod 22.04.2013
+@LastMod 24.04.2013
 }
 unit ASystemMain;
 
@@ -45,6 +45,10 @@ function ASystem_Prepare2A(Title, ProgramName: PAnsiChar; ProgramVersion: AVersi
 function ASystem_Prepare4A(Title, ProgramName: AStr; ProgramVersion: AVersion;
     ProductName: AStr; ProductVersion: AVersion;
     CompanyName, Copyright, Url, Description, Comments, DataPath, ConfigPath: AStr): AError; stdcall;
+
+function ASystem_PrepareP(const Title, ProgramName: APascalString; ProgramVersion: AVersion;
+    const ProductName: APascalString; ProductVersion: AVersion;
+    const CompanyName, Copyright, Url, Description, DataPath, ConfigPath: APascalString): AError;
 
 function ASystem_ProcessMessages(): AError; stdcall;
 
@@ -249,6 +253,25 @@ begin
   Result := ASystemProcVars.ASystem_Prepare4A(Title, ProgramName, ProgramVersion,
       ProductName, ProductVersion, CompanyName, Copyright, Url, Description,
       Comments, DataPath, ConfigPath);
+end;
+
+function ASystem_PrepareP(const Title, ProgramName: APascalString; ProgramVersion: AVersion;
+    const ProductName: APascalString; ProductVersion: AVersion;
+    const CompanyName, Copyright, Url, Description, DataPath, ConfigPath: APascalString): AError;
+begin
+  Result := ASystem_Prepare4A(
+      AStr(AnsiString(Title)),
+      AStr(AnsiString(ProgramName)),
+      ProgramVersion,
+      AStr(AnsiString(ProductName)),
+      ProductVersion,
+      AStr(AnsiString(CompanyName)),
+      AStr(AnsiString(Copyright)),
+      AStr(AnsiString(Url)),
+      AStr(AnsiString(Description)),
+      nil,
+      AStr(AnsiString(DataPath)),
+      AStr(AnsiString(ConfigPath)));
 end;
 
 function ASystem_ProcessMessages(): AError;
