@@ -1,8 +1,10 @@
 /*
 Author Prof1983 <prof1983@ya.ru>
 Created 04.03.2013
-LastMod 15.04.2013
 */
+
+#ifndef ASystemClientVars_C
+#define ASystemClientVars_C
 
 #include "ABase.h"
 #include "ABase2.h"
@@ -99,3 +101,5 @@ ASystem_ShowMessageA_Proc _ASystem_ShowMessageA;
 ASystem_ShowMessageEx_Proc _ASystem_ShowMessageEx;
 ASystem_ShowMessageExA_Proc _ASystem_ShowMessageExA;
 ASystem_Shutdown_Proc _ASystem_Shutdown;
+
+#endif
